@@ -1,5 +1,5 @@
 {
-  "name": "equivalent-ui",
+  "name": "sve-ui",
   "version": "0.0.1",
   "type": "module",
   "main": "lib/index.ts",
