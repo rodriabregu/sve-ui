@@ -1,5 +1,6 @@
 src
 public
 index.html
+vite.config.ts
 pnpm-lock.yaml
 pnpm-workspace.yaml
