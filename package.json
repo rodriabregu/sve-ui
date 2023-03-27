@@ -4,6 +4,7 @@
   "type": "module",
   "main": "./dist/sve-ui.umd.cjs",
   "module": "./dist/sve-ui.js",
+  "types": "./src/types.d.ts",
   "exports": {
     ".": {
       "import": "./dist/sve-ui.js",
@@ -12,9 +13,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
-    "prepare": "rollup -c",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
@@ -23,15 +23,19 @@
     "@swc/core": "^1.3.41",
     "@tsconfig/svelte": "^3.0.0",
     "standard": "^17.0.0",
-    "svelte": "^3.55.1",
     "svelte-check": "^2.10.3",
     "tslib": "^2.5.0",
     "typescript": "^4.9.3",
     "vite": "^4.2.0"
   },
+  "peerDependencies": {
+    "svelte": "^3.55.1"
+  },
   "eslintConfig": {
     "extends": [
       "./node_modules/standard/eslintrc.json"
     ]
-  }
+  },
+  "author": "Rodrigo Abregu <me@rodriab.io> (https://rodriab.io/)",
+  "license": "MIT"
 }
