@@ -5,7 +5,7 @@ declare const __propDef: {
         label?: string | undefined;
         onClick?: (() => void) | undefined;
         color?: string | undefined;
-        size?: string | undefined;
+        size?: 'xsm' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl' | undefined;
         disabled?: boolean | undefined;
     };
     events: {

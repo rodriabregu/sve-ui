@@ -5,7 +5,7 @@
 <main class="page">
 	<h1>Sve-UI</h1>
 
-	<Button size="xsm">Click me</Button>
+	<Button size="xsm" bg={'#d4d4d4'}>Click me</Button>
 	<Button size="sm">Click me</Button>
 	<Button size="md" color="red">Click me</Button>
 	<Button size="xl" disabled>Click me</Button>
