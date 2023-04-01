@@ -1,3 +1,25 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import Button from '$lib/components/Button/Button.svelte';
+</script>
+
+<main class="page">
+	<h1>Sve-UI</h1>
+
+	<Button size="xsm">Click me</Button>
+	<Button size="sm">Click me</Button>
+	<Button size="md" color="red">Click me</Button>
+	<Button size="xl" disabled>Click me</Button>
+	<Button size="xxl" color="green">Click me</Button>
+	<Button size="xxxl" onClick={() => alert('Alert for button')}>Click to alert</Button>
+</main>
+
+<style>
+	.page {
+		background: #232323;
+		width: 100vw;
+		height: 100vh;
+		color: #fff;
+		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+			Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	}
+</style>
