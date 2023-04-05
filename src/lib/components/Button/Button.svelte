@@ -23,7 +23,7 @@ ej:
 </script>
 
 <button
-	class={`${props.class} button ${bg} padding-${p} ${color} ${size} ${style}`}
+	class={`${props.class} button padding-${p} ${color} ${size} ${style}`}
 	on:click={onClick}
 	style={`background-color: ${bg}`}
 	{disabled}
