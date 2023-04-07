@@ -11,7 +11,10 @@
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<p>
+			Site docs & library under construction. See the npm package in
+			<a href="https://www.npmjs.com/package/sve-ui" target="_blank">npm Sve-UI</a>
+		</p>
 	</footer>
 </div>
 

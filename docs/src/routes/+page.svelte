@@ -1,59 +1,64 @@
-<script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
-</script>
-
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Sve UI</title>
+	<meta
+		name="description"
+		content="Svelte ui component 
+		library for building fast and accessible web apps.
+	"
+	/>
 </svelte:head>
 
 <section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
+	<h1>Create accessible Svelte apps fast <br /> with Sve-UI</h1>
 
-		to your new<br />SvelteKit app
-	</h1>
+	<article>
+		<h2>Less code. More speed</h2>
+		<span> Build fast and accessible web apps with Sve-UI.</span>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+		<h2>Easy to use</h2>
+		<span> Sve-UI is easy to use, easy to learn and intuitive.</span>
+	</article>
 
-	<Counter />
+	<a href="/docs">See the docs to start</a>
 </section>
 
 <style>
 	section {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
-		flex: 0.6;
 	}
 
 	h1 {
 		width: 100%;
+		font-size: 3rem;
 	}
 
-	.welcome {
-		display: block;
-		position: relative;
+	h2 {
 		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
+		display: flex;
+		justify-content: center;
+		font-size: 2.4rem;
 	}
 
-	.welcome img {
-		position: absolute;
+	span {
 		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+		display: flex;
+		justify-content: center;
+		font-size: 1.4rem;
+	}
+
+	article {
+		margin-bottom: 8rem;
+	}
+
+	a {
+		width: 40%;
+		display: flex;
+		justify-content: center;
+		font-size: 1.4rem;
+		border: 1px solid #ebedf1;
+		border-radius: 4px;
+		padding: 1rem;
 	}
 </style>
