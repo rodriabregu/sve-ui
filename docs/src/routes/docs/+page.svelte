@@ -56,6 +56,7 @@
 		<li><a href="/components/toast" class="disabled-link">Toast</a></li>
 		<li><a href="/components/navbar" class="disabled-link">Navbar</a></li>
 		<li><a href="/components/tooltips" class="disabled-link">Tooltips</a></li>
+		<li><a href="/components/cmdPalette" class="disabled-link">Command Palette</a></li>
 	</ul>
 </div>
 
