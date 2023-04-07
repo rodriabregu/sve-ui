@@ -1,6 +1,6 @@
 {
 	"name": "sve-ui",
-	"version": "0.0.3",
+	"version": "0.0.5",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -56,6 +56,7 @@
 	"bugs": {
 		"url": "https://github.com/rodriabregu/sve-ui/issues"
 	},
+	"homepage": "https://sveui.org/",
 	"description": "Sve-UI is a collection of customizable UI components for Svelte applications. These components are designed to be easy to use and highly flexible, allowing developers to quickly build beautiful interfaces. Sve-UI includes buttons, forms, modals, and other commonly used UI elements, all built with Svelte's lightweight and efficient framework.",
 	"keywords": [
 		"components",

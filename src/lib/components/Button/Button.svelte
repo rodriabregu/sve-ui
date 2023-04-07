@@ -10,15 +10,16 @@ ej:
 -->
 
 <script lang="ts">
+	import type { ButtonSize } from './Button.svelte';
+
 	export let label = 'Button';
 	export let onClick = () => {};
 	export let color = 'blue';
-	export let size = 'md'; // xsm | sm | md | lg | xl | xxl | xxxl
+	export let size: ButtonSize = 'md';
 	export let disabled = false;
 	export let style = '';
 	export let bg = '';
 	export let p = '3';
-
 	let props = { ...$$restProps };
 </script>
 
@@ -39,6 +40,9 @@ ej:
 		font-weight: bold;
 		padding: 8px 16px;
 		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 	.blue {
 		background-color: #007bff;
