@@ -1,12 +1,12 @@
 <script>
 	import Button from '$lib/components/Button/Button.svelte';
-	import DemoCode from '$lib/components/CodeExample/CodeExample.svelte';
+	import CodeExample from '$lib/components/CodeExample/CodeExample.svelte';
 </script>
 
 <main class="page">
 	<h1>Sve-UI</h1>
 
-	<DemoCode>{`import { Button } from 'sve-ui'`}</DemoCode>
+	<CodeExample>{`import { Button } from 'sve-ui'`}</CodeExample>
 
 	<Button size="xsm" bg={'#d4d4d4'}>Click me</Button>
 	<Button size="sm">Click me</Button>
