@@ -11,7 +11,7 @@ specifiers:
   eslint-plugin-svelte3: ^4.0.0
   prettier: ^2.8.7
   prettier-plugin-svelte: ^2.10.0
-  sve-ui: ^0.0.7
+  sve-ui: ^0.0.9
   svelte: ^3.58.0
   svelte-check: ^2.10.3
   tslib: ^2.5.0
@@ -29,7 +29,7 @@ devDependencies:
   eslint-plugin-svelte3: 4.0.0_4gllgxcu6gmiyy5rrmqexpx7de
   prettier: 2.8.7
   prettier-plugin-svelte: 2.10.0_ur5pqdgn24bclu6l6i7qojopk4
-  sve-ui: 0.0.7_svelte@3.58.0
+  sve-ui: 0.0.9_svelte@3.58.0
   svelte: 3.58.0
   svelte-check: 2.10.3_svelte@3.58.0
   tslib: 2.5.0
@@ -1553,8 +1553,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /sve-ui/0.0.7_svelte@3.58.0:
-    resolution: {integrity: sha512-Gw2wafi8vD/rg7PPWdwViuRZuWry75WPri+O71sFIhH7ycnHySkZ0ATma9/6V/nvCav/IMcnupfgAjxd8xBT3A==}
+  /sve-ui/0.0.9_svelte@3.58.0:
+    resolution: {integrity: sha512-7WJIItPPR561xH4VPOU9n/kPhfWYiZ6OYKd+Aj3q4MdurjF1IzzU4iSazOt0Q9USoHXBVZIwIMg/Gz9OBONtYA==}
     peerDependencies:
       svelte: ^3.54.0
     dependencies:
