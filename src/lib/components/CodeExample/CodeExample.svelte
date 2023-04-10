@@ -2,12 +2,12 @@
 	export let typeCodeLabel = 'Sve-UI';
 
 	let copied = false;
-	let text = globalThis?.document?.getElementById('textCode')?.textContent;
-
 	const copyToClipboard = async () => {
 		try {
-			if (text) {
-				await navigator.clipboard.writeText(text);
+			const codeElement = document.querySelector('.code-box code');
+			if (codeElement) {
+				const text = codeElement.textContent;
+				text && (await navigator.clipboard.writeText(text));
 				copied = true;
 				setTimeout(() => {
 					copied = false;
@@ -19,7 +19,7 @@
 	};
 </script>
 
-<section class="code-box">
+<pre class="code-box">
 	<article class="button-copy">
 		<span>{typeCodeLabel}</span>
 		<button on:click={copyToClipboard}>
@@ -46,36 +46,53 @@
 		</button>
 	</article>
 
-	<pre>
-    <code id="textCode" class={copied ? 'textCode' : ''}>
-      <slot />
-    </code>
-  </pre>
-</section>
+  <code id="textCode" class={copied ? 'textCode' : ''}>
+    <slot />
+  </code>
+</pre>
 
 <style>
 	.code-box {
 		background-color: #070606;
+		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+			Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 		border-radius: 4px;
 		max-width: 75ch;
-		border-top-left-radius: 0.375rem;
-		border-top-right-radius: 0.375rem;
 		margin: 0 auto;
+		color: #fffdfa;
+		position: relative;
 	}
 
-	.code-box pre code {
+	.code-box code {
 		font-size: 0.9rem;
 		font-family: 'Söhne Mono', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
-		color: #fffdfa;
+		display: block;
+		padding: 0 0.6rem;
+		overflow: auto;
+		transition: background-color 0.2s ease-in-out;
 	}
 
 	.textCode {
 		background-color: #71c562;
+		transition: background-color 0.2s ease-in-out;
+	}
+
+	.button-copy {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: rgba(52, 53, 65, 0.6);
+		border-top-left-radius: 0.375rem;
+		border-top-right-radius: 0.375rem;
+		padding: 0.8rem;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
 	}
 
 	button {
 		display: flex;
-		margin-left: auto;
 		gap: 0.5rem;
 		cursor: pointer;
 		background-color: transparent;
@@ -92,15 +109,6 @@
 	button:active {
 		background-color: #71c562;
 		border-radius: 4px;
-	}
-
-	.button-copy {
-		display: flex;
-		align-items: center;
-		background-color: rgba(52, 53, 65, 0.6);
-		border-top-left-radius: 0.375rem;
-		border-top-right-radius: 0.375rem;
-		padding: 0.8rem;
 	}
 
 	@media only screen and (max-width: 768px) {
