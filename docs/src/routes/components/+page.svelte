@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from 'sve-ui';
+	import { Button, CodeExample } from 'sve-ui';
 </script>
 
 <svelte:head>
@@ -16,6 +16,14 @@
 		<Button />
 
 		<a href="/components/button">See code and examples</a>
+	</article>
+
+	<article>
+		<span>{'<CodeExample />'}</span>
+		<span>Code Example display</span>
+		<CodeExample>{`import { CodeExample } from 'sve-ui';`}</CodeExample>
+
+		<a href="/components/codeexample">See code and examples</a>
 	</article>
 </section>
 
