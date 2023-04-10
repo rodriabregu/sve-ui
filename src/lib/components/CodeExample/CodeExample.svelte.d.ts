@@ -7,6 +7,10 @@
  * @see Docs https://sveui.org/components/codeexample
  */
 export default class CodeExample extends SvelteComponentTyped<{
+  /**
+  * The type code label text, show in the top of the code example component.
+  *  @default 'Sve-UI'
+  */
   typeCodeLabel?: string | undefined;
 }, {
   [evt: string]: CustomEvent<any>;
@@ -20,10 +24,6 @@ export type CodeExampleSlots = typeof __propDef.slots;
 import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
   props: {
-      /**
-      * The type code label
-      *  @default 'Sve-UI'
-      */
       typeCodeLabel?: string | undefined;
   };
   events: {

@@ -2,15 +2,17 @@
 	export let typeCodeLabel = 'Sve-UI';
 
 	let copied = false;
-	let text = globalThis?.document?.getElementById('textCode')?.innerHTML || '';
+	let text = globalThis?.document?.getElementById('textCode')?.textContent;
 
 	const copyToClipboard = async () => {
 		try {
-			await navigator.clipboard.writeText(text);
-			copied = true;
-			setTimeout(() => {
-				copied = false;
-			}, 1500);
+			if (text) {
+				await navigator.clipboard.writeText(text);
+				copied = true;
+				setTimeout(() => {
+					copied = false;
+				}, 1500);
+			}
 		} catch (err) {
 			console.error('Failed to copy: ', err);
 		}
