@@ -1,9 +1,12 @@
 <script>
 	import Button from '$lib/components/Button/Button.svelte';
+	import DemoCode from '$lib/components/CodeExample/CodeExample.svelte';
 </script>
 
 <main class="page">
 	<h1>Sve-UI</h1>
+
+	<DemoCode>{`import { Button } from 'sve-ui'`}</DemoCode>
 
 	<Button size="xsm" bg={'#d4d4d4'}>Click me</Button>
 	<Button size="sm">Click me</Button>
@@ -15,7 +18,7 @@
 
 <style>
 	.page {
-		background: #232323;
+		background: #5e5e5e;
 		width: 100vw;
 		height: 100vh;
 		color: #fff;
