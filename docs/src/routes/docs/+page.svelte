@@ -31,7 +31,7 @@
 	<ul>
 		<li><a href="/components">All components</a></li>
 		<li><a href="/components/button">Button</a></li>
-		<li><a href="/components/codeexample">Code example</a></li>
+		<li><a href="/components/codeexample">CodeExample</a></li>
 		<li><a href="/components/box" class="disabled-link">Box</a></li>
 		<li><a href="/components/text" class="disabled-link">Text</a></li>
 		<li><a href="/components/link" class="disabled-link">Link</a></li>

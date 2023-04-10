@@ -36,8 +36,6 @@
 
 <style>
 	section {
-		display: flex;
-		flex-direction: column;
 		padding: 0 4rem;
 	}
 
@@ -51,7 +49,6 @@
 
 	article {
 		margin-bottom: 4rem;
-		gap: 0.6rem;
 	}
 
 	div {
