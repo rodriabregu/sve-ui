@@ -32,11 +32,14 @@
 		<li><a href="/components">All components</a></li>
 		<li><a href="/components/button">Button</a></li>
 		<li><a href="/components/codeexample">CodeExample</a></li>
-		<li><a href="/components/box" class="disabled-link">Box</a></li>
+		<li><a href="/components/box">Box</a></li>
 		<li><a href="/components/text" class="disabled-link">Text</a></li>
 		<li><a href="/components/link" class="disabled-link">Link</a></li>
-		<li><a href="/components/flex" class="disabled-link">Flex</a></li>
-		<li><a href="/components/center" class="disabled-link">Center</a></li>
+		<li><a href="/components/flex">Flex</a></li>
+		<li><a href="/components/center">Center</a></li>
+		<li><a href="/components/spacer">Spacer</a></li>
+		<li><a href="/components/square">Square</a></li>
+		<li><a href="/components/circle">Circle</a></li>
 		<li><a href="/components/grid" class="disabled-link">Grid</a></li>
 		<li><a href="/components/badge" class="disabled-link">Badge</a></li>
 		<li><a href="/components/code" class="disabled-link">Code</a></li>
