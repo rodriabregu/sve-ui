@@ -18,6 +18,10 @@
 	export let display = '';
 	export let fontSize = 1;
 	export let style = '';
+	export let textAlign = '';
+	export let alignItems = '';
+	export let justifyContent = '';
+	export let justifyItems = '';
 </script>
 
 <div
@@ -32,6 +36,10 @@
 		border-radius: ${br || borderRadius || 'none'};
 		display: ${d || display};
 		font-size: ${fontSize}rem;
+		text-align: ${textAlign};
+		align-items: ${alignItems};
+		justify-content: ${justifyContent};
+		justify-items: ${justifyItems};
 		${style}
 	`}
 	{...$$restProps}
