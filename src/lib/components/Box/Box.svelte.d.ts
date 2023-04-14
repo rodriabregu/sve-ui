@@ -97,6 +97,42 @@ declare const __propDef: {
          * @type string | undefined
          */
         display?: string | undefined;
+
+        /**
+         * @default undefined
+         * @description The position of the text in the box.
+         * @type string | undefined
+         */
+        textAlign?: string | undefined;
+
+        /**
+         * @default undefined
+         * @description The align items of the box.
+         * @type string | undefined
+         */
+        alignItems?: string | undefined;
+
+        /**
+         * @default undefined
+         * @description The justify content of the box.
+         * @type string | undefined
+         */
+        justifyContent?: string | undefined;
+
+        /**
+         * @default undefined
+         * @description The justify items of the box.
+         * @type string | undefined
+         */
+        justifyItems?: string | undefined;
+
+        /**
+         * @default undefined
+         * @description The font size of the text.
+         * @type string | undefined
+         */
+        fontSize?: string | undefined;
+
         /**
          * @default undefined
          * @description Style of the box.

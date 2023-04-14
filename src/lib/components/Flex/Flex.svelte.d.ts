@@ -25,6 +25,10 @@ declare const __propDef: {
 export type FlexProps = typeof __propDef.props;
 export type FlexEvents = typeof __propDef.events;
 export type FlexSlots = typeof __propDef.slots;
+/**
+ * A flex box component that can be used to create layouts.
+ * @see Docs https://sveui.org/components/flex
+ */
 export default class Flex extends SvelteComponentTyped<FlexProps, FlexEvents, FlexSlots> {
 }
 export { Flex, FlexProps };
