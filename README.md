@@ -1,7 +1,7 @@
 # Sve-UI
 ## _Best UI components library for Svelte_
 
-Sve-UI is a UI component library for Svelte that provides the best collection of components for building modern web applications.
+Sve-UI is a UI component library for Svelte that provides the best collection of components for building modern web applications and fast.
 
 <br />
 
@@ -29,7 +29,7 @@ Sve-UI is a UI component library for Svelte that provides the best collection of
 ```sh
 pnpm add sve-ui
 npm install sve-ui
-yarn install sve-ui
+yarn add sve-ui
 ```
 
 To use:
@@ -55,9 +55,6 @@ To use:
 <br />
 
 
-
-Importants links.
-
 | Showcase | Link |
 | ------ | ------ |
 | Docs | [/docs][docs] |
@@ -74,8 +71,8 @@ Importants links.
 
 ## List of components
 
-- Box, Center, Flex, Spacer
-- Button
+- Box, Center, Spacer, Flex, Grid, GridItem
+- Button, Text
 - CodeExample
 - Square, Circle
 
@@ -90,8 +87,8 @@ Importants links.
 MIT
 
 
-   [Gp]: <https://github.com/rodriabregu/sve-ui>
-   [Gpi]: <https://github.com/rodriabregu/sve-ui/issues>
-   [Gppr]: <https://github.com/rodriabregu/sve-ui/pulls>
-   [LSjs]: <https://www.npmjs.com/package/sve-ui>
-   [docs]: <https://sveui.org/>
+[Gp]: <https://github.com/rodriabregu/sve-ui>
+[Gpi]: <https://github.com/rodriabregu/sve-ui/issues>
+[Gppr]: <https://github.com/rodriabregu/sve-ui/pulls>
+[LSjs]: <https://www.npmjs.com/package/sve-ui>
+[docs]: <https://sveui.org/>
