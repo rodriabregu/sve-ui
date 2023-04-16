@@ -4,7 +4,7 @@
 
 <svelte:head>
 	<title>Components - Sve-UI</title>
-	<meta name="description" content="A Wordle clone written in SvelteKit" />
+	<meta name="description" content="Section with all Sve-UI UI components." />
 </svelte:head>
 
 <section>

@@ -2,9 +2,7 @@
 	<title>Sve UI</title>
 	<meta
 		name="description"
-		content="Svelte ui component 
-		library for building fast and accessible web apps.
-	"
+		content="Boost your Svelte development with our powerful and easy-to-use library of reusable UI components. With a wide range of customizable options, including responsive design and support for popular CSS frameworks, our library helps you streamline your development process and create stunning web applications with ease. All this with Sve-UI."
 	/>
 </svelte:head>
 

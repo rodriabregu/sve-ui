@@ -1,6 +1,6 @@
 <svelte:head>
 	<title>Docs - Sve-UI</title>
-	<meta name="description" content="About this app" />
+	<meta name="description" content="Documentation of the UI component library, Sve-UI." />
 </svelte:head>
 
 <div>
