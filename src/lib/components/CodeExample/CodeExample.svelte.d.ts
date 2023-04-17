@@ -9,9 +9,18 @@
 export default class CodeExample extends SvelteComponentTyped<{
   /**
   * The type code label text, show in the top of the code example component.
-  *  @default 'Sve-UI'
+  * @default 'Sve-UI'
+  * @type {string}
+  * @example <CodeExample typeCodeLabel="Svelte">
   */
   typeCodeLabel?: string | undefined;
+  /**
+   * If you want a more compact and simpler version, without the top copy button, you can use the basic option of the component with this property set to true.
+   * @default false
+   * @type {boolean}
+   * @example <CodeExample isBasic={true}>
+   */
+  basic?: boolean | undefined;
 }, {
   [evt: string]: CustomEvent<any>;
 }, {
@@ -25,6 +34,7 @@ import { SvelteComponentTyped } from "svelte";
 declare const __propDef: {
   props: {
       typeCodeLabel?: string | undefined;
+      basic?: boolean | undefined;
   };
   events: {
       [evt: string]: CustomEvent<any>;
