@@ -28,3 +28,15 @@ export type { GridProps } from './components/Grid/Grid.svelte';
 
 export { default as GridItem } from './components/GridItem/GridItem.svelte';
 export type { GridItemProps } from './components/GridItem/GridItem.svelte';
+
+export { default as Text } from './components/Text/Text.svelte';
+export type { TextProps } from './components/Text/Text.svelte';
+
+export { default as DotPulse } from './components/Loaders/DotPulse.svelte';
+export type { DotPulseProps } from './components/Loaders/DotPulse.svelte';
+
+export { default as DotSpinner } from './components/Loaders/DotSpinner.svelte';
+export type { DotSpinnerProps } from './components/Loaders/DotSpinner.svelte';
+
+export { default as DotWave } from './components/Loaders/DotWave.svelte';
+export type { DotWaveProps } from './components/Loaders/DotWave.svelte';
