@@ -33,6 +33,6 @@ const container = {
 
 export const sizes = {
   ...largeSizes,
-  ...container,
   ...spacing,
+  container,
 }
