@@ -1,5 +1,5 @@
 <script lang="ts">
-	//to do add 'as' for dynamic tag
+	export let as = 'div';
 	export let p = 0;
 	export let padding = 0;
 	export let m = 0;
@@ -24,7 +24,8 @@
 	export let justifyItems = '';
 </script>
 
-<div
+<svelte:element
+	this={as}
 	style={`
 		padding: ${p || padding}rem;
 		margin: ${m || margin}rem;
@@ -41,8 +42,8 @@
 		justify-content: ${justifyContent};
 		justify-items: ${justifyItems};
 		${style}
-	`}
+		`}
 	{...$$restProps}
 >
 	<slot />
-</div>
+</svelte:element>
