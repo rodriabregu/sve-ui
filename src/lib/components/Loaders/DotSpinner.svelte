@@ -1,0 +1,124 @@
+<script lang="ts">
+	import { theme } from '$lib/theme';
+
+	export let size: keyof typeof theme.spacing = 14;
+	export let color = 'black';
+	export let speed = '0.9';
+
+	let dotAmount = 8;
+</script>
+
+<div
+	class="dot-spinner"
+	style="
+	--sve-size: {theme.spacing[size]};
+	--sve-color: {color};
+	--sve-speed: {speed}s;
+"
+>
+	{#each Array(dotAmount) as _, i}
+		<div class="dot-spinner__dot" />
+	{/each}
+</div>
+
+<style>
+	.dot-spinner {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		height: var(--sve-size);
+		width: var(--sve-size);
+	}
+
+	.dot-spinner__dot {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		height: 100%;
+		width: 100%;
+	}
+
+	.dot-spinner__dot::before {
+		content: '';
+		height: 20%;
+		width: 20%;
+		border-radius: 50%;
+		background-color: var(--sve-color);
+		transform: scale(0);
+		opacity: 0.5;
+		animation: pulse calc(var(--sve-speed) * 1.111) ease-in-out infinite;
+	}
+
+	.dot-spinner__dot:nth-child(2) {
+		transform: rotate(45deg);
+	}
+
+	.dot-spinner__dot:nth-child(2)::before {
+		animation-delay: calc(var(--sve-speed) * -0.875);
+	}
+
+	.dot-spinner__dot:nth-child(3) {
+		transform: rotate(90deg);
+	}
+
+	.dot-spinner__dot:nth-child(3)::before {
+		animation-delay: calc(var(--sve-speed) * -0.75);
+	}
+
+	.dot-spinner__dot:nth-child(4) {
+		transform: rotate(135deg);
+	}
+
+	.dot-spinner__dot:nth-child(4)::before {
+		animation-delay: calc(var(--sve-speed) * -0.625);
+	}
+
+	.dot-spinner__dot:nth-child(5) {
+		transform: rotate(180deg);
+	}
+
+	.dot-spinner__dot:nth-child(5)::before {
+		animation-delay: calc(var(--sve-speed) * -0.5);
+	}
+
+	.dot-spinner__dot:nth-child(6) {
+		transform: rotate(225deg);
+	}
+
+	.dot-spinner__dot:nth-child(6)::before {
+		animation-delay: calc(var(--sve-speed) * -0.375);
+	}
+
+	.dot-spinner__dot:nth-child(7) {
+		transform: rotate(270deg);
+	}
+
+	.dot-spinner__dot:nth-child(7)::before {
+		animation-delay: calc(var(--sve-speed) * -0.25);
+	}
+
+	.dot-spinner__dot:nth-child(8) {
+		transform: rotate(315deg);
+	}
+
+	.dot-spinner__dot:nth-child(8)::before {
+		animation-delay: calc(var(--sve-speed) * -0.125);
+	}
+
+	@keyframes pulse {
+		0%,
+		100% {
+			transform: scale(0);
+			opacity: 0.5;
+		}
+
+		50% {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+</style>
