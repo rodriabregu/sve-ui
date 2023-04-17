@@ -3,8 +3,26 @@ import type { BoxProps } from "../Box/Box.svelte";
 declare const __propDef: {
     props: {
         [x: string]: any;
+        /**
+         * The number of columns in the grid.
+         * @default 1
+         * @type {number}
+         * @example <Grid columns={2}>
+         */
         columns?: number | undefined;
+        /**
+         * The number of gap in the grid, expressed in rem.
+         * @default 1
+         * @type {number}
+         * @example <Grid gap={2}>
+         */
         gap?: string | undefined;
+        /**
+         * The grid-auto-flow CSS property controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.
+         * @default 'row'
+         * @type {string}
+         * @example <Grid flow={'column'}>
+         */
         flow?: string | undefined;
     } & BoxProps
     events: {
