@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let columns = 3;
+	export let columns = 1;
 	export let gap = '1rem';
 	export let flow = 'row';
 </script>
