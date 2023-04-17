@@ -2,7 +2,7 @@
 	import { theme } from '$lib/theme';
 
 	export let size: keyof typeof theme.spacing = 14;
-	export let color = 'black';
+	export let color = 'white';
 	export let speed = '0.9';
 
 	let dotAmount = 8;
