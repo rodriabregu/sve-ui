@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Box, Grid, Text } from 'sve-ui';
+	import { Box, Button, CodeExample, Grid, Text } from 'sve-ui';
 </script>
 
 <svelte:head>
@@ -7,49 +7,45 @@
 	<meta name="description" content="Section with all Sve-UI UI components." />
 </svelte:head>
 
-<Box>
+<section>
 	<h1>Components</h1>
 
-	<span>Layout</span>
-	<Grid m={1} columns={2}>
-		<Box bg={'#fff'} br="8px">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="400"
-				height="300"
-				viewBox="0 0 400 300"
-				fill="none"
-			>
-				<rect x="53" y="76" width="176" height="29" rx="14.5" fill="#CBD5E0" />
-				<rect x="53" y="123" width="294" height="12" rx="6" fill="#38B2AC" />
-				<rect x="53" y="153" width="294" height="12" rx="6" fill="#38B2AC" />
-				<rect x="53" y="183" width="294" height="12" rx="6" fill="#38B2AC" />
-				<rect x="53" y="213" width="224" height="12" rx="6" fill="#38B2AC" />
-			</svg>
+	<article>
+		<span>{'<Button />'}</span>
+		<span>A button component</span>
+		<Button />
 
-			<Box bg="black">
-				<Text color="white">Text</Text>
-			</Box>
-		</Box>
+		<a href="/components/button">See code and examples</a>
+	</article>
 
-		<Box bg={'#fff'} br="8px">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="400"
-				height="300"
-				viewBox="0 0 400 300"
-				fill="none"
-			>
-				<rect x="53" y="76" width="176" height="29" rx="14.5" fill="#CBD5E0" />
-				<rect x="53" y="123" width="294" height="12" rx="6" fill="#38B2AC" />
-				<rect x="53" y="153" width="294" height="12" rx="6" fill="#38B2AC" />
-				<rect x="53" y="183" width="294" height="12" rx="6" fill="#38B2AC" />
-				<rect x="53" y="213" width="224" height="12" rx="6" fill="#38B2AC" />
-			</svg>
+	<article>
+		<span>{'<CodeExample />'}</span>
+		<span>Code Example display</span>
+		<CodeExample>{`import { CodeExample } from 'sve-ui';`}</CodeExample>
 
-			<Box bg="black">
-				<Text color="white">Text</Text>
-			</Box>
-		</Box>
-	</Grid>
-</Box>
+		<a href="/components/codeexample">See code and examples</a>
+	</article>
+</section>
+
+<style>
+	section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	h1 {
+		width: 100%;
+		font-size: 3rem;
+	}
+	span {
+		/* width: 100%; */
+		font-size: 1.4rem;
+	}
+	article {
+		margin-bottom: 4rem;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 1rem;
+	}
+</style>
