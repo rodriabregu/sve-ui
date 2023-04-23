@@ -62,6 +62,7 @@
 		<li><a href="/components/image" class="disabled-link">Image</a></li>
 		<li><a href="/components/alert" class="disabled-link">Alert</a></li>
 		<li><a href="/components/toast" class="disabled-link">Toast</a></li>
+		<li><a href="/components/loaders">Loaders</a></li>
 		<li><a href="/components/codeexample">CodeExample</a></li>
 		<li><a href="/components/navbar" class="disabled-link">Navbar</a></li>
 		<li><a href="/components/tooltips" class="disabled-link">Tooltips</a></li>
