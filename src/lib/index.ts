@@ -40,3 +40,5 @@ export type { DotSpinnerProps } from './components/Loaders/DotSpinner.svelte';
 
 export { default as DotWave } from './components/Loaders/DotWave.svelte';
 export type { DotWaveProps } from './components/Loaders/DotWave.svelte';
+
+export {  VerifiedIcon, HomeIcon } from './components/Icons/icons';
