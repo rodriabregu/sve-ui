@@ -5,16 +5,11 @@
 	import DotSpinner from '$lib/components/Loaders/DotSpinner.svelte';
 	import DotPulse from '$lib/components/Loaders/DotPulse.svelte';
 	import DotWave from '$lib/components/Loaders/DotWave.svelte';
-	import Text from '$lib/components/Text/Text.svelte';
+	import Verified from '$lib/components/Icons/verified.svelte';
+	import Home from '$lib/components/Icons/home.svelte';
+	import ArrowDownCircle from '$lib/components/Icons/arrowDownCircle.svelte';
 </script>
 
-<!-- <Box
-	display={{
-		base: 'flex',
-		sm: 'block',
-		md: 'grid'
-	}}>Hola</Box
-> -->
 <Grid columns={2}>
 	<Box
 		d={'flex'}
@@ -57,5 +52,6 @@
 		<Button size="sm">Click me</Button>
 	</Box>
 
-	<Text fontSize={'10xl'} color="blue">Hola</Text>
+	<Home />
+	<ArrowDownCircle />
 </Grid>
