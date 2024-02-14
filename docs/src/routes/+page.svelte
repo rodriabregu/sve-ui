@@ -1,3 +1,17 @@
+<script>
+	import GithubIcon from '$lib/icons/GithubIcon.svelte';
+	import FeatureCard from './components/cards/FeatureCard.svelte';
+
+	const FEATURES = [
+		{
+			icon: GithubIcon,
+			title: 'Fast',
+			description:
+				'Constructed using Tailwind CSS infrastructure, signifying absence of runtime style calculations and unnecessary class inclusions within your package.'
+		}
+	];
+</script>
+
 <svelte:head>
 	<title>Sve UI</title>
 	<meta
@@ -6,57 +20,54 @@
 	/>
 </svelte:head>
 
-<section>
-	<h1>Create accessible Svelte apps fast <br /> with Sve-UI</h1>
+<main class="flex flex-col items-center gap-16">
+	<section class="flex items-center gap-64">
+		<h1 class="text-5xl">
+			Make <span class="text-blue-400">beautiful</span> and easily websites. <br /> With Sve-UI.
+		</h1>
 
-	<article>
-		<h2>Less code. More speed</h2>
-		<span> Build fast and accessible web apps with Sve-UI.</span>
+		<!-- <article class="flex flex-col gap-16">
+			<div>
+				<h2>Less code. More speed</h2>
+				<span> Build fast and accessible web apps with Sve-UI.</span>
+			</div>
 
-		<h2>Easy to use</h2>
-		<span> Sve-UI is easy to use, easy to learn and intuitive.</span>
-	</article>
+			<div>
+				<h2>Easy to use</h2>
+				<span> Sve-UI is easy to use, easy to learn and intuitive.</span>
+			</div>
+		</article> -->
+	</section>
 
-	<a href="/docs">See the docs to start</a>
-</section>
+	<section class="flex gap-4">
+		<a
+			href="/docs"
+			class="bg-blue-600 text-white text-xl font-light rounded-full mt-8 transition duration-300 hover:bg-blue-700 px-6 py-2"
+			>Get started</a
+		>
+
+		<a
+			href="https://github.com/rodriabregu/sve-ui"
+			class="
+		flex gap-2 items-center bg-gray-800 text-white text-xl font-light rounded-full mt-8 transition duration-300 hover:bg-gray-700 px-6 py-2
+		"
+			target="_blank"
+		>
+			<GithubIcon size={24} />
+			Github
+		</a>
+	</section>
+
+	<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+		{#each FEATURES as { icon, title, description }}
+			<FeatureCard {icon} {title} {description} />
+		{/each}
+	</section>
+</main>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
 	h1 {
 		width: 100%;
 		font-size: 3rem;
-	}
-
-	h2 {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		font-size: 2.4rem;
-	}
-
-	span {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		font-size: 1.4rem;
-	}
-
-	article {
-		margin-bottom: 8rem;
-	}
-
-	a {
-		width: 40%;
-		display: flex;
-		justify-content: center;
-		font-size: 1.4rem;
-		border: 1px solid #ebedf1;
-		border-radius: 4px;
-		padding: 1rem;
 	}
 </style>

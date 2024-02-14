@@ -1,79 +1,96 @@
-<script>
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import { Center, Flex } from 'sve-ui';
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+	import GithubIcon from '$lib/icons/GithubIcon.svelte';
+
+	export let title = 'Sve-UI';
+	export let links = [
+		{ url: '/docs', text: 'Docs' },
+		{ url: '/components', text: 'Components' }
+	];
+
+	let isMobile = false;
+
+	function handleResize() {
+		isMobile = window.innerWidth < 768;
+	}
+
+	onMount(() => {
+		handleResize();
+		window.addEventListener('resize', handleResize);
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+			window.removeEventListener('scroll', handleScroll);
+		};
+	});
+
+	function handleScroll() {
+		const navbar = document.querySelector('.navbar');
+		if (navbar) {
+			if (window.pageYOffset > navbar.offsetTop) {
+				navbar.classList.add('navbar-fixed');
+			} else {
+				navbar.classList.remove('navbar-fixed');
+			}
+		}
+	}
 </script>
 
 <header>
-	<div class="corner">
-		<a href="/">
-			<img src={logo} alt="SvelteKit" />
-		</a>
-	</div>
+	<nav class="navbar">
+		<Center>
+			<Flex align="center">
+				<a href="/" class="logo">SveUI</a>
 
-	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li aria-current={$page.url.pathname === '/docs' ? 'page' : undefined}>
-				<a href="/docs">Docs</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/components') ? 'page' : undefined}>
-				<a href="/components">Components</a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
+				<span class="text-xs uppercase font-light opacity-50 hidden md:block">V0.1.0</span>
+			</Flex>
+
+			<Flex align="center">
+				<ul>
+					{#each links as link}
+						<li aria-current={$page.url.pathname === link.url ? 'page' : undefined}>
+							<a href={link.url} class="navbar-item">{link.text}</a>
+						</li>
+					{/each}
+
+					<a href="https://github.com/rodriabregu/sve-ui" target="_blank">
+						<GithubIcon />
+					</a>
+				</ul>
+			</Flex>
+		</Center>
 	</nav>
-
-	<div class="corner">
-		<a href="https://github.com/rodriabregu/sve-ui" target="_blank">
-			<img src={github} alt="GitHub" />
-		</a>
-	</div>
 </header>
 
 <style>
-	header {
-		display: flex;
-		justify-content: space-between;
+	.logo {
+		font-size: 2rem;
+		font-weight: 10;
+		color: #fff;
+		text-transform: none;
+	}
+	.logo:hover {
+		color: #d4d4d4;
 	}
 
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
-
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	.navbar {
+		background-color: #25252550;
+		backdrop-filter: blur(4px);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		color: #fff;
+		border-radius: 4px;
 		width: 100%;
-		height: 100%;
+		position: fixed;
+		z-index: 99;
 	}
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
-
-	nav {
-		display: flex;
-		justify-content: center;
-		--background: rgba(0, 0, 0, 0.7);
-	}
-
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
+	.navbar-item {
+		margin-right: 1rem;
+		color: #fff;
+		text-decoration: none;
 	}
 
 	ul {
@@ -87,23 +104,6 @@
 		list-style: none;
 		background: var(--background);
 		background-size: contain;
-	}
-
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
 	}
 
 	nav a {
@@ -121,6 +121,6 @@
 	}
 
 	a:hover {
-		color: var(--color-theme-1);
+		color: #0070f0;
 	}
 </style>

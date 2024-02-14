@@ -67,6 +67,7 @@
 		<li><a href="/components/navbar" class="disabled-link">Navbar</a></li>
 		<li><a href="/components/tooltips" class="disabled-link">Tooltips</a></li>
 		<li><a href="/components/cmd-palette" class="disabled-link">Command Palette</a></li>
+		<li><a href="/components/social-media/cards" class="disabled-link">Social media cards</a></li>
 	</ul>
 </div>
 
