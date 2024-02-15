@@ -14,7 +14,7 @@
 	<footer>
 		<p>
 			Site docs &amp; library under construction. See the npm package in
-			<a href="https://www.npmjs.com/package/sve-ui" target="_blank">npm Sve-UI</a>
+			<a class="text-blue-600" href="https://www.npmjs.com/package/sve-ui" target="_blank">npm Sve-UI</a>
 		</p>
 	</footer>
 </div>

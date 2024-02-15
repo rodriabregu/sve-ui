@@ -35,11 +35,6 @@ p {
 	line-height: 1.5;
 }
 
-a {
-	color: var(--color-theme-1);
-	text-decoration: none;
-}
-
 h1 {
 	font-size: 2rem;
 	text-align: center;
