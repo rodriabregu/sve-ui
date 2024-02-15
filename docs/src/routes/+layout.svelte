@@ -1,11 +1,11 @@
 <script>
 	import '../app.pcss';
-	import Header from './Header.svelte';
 	import './styles.css';
+	import Navbar from './Navbar.svelte';
 </script>
 
 <div class="flex flex-col min-h-screen">
-	<Header />
+	<Navbar />
 
 	<main class="py-16">
 		<slot />

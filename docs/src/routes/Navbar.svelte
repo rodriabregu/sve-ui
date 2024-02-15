@@ -4,7 +4,6 @@
 	import { page } from '$app/stores';
 	import GithubIcon from '$lib/icons/GithubIcon.svelte';
 
-	export let title = 'Sve-UI';
 	export let links = [
 		{ url: '/docs', text: 'Docs' },
 		{ url: '/components', text: 'Components' }
@@ -39,31 +38,29 @@
 	}
 </script>
 
-<header>
-	<nav class="navbar">
-		<Center>
-			<Flex align="center">
-				<a href="/" class="logo">SveUI</a>
+<nav class="navbar">
+	<Center justifyContent='space-between' style={'padding-left: 8rem; padding-right: 8rem'}>
+		<Flex align='center'>
+			<a href="/" class="logo">SveUI</a>
 
-				<span class="text-xs uppercase font-light opacity-50 hidden md:block">V0.1.0</span>
-			</Flex>
+			<span class="text-xs uppercase font-light opacity-50 hidden md:block">V0.1.0</span>
+		</Flex>
 
-			<Flex align="center">
-				<ul>
-					{#each links as link}
-						<li aria-current={$page.url.pathname === link.url ? 'page' : undefined}>
-							<a href={link.url} class="navbar-item">{link.text}</a>
-						</li>
-					{/each}
+		<Flex align="center">
+			<ul>
+				{#each links as link}
+					<li aria-current={$page.url.pathname === link.url ? 'page' : undefined}>
+						<a href={link.url} class="navbar-item">{link.text}</a>
+					</li>
+				{/each}
 
-					<a href="https://github.com/rodriabregu/sve-ui" target="_blank">
-						<GithubIcon />
-					</a>
-				</ul>
-			</Flex>
-		</Center>
-	</nav>
-</header>
+				<a href="https://github.com/rodriabregu/sve-ui" target="_blank">
+					<GithubIcon />
+				</a>
+			</ul>
+		</Flex>
+	</Center>
+</nav>
 
 <style>
 	.logo {
