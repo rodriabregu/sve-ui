@@ -7,7 +7,7 @@
 <div class="flex flex-col min-h-screen">
 	<Navbar />
 
-	<main class="py-16">
+	<main class="py-16 justify-center">
 		<slot />
 	</main>
 

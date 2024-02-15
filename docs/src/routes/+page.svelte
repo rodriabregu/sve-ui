@@ -1,15 +1,15 @@
 <script>
 	import GithubIcon from '$lib/icons/GithubIcon.svelte';
-	import FeatureCard from './components/cards/FeatureCard.svelte';
+	// import FeatureCard from './components/cards/FeatureCard.svelte';
 
-	const FEATURES = [
-		{
-			icon: GithubIcon,
-			title: 'Fast',
-			description:
-				'Constructed using Tailwind CSS infrastructure, signifying absence of runtime style calculations and unnecessary class inclusions within your package.'
-		}
-	];
+	// const FEATURES = [
+	// 	{
+	// 		icon: GithubIcon,
+	// 		title: 'Fast',
+	// 		description:
+	// 			'Constructed using Tailwind CSS infrastructure, signifying absence of runtime style calculations and unnecessary class inclusions within your package.'
+	// 	}
+	// ];
 </script>
 
 <svelte:head>
@@ -23,7 +23,7 @@
 <main class="flex flex-col items-center gap-16">
 	<section class="flex items-center gap-64">
 		<h1 class="text-5xl">
-			Make <span class="text-blue-400">beautiful</span> and easily websites. <br /> With Sve-UI.
+			Make <span class="text-blue-400">beautiful</span> and easily websites. <br /> With <span class="text-blue-600">SveUI</span>.
 		</h1>
 
 		<!-- <article class="flex flex-col gap-16">
@@ -58,11 +58,11 @@
 		</a>
 	</section>
 
-	<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+	<!-- <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
 		{#each FEATURES as { icon, title, description }}
 			<FeatureCard {icon} {title} {description} />
 		{/each}
-	</section>
+	</section> -->
 </main>
 
 <style>
