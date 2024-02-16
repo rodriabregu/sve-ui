@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<title>Sve UI</title>
+	<title>SveUI - Fast and modern Svelte UI library</title>
 	<meta
 		name="description"
 		content="Boost your Svelte development with our powerful and easy-to-use library of reusable UI components. With a wide range of customizable options, including responsive design and support for popular CSS frameworks, our library helps you streamline your development process and create stunning web applications with ease. All this with Sve-UI."
@@ -38,6 +38,34 @@
 			</div>
 		</article> -->
 	</section>
+
+	<article class="flex flex-col gap-2 my-20">
+	<span class="
+		text-2xl
+		text-center
+		bg-blue-600
+		rounded-full
+		px-6
+		py-2
+	">New version coming soon...</span>
+
+	<p class="
+		text-center
+		text-lg
+		font-light
+		max-w-2xl
+		text-gray-300
+	">
+		We are working on a new version of SveUI. It'll be a complete redesign of the library, with new components and a new API. We are also working on a new documentation and a new website. As this type of project deserves.
+		<span class="
+			block
+			text-gray-400
+			font-normal
+			text-sm
+			mt-2
+		">Stay tuned for more updates.</span>
+	</p>
+</article>
 
 	<section class="flex gap-4">
 		<a

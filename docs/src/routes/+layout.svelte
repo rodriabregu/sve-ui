@@ -1,13 +1,21 @@
 <script>
 	import '../app.pcss';
 	import './styles.css';
-	import Navbar from './Navbar.svelte';
+
+	import { page } from "$app/stores";
+
+	import Navbar from '../components/Navbar.svelte';
+	import Sidebard from '../components/Sidebard.svelte';
 </script>
 
 <div class="flex flex-col min-h-screen">
 	<Navbar />
 
-	<main class="py-16 justify-center">
+	{#if $page.route.id !== '/'}
+		<Sidebard />
+	{/if}
+	
+	<main class="py-16 justify-center px-6">
 		<slot />
 	</main>
 
