@@ -1,35 +1,34 @@
 <script>
-	import Header from './Header.svelte';
+	import '../app.pcss';
 	import './styles.css';
+
+	import Navbar from '../components/Navbar.svelte';
+	import Sidebard from '../components/Sidebar/Sidebard.svelte';
+	import { page } from '$app/stores';
 </script>
 
-<div class="app">
-	<Header />
+<div class="flex flex-col min-h-screen relative">
+	<Navbar />
 
-	<main>
+	<Sidebard />
+	
+	<main class={`py-16 justify-center items-left flex-grow px-6 ${ $page.route.id === '/' ? '' : 'lg:pl-80'}`}>
 		<slot />
 	</main>
 
-	<footer>
+	<footer class="absolute bottom-0 w-full">
 		<p>
-			Site docs & library under construction. See the npm package in
-			<a href="https://www.npmjs.com/package/sve-ui" target="_blank">npm Sve-UI</a>
+			Site docs &amp; library under construction. See the npm package in
+			<a class="text-blue-600" href="https://www.npmjs.com/package/sve-ui" target="_blank">npm Sve-UI</a>
 		</p>
 	</footer>
 </div>
 
 <style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
-
 	main {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 1rem;
 		width: 100%;
 		max-width: 64rem;
 		margin: 0 auto;

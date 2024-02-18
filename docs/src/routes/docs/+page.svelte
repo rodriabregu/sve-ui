@@ -3,8 +3,8 @@
 </script>
 
 <svelte:head>
-	<title>Docs - Sve-UI</title>
-	<meta name="description" content="Documentation of the UI component library, Sve-UI." />
+	<title>Docs - SveUI</title>
+	<meta name="description" content="Documentation of the UI component library, SveUI." />
 </svelte:head>
 
 <div>
@@ -67,6 +67,7 @@
 		<li><a href="/components/navbar" class="disabled-link">Navbar</a></li>
 		<li><a href="/components/tooltips" class="disabled-link">Tooltips</a></li>
 		<li><a href="/components/cmd-palette" class="disabled-link">Command Palette</a></li>
+		<li><a href="/components/social-media/cards" class="disabled-link">Social media cards</a></li>
 	</ul>
 </div>
 

@@ -1,14 +1,17 @@
 <script lang="ts">
-	import { Box, Button, CodeExample, Grid, Text } from 'sve-ui';
+	import { Button, CodeExample } from 'sve-ui';
 </script>
 
 <svelte:head>
-	<title>Components - Sve-UI</title>
+	<title>Components - SveUI</title>
 	<meta name="description" content="Section with all Sve-UI UI components." />
 </svelte:head>
 
-<section>
+<section class="flex flex-col items-center">
+  <span class="text-blue-400 text-center mx-auto my-8">We're working in more and new componentes, soon...</span>
+
 	<h1>Components</h1>
+
 
 	<article>
 		<span>{'<Button />'}</span>
@@ -28,17 +31,11 @@
 </section>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
 	h1 {
 		width: 100%;
 		font-size: 3rem;
 	}
 	span {
-		/* width: 100%; */
 		font-size: 1.4rem;
 	}
 	article {
