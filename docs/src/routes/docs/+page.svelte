@@ -3,8 +3,8 @@
 </script>
 
 <svelte:head>
-	<title>Docs - Sve-UI</title>
-	<meta name="description" content="Documentation of the UI component library, Sve-UI." />
+	<title>Docs - SveUI</title>
+	<meta name="description" content="Documentation of the UI component library, SveUI." />
 </svelte:head>
 
 <div>
