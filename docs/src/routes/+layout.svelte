@@ -2,24 +2,21 @@
 	import '../app.pcss';
 	import './styles.css';
 
-	import { page } from "$app/stores";
-
 	import Navbar from '../components/Navbar.svelte';
-	import Sidebard from '../components/Sidebard.svelte';
+	import Sidebard from '../components/Sidebar/Sidebard.svelte';
+	import { page } from '$app/stores';
 </script>
 
-<div class="flex flex-col min-h-screen">
+<div class="flex flex-col min-h-screen relative">
 	<Navbar />
 
-	{#if $page.route.id !== '/'}
-		<Sidebard />
-	{/if}
+	<Sidebard />
 	
-	<main class="py-16 justify-center px-6">
+	<main class={`py-16 justify-center items-left flex-grow px-6 ${ $page.route.id === '/' ? '' : 'lg:pl-80'}`}>
 		<slot />
 	</main>
 
-	<footer>
+	<footer class="absolute bottom-0 w-full">
 		<p>
 			Site docs &amp; library under construction. See the npm package in
 			<a class="text-blue-600" href="https://www.npmjs.com/package/sve-ui" target="_blank">npm Sve-UI</a>
