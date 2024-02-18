@@ -8,7 +8,10 @@
 </svelte:head>
 
 <section>
+  <span class="text-blue-400 text-center mx-auto my-8">We're working in more and new componentes, soon...</span>
+
 	<h1>Components</h1>
+
 
 	<article>
 		<span>{'<Button />'}</span>
