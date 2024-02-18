@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Center, Flex } from 'sve-ui';
 	import { page } from '$app/stores';
 	import GithubIcon from '$lib/icons/GithubIcon.svelte';
+	import ToggleSidebar from './Sidebar/ToggleSidebar.svelte';
 
 	export let links = [
 		{ url: '/docs', text: 'Docs' },
@@ -39,27 +39,29 @@
 </script>
 
 <nav class="navbar">
-	<Center justifyContent='space-between' style={'padding-left: 8rem; padding-right: 8rem'}>
-		<Flex align='center'>
-			<a href="/" class="logo">SveUI</a>
+	<div class="flex items-center px-8 md:px-32 justify-between">
+			<div class="flex items-center">
+					<a href="/" class="logo">SveUI</a>
 
-			<span class="text-xs uppercase font-light opacity-50 hidden md:block">V0.1.0</span>
-		</Flex>
+					<span class="text-xs uppercase font-light opacity-50 hidden md:block">V0.1.0</span>
+			</div>
 
-		<Flex align="center">
-			<ul>
-				{#each links as link}
-					<li aria-current={$page.url.pathname === link.url ? 'page' : undefined}>
-						<a href={link.url} class="navbar-item">{link.text}</a>
-					</li>
-				{/each}
+					<ul>
+							{#each links as link}
+									<li aria-current={$page.url.pathname === link.url ? 'page' : undefined}>
+											<a href={link.url} class="navbar-item">{link.text}</a>
+									</li>
+							{/each}
 
-				<a href="https://github.com/rodriabregu/sve-ui" target="_blank">
-					<GithubIcon />
-				</a>
-			</ul>
-		</Flex>
-	</Center>
+							<a href="https://github.com/rodriabregu/sve-ui" target="_blank">
+									<GithubIcon />
+							</a>
+
+							{#if isMobile}
+									<ToggleSidebar />
+							{/if}
+					</ul>
+	</div>
 </nav>
 
 <style>
