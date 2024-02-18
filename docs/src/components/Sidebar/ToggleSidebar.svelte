@@ -1,8 +1,6 @@
 <script lang="ts">
   import { isOpen, updateSidebar } from "../store";
 
-  export let isMobile = false;
-
   function handleClick() {
     updateSidebar();
   }

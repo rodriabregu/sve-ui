@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { MOBILE_WIDTH_THRESHOLD } from '../constants';
 	import GithubIcon from '$lib/icons/GithubIcon.svelte';
 	import ToggleSidebar from './Sidebar/ToggleSidebar.svelte';
 
@@ -12,30 +13,17 @@
 	let isMobile = false;
 
 	function handleResize() {
-		isMobile = window.innerWidth < 768;
+		isMobile = window.innerWidth < MOBILE_WIDTH_THRESHOLD;
 	}
 
 	onMount(() => {
 		handleResize();
 		window.addEventListener('resize', handleResize);
-		window.addEventListener('scroll', handleScroll);
 
 		return () => {
 			window.removeEventListener('resize', handleResize);
-			window.removeEventListener('scroll', handleScroll);
 		};
 	});
-
-	function handleScroll() {
-		const navbar = document.querySelector('.navbar');
-		if (navbar) {
-			if (window.pageYOffset > navbar.offsetTop) {
-				navbar.classList.add('navbar-fixed');
-			} else {
-				navbar.classList.remove('navbar-fixed');
-			}
-		}
-	}
 </script>
 
 <nav class="navbar">

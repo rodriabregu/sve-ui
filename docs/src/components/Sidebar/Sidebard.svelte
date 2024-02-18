@@ -3,6 +3,7 @@
 
 	import { page } from "$app/stores";
 	import { isOpen } from '../store';
+	import { MOBILE_WIDTH_THRESHOLD } from '../../constants';
 
   const COMPONENTS_PATHS = [
     '/components/button',
@@ -13,11 +14,11 @@
 
   function handleResize() {
     if (typeof window !== 'undefined') {
-      if (window.innerWidth <= 768) {
-        isOpen.update((value) => false);
+      if (window.innerWidth <= MOBILE_WIDTH_THRESHOLD) {
+        isOpen.update(() => false);
         isMobile = true;
       } else {
-        isOpen.update((value) => true);
+        isOpen.update(() => true);
       }
     }
   }
@@ -37,7 +38,7 @@
 </script>
 
 {#if $page.route.id !== '/'}
-<div class="fixed left-0 top-0 h-full bg-[#25252550] backdrop-blur-sm shadow-sm bg-opacity-50 text-white w-80 overflow-y-auto transition-all duration-300 ease-in-out pt-12 pl-32" class:translate-x-0={$isOpen}  class:translate-x-full={!$isOpen}
+<div class="fixed left-0 top-0 h-full backdrop-blur-sm bg-opacity-50 text-white w-72 overflow-y-auto transition-all duration-300 ease-in-out pt-12 pl-32" class:translate-x-0={$isOpen}  class:translate-x-full={!$isOpen}
   class:z-99={$isOpen} class:z-0={!$isOpen}
   class:opacity-100={$isOpen} class:opacity-0={!$isOpen}
 >
