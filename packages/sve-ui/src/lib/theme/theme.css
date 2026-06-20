@@ -1,0 +1,255 @@
+/**
+ * sve-ui theme CSS
+ *
+ * Import this file once in your app (e.g. `import 'sve-ui/theme.css'`) to
+ * establish all --sve-* custom properties at :root.
+ *
+ * Light values live at :root.
+ * Dark values live at :root.dark and in @media (prefers-color-scheme: dark).
+ * An explicit .dark / .light class on any element scopes the override to that
+ * subtree (ThemeProvider uses this mechanism).
+ */
+
+/* =========================================================================
+   Light theme — :root defaults
+   ========================================================================= */
+:root {
+  /* --- Colors: primary --------------------------------------------------- */
+  --sve-color-primary:            #f56565;
+  --sve-color-primary-foreground: #ffffff;
+  --sve-color-primary-surface:    #fff5f5;
+  --sve-color-primary-border:     #fc8181;
+  --sve-color-primary-hover:      #e53e3e;
+  --sve-color-primary-active:     #c53030;
+
+  /* --- Colors: secondary ------------------------------------------------- */
+  --sve-color-secondary:            #ed8936;
+  --sve-color-secondary-foreground: #ffffff;
+  --sve-color-secondary-surface:    #fffaf0;
+  --sve-color-secondary-border:     #f6ad55;
+  --sve-color-secondary-hover:      #dd6b20;
+  --sve-color-secondary-active:     #c05621;
+
+  /* --- Colors: success --------------------------------------------------- */
+  --sve-color-success:            #38a169;
+  --sve-color-success-foreground: #ffffff;
+  --sve-color-success-surface:    #f0fff4;
+  --sve-color-success-border:     #68d391;
+  --sve-color-success-hover:      #2f855a;
+  --sve-color-success-active:     #276749;
+
+  /* --- Colors: warning --------------------------------------------------- */
+  --sve-color-warning:            #ecc94b;
+  --sve-color-warning-foreground: #1a202c;
+  --sve-color-warning-surface:    #fffff0;
+  --sve-color-warning-border:     #f6e05e;
+  --sve-color-warning-hover:      #d69e2e;
+  --sve-color-warning-active:     #b7791f;
+
+  /* --- Colors: danger ---------------------------------------------------- */
+  --sve-color-danger:            #c53030;
+  --sve-color-danger-foreground: #ffffff;
+  --sve-color-danger-surface:    #fff5f5;
+  --sve-color-danger-border:     #fc8181;
+  --sve-color-danger-hover:      #9b2c2c;
+  --sve-color-danger-active:     #822727;
+
+  /* --- Colors: default --------------------------------------------------- */
+  --sve-color-default:            #e2e8f0;
+  --sve-color-default-foreground: #1a202c;
+  --sve-color-default-surface:    #f7fafc;
+  --sve-color-default-border:     #cbd5e0;
+  --sve-color-default-hover:      #cbd5e0;
+  --sve-color-default-active:     #a0aec0;
+
+  /* --- Colors: overlay --------------------------------------------------- */
+  --sve-color-overlay:            rgb(0 0 0 / 0.5);
+
+  /* --- Spacing ----------------------------------------------------------- */
+  --sve-space-1:  0.25rem;
+  --sve-space-2:  0.5rem;
+  --sve-space-3:  0.75rem;
+  --sve-space-4:  1rem;
+  --sve-space-5:  1.25rem;
+  --sve-space-6:  1.5rem;
+  --sve-space-8:  2rem;
+  --sve-space-10: 2.5rem;
+  --sve-space-12: 3rem;
+  --sve-space-16: 4rem;
+
+  /* --- Border radius ----------------------------------------------------- */
+  --sve-radius-none: 0;
+  --sve-radius-sm:   0.125rem;
+  --sve-radius-md:   0.375rem;
+  --sve-radius-lg:   0.5rem;
+  --sve-radius-full: 9999px;
+
+  /* --- Typography -------------------------------------------------------- */
+  --sve-font-family-sans:       system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sve-font-size-sm:           0.875rem;
+  --sve-font-size-md:           1rem;
+  --sve-font-size-lg:           1.125rem;
+  --sve-font-weight-normal:     400;
+  --sve-font-weight-medium:     500;
+  --sve-font-weight-bold:       700;
+  --sve-line-height-tight:      1.25;
+  --sve-line-height-normal:     1.5;
+  --sve-line-height-relaxed:    1.75;
+}
+
+/* =========================================================================
+   Dark theme — media query fallback (colorScheme = "system")
+   ========================================================================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Colors: primary */
+    --sve-color-primary:            #f87171;
+    --sve-color-primary-foreground: #ffffff;
+    --sve-color-primary-surface:    #742a2a;
+    --sve-color-primary-border:     #c53030;
+    --sve-color-primary-hover:      #fc8181;
+    --sve-color-primary-active:     #feb2b2;
+
+    /* Colors: secondary */
+    --sve-color-secondary:            #ed9e40;
+    --sve-color-secondary-foreground: #ffffff;
+    --sve-color-secondary-surface:    #7b341e;
+    --sve-color-secondary-border:     #c05621;
+    --sve-color-secondary-hover:      #f6ad55;
+    --sve-color-secondary-active:     #fbd38d;
+
+    /* Colors: success */
+    --sve-color-success:            #48bb78;
+    --sve-color-success-foreground: #ffffff;
+    --sve-color-success-surface:    #1c4532;
+    --sve-color-success-border:     #276749;
+    --sve-color-success-hover:      #68d391;
+    --sve-color-success-active:     #9ae6b4;
+
+    /* Colors: warning */
+    --sve-color-warning:            #f6e05e;
+    --sve-color-warning-foreground: #1a202c;
+    --sve-color-warning-surface:    #5f370e;
+    --sve-color-warning-border:     #975a16;
+    --sve-color-warning-hover:      #faf089;
+    --sve-color-warning-active:     #fefcbf;
+
+    /* Colors: danger */
+    --sve-color-danger:            #e53e3e;
+    --sve-color-danger-foreground: #ffffff;
+    --sve-color-danger-surface:    #3d0a0a;
+    --sve-color-danger-border:     #9b2c2c;
+    --sve-color-danger-hover:      #fc8181;
+    --sve-color-danger-active:     #feb2b2;
+
+    /* Colors: default */
+    --sve-color-default:            #4a5568;
+    --sve-color-default-foreground: #edf2f7;
+    --sve-color-default-surface:    #1a202c;
+    --sve-color-default-border:     #4a5568;
+    --sve-color-default-hover:      #718096;
+    --sve-color-default-active:     #a0aec0;
+
+    /* Colors: overlay */
+    --sve-color-overlay:            rgb(0 0 0 / 0.7);
+  }
+}
+
+/* =========================================================================
+   Dark theme — explicit class override (ThemeProvider colorScheme="dark")
+   Works at any nesting level — not just :root.
+   ========================================================================= */
+:where(.dark) {
+  --sve-color-primary:            #f87171;
+  --sve-color-primary-foreground: #ffffff;
+  --sve-color-primary-surface:    #742a2a;
+  --sve-color-primary-border:     #c53030;
+  --sve-color-primary-hover:      #fc8181;
+  --sve-color-primary-active:     #feb2b2;
+
+  --sve-color-secondary:            #ed9e40;
+  --sve-color-secondary-foreground: #ffffff;
+  --sve-color-secondary-surface:    #7b341e;
+  --sve-color-secondary-border:     #c05621;
+  --sve-color-secondary-hover:      #f6ad55;
+  --sve-color-secondary-active:     #fbd38d;
+
+  --sve-color-success:            #48bb78;
+  --sve-color-success-foreground: #ffffff;
+  --sve-color-success-surface:    #1c4532;
+  --sve-color-success-border:     #276749;
+  --sve-color-success-hover:      #68d391;
+  --sve-color-success-active:     #9ae6b4;
+
+  --sve-color-warning:            #f6e05e;
+  --sve-color-warning-foreground: #1a202c;
+  --sve-color-warning-surface:    #5f370e;
+  --sve-color-warning-border:     #975a16;
+  --sve-color-warning-hover:      #faf089;
+  --sve-color-warning-active:     #fefcbf;
+
+  --sve-color-danger:            #e53e3e;
+  --sve-color-danger-foreground: #ffffff;
+  --sve-color-danger-surface:    #3d0a0a;
+  --sve-color-danger-border:     #9b2c2c;
+  --sve-color-danger-hover:      #fc8181;
+  --sve-color-danger-active:     #feb2b2;
+
+  --sve-color-default:            #4a5568;
+  --sve-color-default-foreground: #edf2f7;
+  --sve-color-default-surface:    #1a202c;
+  --sve-color-default-border:     #4a5568;
+  --sve-color-default-hover:      #718096;
+  --sve-color-default-active:     #a0aec0;
+
+  --sve-color-overlay:            rgb(0 0 0 / 0.7);
+}
+
+/* =========================================================================
+   Light class override — for explicit colorScheme="light" inside a dark root
+   ========================================================================= */
+:where(.light) {
+  --sve-color-primary:            #f56565;
+  --sve-color-primary-foreground: #ffffff;
+  --sve-color-primary-surface:    #fff5f5;
+  --sve-color-primary-border:     #fc8181;
+  --sve-color-primary-hover:      #e53e3e;
+  --sve-color-primary-active:     #c53030;
+
+  --sve-color-secondary:            #ed8936;
+  --sve-color-secondary-foreground: #ffffff;
+  --sve-color-secondary-surface:    #fffaf0;
+  --sve-color-secondary-border:     #f6ad55;
+  --sve-color-secondary-hover:      #dd6b20;
+  --sve-color-secondary-active:     #c05621;
+
+  --sve-color-success:            #38a169;
+  --sve-color-success-foreground: #ffffff;
+  --sve-color-success-surface:    #f0fff4;
+  --sve-color-success-border:     #68d391;
+  --sve-color-success-hover:      #2f855a;
+  --sve-color-success-active:     #276749;
+
+  --sve-color-warning:            #ecc94b;
+  --sve-color-warning-foreground: #1a202c;
+  --sve-color-warning-surface:    #fffff0;
+  --sve-color-warning-border:     #f6e05e;
+  --sve-color-warning-hover:      #d69e2e;
+  --sve-color-warning-active:     #b7791f;
+
+  --sve-color-danger:            #c53030;
+  --sve-color-danger-foreground: #ffffff;
+  --sve-color-danger-surface:    #fff5f5;
+  --sve-color-danger-border:     #fc8181;
+  --sve-color-danger-hover:      #9b2c2c;
+  --sve-color-danger-active:     #822727;
+
+  --sve-color-default:            #e2e8f0;
+  --sve-color-default-foreground: #1a202c;
+  --sve-color-default-surface:    #f7fafc;
+  --sve-color-default-border:     #cbd5e0;
+  --sve-color-default-hover:      #cbd5e0;
+  --sve-color-default-active:     #a0aec0;
+
+  --sve-color-overlay:            rgb(0 0 0 / 0.5);
+}

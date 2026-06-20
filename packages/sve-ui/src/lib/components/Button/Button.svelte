@@ -1,122 +1,304 @@
-<!-- TO DO
-La idea seria que reciba Padding 1, 2, 3, 4
-Y utilizar una clase css global para que se aplique el padding
+<script module lang="ts">
+  import { defineVariants } from '$lib/internal/variants';
 
-ej:
-.padding-style-1 {
-	padding: 2px 4px;
-}
+  type Variant = 'solid' | 'outline' | 'ghost' | 'flat';
+  type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default';
+  type Size = 'sm' | 'md' | 'lg';
 
--->
+  // Defined once at module level — not recreated per instance.
+  export const buttonVariants = defineVariants({
+    base: 'sve-button',
+    variants: {
+      variant: {
+        solid:   'sve-button--solid',
+        outline: 'sve-button--outline',
+        ghost:   'sve-button--ghost',
+        flat:    'sve-button--flat',
+      },
+      color: {
+        primary:   'sve-c-primary',
+        secondary: 'sve-c-secondary',
+        success:   'sve-c-success',
+        warning:   'sve-c-warning',
+        danger:    'sve-c-danger',
+        default:   'sve-c-default',
+      },
+      size: {
+        sm: 'sve-button--sm',
+        md: 'sve-button--md',
+        lg: 'sve-button--lg',
+      },
+    },
+    defaultVariants: {
+      variant: 'solid',
+      color:   'default',
+      size:    'md',
+    },
+  });
+
+  export type { Variant, Color, Size };
+</script>
 
 <script lang="ts">
-	import type { ButtonSize } from './Button.svelte';
+  import type { HTMLButtonAttributes } from 'svelte/elements';
+  import type { Snippet } from 'svelte';
 
-	export let label = 'Button';
-	export let onClick = () => {};
-	export let color = 'blue';
-	export let size: ButtonSize = 'md';
-	export let disabled = false;
-	export let style = '';
-	export let bg = '';
-	export let p = '3';
-	let props = { ...$$restProps };
+  interface Props extends Omit<HTMLButtonAttributes, 'class'> {
+    variant?: Variant;
+    color?: Color;
+    size?: Size;
+    class?: string;
+    children?: Snippet;
+  }
+
+  let {
+    variant,
+    color,
+    size,
+    disabled = false,
+    class: cls,
+    onclick,
+    children,
+    ...rest
+  }: Props = $props();
+
+  const className = $derived(
+    buttonVariants({ variant, color, size, class: cls })
+  );
 </script>
 
 <button
-	class={`${props.class} button padding-${p} ${color} ${size} ${style}`}
-	on:click={onClick}
-	style={`background-color: ${bg}`}
-	{disabled}
+  class={className}
+  {disabled}
+  onclick={disabled ? undefined : onclick}
+  {...rest}
 >
-	<slot>{label}</slot>
+  {@render children?.()}
 </button>
 
 <style>
-	.button {
-		border: none;
-		border-radius: 4px;
-		font-size: 1rem;
-		font-weight: bold;
-		padding: 8px 16px;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.blue {
-		background-color: #007bff;
-		color: #fff;
-	}
-	.red {
-		background-color: #dc3545;
-		color: #fff;
-	}
-	.green {
-		background-color: #28a745;
-		color: #fff;
-	}
+  .sve-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sve-space-2);
+    font-family: var(--sve-font-family-sans);
+    font-weight: var(--sve-font-weight-medium);
+    line-height: var(--sve-line-height-normal);
+    border-radius: var(--sve-radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+    outline-offset: 2px;
+  }
 
-	.xsm {
-		font-size: 8px;
-		padding: 2px 4px;
-	}
+  /* Focus ring for accessibility */
+  .sve-button:focus-visible {
+    outline: 2px solid var(--sve-color-primary);
+    outline-offset: 2px;
+  }
 
-	.sm {
-		font-size: 12px;
-		padding: 4px 8px;
-	}
+  /* Disabled state */
+  .sve-button:disabled,
+  .sve-button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
 
-	.md {
-		font-size: 16px;
-		padding: 8px 16px;
-	}
+  /* --- Sizes --- */
+  .sve-button--sm {
+    padding: var(--sve-space-1) var(--sve-space-3);
+    font-size: var(--sve-font-size-sm);
+  }
 
-	.lg {
-		font-size: 24px;
-		padding: 12px 24px;
-	}
+  .sve-button--md {
+    padding: var(--sve-space-2) var(--sve-space-4);
+    font-size: var(--sve-font-size-md);
+  }
 
-	.xl {
-		font-size: 32px;
-		padding: 16px 32px;
-	}
+  .sve-button--lg {
+    padding: var(--sve-space-3) var(--sve-space-6);
+    font-size: var(--sve-font-size-lg);
+  }
 
-	.xxl {
-		font-size: 48px;
-		padding: 24px 48px;
-	}
+  /* --- Solid variant --- */
+  .sve-button--solid.sve-c-primary {
+    background-color: var(--sve-color-primary);
+    color: var(--sve-color-primary-foreground);
+    border-color: var(--sve-color-primary);
+  }
+  .sve-button--solid.sve-c-primary:hover:not(:disabled) {
+    background-color: var(--sve-color-primary-hover);
+    border-color: var(--sve-color-primary-hover);
+  }
+  .sve-button--solid.sve-c-primary:active:not(:disabled) {
+    background-color: var(--sve-color-primary-active);
+    border-color: var(--sve-color-primary-active);
+  }
 
-	.xxxl {
-		font-size: 64px;
-		padding: 32px 64px;
-	}
+  .sve-button--solid.sve-c-secondary {
+    background-color: var(--sve-color-secondary);
+    color: var(--sve-color-secondary-foreground);
+    border-color: var(--sve-color-secondary);
+  }
+  .sve-button--solid.sve-c-secondary:hover:not(:disabled) {
+    background-color: var(--sve-color-secondary-hover);
+    border-color: var(--sve-color-secondary-hover);
+  }
 
-	.button:hover {
-		opacity: 0.94;
-		transition: 0.2s ease-in-out;
-	}
-	button:disabled {
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
-	button:disabled:hover {
-		opacity: 0.5;
-	}
+  .sve-button--solid.sve-c-success {
+    background-color: var(--sve-color-success);
+    color: var(--sve-color-success-foreground);
+    border-color: var(--sve-color-success);
+  }
+  .sve-button--solid.sve-c-success:hover:not(:disabled) {
+    background-color: var(--sve-color-success-hover);
+    border-color: var(--sve-color-success-hover);
+  }
 
-	.padding-1 {
-		padding: 2px 4px;
-	}
+  .sve-button--solid.sve-c-warning {
+    background-color: var(--sve-color-warning);
+    color: var(--sve-color-warning-foreground);
+    border-color: var(--sve-color-warning);
+  }
+  .sve-button--solid.sve-c-warning:hover:not(:disabled) {
+    background-color: var(--sve-color-warning-hover);
+    border-color: var(--sve-color-warning-hover);
+  }
 
-	.padding-2 {
-		padding: 4px 8px;
-	}
+  .sve-button--solid.sve-c-danger {
+    background-color: var(--sve-color-danger);
+    color: var(--sve-color-danger-foreground);
+    border-color: var(--sve-color-danger);
+  }
+  .sve-button--solid.sve-c-danger:hover:not(:disabled) {
+    background-color: var(--sve-color-danger-hover);
+    border-color: var(--sve-color-danger-hover);
+  }
 
-	.padding-3 {
-		padding: 8px 16px;
-	}
+  .sve-button--solid.sve-c-default {
+    background-color: var(--sve-color-default);
+    color: var(--sve-color-default-foreground);
+    border-color: var(--sve-color-default);
+  }
+  .sve-button--solid.sve-c-default:hover:not(:disabled) {
+    background-color: var(--sve-color-default-hover);
+    border-color: var(--sve-color-default-hover);
+  }
 
-	.padding-4 {
-		padding: 16px 32px;
-	}
+  /* --- Outline variant --- */
+  .sve-button--outline.sve-c-primary {
+    background-color: transparent;
+    color: var(--sve-color-primary);
+    border-color: var(--sve-color-primary-border);
+  }
+  .sve-button--outline.sve-c-primary:hover:not(:disabled) {
+    background-color: var(--sve-color-primary-surface);
+  }
+
+  .sve-button--outline.sve-c-secondary {
+    background-color: transparent;
+    color: var(--sve-color-secondary);
+    border-color: var(--sve-color-secondary-border);
+  }
+  .sve-button--outline.sve-c-secondary:hover:not(:disabled) {
+    background-color: var(--sve-color-secondary-surface);
+  }
+
+  .sve-button--outline.sve-c-danger {
+    background-color: transparent;
+    color: var(--sve-color-danger);
+    border-color: var(--sve-color-danger-border);
+  }
+  .sve-button--outline.sve-c-danger:hover:not(:disabled) {
+    background-color: var(--sve-color-danger-surface);
+  }
+
+  .sve-button--outline.sve-c-success {
+    background-color: transparent;
+    color: var(--sve-color-success);
+    border-color: var(--sve-color-success-border);
+  }
+
+  .sve-button--outline.sve-c-warning {
+    background-color: transparent;
+    color: var(--sve-color-warning);
+    border-color: var(--sve-color-warning-border);
+  }
+
+  .sve-button--outline.sve-c-default {
+    background-color: transparent;
+    color: var(--sve-color-default-foreground);
+    border-color: var(--sve-color-default-border);
+  }
+
+  /* --- Ghost variant --- */
+  .sve-button--ghost {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  .sve-button--ghost.sve-c-primary {
+    color: var(--sve-color-primary);
+  }
+  .sve-button--ghost.sve-c-primary:hover:not(:disabled) {
+    background-color: var(--sve-color-primary-surface);
+  }
+  .sve-button--ghost.sve-c-secondary {
+    color: var(--sve-color-secondary);
+  }
+  .sve-button--ghost.sve-c-secondary:hover:not(:disabled) {
+    background-color: var(--sve-color-secondary-surface);
+  }
+  .sve-button--ghost.sve-c-danger {
+    color: var(--sve-color-danger);
+  }
+  .sve-button--ghost.sve-c-danger:hover:not(:disabled) {
+    background-color: var(--sve-color-danger-surface);
+  }
+  .sve-button--ghost.sve-c-success {
+    color: var(--sve-color-success);
+  }
+  .sve-button--ghost.sve-c-warning {
+    color: var(--sve-color-warning);
+  }
+  .sve-button--ghost.sve-c-default {
+    color: var(--sve-color-default-foreground);
+  }
+  .sve-button--ghost.sve-c-default:hover:not(:disabled) {
+    background-color: var(--sve-color-default-surface);
+  }
+
+  /* --- Flat variant --- */
+  .sve-button--flat {
+    border-color: transparent;
+  }
+  .sve-button--flat.sve-c-primary {
+    background-color: var(--sve-color-primary-surface);
+    color: var(--sve-color-primary);
+  }
+  .sve-button--flat.sve-c-primary:hover:not(:disabled) {
+    background-color: var(--sve-color-primary-border);
+  }
+  .sve-button--flat.sve-c-secondary {
+    background-color: var(--sve-color-secondary-surface);
+    color: var(--sve-color-secondary);
+  }
+  .sve-button--flat.sve-c-danger {
+    background-color: var(--sve-color-danger-surface);
+    color: var(--sve-color-danger);
+  }
+  .sve-button--flat.sve-c-success {
+    background-color: var(--sve-color-success-surface);
+    color: var(--sve-color-success);
+  }
+  .sve-button--flat.sve-c-warning {
+    background-color: var(--sve-color-warning-surface);
+    color: var(--sve-color-warning);
+  }
+  .sve-button--flat.sve-c-default {
+    background-color: var(--sve-color-default-surface);
+    color: var(--sve-color-default-foreground);
+  }
 </style>

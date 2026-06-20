@@ -113,7 +113,7 @@ The helper MUST accept exactly three orthogonal axes:
 
 | Axis | Allowed values |
 |---|---|
-| `variant` | `'solid' \| 'outlined' \| 'ghost' \| 'flat'` (minimum set; design may add) |
+| `variant` | `'solid' \| 'outline' \| 'ghost' \| 'flat'` (minimum set; design may add) |
 | `color` | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'default'` (matches §1.2) |
 | `size` | `'sm' \| 'md' \| 'lg'` |
 

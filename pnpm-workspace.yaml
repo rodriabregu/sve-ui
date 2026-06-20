@@ -2,6 +2,10 @@ packages:
   - 'packages/*'
   - 'apps/*'
 
+onlyBuiltDependencies:
+  - esbuild
+  - svelte-preprocess
+
 # Single source of truth for shared versions (validated 2026-06-20, see ROADMAP §4).
 # Reference in package.json with "catalog:".
 catalog:
@@ -19,3 +23,7 @@ catalog:
   tailwindcss: ^4.3.1
   publint: ^0.3.21
   '@arethetypeswrong/cli': ^0.18.3
+
+allowBuilds:
+  esbuild: true
+  svelte-preprocess: true
