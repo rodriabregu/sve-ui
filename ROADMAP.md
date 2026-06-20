@@ -207,11 +207,11 @@ pnpm dlx storybook@latest init --cwd packages/sve-ui
 
 ---
 
-## 8. Pending compatibility checks (do before first install, via Context7)
+## 8. Compatibility checks — RESOLVED ✅ (verified against npm registry peerDependencies, 2026-06-20)
 
-1. **Vite 8** — confirm `@sveltejs/vite-plugin-svelte@7.1.2` and `@sveltejs/kit@2.66` declare Vite 8 in `peerDependencies`. If not, use the Vite version the Svelte toolchain pulls; do not force 8.
-2. **TypeScript 6** — confirm `typescript-eslint@8.61` and `svelte-check` support TS 6 (typescript-eslint often trails the latest TS).
-3. **Storybook 10** — confirm `@storybook/sveltekit@10` supports Svelte 5.
+1. **Vite 8** ✅ — `@sveltejs/vite-plugin-svelte@7.1.2` peer: `vite: ^8.0.0`, `svelte: ^5.46.4`; `@sveltejs/kit@2.66.0` peer includes `^8.0.0`. Vite 8 is supported.
+2. **TypeScript 6** ✅ (with ceiling) — `typescript-eslint@8.61.1` peer: `typescript: >=4.8.4 <6.1.0`. TS 6.0.x is in range; bump typescript-eslint when TS 6.1 lands. Its `eslint` peer includes `^10.0.0`.
+3. **Storybook 10** ✅ — `@storybook/sveltekit@10.4.6` peer: `svelte: ^5.0.0`, `vite: ^8.0.0`.
 
 ---
 
