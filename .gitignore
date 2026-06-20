@@ -21,3 +21,5 @@ package
 # Vite timestamps
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+.atl/
