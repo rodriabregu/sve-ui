@@ -48,6 +48,8 @@ The current code is a dead-end on two axes:
 | D11 | **No** shared `types` package | Library types *are* the public API, exported from `sve-ui`; nothing to share |
 | D12 | Tokens stay **inside `sve-ui`**, exposed via subpath `sve-ui/theme` | One consumer today; subpath leaves the seam to extract later without breaking changes |
 | D13 | Component packaging via **`@sveltejs/package`** (NOT `tsup`) | Svelte components ship as preprocessed source compiled by the consumer; `tsup` (Turbo guide default) breaks Svelte |
+| D14 | **pnpm is the only package manager** — pinned via `packageManager` + Corepack, enforced via `engines` and `only-allow` | Single lockfile, reproducible installs, workspace protocol; no npm/yarn drift |
+| D15 | Publish via **npm Trusted Publishing (OIDC)** — no `NPM_TOKEN`; automatic provenance | GA since Jul 2025; short-lived per-workflow credentials, no long-lived secret to leak |
 
 **Monorepo principle:** don't abstract until there are at least two real consumers of the same code. Config has two (lib + docs) → justified. Types has none → skip. Tokens has ~one → keep inside with a seam.
 
@@ -159,7 +161,8 @@ Phases 0 → 1 → 2 are **sequential and blocking**. Phases 3–5 can overlap o
 ### Phase 4 — Release & CI/CD (open source)
 - [ ] Changesets (public access)
 - [ ] `ci.yml`: lint (oxlint + eslint) + `svelte-check` + test + build + `publint` + `attw`
-- [ ] `release.yml`: changesets publish to npm with **provenance**
+- [ ] `release.yml`: changesets + **npm Trusted Publishing (OIDC, no `NPM_TOKEN`)**; provenance automatic (see §10)
+- [ ] Configure the Trusted Publisher for `sve-ui` on npmjs.com (workflow filename must match `release.yml` exactly)
 - [ ] Deploy `apps/docs` to Vercel
 
 ### Phase 5 — Open-source polish
@@ -215,6 +218,50 @@ pnpm dlx storybook@latest init --cwd packages/sve-ui
 ## 9. Open-source notes
 
 - **License:** MIT (fix the `LICENCE` → `LICENSE` filename typo).
-- **Releases:** Changesets with `"access": "public"`; npm **provenance** via GitHub Actions OIDC.
+- **Releases:** Changesets with `"access": "public"`; npm **provenance** automatic via Trusted Publishing (§10).
 - **Community files:** `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, issue + PR templates.
 - **CI is the contract:** every PR must pass lint + check + test + build + `publint` + `attw`.
+
+---
+
+## 10. Publishing (npm Trusted Publishing / OIDC)
+
+**No `NPM_TOKEN`.** Publishing is automated through GitHub Actions using OIDC trusted publishing (GA since Jul 2025). Short-lived, per-workflow credentials replace long-lived secrets, and provenance attestations are generated automatically.
+
+### Day-to-day flow
+1. Per meaningful change, add a changeset — **never bump versions by hand:**
+   ```sh
+   pnpm changeset            # choose patch/minor/major + write the summary
+   ```
+2. On merge to `main`, `changesets/action` opens/updates a **"Version Packages"** PR (consumes changesets, bumps `package.json`, updates `CHANGELOG.md`).
+3. Merging that PR triggers `changeset publish` → publishes to npm with provenance.
+
+### One-time setup
+1. **npmjs.com** → `sve-ui` → Settings → **Trusted Publisher** → point to the GitHub repo + the **exact** workflow filename (`release.yml`).
+2. **`release.yml`** permissions:
+   ```yaml
+   permissions:
+     id-token: write       # enables OIDC
+     contents: write
+     pull-requests: write
+   ```
+3. Runner must have **npm CLI ≥ 11.5.1** and **Node ≥ 22.14**.
+
+### Requirements & gotchas
+- **Cloud GitHub runners only** (self-hosted not supported yet).
+- **Workflow filename must match exactly** what's configured on npmjs.com (case-sensitive, with `.yml`) — mismatch causes `E404` (the #1 reported issue).
+- **Fallback (only if OIDC unavailable):** granular *automation* token in `NPM_TOKEN` + `--provenance` flag.
+
+### First release decision (defer to Phase 4)
+The rebuild is a full API-breaking rewrite — the first release should likely be **`1.0.0`**, not a `0.1.x` bump.
+
+---
+
+## 11. Package manager — pnpm (mandatory)
+
+`pnpm` is the **only** supported package manager. Enforced, not suggested:
+
+- Root `package.json`: `"packageManager": "pnpm@<version>"` (Corepack-pinned) + `"engines": { "pnpm": ">=<major>", "node": ">=22.14" }`.
+- A `preinstall` guard (`npx only-allow pnpm`) rejects `npm install` / `yarn`.
+- Single `pnpm-lock.yaml` at the root; workspace deps use the `workspace:*` protocol.
+- All scripts, CI, and scaffolding commands use `pnpm` / `pnpm dlx` exclusively.
