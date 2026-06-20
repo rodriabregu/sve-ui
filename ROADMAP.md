@@ -10,9 +10,11 @@ This document is the source of truth for reviving **sve-ui** to 2026 standards. 
 
 ## 1. Goal
 
-Revive `sve-ui` — a Svelte component library (Chakra-style layout primitives + components) — as a **production-grade, npm-publishable, open-source, maintained library** built on a modern monorepo.
+Build `sve-ui` into a **production-grade, npm-publishable, open-source, maintained library of ready-made, accessible Svelte 5 components** — in the spirit of HeroUI/NextUI, for the Svelte ecosystem.
 
-**Approach:** fresh monorepo, rewrite component internals in **Svelte 5 (runes)**, preserve the existing public API (component names + props) as the contract/spec. We don't start from zero conceptually — we start from zero *structurally*, with the direction already defined.
+**Positioning / wedge:** the only fully-**styled**, fully-**accessible** (built on Bits UI) Svelte 5 component library that requires **no Tailwind and no config** in the consumer's project — install, import, done; theme via CSS custom properties. Most of the field (shadcn-svelte, SV5UI, Flowbite) requires Tailwind in the consumer project; we don't.
+
+> **Scope pivot (2026-06-20):** the original sve-ui was Chakra-style *layout primitives*. The actual vision is a *component library* (Dialog, Select, Combobox, Tabs, Toast, …) where the value is accessibility + behavior, not layout. The old component code is **not reused** (layout primitives survive only as a minimal internal layer; theme tokens survive as a starting palette). All of Phase 0 infrastructure remains valid. `API-CONTRACT.md` is now historical reference for the old primitives.
 
 ---
 
@@ -50,6 +52,11 @@ The current code is a dead-end on two axes:
 | D13 | Component packaging via **`@sveltejs/package`** (NOT `tsup`) | Svelte components ship as preprocessed source compiled by the consumer; `tsup` (Turbo guide default) breaks Svelte |
 | D14 | **pnpm is the only package manager** — pinned via `packageManager` + Corepack, enforced via `engines` and `only-allow` | Single lockfile, reproducible installs, workspace protocol; no npm/yarn drift |
 | D15 | Publish via **npm Trusted Publishing (OIDC)** — no `NPM_TOKEN`; automatic provenance | GA since Jul 2025; short-lived per-workflow credentials, no long-lived secret to leak |
+| D16 | Product is a **library of ready-made accessible components** (HeroUI-style), not layout primitives | The value users want is behavior + a11y, not Box/Flex |
+| D17 | **Distribution: styled npm package** (not shadcn-style copy-paste registry) | We own the code/quality; consumer just installs; enables zero-config styling |
+| D18 | **Foundation: Bits UI** for interactive components | Accessible headless Svelte 5 primitives; never reinvent focus traps/ARIA. Non-interactive components are plain styled Svelte |
+| D19 | **Component pattern: styled presentational wrapper over Bits UI container** | Bits UI = behavior/a11y (container); our component = style/variants (presentational) |
+| D20 | Styling stays **scoped CSS + CSS custom properties, no Tailwind in core** — this is the wedge | Field requires Tailwind in consumer project; we don't → zero-config, themeable |
 
 **Monorepo principle:** don't abstract until there are at least two real consumers of the same code. Config has two (lib + docs) → justified. Types has none → skip. Tokens has ~one → keep inside with a seam.
 
@@ -68,6 +75,7 @@ Versions confirmed against the live npm registry. **Pin these after scaffolding,
 | `vite` | 8.0.16 | ⚠️ do not force; let the Svelte toolchain pull its supported Vite |
 | `vitest` | 4.1.9 | |
 | `@testing-library/svelte` | 5.3.1 | |
+| `bits-ui` | 2.18.1 | foundation for interactive components; peer `svelte: ^5.33.0`, `@internationalized/date: ^3.8.1` |
 | `turbo` | 2.9.18 | |
 | `@changesets/cli` | 2.31.0 | |
 | `oxlint` | 1.70.0 | `.ts`/`.js` only |
@@ -141,12 +149,23 @@ Phases 0 → 1 → 2 are **sequential and blocking**. Phases 3–5 can overlap o
 - [ ] **Housekeeping:** rename `LICENCE` → `LICENSE`; delete hand-written `.svelte.d.ts`
 - [ ] **Validation gate:** rewrite **`Box`** in Svelte 5 + a test, build via `svelte-package`, confirm the whole chain (build → package → types → test) green before rewriting the rest
 
-### Phase 1 — Library core in Svelte 5
-- [ ] `exports` map (`svelte`/`types`/`default`) + `sve-ui/theme` subpath; `peerDependencies: { svelte: "^5" }`
-- [ ] Token system: `theme` → CSS custom properties; wire all components to tokens
-- [ ] Rewrite each component in runes (`$props`, `$derived`, `$bindable`, snippets, native events)
-- [ ] Typed variant system for `Button` (size/color/variant) — replaces string concatenation
-- [ ] Accessibility pass on interactive components
+### Phase 1 — Foundation + first vertical slice
+- [ ] Modernize `packages/sve-ui/package.json`: `exports` map (`svelte`/`types`/`default`) + `sve-ui/theme` subpath; `peerDependencies: { svelte: "^5" }`; `bits-ui` as dependency; devDeps via catalog; `@sveltejs/package`
+- [ ] **Theming system** (the heart): tokens → CSS custom properties at `:root`, light/dark, documented override mechanism. Re-export via `sve-ui/theme`
+- [ ] **Typed variant system** (size/color/variant) — reusable helper for all components
+- [ ] First install (`pnpm install`); validate eslint flat-config keys
+- [ ] **Validation gate (two slices):**
+  - `Button` — non-interactive path: Svelte 5 runes + variants + scoped styles + test
+  - `Dialog` — Bits-UI-backed path: styled wrapper proves the foundation integration end-to-end
+- [ ] Confirm full chain green: build → `svelte-package` → types → test
+
+### Phase 1.5 — Component waves (built on the foundation)
+Ship in prioritized waves; each component = tests + a11y + docs page + Storybook story.
+- [ ] **Wave 1 (core):** Button, Input, Card, Badge, Avatar, Alert, Spinner, Text/Heading
+- [ ] **Wave 2 (overlays, Bits UI):** Dialog/Modal, Dropdown Menu, Tooltip, Popover, Toast
+- [ ] **Wave 3 (forms, Bits UI):** Select, Combobox, Checkbox, Radio Group, Switch, Slider, Tabs, Accordion
+- [ ] **Wave 4 (advanced):** Date Picker, Command/Search, Table, Pagination, Toast region
+- [ ] Minimal internal layout layer (Box/Stack/Flex) — building blocks, not headline
 
 ### Phase 2 — Testing
 - [ ] Vitest + `@testing-library/svelte` (+ jsdom/browser); delete the `1+2` test
