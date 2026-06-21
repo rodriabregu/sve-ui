@@ -18,6 +18,15 @@ export { default as Input } from './components/Input/Input.svelte';
 // Dialog namespace (composed over bits-ui)
 export * as Dialog from './components/Dialog/index.js';
 
+// DropdownMenu namespace (composed over bits-ui)
+export * as DropdownMenu from './components/DropdownMenu/index.js';
+
+// Tooltip namespace (composed over bits-ui)
+export * as Tooltip from './components/Tooltip/index.js';
+
+// Popover namespace (composed over bits-ui)
+export * as Popover from './components/Popover/index.js';
+
 // Avatar namespace (composed over bits-ui)
 export * as Avatar from './components/Avatar/index.js';
 

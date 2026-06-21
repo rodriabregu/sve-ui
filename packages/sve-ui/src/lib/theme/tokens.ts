@@ -66,6 +66,7 @@ export interface SveTypography {
     sans: string;
   };
   size: {
+    xs: string;
     sm: string;
     md: string;
     lg: string;
@@ -193,6 +194,7 @@ export const lightTokens: SveTheme = {
       sans: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     },
     size: {
+      xs: '0.75rem',
       sm: '0.875rem',
       md: '1rem',
       lg: '1.125rem',

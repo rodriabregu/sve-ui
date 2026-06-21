@@ -18,10 +18,11 @@ describe('themeToVars', () => {
     expect(result).not.toContain('--sve-font-font-');
   });
 
-  it('typography: size sub-group produces --sve-font-size-sm/md/lg', () => {
+  it('typography: size sub-group produces --sve-font-size-xs/sm/md/lg', () => {
     const result = themeToVars({
-      typography: { size: { sm: '0.875rem', md: '1rem', lg: '1.125rem' } },
+      typography: { size: { xs: '0.75rem', sm: '0.875rem', md: '1rem', lg: '1.125rem' } },
     });
+    expect(result).toContain('--sve-font-size-xs:0.75rem;');
     expect(result).toContain('--sve-font-size-sm:0.875rem;');
     expect(result).toContain('--sve-font-size-md:1rem;');
     expect(result).toContain('--sve-font-size-lg:1.125rem;');
@@ -69,7 +70,7 @@ describe('themeToVars', () => {
     const result = themeToVars({
       typography: {
         family:     { sans: 'system-ui' },
-        size:       { sm: '0.875rem', md: '1rem', lg: '1.125rem' },
+        size:       { xs: '0.75rem', sm: '0.875rem', md: '1rem', lg: '1.125rem' },
         weight:     { normal: '400', medium: '500', bold: '700' },
         lineHeight: { tight: '1.25', normal: '1.5', relaxed: '1.75' },
       },
@@ -80,6 +81,7 @@ describe('themeToVars', () => {
     // Exact names from theme.css — none of these should be missing or doubled
     const expectedVars = [
       '--sve-font-family-sans',
+      '--sve-font-size-xs',
       '--sve-font-size-sm',
       '--sve-font-size-md',
       '--sve-font-size-lg',
