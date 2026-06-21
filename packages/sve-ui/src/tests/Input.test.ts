@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { render } from '@testing-library/svelte';
+import { render, fireEvent } from '@testing-library/svelte';
 import Input from '$lib/components/Input/Input.svelte';
+import InputFixture from './InputFixture.svelte';
 
 describe('Input', () => {
   it('renders an <input> element', () => {
@@ -85,6 +86,19 @@ describe('Input', () => {
     const { container } = render(Input, { props: { class: 'extra-input-class' } });
     const el = container.querySelector('input');
     expect(el?.classList.contains('extra-input-class')).toBe(true);
+  });
+
+  it('reflects a provided value to the input', () => {
+    const { container } = render(Input, { props: { value: 'hello' } });
+    const el = container.querySelector('input');
+    expect(el?.value).toBe('hello');
+  });
+
+  it('supports two-way bind:value (input updates the bound state)', async () => {
+    const { container, getByTestId } = render(InputFixture, { props: {} });
+    const el = container.querySelector('input') as HTMLInputElement;
+    await fireEvent.input(el, { target: { value: 'typed text' } });
+    expect(getByTestId('bound').textContent).toBe('typed text');
   });
 
   it('contains no Tailwind utility classes', () => {

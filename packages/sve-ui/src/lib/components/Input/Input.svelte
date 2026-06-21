@@ -41,6 +41,7 @@
     variant,
     invalid = false,
     class: cls,
+    value = $bindable(),
     ...rest
   }: Props = $props();
 
@@ -63,6 +64,7 @@
 <input
   class={className}
   aria-invalid={invalid ? true : undefined}
+  bind:value
   {...rest}
 />
 

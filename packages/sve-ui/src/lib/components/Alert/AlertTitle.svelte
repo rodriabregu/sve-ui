@@ -2,12 +2,15 @@
   import type { HTMLAttributes } from 'svelte/elements';
   import type { Snippet } from 'svelte';
 
-  interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'class'> {
+  interface Props extends Omit<HTMLAttributes<HTMLElement>, 'class'> {
+    /** Element to render. Defaults to a semantic `<p>` (not a bare `<div>`). */
+    as?: string;
     class?: string;
     children?: Snippet;
   }
 
   let {
+    as = 'p',
     class: cls,
     children,
     ...rest
@@ -18,9 +21,9 @@
   );
 </script>
 
-<div class={className} {...rest}>
+<svelte:element this={as} class={className} {...rest}>
   {@render children?.()}
-</div>
+</svelte:element>
 
 <style>
   .sve-alert__title {
