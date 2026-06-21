@@ -1,23 +1,125 @@
-@import "tailwindcss";
-@import "sve-ui/theme.css";
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+@import 'sve-ui/theme.css';
 
+/* -------------------------------------------------------------------------
+   Docs app uses Geist as its sans family. Overriding --sve-font-family-sans
+   makes the real sve-ui components pick it up too, so the whole page matches.
+   ------------------------------------------------------------------------- */
 :root {
-	font-family: var(--sve-font-family-sans);
+	--sve-font-family-sans: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	--doc-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* -------------------------------------------------------------------------
+   Page-chrome neutrals (--doc-*).
+   These are NOT shipped by sve-ui on purpose: a component library themes its
+   components, not the host app's page surfaces. The docs site owns them.
+   Dark is the default (also the SSR/streaming fallback at :root); .light /
+   .dark class blocks flip them — ThemeProvider toggles the class.
+   ------------------------------------------------------------------------- */
+:root,
+.dark {
+	--doc-bg: #0d0d11;
+	--doc-bg-2: #121217;
+	--doc-surface: #16161c;
+	--doc-surface-2: #1c1c23;
+	--doc-border: #26262f;
+	--doc-border-2: #33333e;
+	--doc-ring: rgba(245, 101, 101, 0.45);
+	--doc-fg: #f4f4f6;
+	--doc-fg-muted: #9a9aa6;
+	--doc-fg-subtle: #6c6c78;
+	--doc-primary-text: #ff8a8a;
+	--doc-success: #34d399;
+	--doc-success-surf: rgba(16, 185, 129, 0.13);
+	--doc-success-bd: rgba(16, 185, 129, 0.34);
+	--doc-warning: #fbbf24;
+	--doc-warning-surf: rgba(251, 191, 36, 0.13);
+	--doc-warning-bd: rgba(251, 191, 36, 0.34);
+	--doc-danger: #f87171;
+	--doc-danger-surf: rgba(248, 113, 113, 0.13);
+	--doc-danger-bd: rgba(248, 113, 113, 0.34);
+	--doc-code-bg: #0a0a0e;
+	--doc-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 50px -22px rgba(0, 0, 0, 0.7);
+	--doc-dot: rgba(255, 255, 255, 0.05);
+}
+
+.light {
+	--doc-bg: #fcfcfb;
+	--doc-bg-2: #f6f5f3;
+	--doc-surface: #ffffff;
+	--doc-surface-2: #f7f6f4;
+	--doc-border: #eae8e4;
+	--doc-border-2: #dcd9d3;
+	--doc-ring: rgba(245, 101, 101, 0.4);
+	--doc-fg: #1a1714;
+	--doc-fg-muted: #6b6660;
+	--doc-fg-subtle: #9c968d;
+	--doc-primary-text: #dc3a3a;
+	--doc-success: #059669;
+	--doc-success-surf: #ecfdf5;
+	--doc-success-bd: #a7f3d0;
+	--doc-warning: #b45309;
+	--doc-warning-surf: #fffbeb;
+	--doc-warning-bd: #fce8b0;
+	--doc-danger: #dc2626;
+	--doc-danger-surf: #fef2f2;
+	--doc-danger-bd: #fbd0d0;
+	--doc-code-bg: #1b1b22;
+	--doc-shadow: 0 1px 2px rgba(40, 30, 20, 0.05), 0 18px 44px -26px rgba(40, 30, 20, 0.22);
+	--doc-dot: rgba(20, 16, 12, 0.05);
 }
 
 body {
 	margin: 0;
 	min-height: 100vh;
+	background: var(--doc-bg);
+	color: var(--doc-fg);
+	font-family: var(--sve-font-family-sans);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
 }
 
-/* Code snippet styling */
-.code-block {
-	background-color: #1a202c;
-	color: #e2e8f0;
-	border-radius: 0.5rem;
-	padding: 1rem 1.25rem;
-	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-	font-size: 0.875rem;
-	line-height: 1.6;
-	overflow-x: auto;
+::selection {
+	background: rgba(245, 101, 101, 0.28);
+}
+
+/* Shared docs helpers */
+.doc-mono {
+	font-family: var(--doc-mono);
+}
+
+.doc-eyebrow {
+	font-size: 12.5px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--doc-primary-text);
+}
+
+@keyframes sveFloat {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-7px);
+	}
+}
+
+@keyframes svePulse {
+	0%,
+	100% {
+		opacity: 0.5;
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sve-float {
+		animation: none !important;
+	}
 }

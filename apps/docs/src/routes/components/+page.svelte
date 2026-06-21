@@ -23,7 +23,7 @@
 	<meta name="description" content="All 13 Sve-UI components with live examples." />
 </svelte:head>
 
-<div class="max-w-4xl mx-auto">
+<div class="max-w-4xl mx-auto px-6 py-10">
 	<Heading level={1} size="lg" class="mb-2">Components</Heading>
 	<Text size="lg" class="mb-10" style="opacity: 0.7;">
 		All 13 components with live examples. Use the dark mode toggle in the navbar to see theming in
