@@ -42,7 +42,7 @@
     overflow-y: auto;
     background-color: var(--sve-color-default-surface, #fff);
     border-radius: var(--sve-radius-lg);
-    box-shadow: 0 8px 32px rgb(0 0 0 / 0.18);
+    box-shadow: var(--sve-shadow-md);
     padding: var(--sve-space-6);
     outline: none;
   }

@@ -56,6 +56,11 @@ export interface SveRadius {
   full: string;
 }
 
+export interface SveShadow {
+  sm: string;
+  md: string;
+}
+
 export interface SveTypography {
   family: {
     sans: string;
@@ -81,6 +86,7 @@ export interface SveTheme {
   colors:     SveColors;
   spacing:    SveSpacing;
   radius:     SveRadius;
+  shadow:     SveShadow;
   typography: SveTypography;
 }
 
@@ -94,6 +100,7 @@ export type PartialSveTheme = {
   };
   spacing?:    Partial<SveSpacing>;
   radius?:     Partial<SveRadius>;
+  shadow?:     Partial<SveShadow>;
   typography?: {
     family?:     Partial<SveTypography['family']>;
     size?:       Partial<SveTypography['size']>;
@@ -177,6 +184,10 @@ export const lightTokens: SveTheme = {
     lg:   '0.5rem',
     full: '9999px',
   },
+  shadow: {
+    sm: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+    md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+  },
   typography: {
     family: {
       sans: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
@@ -257,6 +268,10 @@ export const darkTokens: SveTheme = {
   },
   spacing: lightTokens.spacing,
   radius: lightTokens.radius,
+  shadow: {
+    sm: '0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4)',
+    md: '0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5)',
+  },
   typography: lightTokens.typography,
 };
 
@@ -264,6 +279,7 @@ export const darkTokens: SveTheme = {
 // corrupt lightTokens.spacing (they share the same reference).
 Object.freeze(lightTokens.spacing);
 Object.freeze(lightTokens.radius);
+Object.freeze(lightTokens.shadow);
 Object.freeze(lightTokens.typography.family);
 Object.freeze(lightTokens.typography.size);
 Object.freeze(lightTokens.typography.weight);
@@ -313,6 +329,9 @@ export function themeToVars(theme: PartialSveTheme): string {
   }
   if (theme.radius) {
     vars += flattenToVars(theme.radius as unknown as NestedRecord, '--sve-radius');
+  }
+  if (theme.shadow) {
+    vars += flattenToVars(theme.shadow as unknown as NestedRecord, '--sve-shadow');
   }
   if (theme.typography) {
     // Each typography sub-group maps to a distinct CSS variable namespace.

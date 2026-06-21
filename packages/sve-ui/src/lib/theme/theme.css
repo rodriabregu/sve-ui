@@ -65,6 +65,10 @@
   /* --- Colors: overlay --------------------------------------------------- */
   --sve-color-overlay:            rgb(0 0 0 / 0.5);
 
+  /* --- Shadows ----------------------------------------------------------- */
+  --sve-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --sve-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
   /* --- Spacing ----------------------------------------------------------- */
   --sve-space-1:  0.25rem;
   --sve-space-2:  0.5rem;
@@ -152,6 +156,10 @@
 
     /* Colors: overlay */
     --sve-color-overlay:            rgb(0 0 0 / 0.7);
+
+    /* Shadows — stronger on dark surfaces so they remain visible */
+    --sve-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --sve-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
   }
 }
 
@@ -203,6 +211,10 @@
   --sve-color-default-active:     #a0aec0;
 
   --sve-color-overlay:            rgb(0 0 0 / 0.7);
+
+  /* Shadows — stronger on dark surfaces so they remain visible */
+  --sve-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --sve-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
 }
 
 /* =========================================================================
