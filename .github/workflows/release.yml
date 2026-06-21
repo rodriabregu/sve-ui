@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write # push the version PR + git tags
+  pull-requests: write # open the "Version Packages" PR
+  id-token: write # OIDC: npm provenance + Trusted Publishing (tokenless)
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # With changesets present -> opens/updates a "Version Packages" PR.
+      # When that PR is merged (changesets consumed) -> builds + publishes to npm.
+      - name: Create Release PR or publish
+        uses: changesets/action@v1
+        with:
+          version: pnpm run version-packages
+          publish: pnpm run release
+          commit: 'chore: version packages'
+          title: 'chore: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Provenance attestation (requires id-token: write above).
+          NPM_CONFIG_PROVENANCE: true
+          # OIDC Trusted Publishing -> no NPM_TOKEN needed once the package is
+          # configured as a Trusted Publisher on npmjs.com (repo + this workflow).
+          # Fallback if your pnpm/registry doesn't negotiate OIDC, uncomment:
+          # NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
