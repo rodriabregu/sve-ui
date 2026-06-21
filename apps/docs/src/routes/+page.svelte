@@ -1,101 +1,123 @@
-<script>
-	import GithubIcon from '$lib/icons/GithubIcon.svelte';
-	// import FeatureCard from './components/cards/FeatureCard.svelte';
-
-	// const FEATURES = [
-	// 	{
-	// 		icon: GithubIcon,
-	// 		title: 'Fast',
-	// 		description:
-	// 			'Constructed using Tailwind CSS infrastructure, signifying absence of runtime style calculations and unnecessary class inclusions within your package.'
-	// 	}
-	// ];
+<script lang="ts">
+	import { Button, Badge, Alert, Spinner } from 'sve-ui';
 </script>
 
 <svelte:head>
-	<title>SveUI - Fast and modern Svelte UI library</title>
+	<title>Sve-UI — Fast and modern Svelte UI library</title>
 	<meta
 		name="description"
-		content="Boost your Svelte development with our powerful and easy-to-use library of reusable UI components. With a wide range of customizable options, including responsive design and support for popular CSS frameworks, our library helps you streamline your development process and create stunning web applications with ease. All this with Sve-UI."
+		content="Boost your Svelte development with our powerful and easy-to-use library of reusable UI components. With a wide range of customizable options and full dark mode support, Sve-UI helps you build stunning web applications with ease."
 	/>
 </svelte:head>
 
-<main class="flex flex-col items-center gap-16">
-	<section class="flex items-center gap-64">
-		<h1 class="text-5xl">
-			Make <span class="text-blue-400">beautiful</span> and easily websites. <br /> With <span class="text-blue-600">SveUI</span>.
-		</h1>
+<!-- Hero -->
+<section class="flex flex-col items-center text-center gap-6 py-16">
+	<Badge color="primary" variant="subtle">Now on Svelte 5 + Runes</Badge>
 
-		<!-- <article class="flex flex-col gap-16">
-			<div>
-				<h2>Less code. More speed</h2>
-				<span> Build fast and accessible web apps with Sve-UI.</span>
-			</div>
+	<h1 class="text-5xl font-bold leading-tight max-w-2xl"
+		style="color: var(--sve-color-default-foreground);">
+		Make <span style="color: var(--sve-color-primary);">beautiful</span> websites with
+		<span style="color: var(--sve-color-primary);">Sve-UI</span>.
+	</h1>
 
-			<div>
-				<h2>Easy to use</h2>
-				<span> Sve-UI is easy to use, easy to learn and intuitive.</span>
-			</div>
-		</article> -->
-	</section>
-
-	<article class="flex flex-col gap-2 my-20">
-	<span class="
-		text-2xl
-		text-center
-		bg-blue-600
-		rounded-full
-		px-6
-		py-2
-	">New version coming soon...</span>
-
-	<p class="
-		text-center
-		text-lg
-		font-light
-		max-w-2xl
-		text-gray-300
-	">
-		We are working on a new version of SveUI. It'll be a complete redesign of the library, with new components and a new API. We are also working on a new documentation and a new website. As this type of project deserves.
-		<span class="
-			block
-			text-gray-400
-			font-normal
-			text-sm
-			mt-2
-		">Stay tuned for more updates.</span>
+	<p class="text-lg max-w-xl" style="color: var(--sve-color-default-foreground); opacity: 0.75;">
+		A collection of accessible, themeable UI components for Svelte 5. Zero runtime style
+		calculations. Full dark mode. CSS custom properties for complete design control.
 	</p>
-</article>
 
-	<section class="flex gap-4">
-		<a
-			href="/docs"
-			class="bg-blue-600 text-white text-xl font-light rounded-full mt-8 transition duration-300 hover:bg-blue-700 px-6 py-2"
-			>Get started</a
-		>
+	<div class="flex flex-wrap gap-3 justify-center mt-2">
+		<Button color="primary" variant="solid" onclick={() => (window.location.href = '/components')}>
+			Explore Components
+		</Button>
+		<Button color="default" variant="outline" onclick={() => window.open('https://github.com/rodriabregu/sve-ui', '_blank')}>
+			GitHub
+		</Button>
+	</div>
 
-		<a
-			href="https://github.com/rodriabregu/sve-ui"
-			class="
-		flex gap-2 items-center bg-gray-800 text-white text-xl font-light rounded-full mt-8 transition duration-300 hover:bg-gray-700 px-6 py-2
-		"
-			target="_blank"
-		>
-			<GithubIcon size={24} />
-			Github
-		</a>
-	</section>
+	<!-- Install snippet -->
+	<div class="mt-4 code-block text-left w-full max-w-sm">
+		<span style="color: #68d391;">$</span> pnpm add <span style="color: #f6ad55;">sve-ui</span>
+	</div>
+</section>
 
-	<!-- <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
-		{#each FEATURES as { icon, title, description }}
-			<FeatureCard {icon} {title} {description} />
-		{/each}
-	</section> -->
-</main>
+<!-- Feature highlights -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 py-8">
+	<div class="p-6 rounded-xl border" style="border-color: var(--sve-color-default-border); background: var(--sve-color-default-surface);">
+		<div class="text-2xl mb-3">⚡</div>
+		<h3 class="font-semibold text-lg mb-2" style="color: var(--sve-color-default-foreground);">Svelte 5 Runes</h3>
+		<p class="text-sm" style="color: var(--sve-color-default-foreground); opacity: 0.7;">
+			Built from the ground up with Svelte 5 runes and snippets. No legacy compatibility shims.
+		</p>
+	</div>
+	<div class="p-6 rounded-xl border" style="border-color: var(--sve-color-default-border); background: var(--sve-color-default-surface);">
+		<div class="text-2xl mb-3">🎨</div>
+		<h3 class="font-semibold text-lg mb-2" style="color: var(--sve-color-default-foreground);">Themeable</h3>
+		<p class="text-sm" style="color: var(--sve-color-default-foreground); opacity: 0.7;">
+			CSS custom properties drive every color, spacing, and radius token. Light and dark out of the box.
+		</p>
+	</div>
+	<div class="p-6 rounded-xl border" style="border-color: var(--sve-color-default-border); background: var(--sve-color-default-surface);">
+		<div class="text-2xl mb-3">♿</div>
+		<h3 class="font-semibold text-lg mb-2" style="color: var(--sve-color-default-foreground);">Accessible</h3>
+		<p class="text-sm" style="color: var(--sve-color-default-foreground); opacity: 0.7;">
+			Overlay components (Dialog, Tooltip, Popover, Dropdown) built on bits-ui for WAI-ARIA compliance.
+		</p>
+	</div>
+</section>
 
-<style>
-	h1 {
-		width: 100%;
-		font-size: 3rem;
-	}
-</style>
+<!-- Live examples -->
+<section class="py-8">
+	<h2 class="text-2xl font-bold mb-6" style="color: var(--sve-color-default-foreground);">See it live</h2>
+
+	<div class="flex flex-col gap-6">
+		<!-- Buttons -->
+		<div class="p-6 rounded-xl border" style="border-color: var(--sve-color-default-border);">
+			<p class="text-sm font-medium mb-4" style="color: var(--sve-color-default-foreground); opacity: 0.6;">Buttons — variants × colors</p>
+			<div class="flex flex-wrap gap-3">
+				<Button color="primary" variant="solid">Primary</Button>
+				<Button color="success" variant="solid">Success</Button>
+				<Button color="danger" variant="outline">Danger</Button>
+				<Button color="default" variant="ghost">Ghost</Button>
+				<Button color="secondary" variant="flat">Flat</Button>
+			</div>
+		</div>
+
+		<!-- Badges + Spinner -->
+		<div class="p-6 rounded-xl border" style="border-color: var(--sve-color-default-border);">
+			<p class="text-sm font-medium mb-4" style="color: var(--sve-color-default-foreground); opacity: 0.6;">Badges + Spinner</p>
+			<div class="flex flex-wrap items-center gap-3">
+				<Badge color="primary">Primary</Badge>
+				<Badge color="success" variant="subtle">Success</Badge>
+				<Badge color="warning" variant="outline">Warning</Badge>
+				<Badge color="danger">Danger</Badge>
+				<Spinner color="primary" size="md" />
+			</div>
+		</div>
+
+		<!-- Alerts -->
+		<div class="p-6 rounded-xl border" style="border-color: var(--sve-color-default-border);">
+			<p class="text-sm font-medium mb-4" style="color: var(--sve-color-default-foreground); opacity: 0.6;">Alerts</p>
+			<div class="flex flex-col gap-3">
+				<Alert.Root color="success" variant="subtle">
+					<Alert.Title>Success</Alert.Title>
+					<Alert.Description>Your changes have been saved.</Alert.Description>
+				</Alert.Root>
+				<Alert.Root color="warning" variant="subtle">
+					<Alert.Title>Warning</Alert.Title>
+					<Alert.Description>Review your settings before continuing.</Alert.Description>
+				</Alert.Root>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- CTA -->
+<section class="text-center py-12">
+	<h2 class="text-2xl font-bold mb-4" style="color: var(--sve-color-default-foreground);">Ready to build?</h2>
+	<p class="mb-6" style="color: var(--sve-color-default-foreground); opacity: 0.7;">
+		13 components, full theming, zero config.
+	</p>
+	<Button color="primary" variant="solid" onclick={() => (window.location.href = '/components')}>
+		View all components →
+	</Button>
+</section>
