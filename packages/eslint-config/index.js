@@ -9,7 +9,7 @@ import globals from 'globals';
  */
 export const base = [
   {
-    ignores: ['dist/', '.svelte-kit/', 'build/', 'node_modules/', '.turbo/']
+    ignores: ['dist/', '.svelte-kit/', 'build/', 'node_modules/', '.turbo/', '.vercel/', '.output/']
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

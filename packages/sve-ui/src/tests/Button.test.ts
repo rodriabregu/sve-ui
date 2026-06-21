@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, fireEvent, screen } from '@testing-library/svelte';
+import { render, fireEvent } from '@testing-library/svelte';
 import Button from '$lib/components/Button/Button.svelte';
 
 describe('Button', () => {

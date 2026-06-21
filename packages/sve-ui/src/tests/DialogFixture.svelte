@@ -3,32 +3,12 @@
 </script>
 
 <Dialog.Root>
-  {#snippet children()}
-    <Dialog.Trigger>
-      {#snippet children()}
-        Open dialog
-      {/snippet}
-    </Dialog.Trigger>
+  <Dialog.Trigger>Open dialog</Dialog.Trigger>
 
-    <Dialog.Content>
-      {#snippet children()}
-        <Dialog.Title>
-          {#snippet children()}
-            Test Dialog
-          {/snippet}
-        </Dialog.Title>
-        <Dialog.Description>
-          {#snippet children()}
-            A dialog for testing.
-          {/snippet}
-        </Dialog.Description>
-        <input type="text" placeholder="Focusable input" />
-        <Dialog.Close>
-          {#snippet children()}
-            Close
-          {/snippet}
-        </Dialog.Close>
-      {/snippet}
-    </Dialog.Content>
-  {/snippet}
+  <Dialog.Content>
+    <Dialog.Title>Test Dialog</Dialog.Title>
+    <Dialog.Description>A dialog for testing.</Dialog.Description>
+    <input type="text" placeholder="Focusable input" />
+    <Dialog.Close>Close</Dialog.Close>
+  </Dialog.Content>
 </Dialog.Root>

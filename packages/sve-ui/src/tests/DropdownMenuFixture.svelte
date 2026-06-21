@@ -3,35 +3,13 @@
 </script>
 
 <DropdownMenu.Root>
-  {#snippet children()}
-    <DropdownMenu.Trigger>
-      {#snippet children()}
-        Open menu
-      {/snippet}
-    </DropdownMenu.Trigger>
-    <DropdownMenu.Content>
-      {#snippet children()}
-        <DropdownMenu.Group>
-          {#snippet children()}
-            <DropdownMenu.Label>
-              {#snippet children()}
-                Actions
-              {/snippet}
-            </DropdownMenu.Label>
-            <DropdownMenu.Item>
-              {#snippet children()}
-                Edit
-              {/snippet}
-            </DropdownMenu.Item>
-          {/snippet}
-        </DropdownMenu.Group>
-        <DropdownMenu.Separator />
-        <DropdownMenu.Item>
-          {#snippet children()}
-            Delete
-          {/snippet}
-        </DropdownMenu.Item>
-      {/snippet}
-    </DropdownMenu.Content>
-  {/snippet}
+  <DropdownMenu.Trigger>Open menu</DropdownMenu.Trigger>
+  <DropdownMenu.Content>
+    <DropdownMenu.Group>
+      <DropdownMenu.Label>Actions</DropdownMenu.Label>
+      <DropdownMenu.Item>Edit</DropdownMenu.Item>
+    </DropdownMenu.Group>
+    <DropdownMenu.Separator />
+    <DropdownMenu.Item>Delete</DropdownMenu.Item>
+  </DropdownMenu.Content>
 </DropdownMenu.Root>

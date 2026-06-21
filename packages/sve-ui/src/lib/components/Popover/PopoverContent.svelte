@@ -18,13 +18,11 @@
   Portal defaults to document.body, keeping z-index stacking clean.
 -->
 <Popover.Portal>
-  {#snippet children()}
-    <Popover.Content
-      class={['sve-popover-content', cls].filter(Boolean).join(' ')}
-      {children}
-      {...rest}
-    />
-  {/snippet}
+  <Popover.Content
+    class={['sve-popover-content', cls].filter(Boolean).join(' ')}
+    {children}
+    {...rest}
+  />
 </Popover.Portal>
 
 <style>

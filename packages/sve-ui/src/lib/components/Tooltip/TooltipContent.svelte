@@ -18,13 +18,11 @@
   Portal defaults to document.body, keeping z-index stacking clean.
 -->
 <Tooltip.Portal>
-  {#snippet children()}
-    <Tooltip.Content
-      class={['sve-tooltip-content', cls].filter(Boolean).join(' ')}
-      {children}
-      {...rest}
-    />
-  {/snippet}
+  <Tooltip.Content
+    class={['sve-tooltip-content', cls].filter(Boolean).join(' ')}
+    {children}
+    {...rest}
+  />
 </Tooltip.Portal>
 
 <style>

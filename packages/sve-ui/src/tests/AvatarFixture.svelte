@@ -20,12 +20,6 @@
 </script>
 
 <Avatar.Root {size} {shape}>
-  {#snippet children()}
-    <Avatar.Image {src} {alt} />
-    <Avatar.Fallback>
-      {#snippet children()}
-        AB
-      {/snippet}
-    </Avatar.Fallback>
-  {/snippet}
+  <Avatar.Image {src} {alt} />
+  <Avatar.Fallback>AB</Avatar.Fallback>
 </Avatar.Root>

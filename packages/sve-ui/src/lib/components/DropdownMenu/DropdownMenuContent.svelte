@@ -18,13 +18,11 @@
   Portal defaults to document.body, keeping z-index stacking clean.
 -->
 <DropdownMenu.Portal>
-  {#snippet children()}
-    <DropdownMenu.Content
-      class={['sve-dropdown-content', cls].filter(Boolean).join(' ')}
-      {children}
-      {...rest}
-    />
-  {/snippet}
+  <DropdownMenu.Content
+    class={['sve-dropdown-content', cls].filter(Boolean).join(' ')}
+    {children}
+    {...rest}
+  />
 </DropdownMenu.Portal>
 
 <style>

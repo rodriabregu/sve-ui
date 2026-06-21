@@ -170,7 +170,7 @@
 <!-- ===================== WEDGE / FEATURES ===================== -->
 <section class="mx-auto max-w-[1180px] px-7" style="padding-bottom: 72px;">
 	<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-		{#each [{ icon: 'tailwind', tone: 'var(--doc-primary-text)', surf: 'color-mix(in srgb, var(--sve-color-primary) 14%, transparent)', title: 'No Tailwind', body: 'Styles ship with the package. Your project needs no Tailwind, no PostCSS, no utility classes.' }, { icon: 'zap', tone: 'var(--doc-warning)', surf: 'var(--doc-warning-surf)', title: 'Zero config', body: 'Install, import the stylesheet once, and use. No setup step, no CLI, no copy-pasting source.' }, { icon: 'a11y', tone: 'var(--doc-success)', surf: 'var(--doc-success-surf)', title: 'Accessible', body: 'Dialog, Dropdown, Tooltip & Popover are built on Bits UI — WAI-ARIA, focus traps, keyboard nav.' }, { icon: 'palette', tone: 'var(--doc-primary-text)', surf: 'color-mix(in srgb, var(--sve-color-primary) 14%, transparent)', title: 'Themeable', body: 'Every color, radius & spacing value is a --sve-* variable. Light & dark out of the box.' }] as f}
+		{#each [{ icon: 'tailwind', tone: 'var(--doc-primary-text)', surf: 'color-mix(in srgb, var(--sve-color-primary) 14%, transparent)', title: 'No Tailwind', body: 'Styles ship with the package. Your project needs no Tailwind, no PostCSS, no utility classes.' }, { icon: 'zap', tone: 'var(--doc-warning)', surf: 'var(--doc-warning-surf)', title: 'Zero config', body: 'Install, import the stylesheet once, and use. No setup step, no CLI, no copy-pasting source.' }, { icon: 'a11y', tone: 'var(--doc-success)', surf: 'var(--doc-success-surf)', title: 'Accessible', body: 'Dialog, Dropdown, Tooltip & Popover are built on Bits UI — WAI-ARIA, focus traps, keyboard nav.' }, { icon: 'palette', tone: 'var(--doc-primary-text)', surf: 'color-mix(in srgb, var(--sve-color-primary) 14%, transparent)', title: 'Themeable', body: 'Every color, radius & spacing value is a --sve-* variable. Light & dark out of the box.' }] as f (f.title)}
 			<div style="padding: 24px 22px; border-radius: 16px; background: var(--doc-surface); border: 1px solid var(--doc-border);">
 				<div class="mb-4 inline-flex h-10 w-10 items-center justify-center" style="border-radius: 11px; background: {f.surf}; color: {f.tone};">
 					{#if f.icon === 'tailwind'}
@@ -386,7 +386,7 @@
 						<Popover.Content>
 							<Heading level={4} size="sm" weight="bold" class="mb-2">Accent color</Heading>
 							<div class="flex gap-2">
-								{#each ['#F56565', '#ED8936', '#8B5CF6', '#10B981'] as c}
+								{#each ['#F56565', '#ED8936', '#8B5CF6', '#10B981'] as c (c)}
 									<span class="h-6 w-6" style="border-radius: 7px; background: {c};"></span>
 								{/each}
 							</div>
@@ -414,7 +414,7 @@
 				<div class="mb-5 flex flex-wrap items-center gap-3.5">
 					<div class="flex items-center gap-2.5">
 						<span style="font-size: 12px; font-weight: 600; color: var(--doc-fg-subtle); text-transform: uppercase; letter-spacing: 0.08em;">Accent</span>
-						{#each ACCENTS as sw}
+						{#each ACCENTS as sw (sw.id)}
 							<button
 								onclick={() => (accentId = sw.id)}
 								aria-label={sw.label}
@@ -484,7 +484,7 @@
 			<h2 class="mb-3.5 mt-3" style="font-size: 36px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--doc-fg);">Three lines.<br />That's the setup.</h2>
 			<Text size="lg" class="mb-4" style="color: var(--doc-fg-muted); line-height: 1.6;">No <code class="doc-mono" style="font-size: 13px; color: var(--doc-primary-text);">tailwind.config</code>, no PostCSS plugins, no component scaffolding. Add the package, import the stylesheet once, and use the components.</Text>
 			<ul class="m-0 flex list-none flex-col gap-2.5 p-0">
-				{#each ['Works with npm, pnpm and yarn', 'Tree-shakeable — import only what you use', 'Fully typed with SvelteKit support'] as item}
+				{#each ['Works with npm, pnpm and yarn', 'Tree-shakeable — import only what you use', 'Fully typed with SvelteKit support'] as item (item)}
 					<li class="flex items-center gap-2.5" style="font-size: 14.5px; color: var(--doc-fg);">
 						<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--doc-success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
 						{item}
@@ -550,10 +550,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					{#each [{ label: 'No Tailwind in your project', cells: [true, 'required', 'required', 'required'] }, { label: 'Zero config to start', cells: [true, 'CLI setup', 'config', 'config'] }, { label: 'Styled out of the box', cells: [true, 'copy & own', true, true] }, { label: 'Accessible (Bits UI / ARIA)', cells: [true, true, 'partial', 'partial'] }, { label: 'Theme via CSS variables', cells: [true, 'TW config', '', 'TW config'] }, { label: 'Svelte 5 + Runes', cells: [true, true, true, true] }, { label: 'Light + dark included', cells: [true, true, 'partial', true] }] as row}
+					{#each [{ label: 'No Tailwind in your project', cells: [true, 'required', 'required', 'required'] }, { label: 'Zero config to start', cells: [true, 'CLI setup', 'config', 'config'] }, { label: 'Styled out of the box', cells: [true, 'copy & own', true, true] }, { label: 'Accessible (Bits UI / ARIA)', cells: [true, true, 'partial', 'partial'] }, { label: 'Theme via CSS variables', cells: [true, 'TW config', '', 'TW config'] }, { label: 'Svelte 5 + Runes', cells: [true, true, true, true] }, { label: 'Light + dark included', cells: [true, true, 'partial', true] }] as row (row.label)}
 						<tr style="border-top: 1px solid var(--doc-border);">
 							<td style="text-align: left; padding: 15px 20px; font-weight: 600; color: var(--doc-fg);">{row.label}</td>
-							{#each row.cells as cell, i}
+							{#each row.cells as cell, i (i)}
 								<td
 									style="padding: 15px 14px; text-align: center; {i === 0
 										? 'background: color-mix(in srgb, var(--sve-color-primary) 7%, var(--doc-surface)); border-left: 1px solid var(--doc-border); border-right: 1px solid var(--doc-border);'

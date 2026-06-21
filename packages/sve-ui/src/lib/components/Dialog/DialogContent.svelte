@@ -20,14 +20,12 @@
   Portal defaults to document.body, keeping z-index stacking clean.
 -->
 <Dialog.Portal>
-  {#snippet children()}
-    <DialogOverlay />
-    <Dialog.Content
-      class={['sve-dialog-content', cls].filter(Boolean).join(' ')}
-      {children}
-      {...rest}
-    />
-  {/snippet}
+  <DialogOverlay />
+  <Dialog.Content
+    class={['sve-dialog-content', cls].filter(Boolean).join(' ')}
+    {children}
+    {...rest}
+  />
 </Dialog.Portal>
 
 <style>

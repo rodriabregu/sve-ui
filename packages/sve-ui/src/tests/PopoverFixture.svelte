@@ -3,21 +3,9 @@
 </script>
 
 <Popover.Root>
-  {#snippet children()}
-    <Popover.Trigger>
-      {#snippet children()}
-        Open popover
-      {/snippet}
-    </Popover.Trigger>
-    <Popover.Content>
-      {#snippet children()}
-        <p>Popover content</p>
-        <Popover.Close>
-          {#snippet children()}
-            Close
-          {/snippet}
-        </Popover.Close>
-      {/snippet}
-    </Popover.Content>
-  {/snippet}
+  <Popover.Trigger>Open popover</Popover.Trigger>
+  <Popover.Content>
+    <p>Popover content</p>
+    <Popover.Close>Close</Popover.Close>
+  </Popover.Content>
 </Popover.Root>
