@@ -284,3 +284,26 @@ The rebuild is a full API-breaking rewrite — the first release should likely b
 - A `preinstall` guard (`npx only-allow pnpm`) rejects `npm install` / `yarn`.
 - Single `pnpm-lock.yaml` at the root; workspace deps use the `workspace:*` protocol.
 - All scripts, CI, and scaffolding commands use `pnpm` / `pnpm dlx` exclusively.
+
+---
+
+## 12. AI / agent ecosystem (future — post-component-coverage)
+
+Make Sve·UI a first-class citizen for AI-assisted development, so agents (Claude
+Code, Cursor, etc.) generate correct Sve·UI code instead of guessing. Inspired by
+shadcn/ui, which ships both an MCP server and an AI-readable component registry.
+
+- [ ] **Sve·UI usage Skill** — a packaged skill that teaches an agent how to use
+  the library: the wedge (no Tailwind/config), the import + `theme.css` setup, the
+  component API (variant/color/size props), the namespaced-overlay composition
+  pattern (`Dialog.Root`/`Trigger`/`Content`), and the `--sve-*` theming model.
+  Distribute as a skill consumers can drop into their agent so generated code
+  follows our real API (not hallucinated props).
+- [ ] **Sve·UI MCP server** (evaluate) — expose the component catalog, prop schemas,
+  variant maps and usage examples over MCP so agents can query the real, current
+  API at generation time. Compare against simply shipping a static
+  machine-readable registry (`registry.json` / `llms.txt`) — the registry may
+  cover 90% of the value at a fraction of the maintenance cost; decide MCP vs.
+  static registry before building.
+- [ ] Auto-generate the registry/skill content from component types + variant
+  definitions so it never drifts from the source.
