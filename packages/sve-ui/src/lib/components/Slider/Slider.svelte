@@ -20,10 +20,20 @@
     step?: number;
     disabled?: boolean;
     orientation?: 'horizontal' | 'vertical';
+    /**
+     * Accessible name for the thumb(s). The `role="slider"` element needs a name;
+     * in `multiple` mode each thumb gets the label suffixed with its position.
+     */
+    thumbLabel?: string;
     class?: string;
   }
 
-  let { type = 'single', class: cls, ...rest }: Props = $props();
+  let { type = 'single', thumbLabel, class: cls, ...rest }: Props = $props();
+
+  function thumbName(index: number): string | undefined {
+    if (!thumbLabel) return undefined;
+    return type === 'multiple' ? `${thumbLabel} ${index + 1}` : thumbLabel;
+  }
 
   const className = $derived(['sve-slider', cls].filter(Boolean).join(' '));
 
@@ -36,7 +46,7 @@
       <Slider.Range class="sve-slider__range" />
     </span>
     {#each thumbItems as thumb (thumb.index)}
-      <Slider.Thumb index={thumb.index} class="sve-slider__thumb" />
+      <Slider.Thumb index={thumb.index} class="sve-slider__thumb" aria-label={thumbName(thumb.index)} />
     {/each}
   {/snippet}
 </Root>

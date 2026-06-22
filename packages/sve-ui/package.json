@@ -50,7 +50,6 @@
 	},
 	"devDependencies": {
 		"@internationalized/date": "^3.8.1",
-		"jsdom": "^26.0.0",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@sveltejs/kit": "catalog:",
@@ -59,13 +58,15 @@
 		"@testing-library/svelte": "catalog:",
 		"eslint": "catalog:",
 		"eslint-plugin-svelte": "catalog:",
+		"jsdom": "^26.0.0",
 		"publint": "catalog:",
 		"svelte": "catalog:",
 		"svelte-check": "^4.0.0",
 		"typescript": "catalog:",
 		"typescript-eslint": "catalog:",
 		"vite": "catalog:",
-		"vitest": "catalog:"
+		"vitest": "catalog:",
+		"vitest-axe": "^0.1.0"
 	},
 	"scripts": {
 		"build": "vite build && pnpm package",
