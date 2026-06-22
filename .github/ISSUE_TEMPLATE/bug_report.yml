@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a bug in Sve·UI
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting! A minimal reproduction makes fixes much faster.
+  - type: input
+    id: version
+    attributes:
+      label: sve-ui version
+      placeholder: e.g. 0.2.1
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Steps to reproduce, or a link to a minimal repro (Svelte REPL, StackBlitz, or repo).
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - A component
+        - Theming / CSS variables
+        - Types
+        - Build / packaging
+        - Other
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Svelte / SvelteKit version, browser, and OS.
