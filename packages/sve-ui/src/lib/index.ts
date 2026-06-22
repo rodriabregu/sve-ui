@@ -14,6 +14,7 @@ export { default as Heading } from './components/Heading/Heading.svelte';
 export { default as Badge } from './components/Badge/Badge.svelte';
 export { default as Spinner } from './components/Spinner/Spinner.svelte';
 export { default as Input } from './components/Input/Input.svelte';
+export { default as Code } from './components/Code/Code.svelte';
 
 // Dialog namespace (composed over bits-ui)
 export * as Dialog from './components/Dialog/index.js';
@@ -35,6 +36,12 @@ export * as Card from './components/Card/index.js';
 
 // Alert namespace
 export * as Alert from './components/Alert/index.js';
+
+// Tabs namespace (composed over bits-ui)
+export * as Tabs from './components/Tabs/index.js';
+
+// Accordion namespace (composed over bits-ui)
+export * as Accordion from './components/Accordion/index.js';
 
 // Switch namespace (composed over bits-ui)
 export * as Switch from './components/Switch/index.js';
