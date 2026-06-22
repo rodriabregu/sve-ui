@@ -18,7 +18,10 @@
 		RadioGroup,
 		Tabs,
 		Accordion,
-		Code
+		Code,
+		Select,
+		Combobox,
+		Slider
 	} from 'sve-ui';
 
 	let dialogOpen = $state(false);
@@ -26,6 +29,15 @@
 	let checkboxOn = $state(true);
 	let radioValue = $state('comfortable');
 	let tabValue = $state('account');
+	let selectValue = $state('');
+	let comboValue = $state('');
+	let sliderValue = $state(40);
+
+	const fruits = ['Apple', 'Banana', 'Cherry', 'Mango'];
+	let comboQuery = $state('');
+	let filteredFruits = $derived(
+		fruits.filter((f) => f.toLowerCase().includes(comboQuery.toLowerCase()))
+	);
 </script>
 
 <svelte:head>
@@ -140,6 +152,50 @@
 				{/each}
 			</RadioGroup.Root>
 			<Text size="sm" class="mt-3" style="opacity: 0.6;">value: {radioValue}</Text>
+		</div>
+
+		<!-- Slider -->
+		<div class="mb-10">
+			<Heading level={3} size="sm" class="mb-1">Slider</Heading>
+			<Text size="sm" class="mb-4" style="opacity: 0.6;">value · min · max · step</Text>
+			<div class="max-w-sm">
+				<Slider type="single" value={sliderValue} onValueChange={(v) => (sliderValue = v as number)} max={100} step={1} />
+				<Text size="sm" class="mt-3" style="opacity: 0.6;">value: {sliderValue}</Text>
+			</div>
+		</div>
+
+		<!-- Select -->
+		<div class="mb-10">
+			<Heading level={3} size="sm" class="mb-1">Select</Heading>
+			<Text size="sm" class="mb-4" style="opacity: 0.6;">Root + Trigger + Content + Item — bind:value</Text>
+			<div class="max-w-xs">
+				<Select.Root type="single" bind:value={selectValue}>
+					<Select.Trigger>{selectValue || 'Pick a fruit'}</Select.Trigger>
+					<Select.Content>
+						{#each fruits as fruit (fruit)}
+							<Select.Item value={fruit} label={fruit}>{fruit}</Select.Item>
+						{/each}
+					</Select.Content>
+				</Select.Root>
+				<Text size="sm" class="mt-3" style="opacity: 0.6;">value: {selectValue}</Text>
+			</div>
+		</div>
+
+		<!-- Combobox -->
+		<div class="mb-10">
+			<Heading level={3} size="sm" class="mb-1">Combobox</Heading>
+			<Text size="sm" class="mb-4" style="opacity: 0.6;">Root + Input + Content + Item — type to filter</Text>
+			<div class="max-w-xs">
+				<Combobox.Root type="single" bind:value={comboValue}>
+					<Combobox.Input placeholder="Search fruit…" oninput={(e) => (comboQuery = e.currentTarget.value)} />
+					<Combobox.Content>
+						{#each filteredFruits as fruit (fruit)}
+							<Combobox.Item value={fruit} label={fruit}>{fruit}</Combobox.Item>
+						{/each}
+					</Combobox.Content>
+				</Combobox.Root>
+				<Text size="sm" class="mt-3" style="opacity: 0.6;">value: {comboValue}</Text>
+			</div>
 		</div>
 	</section>
 

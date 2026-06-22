@@ -15,6 +15,7 @@ export { default as Badge } from './components/Badge/Badge.svelte';
 export { default as Spinner } from './components/Spinner/Spinner.svelte';
 export { default as Input } from './components/Input/Input.svelte';
 export { default as Code } from './components/Code/Code.svelte';
+export { default as Slider } from './components/Slider/Slider.svelte';
 
 // Dialog namespace (composed over bits-ui)
 export * as Dialog from './components/Dialog/index.js';
@@ -51,6 +52,12 @@ export * as Checkbox from './components/Checkbox/index.js';
 
 // RadioGroup namespace (composed over bits-ui)
 export * as RadioGroup from './components/RadioGroup/index.js';
+
+// Select namespace (composed over bits-ui)
+export * as Select from './components/Select/index.js';
+
+// Combobox namespace (composed over bits-ui)
+export * as Combobox from './components/Combobox/index.js';
 
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';
