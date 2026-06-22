@@ -1,6 +1,6 @@
 {
 	"name": "sve-ui",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"type": "module",
 	"description": "Styled, accessible Svelte 5 components built on Bits UI. No Tailwind, no config — install, import, and theme with CSS variables. Light and dark out of the box.",
 	"author": "Rodrigo Abregu <me@rodriab.io> (https://rodriab.io/)",
