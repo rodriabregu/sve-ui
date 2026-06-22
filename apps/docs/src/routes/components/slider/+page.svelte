@@ -28,6 +28,11 @@
 		{ prop: 'step', type: 'number', description: 'Step increment.' },
 		{ prop: 'disabled', type: 'boolean', default: 'false' },
 		{ prop: 'orientation', type: `'horizontal' | 'vertical'`, default: `'horizontal'` },
+		{
+			prop: 'thumbLabel',
+			type: 'string',
+			description: 'Accessible name for the thumb (role="slider"). Suffixed with position in multiple mode.'
+		},
 		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' }
 	];
 
@@ -45,6 +50,7 @@
   onValueChange={(v) => (sliderValue = v as number)}
   max={100}
   step={1}
+  thumbLabel="Volume"
 />`;
 
 	const rangeCode = `<script>
@@ -58,6 +64,7 @@
   onValueChange={(v) => (rangeValue = v as number[])}
   max={100}
   step={1}
+  thumbLabel="Price"
 />`;
 </script>
 
@@ -66,7 +73,8 @@
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
 			Slider uses <code class="ic">value</code> + <code class="ic">onValueChange</code> instead of
-			<code class="ic">bind:value</code>. Update your state variable inside the callback.
+			<code class="ic">bind:value</code>. Update your state variable inside the callback. Always set
+			<code class="ic">thumbLabel</code> so the thumb has an accessible name.
 		</p>
 		<Preview code={usageCode}>
 			<Slider
@@ -75,6 +83,7 @@
 				onValueChange={(v) => (sliderValue = v as number)}
 				max={100}
 				step={1}
+				thumbLabel="Volume"
 			/>
 		</Preview>
 	</section>
@@ -92,6 +101,7 @@
 				onValueChange={(v) => (rangeValue = v as number[])}
 				max={100}
 				step={1}
+				thumbLabel="Price"
 			/>
 		</Preview>
 	</section>
