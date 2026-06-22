@@ -14,10 +14,11 @@
 		Popover,
 		ThemeProvider
 	} from 'sve-ui';
+	import { SVE_UI_VERSION } from '$lib/version';
 
 	const REPO = 'https://github.com/rodriabregu/sve-ui';
 	const NPM = 'https://www.npmjs.com/package/sve-ui';
-	const VERSION = 'v0.1.2';
+	const VERSION = SVE_UI_VERSION;
 
 	// --- Live theming sandbox state (scoped to the Theming section panel) ---
 	const ACCENTS = [
@@ -253,7 +254,7 @@
 			{@render panel('Avatar', undefined)}
 			<div class="flex items-center gap-3.5">
 				<Avatar.Root size="lg">
-					<Avatar.Image src="https://github.com/rodriabregu.png" alt="Rodrigo" />
+					<Avatar.Image src="https://i.pravatar.cc/150?img=12" alt="Example user" />
 					<Avatar.Fallback>RA</Avatar.Fallback>
 				</Avatar.Root>
 				<Avatar.Root size="lg" shape="square">

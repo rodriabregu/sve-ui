@@ -12,10 +12,16 @@
 		Dialog,
 		DropdownMenu,
 		Tooltip,
-		Popover
+		Popover,
+		Switch,
+		Checkbox,
+		RadioGroup
 	} from 'sve-ui';
 
 	let dialogOpen = $state(false);
+	let switchOn = $state(true);
+	let checkboxOn = $state(true);
+	let radioValue = $state('comfortable');
 </script>
 
 <svelte:head>
@@ -26,7 +32,7 @@
 <div class="max-w-4xl mx-auto px-6 py-10">
 	<Heading level={1} size="lg" class="mb-2">Components</Heading>
 	<Text size="lg" class="mb-10" style="opacity: 0.7;">
-		All 13 components with live examples. Use the dark mode toggle in the navbar to see theming in
+		All 16 components with live examples. Use the dark mode toggle in the navbar to see theming in
 		action.
 	</Text>
 
@@ -78,6 +84,58 @@
 				<Input variant="outline" size="lg" placeholder="Large input" />
 				<Input variant="outline" size="md" placeholder="Invalid input" invalid />
 			</div>
+		</div>
+	</section>
+
+	<!-- SECTION: Form controls -->
+	<section class="mb-14">
+		<Heading level={2} size="md" class="mb-6 pb-2 border-b" style="border-color: var(--sve-color-default-border);">
+			Form controls
+		</Heading>
+
+		<!-- Switch -->
+		<div class="mb-10">
+			<Heading level={3} size="sm" class="mb-1">Switch</Heading>
+			<Text size="sm" class="mb-4" style="opacity: 0.6;">size — bind:checked</Text>
+			<div class="flex flex-wrap items-center gap-4">
+				<Switch.Root bind:checked={switchOn} size="sm" />
+				<Switch.Root bind:checked={switchOn} size="md" />
+				<Switch.Root bind:checked={switchOn} size="lg" />
+				<Text size="sm" style="opacity: 0.6;">checked: {switchOn}</Text>
+			</div>
+		</div>
+
+		<!-- Checkbox -->
+		<div class="mb-10">
+			<Heading level={3} size="sm" class="mb-1">Checkbox</Heading>
+			<Text size="sm" class="mb-4" style="opacity: 0.6;">size — bind:checked + indeterminate</Text>
+			<div class="flex flex-wrap items-center gap-4">
+				<label class="flex items-center gap-2">
+					<Checkbox.Root bind:checked={checkboxOn} size="sm" />
+					<Text size="sm">Small</Text>
+				</label>
+				<label class="flex items-center gap-2">
+					<Checkbox.Root bind:checked={checkboxOn} size="md" />
+					<Text size="sm">Medium</Text>
+				</label>
+				<Checkbox.Root indeterminate size="md" />
+				<Text size="sm" style="opacity: 0.6;">checked: {checkboxOn}</Text>
+			</div>
+		</div>
+
+		<!-- Radio Group -->
+		<div class="mb-10">
+			<Heading level={3} size="sm" class="mb-1">RadioGroup</Heading>
+			<Text size="sm" class="mb-4" style="opacity: 0.6;">Root + Item — bind:value</Text>
+			<RadioGroup.Root bind:value={radioValue}>
+				{#each ['comfortable', 'compact', 'spacious'] as option (option)}
+					<label class="flex items-center gap-2">
+						<RadioGroup.Item value={option} />
+						<Text size="sm" class="capitalize">{option}</Text>
+					</label>
+				{/each}
+			</RadioGroup.Root>
+			<Text size="sm" class="mt-3" style="opacity: 0.6;">value: {radioValue}</Text>
 		</div>
 	</section>
 
@@ -150,15 +208,15 @@
 
 			<div class="flex flex-wrap items-center gap-4">
 				<Avatar.Root size="sm">
-					<Avatar.Image src="https://github.com/rodriabregu.png" alt="Rodrigo" />
+					<Avatar.Image src="https://i.pravatar.cc/150?img=12" alt="Example user" />
 					<Avatar.Fallback>RA</Avatar.Fallback>
 				</Avatar.Root>
 				<Avatar.Root size="md">
-					<Avatar.Image src="https://github.com/rodriabregu.png" alt="Rodrigo" />
+					<Avatar.Image src="https://i.pravatar.cc/150?img=12" alt="Example user" />
 					<Avatar.Fallback>RA</Avatar.Fallback>
 				</Avatar.Root>
 				<Avatar.Root size="lg">
-					<Avatar.Image src="https://github.com/rodriabregu.png" alt="Rodrigo" />
+					<Avatar.Image src="https://i.pravatar.cc/150?img=12" alt="Example user" />
 					<Avatar.Fallback>RA</Avatar.Fallback>
 				</Avatar.Root>
 				<!-- Fallback only (no image) -->

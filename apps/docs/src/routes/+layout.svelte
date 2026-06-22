@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { ThemeProvider } from 'sve-ui';
 	import type { Snippet } from 'svelte';
+	import { SVE_UI_VERSION } from '$lib/version';
 
 	interface Props {
 		children: Snippet;
@@ -9,7 +10,7 @@
 
 	let { children }: Props = $props();
 
-	const VERSION = 'v0.1.2';
+	const VERSION = SVE_UI_VERSION;
 	const REPO = 'https://github.com/rodriabregu/sve-ui';
 	const NPM = 'https://www.npmjs.com/package/sve-ui';
 
