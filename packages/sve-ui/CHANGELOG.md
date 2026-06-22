@@ -1,5 +1,43 @@
 # sve-ui
 
+## 0.3.0
+
+### Minor Changes
+
+- 997bbf6: Add Wave 3 form controls (batch 1), built on Bits UI:
+
+  - **Switch** (`Switch.Root`) — accessible toggle with `sm`/`md`/`lg` sizes and
+    `bind:checked`.
+  - **Checkbox** (`Checkbox.Root`) — checkbox with check / indeterminate indicators,
+    `sm`/`md`/`lg` sizes, `bind:checked` and `bind:indeterminate`.
+  - **RadioGroup** (`RadioGroup.Root` + `RadioGroup.Item`) — radio group with a
+    selected-dot indicator and `bind:value`.
+
+  All styled with `--sve-*` tokens, no Tailwind required.
+
+- 0ceec98: Add Tabs, Accordion, and Code components:
+
+  - **Tabs** (`Tabs.Root` / `List` / `Trigger` / `Content`) — accessible tabs on
+    Bits UI with `bind:value` and an active-underline indicator.
+  - **Accordion** (`Accordion.Root` / `Item` / `Header` / `Trigger` / `Content`) —
+    single or multiple (`type`), `bind:value`, rotating chevron on the trigger.
+  - **Code** — code block with an optional header label and an SSR-safe
+    copy-to-clipboard button (`code`, `label`, `copyable` props).
+
+  All styled with `--sve-*` tokens; no Tailwind required.
+
+- f5f09a7: Add Wave 3 form controls (batch 3), built on Bits UI:
+
+  - **Select** (`Select.Root` / `Trigger` / `Content` / `Item` / `Value` / `Group`)
+    — accessible listbox select with a styled trigger, portaled menu, and a
+    selected-item check.
+  - **Combobox** (`Combobox.Root` / `Input` / `Content` / `Item`) — typeahead/filter
+    select with a styled input and portaled list.
+  - **Slider** — self-contained range slider (track + filled range + thumb-per-value),
+    single or multiple, `min` / `max` / `step`.
+
+  All styled with `--sve-*` tokens; no Tailwind required.
+
 ## 0.2.1
 
 ### Patch Changes
