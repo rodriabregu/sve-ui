@@ -1,94 +1,65 @@
-# Sve-UI
-## _Best UI components library for Svelte_
+<div align="center">
 
-Sve-UI is a UI component library for Svelte that provides the best collection of components for building modern web applications and fast.
+# Sve·UI
 
-<br />
+**Styled, accessible Svelte 5 components — zero config.**
 
----
+[![npm](https://img.shields.io/npm/v/sve-ui?color=F56565)](https://www.npmjs.com/package/sve-ui)
+[![license](https://img.shields.io/npm/l/sve-ui?color=F56565)](./LICENSE)
+[![Svelte 5](https://img.shields.io/badge/Svelte-5-FF3E00)](https://svelte.dev)
 
-<br />
+</div>
 
-## Features
-
-- Responsive components that work seamlessly across all devices and screen sizes
-- Easy to use and highly customizable components
-- Well-documented API and usage examples
-- Regularly updated with new components and features
-
-<br />
-
----
-
-<br />
-
-## Installation
-
-> You can install Sve-UI using pnpm, npm or yarn.
+A library of ready-made, fully **styled** and fully **accessible** Svelte 5
+components built on [Bits UI](https://bits-ui.com). **No Tailwind, no config** in
+your project — install, import the stylesheet, and theme everything with CSS
+custom properties.
 
 ```sh
 pnpm add sve-ui
-npm install sve-ui
-yarn add sve-ui
 ```
 
-To use:
+➡️ **Usage, components and theming:** see the [package README](./packages/sve-ui/README.md).
+
+## Repository
+
+This is a [pnpm](https://pnpm.io) + [Turborepo](https://turborepo.dev) monorepo.
+
+```
+packages/
+  sve-ui/            # the published library (Svelte 5 + Bits UI)
+  eslint-config/     # shared @repo/eslint-config (flat config)
+  typescript-config/ # shared @repo/typescript-config
+apps/
+  docs/              # documentation site (SvelteKit 2 + Tailwind 4) → sveui.org
+```
+
+Shared dependency versions live in the pnpm **catalog** in `pnpm-workspace.yaml`
+(single source of truth). pnpm is mandatory (`preinstall` enforces it).
+
+## Development
 
 ```sh
-<script>
-  import { Button } from 'sve-ui';
-
-  function handleClick() {
-    alert('Button clicked!');
-  }
-</script>
-
-<Button onClick={handleClick}>Click me!</Button>
+pnpm install          # install the workspace
+pnpm dev              # run dev tasks (docs at localhost:5173)
+pnpm build            # build all packages (turbo)
+pnpm lint             # eslint (.svelte) + oxlint (.ts/.js)
+pnpm check            # svelte-check
+pnpm test             # vitest
 ```
 
----
+Linting is hybrid: **Oxlint** for `.ts`/`.js`, **eslint-plugin-svelte** for
+`.svelte` templates.
 
-<br />
+## Releasing
 
-## Showcase & docs
+Versioning and publishing use [Changesets](https://github.com/changesets/changesets)
+with npm **Trusted Publishing (OIDC)** — no tokens, automatic provenance.
 
-<br />
-
-
-| Showcase | Link |
-| ------ | ------ |
-| Docs | [/docs][docs] |
-| Github page | [/sve-ui][Gp] |
-| GitHub issues | [/sve-ui/issues][Gpi] |
-| Github PR | [/sve-ui/pulls][Gppr] |
-| Npmjs | [/package/sve-ui][LSjs] |
-
-<br />
-
----
-
-<br />
-
-## List of components
-
-- Box, Center, Spacer, Flex, Grid, GridItem
-- Button, Text
-- CodeExample
-- Square, Circle
-
-<br />
-
----
-
-<br />
+1. Add a changeset describing your change: `pnpm changeset`
+2. Merge to `main` → a **"Version Packages"** PR is opened automatically.
+3. Merge that PR → the library is built, validated and published to npm.
 
 ## License
 
-MIT
-
-
-[Gp]: <https://github.com/rodriabregu/sve-ui>
-[Gpi]: <https://github.com/rodriabregu/sve-ui/issues>
-[Gppr]: <https://github.com/rodriabregu/sve-ui/pulls>
-[LSjs]: <https://www.npmjs.com/package/sve-ui>
-[docs]: <https://sveui.org/>
+[MIT](./LICENSE) © Rodrigo Abregu
