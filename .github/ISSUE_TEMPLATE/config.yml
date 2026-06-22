@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://sveui.org
+    about: Component usage, theming, and live examples.
+  - name: npm package
+    url: https://www.npmjs.com/package/sve-ui
+    about: Install instructions and published versions.
