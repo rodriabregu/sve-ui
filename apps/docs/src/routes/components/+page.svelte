@@ -15,24 +15,28 @@
 		Popover,
 		Switch,
 		Checkbox,
-		RadioGroup
+		RadioGroup,
+		Tabs,
+		Accordion,
+		Code
 	} from 'sve-ui';
 
 	let dialogOpen = $state(false);
 	let switchOn = $state(true);
 	let checkboxOn = $state(true);
 	let radioValue = $state('comfortable');
+	let tabValue = $state('account');
 </script>
 
 <svelte:head>
 	<title>Components — Sve-UI</title>
-	<meta name="description" content="All 13 Sve-UI components with live examples." />
+	<meta name="description" content="Every Sve-UI component with live examples." />
 </svelte:head>
 
 <div class="max-w-4xl mx-auto px-6 py-10">
 	<Heading level={1} size="lg" class="mb-2">Components</Heading>
 	<Text size="lg" class="mb-10" style="opacity: 0.7;">
-		All 16 components with live examples. Use the dark mode toggle in the navbar to see theming in
+		Every component with live examples. Use the dark mode toggle in the navbar to see theming in
 		action.
 	</Text>
 
@@ -432,6 +436,59 @@
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
+		</div>
+	</section>
+
+	<!-- SECTION: Navigation & content -->
+	<section class="mb-14">
+		<Heading level={2} size="md" class="mb-6 pb-2 border-b" style="border-color: var(--sve-color-default-border);">
+			Navigation & content
+		</Heading>
+
+		<!-- Tabs -->
+		<div class="mb-10">
+			<Heading level={3} size="sm" class="mb-1">Tabs</Heading>
+			<Text size="sm" class="mb-4" style="opacity: 0.6;">Root + List + Trigger + Content — bind:value</Text>
+			<Tabs.Root bind:value={tabValue}>
+				<Tabs.List>
+					<Tabs.Trigger value="account">Account</Tabs.Trigger>
+					<Tabs.Trigger value="password">Password</Tabs.Trigger>
+					<Tabs.Trigger value="team">Team</Tabs.Trigger>
+				</Tabs.List>
+				<Tabs.Content value="account"><Text size="sm">Manage your account details.</Text></Tabs.Content>
+				<Tabs.Content value="password"><Text size="sm">Change your password here.</Text></Tabs.Content>
+				<Tabs.Content value="team"><Text size="sm">Invite and manage team members.</Text></Tabs.Content>
+			</Tabs.Root>
+		</div>
+
+		<!-- Accordion -->
+		<div class="mb-10">
+			<Heading level={3} size="sm" class="mb-1">Accordion</Heading>
+			<Text size="sm" class="mb-4" style="opacity: 0.6;">Root + Item + Header + Trigger + Content — single / multiple</Text>
+			<Accordion.Root type="single">
+				<Accordion.Item value="a">
+					<Accordion.Header>
+						<Accordion.Trigger>Is it accessible?</Accordion.Trigger>
+					</Accordion.Header>
+					<Accordion.Content>Yes — built on Bits UI with full WAI-ARIA support and keyboard navigation.</Accordion.Content>
+				</Accordion.Item>
+				<Accordion.Item value="b">
+					<Accordion.Header>
+						<Accordion.Trigger>Does it need Tailwind?</Accordion.Trigger>
+					</Accordion.Header>
+					<Accordion.Content>No. Styles ship with the package; theme everything via CSS variables.</Accordion.Content>
+				</Accordion.Item>
+			</Accordion.Root>
+		</div>
+
+		<!-- Code -->
+		<div class="mb-10">
+			<Heading level={3} size="sm" class="mb-1">Code</Heading>
+			<Text size="sm" class="mb-4" style="opacity: 0.6;">code + label + copy-to-clipboard</Text>
+			<Code
+				label="App.svelte"
+				code={`import { Button } from 'sve-ui';\n\n<Button color="primary">Ship it</Button>`}
+			/>
 		</div>
 	</section>
 </div>
