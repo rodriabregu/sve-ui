@@ -165,7 +165,15 @@ Ship in prioritized waves; each component = tests + a11y + docs page + Storybook
 - [ ] **Wave 2 (overlays, Bits UI):** Dialog/Modal, Dropdown Menu, Tooltip, Popover, Toast
 - [ ] **Wave 3 (forms, Bits UI):** Select, Combobox, Checkbox, Radio Group, Switch, Slider, Tabs, Accordion
 - [ ] **Wave 4 (advanced):** Date Picker, Command/Search, Table, Pagination, Toast region
+- [ ] **Sidebar (composable app-shell nav):** `Sidebar.Root/Header/Content/Group/Item/Footer` + collapsible state + mobile behavior + context provider. Precedent: shadcn-svelte ships one (HeroUI/Bits UI do not). NOTE: the docs `/components` sidebar we built is **app composition** (coupled to the docs registry + routing + soon/new tags), NOT this primitive. Build the generic component first, then **rebuild the docs sidebar on top of it (dogfood)**. One of the larger components — its own item, not a "while we're at it".
 - [ ] Minimal internal layout layer (Box/Stack/Flex) — building blocks, not headline
+
+#### Coverage principle — anchor the roadmap to the Bits UI catalog
+Because every styled component wraps a Bits UI primitive, **the Bits UI catalog IS our low-effort backlog**: anything Bits already ships is a styling job, not a behavior/a11y job. Bits UI provides 41 primitives; map every one to a `sve-ui` component before reaching for custom builds.
+
+- [ ] **Remaining Bits UI primitives to wrap (surfaced as `soon` in /components):** Alert Dialog, Aspect Ratio, Calendar, Collapsible, Date Field, Date Picker, Label, Link Preview (hover card), Menubar, Meter, Navigation Menu, PIN Input, Rating Group, Toggle, Toolbar, Range Calendar, Date/Time Range variants
+- [ ] **Custom (non-Bits) components still needed:** Textarea (native, styled), Toast region (external dep — svelte-sonner vs melt-ui), Table (custom), Skeleton, Breadcrumb, Sheet (styled Dialog), Pagination, Carousel (embla), Stack/Flex/Separator already noted
+- [ ] **Gap found 2026-06-21:** Textarea and Alert Dialog were missing from the plan entirely — added. Textarea is the most-expected form control after Input.
 
 ### Phase 2 — Testing
 - [ ] Vitest + `@testing-library/svelte` (+ jsdom/browser); delete the `1+2` test
