@@ -1,5 +1,5 @@
 ---
-"sve-ui": minor
+'sve-ui': minor
 ---
 
 Complete 2026 rewrite. Sve-UI is now a library of ready-made, fully styled and
