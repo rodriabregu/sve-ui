@@ -11,10 +11,19 @@
 		name: string;
 		description: string;
 		toc?: TocEntry[];
+		/** Top-level breadcrumb link. Defaults to the Components section. */
+		crumb?: { href: string; label: string };
 		children: Snippet;
 	}
 
-	let { group, name, description, toc = [], children }: Props = $props();
+	let {
+		group,
+		name,
+		description,
+		toc = [],
+		crumb = { href: '/components', label: 'Components' },
+		children
+	}: Props = $props();
 </script>
 
 <svelte:head>
@@ -25,7 +34,7 @@
 <div class="docpage">
 	<article class="docpage__main">
 		<nav class="docpage__crumb" aria-label="Breadcrumb">
-			<a href="/components">Components</a>
+			<a href={crumb.href}>{crumb.label}</a>
 			<span class="docpage__crumb-sep">/</span>
 			<span>{group}</span>
 		</nav>

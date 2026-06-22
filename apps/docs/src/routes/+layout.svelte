@@ -60,6 +60,11 @@
 
 				<div class="flex items-center gap-6">
 					<a
+						href="/docs"
+						class="hidden no-underline transition-opacity hover:opacity-70 sm:inline"
+						style="color: var(--doc-fg-muted); font-size: 14.5px; font-weight: 500;">Docs</a
+					>
+					<a
 						href="/components"
 						class="hidden no-underline transition-opacity hover:opacity-70 sm:inline"
 						style="color: var(--doc-fg-muted); font-size: 14.5px; font-weight: 500;">Components</a

@@ -1,23 +1,13 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import DocsNav from '$lib/docs/DocsNav.svelte';
-	import { componentGroups } from '$lib/docs/registry';
+	import { guideGroups } from '$lib/docs/guides';
 
 	let { children }: { children: Snippet } = $props();
-
-	const navGroups = componentGroups.map((g) => ({
-		label: g.label,
-		items: g.items.map((it) => ({
-			name: it.name,
-			href: `/components/${it.slug}`,
-			ready: it.ready ?? false,
-			status: it.status === 'new' ? ('new' as const) : undefined
-		}))
-	}));
 </script>
 
 <div class="shell">
-	<DocsNav groups={navGroups} searchLabel="Search components…" toggleLabel="Browse components" />
+	<DocsNav groups={guideGroups} searchLabel="Search docs…" toggleLabel="Browse docs" />
 	<div class="shell__content">
 		{@render children()}
 	</div>
