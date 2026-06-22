@@ -1,5 +1,13 @@
 # sve-ui
 
+## 0.2.1
+
+### Patch Changes
+
+- 3a10045: Add a package README (shown on npm) and a sharper package description covering
+  the wedge: styled + accessible Svelte 5 components on Bits UI, no Tailwind/config,
+  themeable via CSS variables.
+
 ## 0.2.0
 
 ### Minor Changes
