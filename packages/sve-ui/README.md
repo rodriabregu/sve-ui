@@ -71,6 +71,8 @@ without it):
 **Display & form** — `Button`, `Input`, `Card`, `Badge`, `Avatar`, `Spinner`,
 `Text`, `Heading`, `Alert`.
 
+**Form controls** (on Bits UI) — `Switch`, `Checkbox`, `RadioGroup`.
+
 **Overlays** (on Bits UI) — `Dialog`, `DropdownMenu`, `Tooltip`, `Popover`.
 
 Most components take `variant`, `color` and `size` props, e.g.:
@@ -82,9 +84,9 @@ Most components take `variant`, `color` and `size` props, e.g.:
 <Input variant="outline" size="md" placeholder="you@example.com" bind:value />
 ```
 
-Overlays (`Dialog`, `DropdownMenu`, `Tooltip`, `Popover`, plus `Avatar`, `Card`,
-`Alert`) are **namespaced** compositions — import the namespace and compose its
-parts (`Dialog.Root`, `Dialog.Trigger`, `Dialog.Content`, …).
+`Avatar`, `Card`, `Alert`, the overlays, and the form controls are **namespaced**
+compositions — import the namespace and compose its parts (`Dialog.Root`,
+`Dialog.Trigger`, `Dialog.Content`; `RadioGroup.Root`, `RadioGroup.Item`; …).
 
 ## Theming
 

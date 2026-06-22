@@ -36,6 +36,15 @@ export * as Card from './components/Card/index.js';
 // Alert namespace
 export * as Alert from './components/Alert/index.js';
 
+// Switch namespace (composed over bits-ui)
+export * as Switch from './components/Switch/index.js';
+
+// Checkbox namespace (composed over bits-ui)
+export * as Checkbox from './components/Checkbox/index.js';
+
+// RadioGroup namespace (composed over bits-ui)
+export * as RadioGroup from './components/RadioGroup/index.js';
+
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';
 

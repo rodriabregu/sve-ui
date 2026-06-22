@@ -27,6 +27,7 @@
 			"svelte": "./dist/index.js",
 			"default": "./dist/index.js"
 		},
+		"./package.json": "./package.json",
 		"./theme": {
 			"types": "./dist/theme/index.d.ts",
 			"svelte": "./dist/theme/index.js",
