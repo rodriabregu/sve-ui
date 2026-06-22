@@ -1,11 +1,28 @@
 .DS_Store
 node_modules
-/build
-/dist
-/.svelte-kit
-/package
+
+# Build outputs (any package/app)
+build
+dist
+.svelte-kit
+package
+
+# Turborepo
+.turbo
+
+# Vercel
+.vercel
+
+# Env
 .env
 .env.*
 !.env.example
+
+# Vite timestamps
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+.atl/
+
+# Harness worktrees
+.claude/
