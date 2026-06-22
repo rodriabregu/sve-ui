@@ -9,7 +9,8 @@
 		{ id: 'why', label: 'Why a skill' },
 		{ id: 'install', label: 'Add the skill' },
 		{ id: 'encodes', label: 'What it encodes' },
-		{ id: 'status', label: 'Status' }
+		{ id: 'llms', label: 'llms.txt' },
+		{ id: 'status', label: 'Status & MCP' }
 	];
 
 	const pathCode = `skills/sve-ui-usage/
@@ -64,15 +65,32 @@ cp -r sve-ui/skills/sve-ui-usage .claude/skills/
 		</ul>
 	</section>
 
+	<section id="llms" class="sec">
+		<h2 class="sec__h">llms.txt</h2>
+		<p class="sec__p">
+			Any agent (no skill install needed) can read
+			<a class="lnk" href="/llms.txt">sveui.org/llms.txt</a> — a concise, always-current index of
+			the usage rules, docs and full component catalog, generated from the component registry so it
+			never drifts.
+		</p>
+	</section>
+
 	<section id="status" class="sec">
-		<h2 class="sec__h">Status</h2>
-		<Alert.Root color="default" variant="outline">
-			<Alert.Title>Skill: available · llms.txt &amp; MCP: planned</Alert.Title>
+		<h2 class="sec__h">Status &amp; the MCP question</h2>
+		<Alert.Root color="success" variant="subtle">
+			<Alert.Title>Skill &amp; llms.txt: available · MCP: not planned</Alert.Title>
 			<Alert.Description>
-				The skill ships in the repo today. A bundled <code class="ic">llms.txt</code> and an evaluation
-				of an MCP server are on the roadmap (§12).
+				The skill and <code class="ic">llms.txt</code> ship today. An MCP server is intentionally
+				deferred.
 			</Alert.Description>
 		</Alert.Root>
+		<p class="sec__p" style="margin-top: 16px;">
+			An MCP server's headline value (browse + <strong>install</strong> components from a registry)
+			doesn't apply here: sve-ui is a styled npm package, not a copy-paste registry — you
+			<code class="ic">pnpm add sve-ui</code> once. The remaining need (feeding agents the real API) is
+			already covered by the skill and <code class="ic">llms.txt</code> at zero hosting/config cost.
+			We'll revisit an MCP only for agent <em>actions</em> a static file can't do.
+		</p>
 		<p class="sec__p" style="margin-top: 16px;">
 			Source: <a class="lnk" href={REPO} target="_blank" rel="noopener">github.com/rodriabregu/sve-ui</a>.
 		</p>
