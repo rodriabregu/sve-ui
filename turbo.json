@@ -1,9 +1,10 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
+  "globalPassThroughEnv": ["ENABLE_EXPERIMENTAL_COREPACK"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".svelte-kit/**", "build/**"]
+      "outputs": ["dist/**", ".svelte-kit/**", "build/**", ".vercel/**"]
     },
     "dev": {
       "cache": false,
