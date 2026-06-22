@@ -293,12 +293,13 @@ Make Sve·UI a first-class citizen for AI-assisted development, so agents (Claud
 Code, Cursor, etc.) generate correct Sve·UI code instead of guessing. Inspired by
 shadcn/ui, which ships both an MCP server and an AI-readable component registry.
 
-- [ ] **Sve·UI usage Skill** — a packaged skill that teaches an agent how to use
-  the library: the wedge (no Tailwind/config), the import + `theme.css` setup, the
-  component API (variant/color/size props), the namespaced-overlay composition
-  pattern (`Dialog.Root`/`Trigger`/`Content`), and the `--sve-*` theming model.
-  Distribute as a skill consumers can drop into their agent so generated code
-  follows our real API (not hallucinated props).
+- [x] **Sve·UI usage Skill** — packaged at `skills/sve-ui-usage/` (LLM-first
+  `SKILL.md` + `references/components.md` catalog). Covers the wedge (no
+  Tailwind/config), `theme.css` setup, single-vs-namespace imports, the `child`
+  snippet for overlay triggers, the body-class theming gotcha for portaled
+  overlays, and the `--sve-*` model. _Remaining: decide distribution — ship under
+  the npm package `files` so consumers get `node_modules/sve-ui/skills/`, and/or
+  publish an `llms.txt`._
 - [ ] **Sve·UI MCP server** (evaluate) — expose the component catalog, prop schemas,
   variant maps and usage examples over MCP so agents can query the real, current
   API at generation time. Compare against simply shipping a static
