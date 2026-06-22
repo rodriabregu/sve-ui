@@ -36,7 +36,7 @@
 	const usageCode = `<script>
   import { RadioGroup } from 'sve-ui';
   let radioValue = $state('comfortable');
-<\/script>
+<\u002fscript>
 
 <RadioGroup.Root bind:value={radioValue}>
   {#each ['comfortable', 'compact', 'spacious'] as option (option)}

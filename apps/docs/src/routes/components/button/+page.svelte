@@ -34,7 +34,7 @@
 
 	const usageCode = `<script>
   import { Button } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Button color="primary">Ship it</Button>`;
 

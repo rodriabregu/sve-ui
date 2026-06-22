@@ -37,7 +37,7 @@
 	const usageCode = `<script>
   import { Slider } from 'sve-ui';
   let sliderValue = $state(40);
-<\/script>
+<\u002fscript>
 
 <Slider
   type="single"
@@ -50,7 +50,7 @@
 	const rangeCode = `<script>
   import { Slider } from 'sve-ui';
   let rangeValue = $state([20, 70]);
-<\/script>
+<\u002fscript>
 
 <Slider
   type="multiple"

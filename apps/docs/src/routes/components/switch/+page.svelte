@@ -27,7 +27,7 @@
 	const usageCode = `<script>
   import { Switch } from 'sve-ui';
   let switchOn = $state(true);
-<\/script>
+<\u002fscript>
 
 <Switch.Root bind:checked={switchOn} />`;
 

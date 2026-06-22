@@ -35,7 +35,7 @@
 
 	const usageCode = `<script>
   import { DropdownMenu, Button } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <DropdownMenu.Root>
   <DropdownMenu.Trigger>

@@ -43,7 +43,7 @@
   import { Select } from 'sve-ui';
   let selectValue = $state('');
   const fruits = ['Apple', 'Banana', 'Cherry', 'Mango'];
-<\/script>
+<\u002fscript>
 
 <Select.Root type="single" bind:value={selectValue}>
   <Select.Trigger>{selectValue || 'Pick a fruit'}</Select.Trigger>

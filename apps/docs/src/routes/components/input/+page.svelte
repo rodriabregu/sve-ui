@@ -27,7 +27,7 @@
 
 	const usageCode = `<script>
   import { Input } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Input placeholder="Enter text…" />`;
 

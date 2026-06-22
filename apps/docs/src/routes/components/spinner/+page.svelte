@@ -34,7 +34,7 @@
 
 	const usageCode = `<script>
   import { Spinner } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Spinner color="primary" />`;
 

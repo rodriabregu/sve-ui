@@ -37,7 +37,7 @@
 
 	const usageCode = `<script>
   import { Avatar } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Avatar.Root>
   <Avatar.Image src="https://i.pravatar.cc/150?img=12" alt="Jane Doe" />

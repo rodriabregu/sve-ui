@@ -32,7 +32,7 @@
 
 	const usageCode = `<script>
   import { Popover, Button } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Popover.Root>
   <Popover.Trigger>

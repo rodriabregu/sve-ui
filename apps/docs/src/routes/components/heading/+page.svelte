@@ -32,7 +32,7 @@
 
 	const usageCode = `<script>
   import { Heading } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Heading level={1} size="lg">Ship it</Heading>`;
 

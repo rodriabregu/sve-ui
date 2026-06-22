@@ -25,7 +25,7 @@
 
 	const usageCode = `<script>
   import { Code } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Code code="const greeting = 'hello world';" />`;
 

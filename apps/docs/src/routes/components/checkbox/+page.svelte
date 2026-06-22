@@ -33,7 +33,7 @@
 	const usageCode = `<script>
   import { Checkbox } from 'sve-ui';
   let checked = $state(true);
-<\/script>
+<\u002fscript>
 
 <label class="flex items-center gap-2">
   <Checkbox.Root bind:checked />

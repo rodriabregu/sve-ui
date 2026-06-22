@@ -30,7 +30,7 @@
   import { Tabs } from 'sve-ui';
 
   let tabValue = $state('account');
-<\/script>
+<\u002fscript>
 
 <Tabs.Root bind:value={tabValue}>
   <Tabs.List>

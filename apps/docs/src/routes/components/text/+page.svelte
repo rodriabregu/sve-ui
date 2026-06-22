@@ -39,7 +39,7 @@
 
 	const usageCode = `<script>
   import { Text } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Text>Body copy, ready to go.</Text>`;
 

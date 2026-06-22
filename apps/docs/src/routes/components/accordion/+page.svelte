@@ -27,7 +27,7 @@
 
 	const usageCode = `<script>
   import { Accordion } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Accordion.Root type="single">
   <Accordion.Item value="a">

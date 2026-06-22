@@ -31,7 +31,7 @@
 
 	const usageCode = `<script>
   import { Badge } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Badge color="primary">New</Badge>`;
 

@@ -61,7 +61,7 @@
   let filteredFruits = $derived(
     fruits.filter((f) => f.toLowerCase().includes(comboQuery.toLowerCase()))
   );
-<\/script>
+<\u002fscript>
 
 <Combobox.Root type="single" bind:value={comboValue}>
   <Combobox.Input
@@ -81,7 +81,7 @@
   let filteredFruits = $derived(
     fruits.filter((f) => f.toLowerCase().includes(comboQuery.toLowerCase()))
   );
-<\/script>
+<\u002fscript>
 
 <Combobox.Input oninput={(e) => (comboQuery = e.currentTarget.value)} />`;
 </script>

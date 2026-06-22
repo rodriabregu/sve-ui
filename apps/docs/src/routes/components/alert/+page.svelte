@@ -49,7 +49,7 @@
 
 	const usageCode = `<script>
   import { Alert } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Alert.Root color="primary">
   <Alert.Title>Heads up</Alert.Title>

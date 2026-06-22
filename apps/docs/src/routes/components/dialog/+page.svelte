@@ -35,7 +35,7 @@
   import { Dialog, Button } from 'sve-ui';
 
   let open = $state(false);
-<\/script>
+<\u002fscript>
 
 <Dialog.Root bind:open>
   <Dialog.Trigger>

@@ -30,7 +30,7 @@
 
 	const usageCode = `<script>
   import { Card, Heading, Text } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <Card.Root>
   <Card.Header>

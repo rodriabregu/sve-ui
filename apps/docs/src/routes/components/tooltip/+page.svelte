@@ -32,7 +32,7 @@
 
 	const usageCode = `<script>
   import { Tooltip, Button } from 'sve-ui';
-<\/script>
+<\u002fscript>
 
 <!-- Tooltip.Provider must wrap all tooltips on the page (or the whole app) -->
 <Tooltip.Provider>
