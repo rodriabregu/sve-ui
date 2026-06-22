@@ -308,11 +308,20 @@ shadcn/ui, which ships both an MCP server and an AI-readable component registry.
   overlays, and the `--sve-*` model. _Remaining: decide distribution — ship under
   the npm package `files` so consumers get `node_modules/sve-ui/skills/`, and/or
   publish an `llms.txt`._
-- [ ] **Sve·UI MCP server** (evaluate) — expose the component catalog, prop schemas,
-  variant maps and usage examples over MCP so agents can query the real, current
-  API at generation time. Compare against simply shipping a static
-  machine-readable registry (`registry.json` / `llms.txt`) — the registry may
-  cover 90% of the value at a fraction of the maintenance cost; decide MCP vs.
-  static registry before building.
+- [x] **`llms.txt`** — served at `/llms.txt`, generated from the component registry
+  + guide nav (`apps/docs/src/routes/llms.txt/+server.ts`, prerendered) so it never
+  drifts. Static, zero-infra, works with any agent. This is the "static registry"
+  that covers ~90% of the MCP value.
+- [x] **Sve·UI MCP server — evaluated, DEFERRED (2026-06-22).** Verdict: not now.
+  Rationale: shadcn's MCP headline value is browse + **install** components from a
+  registry; sve-ui is a styled npm package (D17), NOT a copy-paste registry, so that
+  action doesn't exist for us. The remaining need (feed agents the real API) is
+  covered by the Skill + `llms.txt` at zero hosting/config cost; an MCP adds a hosted
+  service, maintenance, and per-consumer client config for marginal gain. **Revisit
+  when:** we want agent _actions_ a static file can't do (scaffold a themed page,
+  validate usage, generate compositions), or prop schemas auto-generated from types
+  grow large/volatile enough that querying beats a static file.
+- [ ] **Skill distribution** (open) — ship `skills/` under the npm package `files` so
+  consumers get `node_modules/sve-ui/skills/`, and link `llms.txt` from the package.
 - [ ] Auto-generate the registry/skill content from component types + variant
   definitions so it never drifts from the source.
