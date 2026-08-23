@@ -140,62 +140,63 @@ sve-ui/
 Phases 0 → 1 → 2 are **sequential and blocking**. Phases 3–5 can overlap once the core exists.
 
 ### Phase 0 — Skeleton & tooling
-- [ ] Root monorepo: `package.json` (private), `pnpm-workspace.yaml`, `turbo.json`, `.gitignore`, single root lockfile
-- [ ] `packages/typescript-config` (base + svelte-lib + svelte-app presets)
-- [ ] `packages/eslint-config` (flat config, composable lib/app) — ESLint 10 + `eslint-plugin-svelte` + `typescript-eslint`
-- [ ] Oxlint for `.ts`/`.js` (`.oxlintrc.json`); Prettier + `prettier-plugin-svelte` at root
-- [ ] Migrate `docs/` → `apps/docs`; scaffold `packages/sve-ui` (library template)
-- [ ] Pin all versions per §4; verify peer-deps (Context7)
-- [ ] **Housekeeping:** rename `LICENCE` → `LICENSE`; delete hand-written `.svelte.d.ts`
-- [ ] **Validation gate:** rewrite **`Box`** in Svelte 5 + a test, build via `svelte-package`, confirm the whole chain (build → package → types → test) green before rewriting the rest
+- [x] Root monorepo: `package.json` (private), `pnpm-workspace.yaml`, `turbo.json`, `.gitignore`, single root lockfile
+- [x] `packages/typescript-config` (base + svelte-lib + svelte-app presets)
+- [x] `packages/eslint-config` (flat config, composable lib/app) — ESLint 10 + `eslint-plugin-svelte` + `typescript-eslint`
+- [x] Oxlint for `.ts`/`.js` (`.oxlintrc.json`); Prettier + `prettier-plugin-svelte` at root
+- [x] Migrate `docs/` → `apps/docs`; scaffold `packages/sve-ui` (library template)
+- [x] Pin all versions per §4; verify peer-deps (Context7)
+- [x] **Housekeeping:** rename `LICENCE` → `LICENSE`; delete hand-written `.svelte.d.ts`
+- [x] **Validation gate:** rewrite **`Box`** in Svelte 5 + a test, build via `svelte-package`, confirm the whole chain (build → package → types → test) green before rewriting the rest
 
 ### Phase 1 — Foundation + first vertical slice
-- [ ] Modernize `packages/sve-ui/package.json`: `exports` map (`svelte`/`types`/`default`) + `sve-ui/theme` subpath; `peerDependencies: { svelte: "^5" }`; `bits-ui` as dependency; devDeps via catalog; `@sveltejs/package`
-- [ ] **Theming system** (the heart): tokens → CSS custom properties at `:root`, light/dark, documented override mechanism. Re-export via `sve-ui/theme`
-- [ ] **Typed variant system** (size/color/variant) — reusable helper for all components
-- [ ] First install (`pnpm install`); validate eslint flat-config keys
-- [ ] **Validation gate (two slices):**
+- [x] Modernize `packages/sve-ui/package.json`: `exports` map (`svelte`/`types`/`default`) + `sve-ui/theme` subpath; `peerDependencies: { svelte: "^5" }`; `bits-ui` as dependency; devDeps via catalog; `@sveltejs/package`
+- [x] **Theming system** (the heart): tokens → CSS custom properties at `:root`, light/dark, documented override mechanism. Re-export via `sve-ui/theme`
+- [x] **Typed variant system** (size/color/variant) — reusable helper for all components
+- [x] First install (`pnpm install`); validate eslint flat-config keys
+- [x] **Validation gate (two slices):**
   - `Button` — non-interactive path: Svelte 5 runes + variants + scoped styles + test
   - `Dialog` — Bits-UI-backed path: styled wrapper proves the foundation integration end-to-end
-- [ ] Confirm full chain green: build → `svelte-package` → types → test
+- [x] Confirm full chain green: build → `svelte-package` → types → test
 
 ### Phase 1.5 — Component waves (built on the foundation)
 Ship in prioritized waves; each component = tests + a11y + docs page + Storybook story.
-- [ ] **Wave 1 (core):** Button, Input, Card, Badge, Avatar, Alert, Spinner, Text/Heading
-- [ ] **Wave 2 (overlays, Bits UI):** Dialog/Modal, Dropdown Menu, Tooltip, Popover, Toast
-- [ ] **Wave 3 (forms, Bits UI):** Select, Combobox, Checkbox, Radio Group, Switch, Slider, Tabs, Accordion
-- [ ] **Wave 4 (advanced):** Date Picker, Command/Search, Table, Pagination, Toast region
+- [x] **Wave 1 (core):** Button, Input, Card, Badge, Avatar, Alert, Spinner, Text/Heading
+- [x] **Wave 2 (overlays, Bits UI):** Dialog/Modal, Dropdown Menu, Tooltip, Popover — **except Toast**, which is blocked on the external-dep decision below and moved to Wave 4
+- [x] **Wave 3 (forms, Bits UI):** Select, Combobox, Checkbox, Radio Group, Switch, Slider, Tabs, Accordion
+- [x] **Wave 4a (low-risk batch, 2026-08-22):** Textarea (native), Label (Bits), Skeleton (custom), Separator (Bits) — no new dependencies
+- [ ] **Wave 4b (advanced):** Toast region (blocked: svelte-sonner vs melt-ui), Date Picker, Command/Search, Table, Pagination
 - [ ] **Sidebar (composable app-shell nav):** `Sidebar.Root/Header/Content/Group/Item/Footer` + collapsible state + mobile behavior + context provider. Precedent: shadcn-svelte ships one (HeroUI/Bits UI do not). NOTE: the docs `/components` sidebar we built is **app composition** (coupled to the docs registry + routing + soon/new tags), NOT this primitive. Build the generic component first, then **rebuild the docs sidebar on top of it (dogfood)**. One of the larger components — its own item, not a "while we're at it".
 - [ ] Minimal internal layout layer (Box/Stack/Flex) — building blocks, not headline
 
 #### Coverage principle — anchor the roadmap to the Bits UI catalog
 Because every styled component wraps a Bits UI primitive, **the Bits UI catalog IS our low-effort backlog**: anything Bits already ships is a styling job, not a behavior/a11y job. Bits UI provides 41 primitives; map every one to a `sve-ui` component before reaching for custom builds.
 
-- [ ] **Remaining Bits UI primitives to wrap (surfaced as `soon` in /components):** Alert Dialog, Aspect Ratio, Calendar, Collapsible, Date Field, Date Picker, Label, Link Preview (hover card), Menubar, Meter, Navigation Menu, PIN Input, Rating Group, Toggle, Toolbar, Range Calendar, Date/Time Range variants
-- [ ] **Custom (non-Bits) components still needed:** Textarea (native, styled), Toast region (external dep — svelte-sonner vs melt-ui), Table (custom), Skeleton, Breadcrumb, Sheet (styled Dialog), Pagination, Carousel (embla), Stack/Flex/Separator already noted
-- [ ] **Gap found 2026-06-21:** Textarea and Alert Dialog were missing from the plan entirely — added. Textarea is the most-expected form control after Input.
+- [ ] **Remaining Bits UI primitives to wrap (surfaced as `soon` in /components):** Alert Dialog, Aspect Ratio, Calendar, Collapsible, Date Field, Date Picker, Link Preview (hover card), Menubar, Meter, Navigation Menu, PIN Input, Progress, Rating Group, Scroll Area, Toggle, Toggle Group, Toolbar, Range Calendar, Date/Time Range variants — **Label and Separator wrapped in Wave 4a**
+- [ ] **Custom (non-Bits) components still needed:** Toast region (external dep — svelte-sonner vs melt-ui), Table (custom), Breadcrumb, Sheet (styled Dialog), Pagination, Carousel (embla), Stack/Flex — **Textarea and Skeleton shipped in Wave 4a**
+- [x] **Gap found 2026-06-21:** Textarea and Alert Dialog were missing from the plan entirely — added. Textarea shipped in Wave 4a (2026-08-22); Alert Dialog still open.
 
 ### Phase 2 — Testing
-- [ ] Vitest + `@testing-library/svelte` (+ jsdom/browser); delete the `1+2` test
-- [ ] One test per component: render, props, variants, events
-- [ ] Automated a11y (axe) in component tests
+- [x] Vitest + `@testing-library/svelte` (+ jsdom/browser); delete the `1+2` test
+- [x] One test per component: render, props, variants, events
+- [x] Automated a11y (axe) in component tests
 
 ### Phase 3 — Docs & component workshop
-- [ ] Storybook 10 inside `packages/sve-ui` (Svelte 5)
-- [ ] `apps/docs` on SvelteKit 2 + Svelte 5 + Tailwind 4; consumes `sve-ui/theme`
-- [ ] Auto-generated prop tables from types
+- [ ] Storybook 10 inside `packages/sve-ui` (Svelte 5) — NOT started. The `/components` docs pages cover the workshop need for now; revisit only if authoring friction shows up.
+- [x] `apps/docs` on SvelteKit 2 + Svelte 5 + Tailwind 4; consumes `sve-ui/theme`
+- [ ] Auto-generated prop tables from types — still hand-written `PropRow[]` arrays per page. Real drift risk as the catalog grows.
 
 ### Phase 4 — Release & CI/CD (open source)
-- [ ] Changesets (public access)
-- [ ] `ci.yml`: lint (oxlint + eslint) + `svelte-check` + test + build + `publint` + `attw`
-- [ ] `release.yml`: changesets + **npm Trusted Publishing (OIDC, no `NPM_TOKEN`)**; provenance automatic (see §10)
-- [ ] Configure the Trusted Publisher for `sve-ui` on npmjs.com (workflow filename must match `release.yml` exactly)
-- [ ] Deploy `apps/docs` to Vercel
+- [x] Changesets (public access)
+- [x] `ci.yml`: lint (oxlint + eslint) + `svelte-check` + test + build + `publint` + `attw`
+- [x] `release.yml`: changesets + **npm Trusted Publishing (OIDC, no `NPM_TOKEN`)**; provenance automatic (see §10)
+- [x] Configure the Trusted Publisher for `sve-ui` on npmjs.com (workflow filename must match `release.yml` exactly)
+- [x] Deploy `apps/docs` to Vercel
 
 ### Phase 5 — Open-source polish
-- [ ] README, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, issue/PR templates
-- [ ] Badges (npm, CI, coverage), refined `keywords`
-- [ ] Migration notes for `0.1.x` consumers (documented breaking changes)
+- [x] README, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, issue/PR templates
+- [ ] Badges (npm, license, Svelte 5) done; **CI and coverage badges still missing**. `keywords` not yet refined.
+- [ ] Migration notes for `0.1.x` consumers (documented breaking changes) — NOT written.
 
 ---
 
