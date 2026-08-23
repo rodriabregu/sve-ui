@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Separator } from 'bits-ui';
+  import { Separator as SeparatorPrimitive } from 'bits-ui';
   import type { ComponentProps } from 'svelte';
 
-  type BitsRootProps = ComponentProps<typeof Separator.Root>;
+  type BitsRootProps = ComponentProps<typeof SeparatorPrimitive.Root>;
 
   interface Props extends Omit<BitsRootProps, 'class'> {
     class?: string;
@@ -25,7 +25,7 @@
   `role="none"` when `decorative` is set. Use `decorative` for purely visual
   rules that carry no structural meaning.
 -->
-<Separator.Root class={className} data-slot="separator" {orientation} {decorative} {...rest} />
+<SeparatorPrimitive.Root class={className} data-slot="separator" {orientation} {decorative} {...rest} />
 
 <style>
   :global(.sve-separator) {

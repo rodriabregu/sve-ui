@@ -3,10 +3,10 @@
 </script>
 
 <script lang="ts">
-  import { Label } from 'bits-ui';
+  import { Label as LabelPrimitive } from 'bits-ui';
   import type { ComponentProps, Snippet } from 'svelte';
 
-  type BitsRootProps = ComponentProps<typeof Label.Root>;
+  type BitsRootProps = ComponentProps<typeof LabelPrimitive.Root>;
 
   interface Props extends Omit<BitsRootProps, 'class' | 'children'> {
     size?: Size;
@@ -37,12 +37,12 @@
   Accessibility: pass `for` matching the control's `id`, or nest the control
   inside the label. Bits owns the click-to-focus behaviour.
 -->
-<Label.Root class={className} data-slot="label" {...rest}>
+<LabelPrimitive.Root class={className} data-slot="label" {...rest}>
   {@render children?.()}
   {#if required}
     <span class="sve-label__required" aria-hidden="true">*</span>
   {/if}
-</Label.Root>
+</LabelPrimitive.Root>
 
 <style>
   :global(.sve-label) {
