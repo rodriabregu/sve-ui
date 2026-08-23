@@ -29,14 +29,19 @@
     children?: Snippet;
   }
 
-  let { type = 'single', class: cls, ...rest }: Props = $props();
+  // `value` must be destructured and passed as `bind:value`. Forwarding it in
+  // the spread makes it one-way, which silently broke the two-way binding this
+  // component documents.
+  let { type = 'single', value = $bindable(), class: cls, ...rest }: Props = $props();
 
   const className = $derived(['sve-accordion', cls].filter(Boolean).join(' '));
 
-  const Root = Accordion.Root as unknown as Component<Record<string, unknown>>;
+  // The third type argument names the bindable props. Without it the cast erases
+  // the bindings and `bind:value` below would not type-check.
+  const Root = Accordion.Root as unknown as Component<Record<string, unknown>, object, 'value'>;
 </script>
 
-<Root {type} class={className} data-slot="accordion" {...rest} />
+<Root {type} bind:value class={className} data-slot="accordion" {...rest} />
 
 <style>
   :global(.sve-accordion) {
