@@ -22,6 +22,8 @@ Load when building or editing a Svelte 5 app that consumes `sve-ui` — importin
   `<Dialog.Trigger>{#snippet child({ props })}<Button {...props}>Open</Button>{/snippet}</Dialog.Trigger>`
 - Theme by overriding `--sve-*` CSS variables (e.g. `--sve-color-primary`). Do NOT put Tailwind layout/margin utilities on sve-ui components — scoped styles win; wrap in a `<div>` instead.
 - `AlertDialog.Action` does NOT close the dialog (only `Cancel` does) — close it yourself, so a failed async operation can keep it open. `AlertDialog`/`Sheet` both REQUIRE a `Title`; Bits wires `aria-labelledby` to it.
+- `PinInput`: `<label for>` does NOT work — the real input's id is Bits-internal and unpredictable. Name it with `aria-label` or `aria-labelledby` on Root. `maxlength` is required.
+- `RatingGroup` needs BOTH `aria-label` and `aria-valuetext` (pass the function form, so the scale is announced and not a bare number).
 - `Command.Viewport` is REQUIRED and goes inside `Command.List` — Bits takes the Input's `aria-controls` from it, so omitting it is invalid ARIA. `label` on Root names the INPUT; `aria-label` on List names the LIST (Bits defaults it to "Suggestions...").
 - `NavigationMenu` is the choice for SITE navigation (opens on hover AND click/Enter). `active` on a Link gives `aria-current="page"`.
 - `Menubar` is desktop-application chrome, not website navigation — it assumes hover and a wide screen. Use `NavigationMenu` for site nav.

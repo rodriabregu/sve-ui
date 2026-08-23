@@ -36,6 +36,8 @@
 	import * as Breadcrumb from '$lib/components/Breadcrumb/index.js';
 	import * as NavigationMenu from '$lib/components/NavigationMenu/index.js';
 	import * as Command from '$lib/components/Command/index.js';
+	import * as PinInput from '$lib/components/PinInput/index.js';
+	import * as RatingGroup from '$lib/components/RatingGroup/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -65,6 +67,8 @@
 	let navValue = $state('');
 	let commandSearch = $state('');
 	let commandValue = $state('');
+	let pin = $state('');
+	let rating = $state(3);
 </script>
 
 <!-- Display -->
@@ -100,6 +104,30 @@
 		<ToggleGroup.Item value="left" aria-label="Align left">L</ToggleGroup.Item>
 		<ToggleGroup.Item value="right" aria-label="Align right">R</ToggleGroup.Item>
 	</ToggleGroup.Root>
+</section>
+<section aria-label="PIN input">
+	<span id="a11y-pin-label">Verification code</span>
+	<PinInput.Root bind:value={pin} maxlength={4} aria-labelledby="a11y-pin-label">
+		{#snippet children({ cells })}
+			{#each cells as cell, i (i)}
+				<PinInput.Cell {cell} />
+			{/each}
+		{/snippet}
+	</PinInput.Root>
+</section>
+<section aria-label="Rating group">
+	<RatingGroup.Root
+		bind:value={rating}
+		max={5}
+		aria-label="Rating"
+		aria-valuetext={(v, max) => `${v} of ${max} stars`}
+	>
+		{#snippet children({ items })}
+			{#each items as item (item.index)}
+				<RatingGroup.Item index={item.index}>★</RatingGroup.Item>
+			{/each}
+		{/snippet}
+	</RatingGroup.Root>
 </section>
 <section aria-label="Slider"><Slider value={40} max={100} thumbLabel="Volume" /></section>
 <section aria-label="Select">

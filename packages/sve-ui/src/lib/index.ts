@@ -7,7 +7,8 @@
  * AlertDialog namespace, Sheet namespace, LinkPreview namespace,
  * ContextMenu namespace, ScrollArea namespace, Toolbar namespace,
  * Menubar namespace, Pagination namespace, Breadcrumb namespace,
- * NavigationMenu namespace, Command namespace,
+ * NavigationMenu namespace, Command namespace, PinInput namespace,
+ * RatingGroup namespace,
  * variant helper + types, theme types.
  */
 
@@ -112,6 +113,12 @@ export * as NavigationMenu from './components/NavigationMenu/index.js';
 
 // Command namespace (composed over bits-ui) — the command-palette pattern
 export * as Command from './components/Command/index.js';
+
+// PinInput namespace (composed over bits-ui) — one-time codes / PINs
+export * as PinInput from './components/PinInput/index.js';
+
+// RatingGroup namespace (composed over bits-ui)
+export * as RatingGroup from './components/RatingGroup/index.js';
 
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';

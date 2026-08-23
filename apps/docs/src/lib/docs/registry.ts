@@ -51,8 +51,13 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'calendar', name: 'Calendar', blurb: 'Date grid for selection.' },
 			{ slug: 'date-field', name: 'Date Field', blurb: 'Segmented date input.' },
 			{ slug: 'date-picker', name: 'Date Picker', blurb: 'Calendar-based date selection.' },
-			{ slug: 'pin-input', name: 'PIN Input', blurb: 'One-time-code / PIN entry.' },
-			{ slug: 'rating-group', name: 'Rating Group', blurb: 'Star rating input.' }
+			{ slug: 'range-calendar', name: 'Range Calendar', blurb: 'Date range grid.' },
+			{ slug: 'date-range-field', name: 'Date Range Field', blurb: 'Segmented date range input.' },
+			{ slug: 'date-range-picker', name: 'Date Range Picker', blurb: 'Calendar-based range selection.' },
+			{ slug: 'time-field', name: 'Time Field', blurb: 'Segmented time input.' },
+			{ slug: 'time-range-field', name: 'Time Range Field', blurb: 'Segmented time range input.' },
+			{ slug: 'pin-input', name: 'PIN Input', blurb: 'One-time-code / PIN entry.', status: 'new', ready: true },
+			{ slug: 'rating-group', name: 'Rating Group', blurb: 'Star rating input.', status: 'new', ready: true }
 		]
 	},
 	{
