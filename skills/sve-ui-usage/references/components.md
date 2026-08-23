@@ -5,7 +5,7 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 ## Import style
 
 - **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Toggle`, `Progress`, `Meter`, `AspectRatio`, `Code`.
-- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`, `PinInput`, `RatingGroup`.
+- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`, `PinInput`, `RatingGroup`, `Stack`, `Flex`.
 
 ```svelte
 import { Button, Input, Badge, Slider } from 'sve-ui';
@@ -339,6 +339,19 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
   <ScrollArea.Viewport>{content}</ScrollArea.Viewport>
   <ScrollArea.Scrollbar orientation="vertical"><ScrollArea.Thumb /></ScrollArea.Scrollbar>
 </ScrollArea.Root>
+
+<!-- Stack / Flex: layout primitives with a DELIBERATELY narrow API.
+     `gap` is a spacing TOKEN KEY (gap={4}), not a length. There is NO margin,
+     padding, width or colour prop — margin belongs to the parent, the rest is
+     what class/CSS are for. Want something they don't express? Use CSS.
+     Stack = vertical (align defaults to stretch, right for form fields).
+     Flex  = general (align defaults to CENTER, since a row of mixed-height
+             things wants centring and the CSS `stretch` default breaks it).
+     Use `as` to keep the markup semantic (ul, fieldset, nav). -->
+<Stack gap={4}>...</Stack>
+<Stack gap={2} as="ul">...</Stack>
+<Flex gap={3} justify="between">...</Flex>
+<Flex gap={2} wrap>...</Flex>
 
 <!-- AspectRatio: ratio is width/height. Reserves the box BEFORE media loads,
      which is what prevents layout shift. Presentational: img still needs alt. -->

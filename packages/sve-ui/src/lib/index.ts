@@ -4,6 +4,7 @@
  * Exports: ThemeProvider, Button, Dialog namespace, Text, Heading, Badge, Avatar, Spinner,
  * Card namespace, Alert namespace, Input, Textarea, Label, Skeleton, Separator,
  * Toggle, ToggleGroup namespace, Collapsible namespace, Progress, Meter, AspectRatio,
+ * Stack, Flex,
  * AlertDialog namespace, Sheet namespace, LinkPreview namespace,
  * ContextMenu namespace, ScrollArea namespace, Toolbar namespace,
  * Menubar namespace, Pagination namespace, Breadcrumb namespace,
@@ -30,6 +31,8 @@ export { default as Toggle } from './components/Toggle/Toggle.svelte';
 export { default as Progress } from './components/Progress/Progress.svelte';
 export { default as Meter } from './components/Meter/Meter.svelte';
 export { default as AspectRatio } from './components/AspectRatio/AspectRatio.svelte';
+export { default as Stack } from './components/Stack/Stack.svelte';
+export { default as Flex } from './components/Flex/Flex.svelte';
 
 // Dialog namespace (composed over bits-ui)
 export * as Dialog from './components/Dialog/index.js';
@@ -148,6 +151,20 @@ export { type Size as LabelSize } from './components/Label/Label.svelte';
 
 // Skeleton types
 export { type Variant as SkeletonVariant } from './components/Skeleton/Skeleton.svelte';
+
+// Layout primitive types
+export {
+  type Gap as StackGap,
+  type Align as StackAlign,
+  type As as StackAs,
+} from './components/Stack/Stack.svelte';
+export {
+  type Gap as FlexGap,
+  type Direction as FlexDirection,
+  type Align as FlexAlign,
+  type Justify as FlexJustify,
+  type As as FlexAs,
+} from './components/Flex/Flex.svelte';
 
 // Toggle types
 export {

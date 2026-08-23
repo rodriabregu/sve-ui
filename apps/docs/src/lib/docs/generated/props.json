@@ -852,6 +852,63 @@
 		],
 		"spreads": "Omit<BitsContentProps, 'class'>"
 	},
+	"Flex": {
+		"props": [
+			{
+				"prop": "direction",
+				"type": "'row' | 'column' | 'row-reverse' | 'column-reverse'",
+				"required": false,
+				"default": "'row'"
+			},
+			{
+				"prop": "gap",
+				"type": "1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16",
+				"required": false,
+				"default": "4",
+				"description": "Space between children, as a spacing token key — not an arbitrary length."
+			},
+			{
+				"prop": "align",
+				"type": "'start' | 'center' | 'end' | 'stretch' | 'baseline'",
+				"required": false,
+				"default": "'center'",
+				"description": "Cross-axis alignment."
+			},
+			{
+				"prop": "justify",
+				"type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'",
+				"required": false,
+				"default": "'start'",
+				"description": "Main-axis distribution."
+			},
+			{
+				"prop": "wrap",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Allow children to wrap onto more lines. Worth turning on for anything that has to survive a narrow screen."
+			},
+			{
+				"prop": "as",
+				"type": "'div' | 'section' | 'article' | 'aside' | 'header' | 'footer' | 'ul' | 'ol' | 'li' | 'nav' | 'form' | 'fieldset'",
+				"required": false,
+				"default": "'div'",
+				"description": "Element to render, to keep the markup semantic."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
+	},
 	"Heading": {
 		"props": [
 			{
@@ -1627,6 +1684,43 @@
 			}
 		],
 		"spreads": "Omit<HTMLAttributes<HTMLSpanElement>, 'class' | 'role'>"
+	},
+	"Stack": {
+		"props": [
+			{
+				"prop": "gap",
+				"type": "1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16",
+				"required": false,
+				"default": "4",
+				"description": "Vertical space between children, as a spacing token key — not an arbitrary length. That constraint is the point: it keeps rhythm consistent and stops this becoming a place to invent one-off spacing."
+			},
+			{
+				"prop": "align",
+				"type": "'start' | 'center' | 'end' | 'stretch'",
+				"required": false,
+				"default": "'stretch'",
+				"description": "Cross-axis alignment. `stretch` (the default) lets children fill the width, which is what you want for stacked form fields."
+			},
+			{
+				"prop": "as",
+				"type": "'div' | 'section' | 'article' | 'aside' | 'header' | 'footer' | 'ul' | 'ol' | 'li' | 'nav' | 'form' | 'fieldset'",
+				"required": false,
+				"default": "'div'",
+				"description": "Element to render. Use it to keep the markup semantic — `ul` for a list, `fieldset` for grouped inputs — instead of wrapping a div around one."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
 	},
 	"SwitchRoot": {
 		"props": [
