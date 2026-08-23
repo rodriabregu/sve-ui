@@ -4,8 +4,8 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 
 ## Import style
 
-- **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Code`.
-- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`.
+- **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Toggle`, `Progress`, `Meter`, `AspectRatio`, `Code`.
+- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`.
 
 ```svelte
 import { Button, Input, Badge, Slider } from 'sve-ui';
@@ -61,6 +61,17 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 <Textarea rows={5} resize="vertical" bind:value={bio} />
 <Textarea invalid aria-describedby="bio-error" />
 
+<!-- Toggle: a pressed BUTTON (toolbar), not a setting. Switch is the setting. -->
+<Toggle bind:pressed={bold} aria-label="Bold">B</Toggle>
+
+<!-- ToggleGroup: `type` is REQUIRED and sets the shape of value.
+     single -> string, items are role="radio" + aria-checked
+     multiple -> string[], items are buttons + aria-pressed -->
+<ToggleGroup.Root type="single" bind:value={align} aria-label="Text alignment">
+  <ToggleGroup.Item value="left" aria-label="Align left">L</ToggleGroup.Item>
+  <ToggleGroup.Item value="right" aria-label="Align right">R</ToggleGroup.Item>
+</ToggleGroup.Root>
+
 <!-- Switch / Checkbox: need aria-label if no visible label -->
 <Switch.Root bind:checked={on} aria-label="Notifications" />
 <Checkbox.Root bind:checked={agree} aria-label="Accept terms" />
@@ -102,6 +113,14 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 </Alert.Root>
 
 <Spinner size="sm" color="primary" label="Loading" />
+
+<!-- Progress: advancement toward completion. role="progressbar".
+     value={null} = indeterminate. NEEDS an accessible name. -->
+<Progress value={40} aria-label="Upload progress" />
+<Progress value={null} aria-label="Syncing" />
+
+<!-- Meter: a static measurement in a known range. role="meter". NEEDS a name. -->
+<Meter value={70} max={100} aria-label="Disk usage" />
 ```
 
 ## Navigation
@@ -170,6 +189,10 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
 ## Layout
 
 ```svelte
+<!-- AspectRatio: ratio is width/height. Reserves the box BEFORE media loads,
+     which is what prevents layout shift. Presentational: img still needs alt. -->
+<AspectRatio ratio={16 / 9}><img src={url} alt="Harbour at sunset" /></AspectRatio>
+
 <!-- Separator: role="separator" + aria-orientation. Use `decorative` for purely visual rules. -->
 <Separator />
 <Separator orientation="vertical" />

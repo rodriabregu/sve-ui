@@ -46,8 +46,8 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'slider', name: 'Slider', blurb: 'Pick a value along a range.', status: 'new', ready: true },
 			{ slug: 'textarea', name: 'Textarea', blurb: 'Multi-line text field.', status: 'new', ready: true },
 			{ slug: 'label', name: 'Label', blurb: 'Accessible form label.', status: 'new', ready: true },
-			{ slug: 'toggle', name: 'Toggle', blurb: 'Two-state toggle button.' },
-			{ slug: 'toggle-group', name: 'Toggle Group', blurb: 'Grouped toggle buttons.' },
+			{ slug: 'toggle', name: 'Toggle', blurb: 'Two-state toggle button.', status: 'new', ready: true },
+			{ slug: 'toggle-group', name: 'Toggle Group', blurb: 'Grouped toggle buttons.', status: 'new', ready: true },
 			{ slug: 'calendar', name: 'Calendar', blurb: 'Date grid for selection.' },
 			{ slug: 'date-field', name: 'Date Field', blurb: 'Segmented date input.' },
 			{ slug: 'date-picker', name: 'Date Picker', blurb: 'Calendar-based date selection.' },
@@ -61,8 +61,8 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'alert', name: 'Alert', blurb: 'Inline status and messaging.', ready: true },
 			{ slug: 'spinner', name: 'Spinner', blurb: 'Indeterminate loading indicator.', ready: true },
 			{ slug: 'toast', name: 'Toast', blurb: 'Transient, stacked notifications.' },
-			{ slug: 'progress', name: 'Progress', blurb: 'Determinate progress bar.' },
-			{ slug: 'meter', name: 'Meter', blurb: 'Bounded scalar measurement.' }
+			{ slug: 'progress', name: 'Progress', blurb: 'Determinate progress bar.', status: 'new', ready: true },
+			{ slug: 'meter', name: 'Meter', blurb: 'Bounded scalar measurement.', status: 'new', ready: true }
 		]
 	},
 	{
@@ -74,7 +74,7 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'breadcrumb', name: 'Breadcrumb', blurb: 'Hierarchical page trail.' },
 			{ slug: 'navigation-menu', name: 'Navigation Menu', blurb: 'Top-level nav with menus.' },
 			{ slug: 'menubar', name: 'Menubar', blurb: 'Desktop-style menu bar.' },
-			{ slug: 'collapsible', name: 'Collapsible', blurb: 'Single expand/collapse region.' },
+			{ slug: 'collapsible', name: 'Collapsible', blurb: 'Single expand/collapse region.', status: 'new', ready: true },
 			{ slug: 'toolbar', name: 'Toolbar', blurb: 'Grouped controls container.' }
 		]
 	},
@@ -106,7 +106,7 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'flex', name: 'Flex', blurb: 'Flexbox layout primitive.' },
 			{ slug: 'separator', name: 'Separator', blurb: 'Visual or semantic divider.', status: 'new', ready: true },
 			{ slug: 'scroll-area', name: 'Scroll Area', blurb: 'Styled custom scroll container.' },
-			{ slug: 'aspect-ratio', name: 'Aspect Ratio', blurb: 'Constrain content ratio.' }
+			{ slug: 'aspect-ratio', name: 'Aspect Ratio', blurb: 'Constrain content ratio.', status: 'new', ready: true }
 		]
 	},
 	{

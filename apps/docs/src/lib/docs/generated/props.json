@@ -156,6 +156,24 @@
 		],
 		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
 	},
+	"AspectRatio": {
+		"props": [
+			{
+				"prop": "ratio",
+				"type": "number",
+				"required": false,
+				"default": "1",
+				"description": "Width divided by height — `16 / 9`, `1`, `4 / 3`. Reserving the box up front is what stops the layout shifting when the media loads."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'ratio'>"
+	},
 	"AvatarFallback": {
 		"props": [
 			{
@@ -402,6 +420,52 @@
 		],
 		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
 	},
+	"CollapsibleContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the panel."
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"CollapsibleRoot": {
+		"props": [
+			{
+				"prop": "open",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Whether the panel is open. Bindable."
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'open' | 'disabled'>"
+	},
+	"CollapsibleTrigger": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the trigger."
+			}
+		],
+		"spreads": "Omit<BitsTriggerProps, 'class'>"
+	},
 	"ComboboxContent": {
 		"props": [
 			{
@@ -620,6 +684,47 @@
 		],
 		"spreads": "Omit<BitsRootProps, 'class' | 'children'>"
 	},
+	"Meter": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "number",
+				"required": false,
+				"default": "0"
+			},
+			{
+				"prop": "max",
+				"type": "number",
+				"required": false,
+				"default": "100"
+			},
+			{
+				"prop": "min",
+				"type": "number",
+				"required": false,
+				"default": "0"
+			},
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "color",
+				"type": "'primary' | 'secondary' | 'success' | 'warning' | 'danger'",
+				"required": false,
+				"default": "'primary'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the track."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'value' | 'max' | 'min'>"
+	},
 	"PopoverContent": {
 		"props": [
 			{
@@ -629,6 +734,48 @@
 			}
 		],
 		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"Progress": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "number | null",
+				"required": false,
+				"default": "0",
+				"description": "Current value. Pass `null` for an indeterminate bar — use it when the duration is genuinely unknown, not as a substitute for measuring it."
+			},
+			{
+				"prop": "max",
+				"type": "number",
+				"required": false,
+				"default": "100"
+			},
+			{
+				"prop": "min",
+				"type": "number",
+				"required": false,
+				"default": "0"
+			},
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "color",
+				"type": "'primary' | 'secondary' | 'success' | 'warning' | 'danger'",
+				"required": false,
+				"default": "'primary'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the track."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'value' | 'max' | 'min'>"
 	},
 	"RadioGroupItem": {
 		"props": [
@@ -975,6 +1122,112 @@
 			}
 		],
 		"spreads": "Omit<HTMLTextareaAttributes, 'class'>"
+	},
+	"Toggle": {
+		"props": [
+			{
+				"prop": "pressed",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Whether the toggle is pressed. Bindable."
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "variant",
+				"type": "'outline' | 'ghost'",
+				"required": false,
+				"default": "'outline'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'pressed' | 'disabled'>"
+	},
+	"ToggleGroupItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the item."
+			}
+		],
+		"spreads": "Omit<BitsItemProps, 'class'>"
+	},
+	"ToggleGroupRoot": {
+		"props": [
+			{
+				"prop": "type",
+				"type": "'single' | 'multiple'",
+				"required": true,
+				"description": "`single` allows one active item; `multiple` allows many. Required, because it also decides the shape of `value`."
+			},
+			{
+				"prop": "value",
+				"type": "string | string[]",
+				"required": false,
+				"description": "Active item(s). Bindable. `single` gives a string, `multiple` gives a string[] — the shape follows `type`."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: string & string[]) => void",
+				"required": false,
+				"description": "Called when the active item(s) change."
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"description": "Disables every item in the group."
+			},
+			{
+				"prop": "loop",
+				"type": "boolean",
+				"required": false,
+				"description": "Keyboard focus loops from the last item back to the first."
+			},
+			{
+				"prop": "orientation",
+				"type": "'horizontal' | 'vertical'",
+				"required": false,
+				"description": "Arrow-key navigation axis."
+			},
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "Compose `ToggleGroup.Item` blocks inside."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
 	},
 	"TooltipContent": {
 		"props": [
