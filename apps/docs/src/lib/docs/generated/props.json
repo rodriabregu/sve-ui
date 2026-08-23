@@ -569,6 +569,28 @@
 		],
 		"spreads": "Omit<BitsItemProps, 'class'>"
 	},
+	"ContextMenuContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the menu panel."
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"ContextMenuTrigger": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the trigger region."
+			}
+		],
+		"spreads": "Omit<BitsTriggerProps, 'class'>"
+	},
 	"DialogContent": {
 		"props": [
 			{
@@ -618,46 +640,6 @@
 			}
 		],
 		"spreads": "Omit<BitsContentProps, 'class'>"
-	},
-	"DropdownMenuGroup": {
-		"props": [
-			{
-				"prop": "class",
-				"type": "string",
-				"required": false
-			}
-		],
-		"spreads": "Omit<BitsGroupProps, 'class'>"
-	},
-	"DropdownMenuItem": {
-		"props": [
-			{
-				"prop": "class",
-				"type": "string",
-				"required": false
-			}
-		],
-		"spreads": "Omit<BitsItemProps, 'class'>"
-	},
-	"DropdownMenuLabel": {
-		"props": [
-			{
-				"prop": "class",
-				"type": "string",
-				"required": false
-			}
-		],
-		"spreads": "Omit<BitsGroupHeadingProps, 'class'>"
-	},
-	"DropdownMenuSeparator": {
-		"props": [
-			{
-				"prop": "class",
-				"type": "string",
-				"required": false
-			}
-		],
-		"spreads": "Omit<BitsSeparatorProps, 'class'>"
 	},
 	"Heading": {
 		"props": [
@@ -767,6 +749,50 @@
 			}
 		],
 		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"MenuGroup": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the group."
+			}
+		],
+		"spreads": "Omit<BitsGroupProps, 'class'>"
+	},
+	"MenuItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the item."
+			}
+		],
+		"spreads": "Omit<BitsItemProps, 'class'>"
+	},
+	"MenuLabel": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the heading."
+			}
+		],
+		"spreads": "Omit<BitsGroupHeadingProps, 'class'>"
+	},
+	"MenuSeparator": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the divider."
+			}
+		],
+		"spreads": "Omit<BitsSeparatorProps, 'class'>"
 	},
 	"Meter": {
 		"props": [
@@ -880,6 +906,57 @@
 			}
 		],
 		"spreads": "Omit<BitsRootProps, 'class'>"
+	},
+	"ScrollAreaRoot": {
+		"props": [
+			{
+				"prop": "type",
+				"type": "'hover' | 'scroll' | 'auto' | 'always'",
+				"required": false,
+				"default": "'hover'",
+				"description": "When the scrollbars are visible. `hover` shows them on pointer hover, `always` keeps them visible, `auto` follows the platform, `scroll` shows them only while scrolling."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'type'>"
+	},
+	"ScrollAreaScrollbar": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the scrollbar track."
+			}
+		],
+		"spreads": "Omit<BitsScrollbarProps, 'class'>"
+	},
+	"ScrollAreaThumb": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the thumb."
+			}
+		],
+		"spreads": "Omit<BitsThumbProps, 'class'>"
+	},
+	"ScrollAreaViewport": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the viewport."
+			}
+		],
+		"spreads": "Omit<BitsViewportProps, 'class'>"
 	},
 	"SelectContent": {
 		"props": [
@@ -1370,6 +1447,67 @@
 			}
 		],
 		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"ToolbarButton": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			}
+		],
+		"spreads": "Omit<BitsButtonProps, 'class'>"
+	},
+	"ToolbarGroup": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "string | string[]",
+				"required": false,
+				"description": "Active item(s). Bindable. `type=\"single\"` gives a string, `type=\"multiple\"` gives a string[] — the shape follows `type`."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the group."
+			}
+		],
+		"spreads": "Omit<BitsGroupProps, 'class' | 'value'>"
+	},
+	"ToolbarGroupItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the item."
+			}
+		],
+		"spreads": "Omit<BitsGroupItemProps, 'class'>"
+	},
+	"ToolbarLink": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the link."
+			}
+		],
+		"spreads": "Omit<BitsLinkProps, 'class'>"
+	},
+	"ToolbarRoot": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the toolbar."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class'>"
 	},
 	"TooltipContent": {
 		"props": [
