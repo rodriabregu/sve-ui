@@ -42,6 +42,8 @@
 	import Flex from '$lib/components/Flex/Flex.svelte';
 	import * as Calendar from '$lib/components/Calendar/index.js';
 	import { CalendarDate } from '@internationalized/date';
+	import * as DateField from '$lib/components/DateField/index.js';
+	import * as DateRangeField from '$lib/components/DateRangeField/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -75,6 +77,8 @@
 	let rating = $state(3);
 	let calValue = $state(new CalendarDate(2026, 1, 15));
 	let calPlaceholder = $state(new CalendarDate(2026, 1, 1));
+	let dfValue = $state<CalendarDate | undefined>(undefined);
+	let drfValue = $state({ start: undefined as CalendarDate | undefined, end: undefined as CalendarDate | undefined });
 </script>
 
 <!-- Display -->
@@ -110,6 +114,38 @@
 		<ToggleGroup.Item value="left" aria-label="Align left">L</ToggleGroup.Item>
 		<ToggleGroup.Item value="right" aria-label="Align right">R</ToggleGroup.Item>
 	</ToggleGroup.Root>
+</section>
+<section aria-label="Date field">
+	<DateField.Root bind:value={dfValue} locale="en-US">
+		<DateField.Label>Departure date</DateField.Label>
+		<DateField.Input>
+			{#snippet children({ segments })}
+				{#each segments as { part, value: sv }, i (i)}
+					<DateField.Segment {part}>{sv}</DateField.Segment>
+				{/each}
+			{/snippet}
+		</DateField.Input>
+	</DateField.Root>
+</section>
+<section aria-label="Date range field">
+	<DateRangeField.Root bind:value={drfValue} locale="en-US" aria-labelledby="a11y-drf-label">
+		<DateRangeField.Label id="a11y-drf-label">Stay dates</DateRangeField.Label>
+		<DateRangeField.Input type="start">
+			{#snippet children({ segments })}
+				{#each segments as { part, value: sv }, i (i)}
+					<DateRangeField.Segment {part}>{sv}</DateRangeField.Segment>
+				{/each}
+			{/snippet}
+		</DateRangeField.Input>
+		<span aria-hidden="true">–</span>
+		<DateRangeField.Input type="end">
+			{#snippet children({ segments })}
+				{#each segments as { part, value: sv }, i (i)}
+					<DateRangeField.Segment {part}>{sv}</DateRangeField.Segment>
+				{/each}
+			{/snippet}
+		</DateRangeField.Input>
+	</DateRangeField.Root>
 </section>
 <section aria-label="Calendar">
 	<Calendar.Root type="single" bind:value={calValue} bind:placeholder={calPlaceholder} calendarLabel="Departure date">

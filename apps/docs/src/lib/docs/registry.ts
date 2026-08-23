@@ -49,13 +49,13 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'toggle', name: 'Toggle', blurb: 'Two-state toggle button.', status: 'new', ready: true },
 			{ slug: 'toggle-group', name: 'Toggle Group', blurb: 'Grouped toggle buttons.', status: 'new', ready: true },
 			{ slug: 'calendar', name: 'Calendar', blurb: 'Date grid for selection.', status: 'new', ready: true },
-			{ slug: 'date-field', name: 'Date Field', blurb: 'Segmented date input.' },
+			{ slug: 'date-field', name: 'Date Field', blurb: 'Segmented date input.', status: 'new', ready: true },
 			{ slug: 'date-picker', name: 'Date Picker', blurb: 'Calendar-based date selection.' },
 			{ slug: 'range-calendar', name: 'Range Calendar', blurb: 'Date range grid.', status: 'new', ready: true },
-			{ slug: 'date-range-field', name: 'Date Range Field', blurb: 'Segmented date range input.' },
+			{ slug: 'date-range-field', name: 'Date Range Field', blurb: 'Segmented date range input.', status: 'new', ready: true },
 			{ slug: 'date-range-picker', name: 'Date Range Picker', blurb: 'Calendar-based range selection.' },
-			{ slug: 'time-field', name: 'Time Field', blurb: 'Segmented time input.' },
-			{ slug: 'time-range-field', name: 'Time Range Field', blurb: 'Segmented time range input.' },
+			{ slug: 'time-field', name: 'Time Field', blurb: 'Segmented time input.', status: 'new', ready: true },
+			{ slug: 'time-range-field', name: 'Time Range Field', blurb: 'Segmented time range input.', status: 'new', ready: true },
 			{ slug: 'pin-input', name: 'PIN Input', blurb: 'One-time-code / PIN entry.', status: 'new', ready: true },
 			{ slug: 'rating-group', name: 'Rating Group', blurb: 'Star rating input.', status: 'new', ready: true }
 		]
