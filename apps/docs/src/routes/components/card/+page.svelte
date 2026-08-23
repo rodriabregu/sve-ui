@@ -16,13 +16,6 @@
 		{ id: 'props', label: 'Props' }
 	];
 
-	const rootProps: PropRow[] = [
-		{ prop: 'variant', type: `'elevated' | 'outlined' | 'filled'`, default: `'elevated'` },
-		{ prop: 'padding', type: `'2' | '4' | '6' | '8'`, description: 'Shorthand padding applied to the root. Omit to let Header/Content/Footer control spacing.' },
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' },
-		{ prop: 'children', type: 'Snippet', description: 'Card sections (Header, Content, Footer).' }
-	];
-
 	const subProps: PropRow[] = [
 		{ prop: 'class', type: 'string', description: 'Extra classes.' },
 		{ prop: 'children', type: 'Snippet', description: 'Section content.' }
@@ -144,7 +137,7 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p"><code class="ic">Card.Root</code></p>
-		<PropsTable rows={rootProps} />
+		<PropsTable component="CardRoot" />
 		<p class="sec__p" style="margin-top: 24px;">
 			<code class="ic">Card.Header</code> · <code class="ic">Card.Content</code> ·
 			<code class="ic">Card.Footer</code>

@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.code;
@@ -14,13 +13,6 @@
 		{ id: 'with-label', label: 'With label' },
 		{ id: 'copy-disabled', label: 'Copy disabled' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{ prop: 'code', type: 'string', description: 'The code string to display and copy. SSR-safe — no DOM scraping.' },
-		{ prop: 'label', type: 'string', description: 'Optional header label, e.g. a filename or language tag.' },
-		{ prop: 'copyable', type: 'boolean', default: 'true', description: 'Show the copy-to-clipboard button.' },
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root element.' }
 	];
 
 	const usageCode = `<script>
@@ -81,7 +73,7 @@
 		<p class="sec__p">
 			Plus every native <code class="ic">&lt;div&gt;</code> attribute via prop spreading.
 		</p>
-		<PropsTable rows={props} />
+		<PropsTable component="Code" />
 	</section>
 </DocPage>
 

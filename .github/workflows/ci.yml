@@ -1,8 +1,10 @@
 name: CI
 
 on:
+  # Every pull request, whatever its base. Filtering on `branches: [main]` meant
+  # stacked PRs (base = another feature branch) ran no checks at all, so a broken
+  # link in a chain only surfaced after its base had already merged.
   pull_request:
-    branches: [main]
 
 permissions:
   contents: read
@@ -30,3 +32,7 @@ jobs:
       - run: pnpm run lint
       - run: pnpm run check
       - run: pnpm run test
+
+      # The committed prop metadata must match the components it documents.
+      - name: Prop tables up to date
+        run: pnpm --filter docs run gen:props:check

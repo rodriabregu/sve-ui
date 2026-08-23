@@ -1,16 +1,58 @@
 <script lang="ts">
+	import generated from './generated/props.json';
+
 	export interface PropRow {
 		prop: string;
 		type: string;
 		default?: string;
 		description?: string;
+		/** Marks a prop the consumer must pass. Rendered as a `required` tag. */
+		required?: boolean;
 	}
 
 	interface Props {
-		rows: PropRow[];
+		/**
+		 * Component name as declared in the library source — e.g. `Input`,
+		 * `AlertRoot`. Rows come from `generated/props.json`, produced by
+		 * `pnpm gen:props` off the real `interface Props`, so they cannot drift.
+		 */
+		component?: string;
+		/** Hand-authored rows. Required when `component` is omitted. */
+		rows?: PropRow[];
+		/**
+		 * Rows appended after the generated ones — for props a component
+		 * genuinely forwards but does not declare.
+		 */
+		extra?: PropRow[];
+		/** Generated prop names to drop, for internals not worth documenting. */
+		omit?: string[];
 	}
 
-	let { rows }: Props = $props();
+	let { component, rows, extra = [], omit = [] }: Props = $props();
+
+	const table = generated as Record<
+		string,
+		{ props: PropRow[]; spreads?: string | null } | undefined
+	>;
+
+	const resolved = $derived.by(() => {
+		if (rows) return [...rows, ...extra];
+
+		if (!component) {
+			throw new Error('PropsTable needs either a `component` name or explicit `rows`.');
+		}
+
+		const entry = table[component];
+		if (!entry) {
+			// Loud on purpose: a renamed or deleted component must break the build
+			// rather than quietly render an empty table.
+			throw new Error(
+				`PropsTable: no generated props for "${component}". Run \`pnpm gen:props\`, or check the component name.`
+			);
+		}
+
+		return [...entry.props.filter((p) => !omit.includes(p.prop)), ...extra];
+	});
 </script>
 
 <div class="props">
@@ -23,10 +65,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each rows as row (row.prop)}
+			{#each resolved as row (row.prop)}
 				<tr>
 					<td>
 						<code class="props__name doc-mono">{row.prop}</code>
+						{#if row.required}
+							<span class="props__req">required</span>
+						{/if}
 						{#if row.description}
 							<span class="props__desc">{row.description}</span>
 						{/if}
@@ -94,6 +139,15 @@
 		margin-top: 4px;
 		font-size: 12.5px;
 		color: var(--doc-fg-subtle);
+	}
+	.props__req {
+		margin-left: 6px;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--doc-primary-text);
+		vertical-align: middle;
 	}
 	.props__type {
 		font-size: 12.5px;

@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.slider;
@@ -13,27 +12,6 @@
 		{ id: 'usage', label: 'Usage' },
 		{ id: 'range', label: 'Range' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{ prop: 'type', type: `'single' | 'multiple'`, default: `'single'` },
-		{ prop: 'value', type: 'number | number[]', description: 'Current value(s). Not bindable — use onValueChange.' },
-		{
-			prop: 'onValueChange',
-			type: '(value: number & number[]) => void',
-			description: 'Callback fired when the value changes.'
-		},
-		{ prop: 'min', type: 'number', description: 'Minimum value.' },
-		{ prop: 'max', type: 'number', description: 'Maximum value.' },
-		{ prop: 'step', type: 'number', description: 'Step increment.' },
-		{ prop: 'disabled', type: 'boolean', default: 'false' },
-		{ prop: 'orientation', type: `'horizontal' | 'vertical'`, default: `'horizontal'` },
-		{
-			prop: 'thumbLabel',
-			type: 'string',
-			description: 'Accessible name for the thumb (role="slider"). Suffixed with position in multiple mode.'
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' }
 	];
 
 	let sliderValue = $state(40);
@@ -111,7 +89,7 @@
 		<p class="sec__p">
 			The component also forwards all native slider attributes via prop spreading.
 		</p>
-		<PropsTable rows={props} />
+		<PropsTable component="Slider" />
 	</section>
 </DocPage>
 

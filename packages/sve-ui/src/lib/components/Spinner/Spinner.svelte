@@ -7,7 +7,9 @@
   interface Props extends Omit<HTMLAttributes<HTMLSpanElement>, 'class' | 'role'> {
     size?: Size;
     color?: Color;
+    /** Accessible label, exposed as `aria-label` on the status span. */
     label?: string;
+    /** Extra classes merged onto the root element. */
     class?: string;
   }
 

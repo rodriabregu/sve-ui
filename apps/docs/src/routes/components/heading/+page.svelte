@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.heading;
@@ -15,19 +14,6 @@
 		{ id: 'sizes', label: 'Sizes' },
 		{ id: 'colors', label: 'Colors' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{ prop: 'level', type: '1 | 2 | 3 | 4 | 5 | 6', default: '2', description: 'HTML heading element rendered (h1–h6).' },
-		{ prop: 'size', type: `'sm' | 'md' | 'lg'`, description: 'Visual size. Decoupled from semantic level.' },
-		{ prop: 'weight', type: `'normal' | 'medium' | 'bold'`, default: `'bold'` },
-		{
-			prop: 'color',
-			type: `'inherit' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'`,
-			default: `'inherit'`
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' },
-		{ prop: 'children', type: 'Snippet', description: 'Heading text content.' }
 	];
 
 	const usageCode = `<script>
@@ -119,7 +105,7 @@
 		<p class="sec__p">
 			Plus every native heading attribute via prop spreading.
 		</p>
-		<PropsTable rows={props} />
+		<PropsTable component="Heading" />
 	</section>
 </DocPage>
 

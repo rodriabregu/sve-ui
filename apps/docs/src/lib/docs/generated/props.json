@@ -1,0 +1,989 @@
+{
+	"AccordionContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"AccordionHeader": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsHeaderProps, 'class'>"
+	},
+	"AccordionItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsItemProps, 'class'>"
+	},
+	"AccordionRoot": {
+		"props": [
+			{
+				"prop": "type",
+				"type": "'single' | 'multiple'",
+				"required": false,
+				"default": "'single'",
+				"description": "`single` allows one open item at a time; `multiple` allows many."
+			},
+			{
+				"prop": "value",
+				"type": "string | string[]",
+				"required": false,
+				"description": "Controlled open item(s). Use `bind:value` for two-way binding."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: string & string[]) => void",
+				"required": false,
+				"description": "Called when the open item(s) change."
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"description": "Disables every trigger in the accordion."
+			},
+			{
+				"prop": "loop",
+				"type": "boolean",
+				"required": false,
+				"description": "Keyboard focus loops from the last trigger back to the first."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "Compose `Accordion.Item` blocks inside."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"AccordionTrigger": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsTriggerProps, 'class' | 'children'>"
+	},
+	"AlertDescription": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"AlertRoot": {
+		"props": [
+			{
+				"prop": "color",
+				"type": "'default' | 'primary' | 'success' | 'warning' | 'danger'",
+				"required": false,
+				"default": "'default'"
+			},
+			{
+				"prop": "variant",
+				"type": "'subtle' | 'solid' | 'outline'",
+				"required": false,
+				"default": "'subtle'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'role'>"
+	},
+	"AlertTitle": {
+		"props": [
+			{
+				"prop": "as",
+				"type": "string",
+				"required": false,
+				"default": "'p'",
+				"description": "Element to render. Defaults to a semantic `<p>` (not a bare `<div>`)."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
+	},
+	"AvatarFallback": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsFallbackProps, 'class'>"
+	},
+	"AvatarImage": {
+		"props": [
+			{
+				"prop": "alt",
+				"type": "string",
+				"required": true,
+				"description": "Required: describes the image for screen readers. Always provide meaningful alt text."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsImageProps, 'class' | 'alt'>"
+	},
+	"AvatarRoot": {
+		"props": [
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "shape",
+				"type": "'circle' | 'square'",
+				"required": false,
+				"default": "'circle'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class'>"
+	},
+	"Badge": {
+		"props": [
+			{
+				"prop": "variant",
+				"type": "'solid' | 'outline' | 'subtle'",
+				"required": false,
+				"default": "'subtle'"
+			},
+			{
+				"prop": "color",
+				"type": "'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'",
+				"required": false,
+				"default": "'default'"
+			},
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "Badge label content."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLSpanElement>, 'class'>"
+	},
+	"Button": {
+		"props": [
+			{
+				"prop": "variant",
+				"type": "'solid' | 'outline' | 'ghost' | 'flat'",
+				"required": false,
+				"default": "'solid'"
+			},
+			{
+				"prop": "color",
+				"type": "'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'",
+				"required": false,
+				"default": "'default'"
+			},
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLButtonAttributes, 'class'>"
+	},
+	"CardContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"CardFooter": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"CardHeader": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"CardRoot": {
+		"props": [
+			{
+				"prop": "variant",
+				"type": "'elevated' | 'outlined' | 'filled'",
+				"required": false,
+				"default": "'elevated'"
+			},
+			{
+				"prop": "padding",
+				"type": "'2' | '4' | '6' | '8'",
+				"required": false,
+				"description": "Shorthand padding applied to the root. Omit it to let Header, Content and Footer control their own spacing."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "Card sections — Header, Content, Footer."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"CheckboxRoot": {
+		"props": [
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'children'>"
+	},
+	"Code": {
+		"props": [
+			{
+				"prop": "code",
+				"type": "string",
+				"required": true,
+				"description": "The code to display (and copy). Kept as a string so copy is SSR-safe — no DOM scraping."
+			},
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"description": "Optional header label, e.g. a filename or language."
+			},
+			{
+				"prop": "copyable",
+				"type": "boolean",
+				"required": false,
+				"default": "true",
+				"description": "Show the copy-to-clipboard button."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root element."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"ComboboxContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"ComboboxInput": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsInputProps, 'class'>"
+	},
+	"ComboboxItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsItemProps, 'class'>"
+	},
+	"DialogContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"DialogDescription": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsDescriptionProps, 'class'>"
+	},
+	"DialogOverlay": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsOverlayProps, 'class'>"
+	},
+	"DialogTitle": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsTitleProps, 'class'>"
+	},
+	"DropdownMenuContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"DropdownMenuGroup": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsGroupProps, 'class'>"
+	},
+	"DropdownMenuItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsItemProps, 'class'>"
+	},
+	"DropdownMenuLabel": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsGroupHeadingProps, 'class'>"
+	},
+	"DropdownMenuSeparator": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsSeparatorProps, 'class'>"
+	},
+	"Heading": {
+		"props": [
+			{
+				"prop": "level",
+				"type": "1 | 2 | 3 | 4 | 5 | 6",
+				"required": false,
+				"default": "2",
+				"description": "Which heading element is rendered (h1–h6)."
+			},
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"description": "Visual size, deliberately decoupled from the semantic `level`."
+			},
+			{
+				"prop": "weight",
+				"type": "'normal' | 'medium' | 'bold'",
+				"required": false,
+				"default": "'bold'"
+			},
+			{
+				"prop": "color",
+				"type": "'inherit' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'",
+				"required": false,
+				"default": "'inherit'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "Heading text content."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLHeadingElement>, 'class'>"
+	},
+	"Input": {
+		"props": [
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "variant",
+				"type": "'outline' | 'filled'",
+				"required": false,
+				"default": "'outline'"
+			},
+			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLInputAttributes, 'class' | 'size'>"
+	},
+	"Label": {
+		"props": [
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Renders a visual required marker. This is decorative only — the control itself must still carry `required` (or `aria-required`) so assistive technology announces it."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'children'>"
+	},
+	"PopoverContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"RadioGroupItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsItemProps, 'class' | 'children'>"
+	},
+	"RadioGroupRoot": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class'>"
+	},
+	"SelectContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"SelectItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsItemProps, 'class'>"
+	},
+	"SelectTrigger": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsTriggerProps, 'class' | 'children'>"
+	},
+	"Separator": {
+		"props": [
+			{
+				"prop": "orientation",
+				"type": "'horizontal' | 'vertical'",
+				"required": false,
+				"default": "'horizontal'",
+				"description": "Reported to assistive technology as `aria-orientation`."
+			},
+			{
+				"prop": "decorative",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Drops the `separator` role so the divider is ignored by assistive technology. Use it for purely visual rules."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'orientation' | 'decorative'>"
+	},
+	"Skeleton": {
+		"props": [
+			{
+				"prop": "variant",
+				"type": "'text' | 'circle' | 'rect'",
+				"required": false,
+				"default": "'text'"
+			},
+			{
+				"prop": "width",
+				"type": "string",
+				"required": false,
+				"description": "Any CSS length. Defaults to `100%`."
+			},
+			{
+				"prop": "height",
+				"type": "string",
+				"required": false,
+				"description": "Any CSS length. Defaults to the variant's intrinsic height."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"Slider": {
+		"props": [
+			{
+				"prop": "type",
+				"type": "'single' | 'multiple'",
+				"required": false,
+				"default": "'single'"
+			},
+			{
+				"prop": "value",
+				"type": "number | number[]",
+				"required": false,
+				"description": "Current value(s). NOT bindable — read changes through `onValueChange`."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: number & number[]) => void",
+				"required": false,
+				"description": "Called when the value changes. This is how you track the slider."
+			},
+			{
+				"prop": "min",
+				"type": "number",
+				"required": false,
+				"description": "Minimum value."
+			},
+			{
+				"prop": "max",
+				"type": "number",
+				"required": false,
+				"description": "Maximum value."
+			},
+			{
+				"prop": "step",
+				"type": "number",
+				"required": false,
+				"description": "Step increment."
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false
+			},
+			{
+				"prop": "orientation",
+				"type": "'horizontal' | 'vertical'",
+				"required": false
+			},
+			{
+				"prop": "thumbLabel",
+				"type": "string",
+				"required": false,
+				"description": "Accessible name for the thumb(s). The `role=\"slider\"` element needs a name; in `multiple` mode each thumb gets the label suffixed with its position."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLSpanElement>, 'class'>"
+	},
+	"Spinner": {
+		"props": [
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "color",
+				"type": "'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'",
+				"required": false,
+				"default": "'default'"
+			},
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"default": "'Loading'",
+				"description": "Accessible label, exposed as `aria-label` on the status span."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root element."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLSpanElement>, 'class' | 'role'>"
+	},
+	"SwitchRoot": {
+		"props": [
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class'>"
+	},
+	"TabsContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"TabsList": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsListProps, 'class'>"
+	},
+	"TabsRoot": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class'>"
+	},
+	"TabsTrigger": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsTriggerProps, 'class'>"
+	},
+	"Text": {
+		"props": [
+			{
+				"prop": "as",
+				"type": "'p' | 'span' | 'div' | 'label' | 'strong' | 'em' | 'small' | 'li' | 'dt' | 'dd' | 'figcaption' | 'address' | 'cite' | 'code' | 'abbr' | 'time' | 'q' | 'blockquote' | 'pre'",
+				"required": false,
+				"default": "'p'",
+				"description": "Which HTML element is rendered."
+			},
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"description": "Text size."
+			},
+			{
+				"prop": "weight",
+				"type": "'normal' | 'medium' | 'bold'",
+				"required": false,
+				"description": "Font weight."
+			},
+			{
+				"prop": "color",
+				"type": "'inherit' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'",
+				"required": false,
+				"default": "'inherit'"
+			},
+			{
+				"prop": "align",
+				"type": "'left' | 'center' | 'right' | 'justify'",
+				"required": false,
+				"description": "Text alignment."
+			},
+			{
+				"prop": "truncate",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Truncate with an ellipsis on overflow."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "Text content."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
+	},
+	"Textarea": {
+		"props": [
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "variant",
+				"type": "'outline' | 'filled'",
+				"required": false,
+				"default": "'outline'"
+			},
+			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "resize",
+				"type": "'none' | 'vertical' | 'horizontal' | 'both'",
+				"required": false,
+				"default": "'vertical'",
+				"description": "Which axes the user may resize. Maps to CSS `resize`."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLTextareaAttributes, 'class'>"
+	},
+	"TooltipContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	}
+}

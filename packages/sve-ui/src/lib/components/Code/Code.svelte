@@ -9,6 +9,7 @@
     label?: string;
     /** Show the copy-to-clipboard button. */
     copyable?: boolean;
+    /** Extra classes merged onto the root element. */
     class?: string;
   }
 

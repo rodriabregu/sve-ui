@@ -33,8 +33,14 @@
 
   interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'class'> {
     variant?: Variant;
+    /**
+     * Shorthand padding applied to the root. Omit it to let Header, Content and
+     * Footer control their own spacing.
+     */
     padding?: Padding;
+    /** Extra classes merged onto the root. */
     class?: string;
+    /** Card sections — Header, Content, Footer. */
     children?: Snippet;
   }
 

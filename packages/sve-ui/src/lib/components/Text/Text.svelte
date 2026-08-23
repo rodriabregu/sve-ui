@@ -9,13 +9,20 @@
   type Color = 'inherit' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default';
 
   interface Props extends Omit<HTMLAttributes<HTMLElement>, 'class'> {
+    /** Which HTML element is rendered. */
     as?: As;
+    /** Text size. */
     size?: Size;
+    /** Font weight. */
     weight?: Weight;
     color?: Color;
+    /** Text alignment. */
     align?: Align;
+    /** Truncate with an ellipsis on overflow. */
     truncate?: boolean;
+    /** Extra classes merged onto the root. */
     class?: string;
+    /** Text content. */
     children?: Snippet;
   }
 

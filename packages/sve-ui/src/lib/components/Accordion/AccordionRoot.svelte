@@ -10,12 +10,22 @@
    * loosely-typed view of the Bits root — behavior is unchanged.
    */
   interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'class'> {
+    /**
+     * `single` allows one open item at a time; `multiple` allows many.
+     * @default 'single'
+     */
     type?: 'single' | 'multiple';
+    /** Controlled open item(s). Use `bind:value` for two-way binding. */
     value?: string | string[];
+    /** Called when the open item(s) change. */
     onValueChange?: (value: string & string[]) => void;
+    /** Disables every trigger in the accordion. */
     disabled?: boolean;
+    /** Keyboard focus loops from the last trigger back to the first. */
     loop?: boolean;
+    /** Extra classes merged onto the root. */
     class?: string;
+    /** Compose `Accordion.Item` blocks inside. */
     children?: Snippet;
   }
 
