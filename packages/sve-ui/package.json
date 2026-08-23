@@ -14,12 +14,19 @@
 		"url": "https://github.com/rodriabregu/sve-ui/issues"
 	},
 	"keywords": [
-		"components",
 		"svelte",
-		"kit",
-		"ui",
-		"vite",
-		"component library"
+		"svelte5",
+		"runes",
+		"component-library",
+		"ui-components",
+		"design-system",
+		"accessible",
+		"a11y",
+		"bits-ui",
+		"headless-ui",
+		"sveltekit",
+		"dark-mode",
+		"css-variables"
 	],
 	"exports": {
 		".": {

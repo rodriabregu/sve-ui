@@ -1,8 +1,19 @@
 .DS_Store
 node_modules
-/build
-/.svelte-kit
-/package
+
+# Build output. These need to be depth-independent: a leading-slash pattern is
+# root-relative, so `/.svelte-kit` did NOT cover apps/docs/.svelte-kit or
+# packages/sve-ui/dist, and prettier was walking generated files.
+**/build
+**/.svelte-kit
+**/dist
+**/package
+.vercel
+.turbo
+
+# Generated from the component sources by `pnpm gen:props` — formatting it would
+# fight the generator and break the drift guard.
+apps/docs/src/lib/docs/generated/
 .env
 .env.*
 !.env.example
