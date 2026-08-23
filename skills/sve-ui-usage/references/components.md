@@ -5,7 +5,11 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 ## Import style
 
 - **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Toggle`, `Progress`, `Meter`, `AspectRatio`, `Code`.
-- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`, `PinInput`, `RatingGroup`, `Stack`, `Flex`.
+- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`, `PinInput`, `RatingGroup`, `Stack`, `Flex`, `Calendar`, `RangeCalendar`.
+
+> **Date components need a peer install:** `pnpm add @internationalized/date`.
+> Dates are `DateValue`, NOT JavaScript `Date`. One copy only — two copies means
+> objects that stop lining up.
 
 ```svelte
 import { Button, Input, Badge, Slider } from 'sve-ui';
@@ -89,6 +93,52 @@ import { Dialog, Select, Tabs } from 'sve-ui';
     {/each}
   {/snippet}
 </RatingGroup.Root>
+
+<!-- Calendar. Dates are DateValue from @internationalized/date (a PEER dep).
+     `value` = selection, `placeholder` = month on screen. Both bindable and
+     SEPARATE: paging months must not change the selection.
+     PASS calendarLabel — Bits builds the name as `${calendarLabel} ${month} ${year}`
+     and defaults it to the literal word "Event", so unset it announces
+     "Event January 2026". The nav buttons' aria-labels are HARDCODED by Bits
+     ("Previous"/"Next") and cannot be overridden.
+     isDateDisabled = out of range; isDateUnavailable = exists but taken. Different.
+     `locale` changes month names AND which day the week starts on — not cosmetic.
+     Key weekdays by INDEX: narrow names are not unique ("T" twice). -->
+<Calendar.Root type="single" bind:value bind:placeholder calendarLabel="Departure date" locale={userLocale}>
+  {#snippet children({ months, weekdays })}
+    <Calendar.Header>
+      <Calendar.PrevButton>‹</Calendar.PrevButton>
+      <Calendar.Heading />
+      <Calendar.NextButton>›</Calendar.NextButton>
+    </Calendar.Header>
+    {#each months as month (month.value)}
+      <Calendar.Grid>
+        <Calendar.GridHead>
+          <Calendar.GridRow>
+            {#each weekdays as day, i (i)}<Calendar.HeadCell>{day}</Calendar.HeadCell>{/each}
+          </Calendar.GridRow>
+        </Calendar.GridHead>
+        <Calendar.GridBody>
+          {#each month.weeks as week, i (i)}
+            <Calendar.GridRow>
+              {#each week as date (date)}
+                <Calendar.Cell {date} month={month.value}><Calendar.Day /></Calendar.Cell>
+              {/each}
+            </Calendar.GridRow>
+          {/each}
+        </Calendar.GridBody>
+      </Calendar.Grid>
+    {/each}
+  {/snippet}
+</Calendar.Root>
+
+<!-- RangeCalendar: same composition; value is { start, end }. Bits handles the
+     two-step pick and normalises a backwards selection. minDays/maxDays bound
+     the span; excludeDisabled refuses a range straddling an unavailable date.
+     Header/Grid/HeadCell/nav are the SAME components Calendar uses. -->
+<RangeCalendar.Root bind:value calendarLabel="Stay dates" minDays={2} maxDays={14}>
+  ...
+</RangeCalendar.Root>
 
 <!-- Toggle: a pressed BUTTON (toolbar), not a setting. Switch is the setting. -->
 <Toggle bind:pressed={bold} aria-label="Bold">B</Toggle>

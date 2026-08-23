@@ -471,6 +471,253 @@
 		],
 		"spreads": "Omit<HTMLButtonAttributes, 'class'>"
 	},
+	"CalendarCell": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the cell."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarDay": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the day."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarGrid": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarGridBody": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarGridHead": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the head."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarGridRow": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarHeadCell": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the weekday cell."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarHeader": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the header."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarHeading": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the heading."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarMonthSelect": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the select."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarNextButton": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarPrevButton": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"CalendarRoot": {
+		"props": [
+			{
+				"prop": "type",
+				"type": "'single' | 'multiple'",
+				"required": true,
+				"description": "`single` selects one date, `multiple` selects several. Required, because it also decides the shape of `value`."
+			},
+			{
+				"prop": "value",
+				"type": "DateValue | DateValue[] | undefined",
+				"required": false,
+				"description": "Selected date, or dates in `multiple` mode. Bindable. A `DateValue` from `@internationalized/date`, not a JS `Date`."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: DateValue | DateValue[] | undefined) => void",
+				"required": false,
+				"description": "Called when the selection changes."
+			},
+			{
+				"prop": "placeholder",
+				"type": "DateValue",
+				"required": false,
+				"description": "The month currently on screen. Bindable."
+			},
+			{
+				"prop": "minValue",
+				"type": "DateValue",
+				"required": false,
+				"description": "Earliest selectable date."
+			},
+			{
+				"prop": "maxValue",
+				"type": "DateValue",
+				"required": false,
+				"description": "Latest selectable date."
+			},
+			{
+				"prop": "isDateUnavailable",
+				"type": "(date: DateValue) => boolean",
+				"required": false,
+				"description": "Return true for dates that exist but cannot be picked — a booked day."
+			},
+			{
+				"prop": "isDateDisabled",
+				"type": "(date: DateValue) => boolean",
+				"required": false,
+				"description": "Return true for dates to disable outright."
+			},
+			{
+				"prop": "numberOfMonths",
+				"type": "number",
+				"required": false,
+				"default": "1",
+				"description": "How many months to show at once."
+			},
+			{
+				"prop": "locale",
+				"type": "string",
+				"required": false,
+				"default": "'en'",
+				"description": "BCP-47 locale driving month names, weekday order and numerals."
+			},
+			{
+				"prop": "calendarLabel",
+				"type": "string",
+				"required": false,
+				"default": "'Event'",
+				"description": "What this calendar is FOR. Bits builds the root's accessible name as `${calendarLabel} ${month} ${year}`, and its default is the literal word \"Event\" — so an unset calendar announces as \"Event January 2026\", which tells the user nothing. Pass \"Departure date\", \"Booking\", \"Due date\"."
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "readonly",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "monthFormat",
+				"type": "'long' | 'short' | 'narrow' | 'numeric' | '2-digit'",
+				"required": false,
+				"default": "false",
+				"description": "Show the month and year dropdowns in the header."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[SnippetProps]>",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+	},
+	"CalendarYearSelect": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the select."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
 	"CardContent": {
 		"props": [
 			{
@@ -1360,6 +1607,134 @@
 			}
 		],
 		"spreads": "Omit<BitsRootProps, 'class'>"
+	},
+	"RangeCalendarCell": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the cell."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"RangeCalendarDay": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the day."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"RangeCalendarRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "{ start: DateValue | undefined; end: DateValue | undefined }",
+				"required": false,
+				"description": "The selected range, as `{ start, end }` of `DateValue`s from `@internationalized/date`. Bindable."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: DateRange) => void",
+				"required": false,
+				"description": "Called when the range changes."
+			},
+			{
+				"prop": "placeholder",
+				"type": "DateValue",
+				"required": false,
+				"description": "The month currently on screen. Bindable."
+			},
+			{
+				"prop": "minValue",
+				"type": "DateValue",
+				"required": false,
+				"description": "Earliest selectable date."
+			},
+			{
+				"prop": "maxValue",
+				"type": "DateValue",
+				"required": false,
+				"description": "Latest selectable date."
+			},
+			{
+				"prop": "minDays",
+				"type": "number",
+				"required": false,
+				"description": "Smallest number of days a range may span."
+			},
+			{
+				"prop": "maxDays",
+				"type": "number",
+				"required": false,
+				"description": "Largest number of days a range may span."
+			},
+			{
+				"prop": "excludeDisabled",
+				"type": "boolean",
+				"required": false,
+				"description": "When true, a range may not straddle an unavailable date — picking one that would is rejected rather than silently swallowing the blocked day."
+			},
+			{
+				"prop": "isDateUnavailable",
+				"type": "(date: DateValue) => boolean",
+				"required": false
+			},
+			{
+				"prop": "isDateDisabled",
+				"type": "(date: DateValue) => boolean",
+				"required": false
+			},
+			{
+				"prop": "numberOfMonths",
+				"type": "number",
+				"required": false,
+				"default": "1"
+			},
+			{
+				"prop": "locale",
+				"type": "string",
+				"required": false,
+				"default": "'en'",
+				"description": "BCP-47 locale driving month names, weekday order and numerals."
+			},
+			{
+				"prop": "calendarLabel",
+				"type": "string",
+				"required": false,
+				"default": "'Event'",
+				"description": "What this calendar is FOR. Bits builds the accessible name as `${calendarLabel} ${month} ${year}` and defaults it to the literal word \"Event\", so leave it unset and it announces \"Event January 2026\"."
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "readonly",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[SnippetProps]>",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
 	},
 	"RatingGroupItem": {
 		"props": [

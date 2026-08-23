@@ -6,6 +6,9 @@ settings:
 
 catalogs:
   default:
+    '@internationalized/date':
+      specifier: ^3.8.1
+      version: 3.12.2
     '@sveltejs/kit':
       specifier: ^2.66.0
       version: 2.66.0
@@ -72,6 +75,9 @@ importers:
         specifier: workspace:*
         version: link:../../packages/sve-ui
     devDependencies:
+      '@internationalized/date':
+        specifier: 'catalog:'
+        version: 3.12.2
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
@@ -143,7 +149,7 @@ importers:
         version: 2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.66.0(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
     devDependencies:
       '@internationalized/date':
-        specifier: ^3.8.1
+        specifier: 'catalog:'
         version: 3.12.2
       '@repo/eslint-config':
         specifier: workspace:*

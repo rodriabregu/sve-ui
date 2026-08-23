@@ -50,13 +50,14 @@
 		"dist"
 	],
 	"peerDependencies": {
+		"@internationalized/date": "^3.8.1",
 		"svelte": "^5"
 	},
 	"dependencies": {
 		"bits-ui": "^2.18.1"
 	},
 	"devDependencies": {
-		"@internationalized/date": "^3.8.1",
+		"@internationalized/date": "catalog:",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@sveltejs/kit": "catalog:",

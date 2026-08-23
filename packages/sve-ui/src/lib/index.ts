@@ -9,6 +9,7 @@
  * ContextMenu namespace, ScrollArea namespace, Toolbar namespace,
  * Menubar namespace, Pagination namespace, Breadcrumb namespace,
  * NavigationMenu namespace, Command namespace, PinInput namespace,
+ * Calendar namespace, RangeCalendar namespace,
  * RatingGroup namespace,
  * variant helper + types, theme types.
  */
@@ -122,6 +123,14 @@ export * as PinInput from './components/PinInput/index.js';
 
 // RatingGroup namespace (composed over bits-ui)
 export * as RatingGroup from './components/RatingGroup/index.js';
+
+// Calendar namespace (composed over bits-ui). Dates are `DateValue` from
+// @internationalized/date, which is a peerDependency — install it alongside
+// sve-ui if you use any date component.
+export * as Calendar from './components/Calendar/index.js';
+
+// RangeCalendar namespace (shares the styled chrome with Calendar)
+export * as RangeCalendar from './components/RangeCalendar/index.js';
 
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';

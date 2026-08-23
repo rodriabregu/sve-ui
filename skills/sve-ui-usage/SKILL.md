@@ -22,6 +22,7 @@ Load when building or editing a Svelte 5 app that consumes `sve-ui` — importin
   `<Dialog.Trigger>{#snippet child({ props })}<Button {...props}>Open</Button>{/snippet}</Dialog.Trigger>`
 - Theme by overriding `--sve-*` CSS variables (e.g. `--sve-color-primary`). Do NOT put Tailwind layout/margin utilities on sve-ui components — scoped styles win; wrap in a `<div>` instead.
 - `AlertDialog.Action` does NOT close the dialog (only `Cancel` does) — close it yourself, so a failed async operation can keep it open. `AlertDialog`/`Sheet` both REQUIRE a `Title`; Bits wires `aria-labelledby` to it.
+- Date components require the `@internationalized/date` PEER dependency, and dates are `DateValue` not `Date`. `Calendar`/`RangeCalendar` need `calendarLabel` (Bits defaults it to the literal word "Event"); their nav buttons' aria-labels are hardcoded by Bits and cannot be overridden. `isDateDisabled` (out of range) and `isDateUnavailable` (exists but taken) are different. Key weekdays by INDEX — narrow names are not unique.
 - `Stack`/`Flex`: `gap` is a spacing token key, and there is NO margin/padding/width prop by design. Reach for CSS instead of asking for more props. `Flex` defaults `align` to `center`, `Stack` to `stretch`.
 - `PinInput`: `<label for>` does NOT work — the real input's id is Bits-internal and unpredictable. Name it with `aria-label` or `aria-labelledby` on Root. `maxlength` is required.
 - `RatingGroup` needs BOTH `aria-label` and `aria-valuetext` (pass the function form, so the scale is announced and not a bare number).
