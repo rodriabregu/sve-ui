@@ -667,6 +667,119 @@
 		],
 		"spreads": "Omit<BitsItemProps, 'class'>"
 	},
+	"CommandEmpty": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the empty state."
+			}
+		],
+		"spreads": "Omit<BitsEmptyProps, 'class'>"
+	},
+	"CommandGroup": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the group."
+			}
+		],
+		"spreads": "Omit<BitsGroupProps, 'class'>"
+	},
+	"CommandGroupHeading": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the heading."
+			}
+		],
+		"spreads": "Omit<BitsHeadingProps, 'class'>"
+	},
+	"CommandInput": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "string",
+				"required": false,
+				"default": "''",
+				"description": "The search query. Bindable."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the input."
+			}
+		],
+		"spreads": "Omit<BitsInputProps, 'class' | 'value'>"
+	},
+	"CommandItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the item."
+			}
+		],
+		"spreads": "Omit<BitsItemProps, 'class'>"
+	},
+	"CommandList": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the list."
+			}
+		],
+		"spreads": "Omit<BitsListProps, 'class'>"
+	},
+	"CommandLoading": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the loading region."
+			}
+		],
+		"spreads": "Omit<BitsLoadingProps, 'class'>"
+	},
+	"CommandRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "string",
+				"required": false,
+				"default": "''",
+				"description": "The highlighted item's value. Bindable."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'value'>"
+	},
+	"CommandSeparator": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the divider."
+			}
+		],
+		"spreads": "Omit<BitsSeparatorProps, 'class'>"
+	},
 	"ContextMenuContent": {
 		"props": [
 			{
@@ -965,6 +1078,79 @@
 			}
 		],
 		"spreads": "Omit<BitsRootProps, 'class' | 'value' | 'max' | 'min'>"
+	},
+	"NavigationMenuContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the panel."
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"NavigationMenuLink": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the link."
+			}
+		],
+		"spreads": "Omit<BitsLinkProps, 'class'>"
+	},
+	"NavigationMenuList": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the list."
+			}
+		],
+		"spreads": "Omit<BitsListProps, 'class'>"
+	},
+	"NavigationMenuRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "string",
+				"required": false,
+				"default": "''",
+				"description": "Which menu is open, by its Item value. Bindable."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'value'>"
+	},
+	"NavigationMenuTrigger": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the trigger."
+			}
+		],
+		"spreads": "Omit<BitsTriggerProps, 'class'>"
+	},
+	"NavigationMenuViewport": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the viewport."
+			}
+		],
+		"spreads": "Omit<BitsViewportProps, 'class'>"
 	},
 	"PaginationNextButton": {
 		"props": [

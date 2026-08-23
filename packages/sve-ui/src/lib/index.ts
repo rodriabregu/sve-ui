@@ -7,6 +7,7 @@
  * AlertDialog namespace, Sheet namespace, LinkPreview namespace,
  * ContextMenu namespace, ScrollArea namespace, Toolbar namespace,
  * Menubar namespace, Pagination namespace, Breadcrumb namespace,
+ * NavigationMenu namespace, Command namespace,
  * variant helper + types, theme types.
  */
 
@@ -105,6 +106,12 @@ export * as Pagination from './components/Pagination/index.js';
 
 // Breadcrumb namespace (custom — native nav + ordered list semantics)
 export * as Breadcrumb from './components/Breadcrumb/index.js';
+
+// NavigationMenu namespace (composed over bits-ui) — site navigation
+export * as NavigationMenu from './components/NavigationMenu/index.js';
+
+// Command namespace (composed over bits-ui) — the command-palette pattern
+export * as Command from './components/Command/index.js';
 
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';
