@@ -4,7 +4,7 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 
 ## Import style
 
-- **Singles (default exports):** `Button`, `Input`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Code`.
+- **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Code`.
 - **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`.
 
 ```svelte
@@ -34,6 +34,13 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 <!-- Heading / Text -->
 <Heading level={2} size="lg" weight="bold">Section</Heading>
 <Text size="sm">Body copy.</Text>
+
+<!-- Skeleton: variant text|circle|rect. Always aria-hidden — announce on the region. -->
+<div role="status" aria-busy="true" aria-label="Loading profile">
+  <Skeleton variant="circle" width="3rem" height="3rem" />
+  <Skeleton variant="text" width="12rem" />
+  <Skeleton variant="rect" height="6rem" />
+</div>
 ```
 
 ## Forms
@@ -45,6 +52,14 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 <!-- Input -->
 <label>Email <Input type="email" placeholder="you@example.com" /></label>
 <Input invalid bind:value={pw} />
+
+<!-- Label: pair `for` with the control's `id`. `required` renders a decorative asterisk only. -->
+<Label for="bio" required>Bio</Label>
+<Textarea id="bio" required />
+
+<!-- Textarea: resize none|vertical|horizontal|both (default vertical) -->
+<Textarea rows={5} resize="vertical" bind:value={bio} />
+<Textarea invalid aria-describedby="bio-error" />
 
 <!-- Switch / Checkbox: need aria-label if no visible label -->
 <Switch.Root bind:checked={on} aria-label="Notifications" />
@@ -151,6 +166,18 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
   </Tooltip.Root>
 </Tooltip.Provider>
 ```
+
+## Layout
+
+```svelte
+<!-- Separator: role="separator" + aria-orientation. Use `decorative` for purely visual rules. -->
+<Separator />
+<Separator orientation="vertical" />
+<Separator decorative />
+```
+
+A vertical separator is 1px wide and stretches to its parent, so the parent needs a resolved height
+(a flex row with `align-items: stretch`).
 
 ## Utilities
 

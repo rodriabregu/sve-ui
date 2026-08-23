@@ -36,7 +36,7 @@ export function GET() {
 ## Usage rules
 
 - Install with \`pnpm add sve-ui\`. Import \`sve-ui/theme.css\` ONCE at the app root; without it components render unstyled. The consumer project needs no Tailwind and no config.
-- Single components are default imports: \`Button, Input, Badge, Spinner, Text, Heading, Slider, Code\`.
+- Single components are default imports: \`Button, Input, Textarea, Label, Badge, Spinner, Text, Heading, Slider, Skeleton, Separator, Code\`.
 - Composite components are namespaces composed with dots: \`Dialog.*, Select.*, Combobox.*, Card.*, Alert.*, Tabs.*, Accordion.*, Avatar.*, DropdownMenu.*, Popover.*, Tooltip.*, Switch.*, Checkbox.*, RadioGroup.*\`.
 - Overlays (Dialog/DropdownMenu/Popover/Tooltip/Select/Combobox) portal to <body>. Mirror the theme class (\`dark\`/\`light\`) onto <body> so portaled content gets the right --sve-* tokens.
 - Use a custom element as an overlay trigger via the Bits \`child\` snippet: \`<Dialog.Trigger>{#snippet child({ props })}<Button {...props}>Open</Button>{/snippet}</Dialog.Trigger>\`.

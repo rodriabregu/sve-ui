@@ -30,7 +30,7 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'card', name: 'Card', blurb: 'Surface container for grouped content.', ready: true },
 			{ slug: 'heading', name: 'Heading', blurb: 'Semantic, sized display titles.', ready: true },
 			{ slug: 'text', name: 'Text', blurb: 'Body copy with size and tone.', ready: true },
-			{ slug: 'skeleton', name: 'Skeleton', blurb: 'Loading placeholder for content.' }
+			{ slug: 'skeleton', name: 'Skeleton', blurb: 'Loading placeholder for content.', status: 'new', ready: true }
 		]
 	},
 	{
@@ -44,8 +44,8 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'select', name: 'Select', blurb: 'Listbox for picking one option.', status: 'new', ready: true },
 			{ slug: 'combobox', name: 'Combobox', blurb: 'Filterable autocomplete select.', status: 'new', ready: true },
 			{ slug: 'slider', name: 'Slider', blurb: 'Pick a value along a range.', status: 'new', ready: true },
-			{ slug: 'textarea', name: 'Textarea', blurb: 'Multi-line text field.' },
-			{ slug: 'label', name: 'Label', blurb: 'Accessible form label.' },
+			{ slug: 'textarea', name: 'Textarea', blurb: 'Multi-line text field.', status: 'new', ready: true },
+			{ slug: 'label', name: 'Label', blurb: 'Accessible form label.', status: 'new', ready: true },
 			{ slug: 'toggle', name: 'Toggle', blurb: 'Two-state toggle button.' },
 			{ slug: 'toggle-group', name: 'Toggle Group', blurb: 'Grouped toggle buttons.' },
 			{ slug: 'calendar', name: 'Calendar', blurb: 'Date grid for selection.' },
@@ -104,7 +104,7 @@ export const componentGroups: ComponentGroup[] = [
 		items: [
 			{ slug: 'stack', name: 'Stack', blurb: 'Vertical spacing primitive.' },
 			{ slug: 'flex', name: 'Flex', blurb: 'Flexbox layout primitive.' },
-			{ slug: 'separator', name: 'Separator', blurb: 'Visual or semantic divider.' },
+			{ slug: 'separator', name: 'Separator', blurb: 'Visual or semantic divider.', status: 'new', ready: true },
 			{ slug: 'scroll-area', name: 'Scroll Area', blurb: 'Styled custom scroll container.' },
 			{ slug: 'aspect-ratio', name: 'Aspect Ratio', blurb: 'Constrain content ratio.' }
 		]
