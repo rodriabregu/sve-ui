@@ -71,9 +71,9 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'tabs', name: 'Tabs', blurb: 'Switch between related panels.', status: 'new', ready: true },
 			{ slug: 'accordion', name: 'Accordion', blurb: 'Collapsible disclosure sections.', status: 'new', ready: true },
 			{ slug: 'sidebar', name: 'Sidebar', blurb: 'Composable app-shell navigation.' },
-			{ slug: 'breadcrumb', name: 'Breadcrumb', blurb: 'Hierarchical page trail.' },
+			{ slug: 'breadcrumb', name: 'Breadcrumb', blurb: 'Hierarchical page trail.', status: 'new', ready: true },
 			{ slug: 'navigation-menu', name: 'Navigation Menu', blurb: 'Top-level nav with menus.' },
-			{ slug: 'menubar', name: 'Menubar', blurb: 'Desktop-style menu bar.' },
+			{ slug: 'menubar', name: 'Menubar', blurb: 'Desktop-style menu bar.', status: 'new', ready: true },
 			{ slug: 'collapsible', name: 'Collapsible', blurb: 'Single expand/collapse region.', status: 'new', ready: true },
 			{ slug: 'toolbar', name: 'Toolbar', blurb: 'Grouped controls container.', status: 'new', ready: true }
 		]
@@ -96,7 +96,7 @@ export const componentGroups: ComponentGroup[] = [
 		label: 'Data',
 		items: [
 			{ slug: 'table', name: 'Table', blurb: 'Sortable, styled data table.' },
-			{ slug: 'pagination', name: 'Pagination', blurb: 'Page-by-page navigation.' }
+			{ slug: 'pagination', name: 'Pagination', blurb: 'Page-by-page navigation.', status: 'new', ready: true }
 		]
 	},
 	{

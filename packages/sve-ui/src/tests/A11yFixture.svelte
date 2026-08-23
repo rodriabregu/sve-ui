@@ -31,6 +31,9 @@
 	import * as ContextMenu from '$lib/components/ContextMenu/index.js';
 	import * as ScrollArea from '$lib/components/ScrollArea/index.js';
 	import * as Toolbar from '$lib/components/Toolbar/index.js';
+	import * as Menubar from '$lib/components/Menubar/index.js';
+	import * as Pagination from '$lib/components/Pagination/index.js';
+	import * as Breadcrumb from '$lib/components/Breadcrumb/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -56,6 +59,7 @@
 	let toggleGroupValue = $state('left');
 	let collapsibleOpen = $state(false);
 	let toolbarMarks = $state<string[]>(['bold']);
+	let paginationPage = $state(1);
 </script>
 
 <!-- Display -->
@@ -136,6 +140,37 @@
 	</Accordion.Root>
 </section>
 
+<section aria-label="Menubar">
+	<Menubar.Root aria-label="Main">
+		<Menubar.Menu>
+			<Menubar.Trigger>File</Menubar.Trigger>
+		</Menubar.Menu>
+	</Menubar.Root>
+</section>
+<section aria-label="Breadcrumb trail">
+	<Breadcrumb.Root>
+		<Breadcrumb.List>
+			<Breadcrumb.Item><Breadcrumb.Link href="/">Home</Breadcrumb.Link></Breadcrumb.Item>
+			<Breadcrumb.Separator />
+			<Breadcrumb.Item><Breadcrumb.Link current>Settings</Breadcrumb.Link></Breadcrumb.Item>
+		</Breadcrumb.List>
+	</Breadcrumb.Root>
+</section>
+<section aria-label="Pagination region">
+	<nav aria-label="Pagination">
+		<Pagination.Root count={50} perPage={10} bind:page={paginationPage}>
+			{#snippet children({ pages })}
+				<Pagination.PrevButton aria-label="Previous page">Prev</Pagination.PrevButton>
+				{#each pages as p (p.key)}
+					{#if p.type === 'page'}
+						<Pagination.Page page={p}>{p.value}</Pagination.Page>
+					{/if}
+				{/each}
+				<Pagination.NextButton aria-label="Next page">Next</Pagination.NextButton>
+			{/snippet}
+		</Pagination.Root>
+	</nav>
+</section>
 <section aria-label="Collapsible">
 	<Collapsible.Root bind:open={collapsibleOpen}>
 		<Collapsible.Trigger>Show details</Collapsible.Trigger>

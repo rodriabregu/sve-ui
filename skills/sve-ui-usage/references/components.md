@@ -5,7 +5,7 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 ## Import style
 
 - **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Toggle`, `Progress`, `Meter`, `AspectRatio`, `Code`.
-- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`.
+- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`.
 
 ```svelte
 import { Button, Input, Badge, Slider } from 'sve-ui';
@@ -141,6 +141,54 @@ import { Dialog, Select, Tabs } from 'sve-ui';
     <Accordion.Content>…</Accordion.Content>
   </Accordion.Item>
 </Accordion.Root>
+
+<!-- Collapsible: ONE independent region. Accordion is a SET that knows about
+     itself (one-open-at-a-time + arrow keys between triggers). -->
+<Collapsible.Root bind:open={open}>
+  <Collapsible.Trigger>Shipping details</Collapsible.Trigger>
+  <Collapsible.Content>Ships in 2-3 days.</Collapsible.Content>
+</Collapsible.Root>
+
+<!-- Menubar: desktop-app chrome, NOT site nav and NOT a row of dropdowns.
+     Arrow keys move between menus; hovering a sibling while open switches to it.
+     Root needs aria-label. Item/Group/Label/Separator are the SHARED menu parts. -->
+<Menubar.Root aria-label="Main">
+  <Menubar.Menu>
+    <Menubar.Trigger>File</Menubar.Trigger>
+    <Menubar.Content>
+      <Menubar.Item>New</Menubar.Item>
+      <Menubar.Separator />
+      <Menubar.Item>Quit</Menubar.Item>
+    </Menubar.Content>
+  </Menubar.Menu>
+</Menubar.Root>
+
+<!-- Breadcrumb: custom (native nav + <ol>). LAST crumb takes `current` — renders
+     as text with aria-current="page", not a dead-end link. Separators aria-hidden. -->
+<Breadcrumb.Root>
+  <Breadcrumb.List>
+    <Breadcrumb.Item><Breadcrumb.Link href="/">Home</Breadcrumb.Link></Breadcrumb.Item>
+    <Breadcrumb.Separator />
+    <Breadcrumb.Item><Breadcrumb.Link current>Settings</Breadcrumb.Link></Breadcrumb.Item>
+  </Breadcrumb.List>
+</Breadcrumb.Root>
+
+<!-- Pagination: Root takes count + perPage and hands you a `pages` snippet prop;
+     YOU render the buttons. `page` is bindable. Wrap in <nav aria-label="Pagination">.
+     Arrow-only Prev/Next need aria-label. -->
+<nav aria-label="Pagination">
+  <Pagination.Root count={100} perPage={10} bind:page={page}>
+    {#snippet children({ pages })}
+      <Pagination.PrevButton aria-label="Previous page">Prev</Pagination.PrevButton>
+      {#each pages as p (p.key)}
+        {#if p.type === 'page'}
+          <Pagination.Page page={p}>{p.value}</Pagination.Page>
+        {:else}<span>…</span>{/if}
+      {/each}
+      <Pagination.NextButton aria-label="Next page">Next</Pagination.NextButton>
+    {/snippet}
+  </Pagination.Root>
+</nav>
 ```
 
 ## Overlays

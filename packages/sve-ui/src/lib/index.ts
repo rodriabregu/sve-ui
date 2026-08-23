@@ -6,6 +6,7 @@
  * Toggle, ToggleGroup namespace, Collapsible namespace, Progress, Meter, AspectRatio,
  * AlertDialog namespace, Sheet namespace, LinkPreview namespace,
  * ContextMenu namespace, ScrollArea namespace, Toolbar namespace,
+ * Menubar namespace, Pagination namespace, Breadcrumb namespace,
  * variant helper + types, theme types.
  */
 
@@ -94,6 +95,16 @@ export * as ScrollArea from './components/ScrollArea/index.js';
 
 // Toolbar namespace (composed over bits-ui)
 export * as Toolbar from './components/Toolbar/index.js';
+
+// Menubar namespace (composed over bits-ui; shares the styled menu parts with
+// DropdownMenu and ContextMenu)
+export * as Menubar from './components/Menubar/index.js';
+
+// Pagination namespace (composed over bits-ui)
+export * as Pagination from './components/Pagination/index.js';
+
+// Breadcrumb namespace (custom — native nav + ordered list semantics)
+export * as Breadcrumb from './components/Breadcrumb/index.js';
 
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';

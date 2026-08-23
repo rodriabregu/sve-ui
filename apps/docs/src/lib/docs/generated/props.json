@@ -340,6 +340,104 @@
 		],
 		"spreads": "Omit<HTMLAttributes<HTMLSpanElement>, 'class'>"
 	},
+	"BreadcrumbItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the item."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "A `Breadcrumb.Link`, or plain text for the current page."
+			}
+		],
+		"spreads": "Omit<HTMLLiAttributes, 'class'>"
+	},
+	"BreadcrumbLink": {
+		"props": [
+			{
+				"prop": "current",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks this as the page the user is on. The last crumb should set it: it renders as plain text instead of a link and reports `aria-current=\"page\"`, because a link to the page you are already on is a dead end."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the link."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAnchorAttributes, 'class'>"
+	},
+	"BreadcrumbList": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the list."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "Compose `Breadcrumb.Item` blocks inside."
+			}
+		],
+		"spreads": "Omit<HTMLOlAttributes, 'class'>"
+	},
+	"BreadcrumbRoot": {
+		"props": [
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"default": "'Breadcrumb'",
+				"description": "Accessible name for the navigation landmark."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the nav."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "Compose `Breadcrumb.List` inside."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class' | 'aria-label'>"
+	},
+	"BreadcrumbSeparator": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the separator."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "Custom glyph. Defaults to a chevron."
+			}
+		],
+		"spreads": "Omit<HTMLLiAttributes, 'class'>"
+	},
 	"Button": {
 		"props": [
 			{
@@ -794,6 +892,39 @@
 		],
 		"spreads": "Omit<BitsSeparatorProps, 'class'>"
 	},
+	"MenubarContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the menu panel."
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"MenubarRoot": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the menubar."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class'>"
+	},
+	"MenubarTrigger": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the trigger."
+			}
+		],
+		"spreads": "Omit<BitsTriggerProps, 'class'>"
+	},
 	"Meter": {
 		"props": [
 			{
@@ -834,6 +965,57 @@
 			}
 		],
 		"spreads": "Omit<BitsRootProps, 'class' | 'value' | 'max' | 'min'>"
+	},
+	"PaginationNextButton": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			}
+		],
+		"spreads": "Omit<BitsNextProps, 'class'>"
+	},
+	"PaginationPage": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the page button."
+			}
+		],
+		"spreads": "Omit<BitsPageProps, 'class'>"
+	},
+	"PaginationPrevButton": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			}
+		],
+		"spreads": "Omit<BitsPrevProps, 'class'>"
+	},
+	"PaginationRoot": {
+		"props": [
+			{
+				"prop": "page",
+				"type": "number",
+				"required": false,
+				"default": "1",
+				"description": "Current page number. Bindable."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'page'>"
 	},
 	"PopoverContent": {
 		"props": [

@@ -22,6 +22,9 @@ Load when building or editing a Svelte 5 app that consumes `sve-ui` — importin
   `<Dialog.Trigger>{#snippet child({ props })}<Button {...props}>Open</Button>{/snippet}</Dialog.Trigger>`
 - Theme by overriding `--sve-*` CSS variables (e.g. `--sve-color-primary`). Do NOT put Tailwind layout/margin utilities on sve-ui components — scoped styles win; wrap in a `<div>` instead.
 - `AlertDialog.Action` does NOT close the dialog (only `Cancel` does) — close it yourself, so a failed async operation can keep it open. `AlertDialog`/`Sheet` both REQUIRE a `Title`; Bits wires `aria-labelledby` to it.
+- `Menubar` is desktop-application chrome, not website navigation — it assumes hover and a wide screen. Use `NavigationMenu` for site nav.
+- `Breadcrumb`: the LAST crumb takes `current`, which renders it as text with `aria-current="page"` instead of a dead-end link.
+- `Pagination.Root` renders nothing itself — it hands you a `pages` snippet prop and you render the buttons. `page` is bindable.
 - `ContextMenu` is an accelerator, never the only route: right-click is undiscoverable and touch has none. Mirror every action in a visible control.
 - `ScrollArea` default `type="hover"` does not even mount the scrollbar until pointer enter — use `type="always"` unless the overflow is obvious. Put the size constraint on `Root`.
 - `Toolbar` needs `aria-label` on Root. Use `Toolbar.Link` for navigation (stays a real anchor) and `Toolbar.Button` for actions — they are not interchangeable.
