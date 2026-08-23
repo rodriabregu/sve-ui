@@ -75,7 +75,7 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'navigation-menu', name: 'Navigation Menu', blurb: 'Top-level nav with menus.' },
 			{ slug: 'menubar', name: 'Menubar', blurb: 'Desktop-style menu bar.' },
 			{ slug: 'collapsible', name: 'Collapsible', blurb: 'Single expand/collapse region.', status: 'new', ready: true },
-			{ slug: 'toolbar', name: 'Toolbar', blurb: 'Grouped controls container.' }
+			{ slug: 'toolbar', name: 'Toolbar', blurb: 'Grouped controls container.', status: 'new', ready: true }
 		]
 	},
 	{
@@ -88,7 +88,7 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'alert-dialog', name: 'Alert Dialog', blurb: 'Confirmation modal.', status: 'new', ready: true },
 			{ slug: 'command', name: 'Command', blurb: 'Command palette / fuzzy search menu.' },
 			{ slug: 'sheet', name: 'Sheet', blurb: 'Side drawer panel.', status: 'new', ready: true },
-			{ slug: 'context-menu', name: 'Context Menu', blurb: 'Right-click action menu.' },
+			{ slug: 'context-menu', name: 'Context Menu', blurb: 'Right-click action menu.', status: 'new', ready: true },
 			{ slug: 'link-preview', name: 'Link Preview', blurb: 'Hover card preview.', status: 'new', ready: true }
 		]
 	},
@@ -105,7 +105,7 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'stack', name: 'Stack', blurb: 'Vertical spacing primitive.' },
 			{ slug: 'flex', name: 'Flex', blurb: 'Flexbox layout primitive.' },
 			{ slug: 'separator', name: 'Separator', blurb: 'Visual or semantic divider.', status: 'new', ready: true },
-			{ slug: 'scroll-area', name: 'Scroll Area', blurb: 'Styled custom scroll container.' },
+			{ slug: 'scroll-area', name: 'Scroll Area', blurb: 'Styled custom scroll container.', status: 'new', ready: true },
 			{ slug: 'aspect-ratio', name: 'Aspect Ratio', blurb: 'Constrain content ratio.', status: 'new', ready: true }
 		]
 	},

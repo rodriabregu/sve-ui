@@ -22,6 +22,9 @@ Load when building or editing a Svelte 5 app that consumes `sve-ui` — importin
   `<Dialog.Trigger>{#snippet child({ props })}<Button {...props}>Open</Button>{/snippet}</Dialog.Trigger>`
 - Theme by overriding `--sve-*` CSS variables (e.g. `--sve-color-primary`). Do NOT put Tailwind layout/margin utilities on sve-ui components — scoped styles win; wrap in a `<div>` instead.
 - `AlertDialog.Action` does NOT close the dialog (only `Cancel` does) — close it yourself, so a failed async operation can keep it open. `AlertDialog`/`Sheet` both REQUIRE a `Title`; Bits wires `aria-labelledby` to it.
+- `ContextMenu` is an accelerator, never the only route: right-click is undiscoverable and touch has none. Mirror every action in a visible control.
+- `ScrollArea` default `type="hover"` does not even mount the scrollbar until pointer enter — use `type="always"` unless the overflow is obvious. Put the size constraint on `Root`.
+- `Toolbar` needs `aria-label` on Root. Use `Toolbar.Link` for navigation (stays a real anchor) and `Toolbar.Button` for actions — they are not interchangeable.
 - `LinkPreview` is hover-only: keyboard and touch users never see it. Never put the only copy of an action or a fact inside it — use `Popover` when the content is essential.
 - `Progress`, `Meter` and `ToggleGroup.Root` need an `aria-label`; Bits gives the role and value attributes but not the name.
 - `Slider` is NOT `bind:value`; use `value` + `onValueChange`, and give it an accessible name with `thumbLabel`. `Switch`/`Checkbox` need `aria-label` when unlabelled. `Tooltip` requires a `Tooltip.Provider` ancestor.

@@ -5,7 +5,7 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 ## Import style
 
 - **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Toggle`, `Progress`, `Meter`, `AspectRatio`, `Code`.
-- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`.
+- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`.
 
 ```svelte
 import { Button, Input, Badge, Slider } from 'sve-ui';
@@ -177,6 +177,19 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
   <Popover.Content>…</Popover.Content>
 </Popover.Root>
 
+<!-- ContextMenu: Trigger is the right-click REGION, not a button.
+     Right-click is undiscoverable and touch has no right-click, so EVERY action
+     here must also be reachable from a visible control.
+     Item/Group/Label/Separator are the SAME components DropdownMenu uses. -->
+<ContextMenu.Root>
+  <ContextMenu.Trigger>Right-click this row</ContextMenu.Trigger>
+  <ContextMenu.Content>
+    <ContextMenu.Item>Rename</ContextMenu.Item>
+    <ContextMenu.Separator />
+    <ContextMenu.Item>Delete</ContextMenu.Item>
+  </ContextMenu.Content>
+</ContextMenu.Root>
+
 <!-- AlertDialog: destructive confirmation. Title is REQUIRED (aria-labelledby).
      Backdrop click does NOT dismiss. Cancel gets initial focus.
      GOTCHA: Cancel closes the dialog, Action does NOT — close it yourself so a
@@ -222,6 +235,15 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
 ## Layout
 
 ```svelte
+<!-- ScrollArea: size constraint goes on Root; Viewport fills it and scrolls.
+     type=hover (default) does NOT mount the scrollbar until pointer enter, which
+     removes the only cue that more content exists — use type="always" unless the
+     overflow is obvious. Scrolling stays native; content is NOT virtualised. -->
+<ScrollArea.Root type="always" style="height: 12rem;">
+  <ScrollArea.Viewport>{content}</ScrollArea.Viewport>
+  <ScrollArea.Scrollbar orientation="vertical"><ScrollArea.Thumb /></ScrollArea.Scrollbar>
+</ScrollArea.Root>
+
 <!-- AspectRatio: ratio is width/height. Reserves the box BEFORE media loads,
      which is what prevents layout shift. Presentational: img still needs alt. -->
 <AspectRatio ratio={16 / 9}><img src={url} alt="Harbour at sunset" /></AspectRatio>
@@ -239,6 +261,18 @@ A vertical separator is 1px wide and stretches to its parent, so the parent need
 
 ```svelte
 <Code code={`const answer = 42;`} label="App.svelte" copyable />
+
+<!-- Toolbar: role="toolbar" + roving focus = ONE tab stop for the whole bar.
+     Root needs aria-label. Parts are NOT interchangeable:
+     Button acts, Link NAVIGATES (stays a real anchor), Group is a toggle group
+     (type required, value bindable), GroupItem is one toggle inside it. -->
+<Toolbar.Root aria-label="Formatting">
+  <Toolbar.Group type="multiple" bind:value={marks} aria-label="Text style">
+    <Toolbar.GroupItem value="bold" aria-label="Bold">B</Toolbar.GroupItem>
+  </Toolbar.Group>
+  <Toolbar.Button>Save</Toolbar.Button>
+  <Toolbar.Link href="/help">Help</Toolbar.Link>
+</Toolbar.Root>
 ```
 
 ## Theming

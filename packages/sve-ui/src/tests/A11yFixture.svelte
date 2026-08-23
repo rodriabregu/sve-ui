@@ -28,6 +28,9 @@
 	import * as AlertDialog from '$lib/components/AlertDialog/index.js';
 	import * as Sheet from '$lib/components/Sheet/index.js';
 	import * as LinkPreview from '$lib/components/LinkPreview/index.js';
+	import * as ContextMenu from '$lib/components/ContextMenu/index.js';
+	import * as ScrollArea from '$lib/components/ScrollArea/index.js';
+	import * as Toolbar from '$lib/components/Toolbar/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -52,6 +55,7 @@
 	let togglePressed = $state(false);
 	let toggleGroupValue = $state('left');
 	let collapsibleOpen = $state(false);
+	let toolbarMarks = $state<string[]>(['bold']);
 </script>
 
 <!-- Display -->
@@ -143,6 +147,9 @@
 <section aria-label="Dialog"><Dialog.Root><Dialog.Trigger>Open dialog</Dialog.Trigger></Dialog.Root></section>
 <section aria-label="Dropdown menu"><DropdownMenu.Root><DropdownMenu.Trigger>Open menu</DropdownMenu.Trigger></DropdownMenu.Root></section>
 <section aria-label="Popover"><Popover.Root><Popover.Trigger>Show details</Popover.Trigger></Popover.Root></section>
+<section aria-label="Context menu">
+	<ContextMenu.Root><ContextMenu.Trigger>Right-click this row</ContextMenu.Trigger></ContextMenu.Root>
+</section>
 <section aria-label="Alert dialog"><AlertDialog.Root><AlertDialog.Trigger>Delete project</AlertDialog.Trigger></AlertDialog.Root></section>
 <section aria-label="Sheet"><Sheet.Root><Sheet.Trigger>Open filters</Sheet.Trigger></Sheet.Root></section>
 <section aria-label="Link preview">
@@ -162,6 +169,22 @@
 </section>
 <section aria-label="Aspect ratio">
 	<AspectRatio ratio={16 / 9}><img src="" alt="Sunset over the harbour" /></AspectRatio>
+</section>
+
+<section aria-label="Scroll area">
+	<ScrollArea.Root type="always" style="height: 4rem; width: 8rem;">
+		<ScrollArea.Viewport><p>Scrollable content.</p></ScrollArea.Viewport>
+		<ScrollArea.Scrollbar orientation="vertical"><ScrollArea.Thumb /></ScrollArea.Scrollbar>
+	</ScrollArea.Root>
+</section>
+<section aria-label="Toolbar">
+	<Toolbar.Root aria-label="Formatting">
+		<Toolbar.Group type="multiple" bind:value={toolbarMarks} aria-label="Text style">
+			<Toolbar.GroupItem value="bold" aria-label="Bold">B</Toolbar.GroupItem>
+		</Toolbar.Group>
+		<Toolbar.Button>Save</Toolbar.Button>
+		<Toolbar.Link href="/help">Help</Toolbar.Link>
+	</Toolbar.Root>
 </section>
 
 <!-- Utilities -->

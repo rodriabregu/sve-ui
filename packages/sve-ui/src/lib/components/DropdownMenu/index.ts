@@ -41,9 +41,10 @@ export const RadioGroup: Component<DropdownMenuRadioGroupProps> = BitsDropdownMe
 // Arrow: bits-ui floating-ui arrow for visual pointer; positioning is automatic.
 export const Arrow: Component<DropdownMenuArrowProps> = BitsDropdownMenu.Arrow as Component<DropdownMenuArrowProps>;
 
-// Styled wrappers
+// Styled wrapper unique to this menu
 export { default as Content } from './DropdownMenuContent.svelte';
-export { default as Item } from './DropdownMenuItem.svelte';
-export { default as Separator } from './DropdownMenuSeparator.svelte';
-export { default as Group } from './DropdownMenuGroup.svelte';
-export { default as Label } from './DropdownMenuLabel.svelte';
+
+// Item, Separator, Group and Label are shared with ContextMenu — Bits
+// re-exports the identical `menu/components/*` modules under both, so one
+// styled implementation serves both instead of two copies of the same CSS.
+export { Item, Separator, Group, Label } from '../Menu/index.js';

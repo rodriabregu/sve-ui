@@ -5,6 +5,7 @@
   type BitsGroupHeadingProps = ComponentProps<typeof DropdownMenu.GroupHeading>;
 
   interface Props extends Omit<BitsGroupHeadingProps, 'class'> {
+    /** Extra classes merged onto the heading. */
     class?: string;
   }
 
@@ -12,17 +13,19 @@
 </script>
 
 <!--
-  DropdownMenuLabel uses GroupHeading from bits-ui — this is the semantic
-  label element for a group of menu items, not the generic Label component.
+  This is Bits' GroupHeading — the semantic label for a group of menu items,
+  which is what names the group for assistive technology. It is not the generic
+  `Label` form component.
 -->
 <DropdownMenu.GroupHeading
-  class={['sve-dropdown-label', cls].filter(Boolean).join(' ')}
+  class={['sve-menu-label', cls].filter(Boolean).join(' ')}
+  data-slot="menu-label"
   {children}
   {...rest}
 />
 
 <style>
-  :global(.sve-dropdown-label) {
+  :global(.sve-menu-label) {
     padding: var(--sve-space-1) var(--sve-space-2);
     font-size: var(--sve-font-size-xs);
     font-weight: var(--sve-font-weight-bold);

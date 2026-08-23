@@ -5,6 +5,7 @@
   type BitsSeparatorProps = ComponentProps<typeof DropdownMenu.Separator>;
 
   interface Props extends Omit<BitsSeparatorProps, 'class'> {
+    /** Extra classes merged onto the divider. */
     class?: string;
   }
 
@@ -12,12 +13,13 @@
 </script>
 
 <DropdownMenu.Separator
-  class={['sve-dropdown-separator', cls].filter(Boolean).join(' ')}
+  class={['sve-menu-separator', cls].filter(Boolean).join(' ')}
+  data-slot="menu-separator"
   {...rest}
 />
 
 <style>
-  :global(.sve-dropdown-separator) {
+  :global(.sve-menu-separator) {
     height: 1px;
     background-color: var(--sve-color-default-border, #e5e7eb);
     margin: var(--sve-space-1) 0;

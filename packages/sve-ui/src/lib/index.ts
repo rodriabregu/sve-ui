@@ -5,6 +5,7 @@
  * Card namespace, Alert namespace, Input, Textarea, Label, Skeleton, Separator,
  * Toggle, ToggleGroup namespace, Collapsible namespace, Progress, Meter, AspectRatio,
  * AlertDialog namespace, Sheet namespace, LinkPreview namespace,
+ * ContextMenu namespace, ScrollArea namespace, Toolbar namespace,
  * variant helper + types, theme types.
  */
 
@@ -83,6 +84,16 @@ export * as Sheet from './components/Sheet/index.js';
 
 // LinkPreview namespace (hover card, composed over bits-ui)
 export * as LinkPreview from './components/LinkPreview/index.js';
+
+// ContextMenu namespace (composed over bits-ui; shares the styled menu parts
+// with DropdownMenu, since Bits re-exports identical menu internals to both)
+export * as ContextMenu from './components/ContextMenu/index.js';
+
+// ScrollArea namespace (composed over bits-ui)
+export * as ScrollArea from './components/ScrollArea/index.js';
+
+// Toolbar namespace (composed over bits-ui)
+export * as Toolbar from './components/Toolbar/index.js';
 
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';
