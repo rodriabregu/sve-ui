@@ -34,6 +34,8 @@
 	import * as Menubar from '$lib/components/Menubar/index.js';
 	import * as Pagination from '$lib/components/Pagination/index.js';
 	import * as Breadcrumb from '$lib/components/Breadcrumb/index.js';
+	import * as NavigationMenu from '$lib/components/NavigationMenu/index.js';
+	import * as Command from '$lib/components/Command/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -60,6 +62,9 @@
 	let collapsibleOpen = $state(false);
 	let toolbarMarks = $state<string[]>(['bold']);
 	let paginationPage = $state(1);
+	let navValue = $state('');
+	let commandSearch = $state('');
+	let commandValue = $state('');
 </script>
 
 <!-- Display -->
@@ -140,6 +145,18 @@
 	</Accordion.Root>
 </section>
 
+<section aria-label="Navigation menu">
+	<NavigationMenu.Root bind:value={navValue} aria-label="Site">
+		<NavigationMenu.List>
+			<NavigationMenu.Item value="products">
+				<NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
+			</NavigationMenu.Item>
+			<NavigationMenu.Item value="pricing">
+				<NavigationMenu.Link href="/pricing" active>Pricing</NavigationMenu.Link>
+			</NavigationMenu.Item>
+		</NavigationMenu.List>
+	</NavigationMenu.Root>
+</section>
 <section aria-label="Menubar">
 	<Menubar.Root aria-label="Main">
 		<Menubar.Menu>
@@ -220,6 +237,23 @@
 		<Toolbar.Button>Save</Toolbar.Button>
 		<Toolbar.Link href="/help">Help</Toolbar.Link>
 	</Toolbar.Root>
+</section>
+
+<section aria-label="Command palette">
+	<Command.Root label="Command palette" bind:value={commandValue}>
+		<Command.Input bind:value={commandSearch} placeholder="Type a command" />
+		<Command.List aria-label="Commands">
+			<Command.Viewport>
+				<Command.Empty>No results found.</Command.Empty>
+				<Command.Group>
+					<Command.GroupHeading>Actions</Command.GroupHeading>
+					<Command.GroupItems>
+						<Command.Item value="new-file">New file</Command.Item>
+					</Command.GroupItems>
+				</Command.Group>
+			</Command.Viewport>
+		</Command.List>
+	</Command.Root>
 </section>
 
 <!-- Utilities -->

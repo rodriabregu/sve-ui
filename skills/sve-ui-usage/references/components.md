@@ -5,7 +5,7 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 ## Import style
 
 - **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Toggle`, `Progress`, `Meter`, `AspectRatio`, `Code`.
-- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`.
+- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`.
 
 ```svelte
 import { Button, Input, Badge, Slider } from 'sve-ui';
@@ -148,6 +148,25 @@ import { Dialog, Select, Tabs } from 'sve-ui';
   <Collapsible.Trigger>Shipping details</Collapsible.Trigger>
   <Collapsible.Content>Ships in 2-3 days.</Collapsible.Content>
 </Collapsible.Root>
+
+<!-- NavigationMenu: THE choice for SITE navigation. Triggers open on hover AND
+     on click/Enter, so it works for pointer, keyboard and touch.
+     Root is a <nav> — needs aria-label. `active` on a Link gives aria-current="page".
+     Viewport is optional: it gives all panels one shared, resizing container. -->
+<NavigationMenu.Root bind:value={navValue} aria-label="Site">
+  <NavigationMenu.List>
+    <NavigationMenu.Item value="products">
+      <NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
+      <NavigationMenu.Content>
+        <NavigationMenu.Link href="/analytics">Analytics</NavigationMenu.Link>
+      </NavigationMenu.Content>
+    </NavigationMenu.Item>
+    <NavigationMenu.Item value="pricing">
+      <NavigationMenu.Link href="/pricing" active>Pricing</NavigationMenu.Link>
+    </NavigationMenu.Item>
+  </NavigationMenu.List>
+  <NavigationMenu.Viewport />
+</NavigationMenu.Root>
 
 <!-- Menubar: desktop-app chrome, NOT site nav and NOT a row of dropdowns.
      Arrow keys move between menus; hovering a sibling while open switches to it.
@@ -309,6 +328,27 @@ A vertical separator is 1px wide and stretches to its parent, so the parent need
 
 ```svelte
 <Code code={`const answer = 42;`} label="App.svelte" copyable />
+
+<!-- Command (command palette). Command.Viewport is REQUIRED and goes inside List:
+     Bits takes the Input's aria-controls from it, so omitting it is invalid ARIA.
+     TWO names to set: `label` on Root names the INPUT; aria-label on List names the
+     LIST (Bits defaults it to "Suggestions..." — override it).
+     Add `keywords` for words users type that are not in the label.
+     Use Loading (not Empty) while fetching. Wrap in a Dialog for a modal palette. -->
+<Command.Root label="Command palette">
+  <Command.Input bind:value={search} placeholder="Type a command" />
+  <Command.List aria-label="Commands">
+    <Command.Viewport>
+      <Command.Empty>No results found.</Command.Empty>
+      <Command.Group>
+        <Command.GroupHeading>Actions</Command.GroupHeading>
+        <Command.GroupItems>
+          <Command.Item value="delete" keywords={['trash']}>Delete</Command.Item>
+        </Command.GroupItems>
+      </Command.Group>
+    </Command.Viewport>
+  </Command.List>
+</Command.Root>
 
 <!-- Toolbar: role="toolbar" + roving focus = ONE tab stop for the whole bar.
      Root needs aria-label. Parts are NOT interchangeable:

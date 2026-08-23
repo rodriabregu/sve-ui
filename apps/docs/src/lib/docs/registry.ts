@@ -72,7 +72,7 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'accordion', name: 'Accordion', blurb: 'Collapsible disclosure sections.', status: 'new', ready: true },
 			{ slug: 'sidebar', name: 'Sidebar', blurb: 'Composable app-shell navigation.' },
 			{ slug: 'breadcrumb', name: 'Breadcrumb', blurb: 'Hierarchical page trail.', status: 'new', ready: true },
-			{ slug: 'navigation-menu', name: 'Navigation Menu', blurb: 'Top-level nav with menus.' },
+			{ slug: 'navigation-menu', name: 'Navigation Menu', blurb: 'Top-level nav with menus.', status: 'new', ready: true },
 			{ slug: 'menubar', name: 'Menubar', blurb: 'Desktop-style menu bar.', status: 'new', ready: true },
 			{ slug: 'collapsible', name: 'Collapsible', blurb: 'Single expand/collapse region.', status: 'new', ready: true },
 			{ slug: 'toolbar', name: 'Toolbar', blurb: 'Grouped controls container.', status: 'new', ready: true }
@@ -86,7 +86,7 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'popover', name: 'Popover', blurb: 'Floating content anchored to a trigger.', ready: true },
 			{ slug: 'tooltip', name: 'Tooltip', blurb: 'Hover/focus hint text.', ready: true },
 			{ slug: 'alert-dialog', name: 'Alert Dialog', blurb: 'Confirmation modal.', status: 'new', ready: true },
-			{ slug: 'command', name: 'Command', blurb: 'Command palette / fuzzy search menu.' },
+			{ slug: 'command', name: 'Command', blurb: 'Command palette / fuzzy search menu.', status: 'new', ready: true },
 			{ slug: 'sheet', name: 'Sheet', blurb: 'Side drawer panel.', status: 'new', ready: true },
 			{ slug: 'context-menu', name: 'Context Menu', blurb: 'Right-click action menu.', status: 'new', ready: true },
 			{ slug: 'link-preview', name: 'Link Preview', blurb: 'Hover card preview.', status: 'new', ready: true }

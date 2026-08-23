@@ -134,7 +134,7 @@
 		<p class="sec__p">
 			It assumes a pointer that hovers and a screen wide enough for several always-visible triggers —
 			neither holds on a phone. For site navigation reach for a
-			<code class="ic">NavigationMenu</code>; for a handful of actions on a
+			<a href="/components/navigation-menu">Navigation Menu</a>; for a handful of actions on a
 			toolbar, a <a href="/components/dropdown-menu">Dropdown Menu</a> or
 			<a href="/components/toolbar">Toolbar</a>. Use a menubar when you are genuinely building an
 			application chrome — an editor, an IDE-like tool.
