@@ -15,7 +15,7 @@ Load when building or editing a Svelte 5 app that consumes `sve-ui` — importin
 
 - Import the stylesheet ONCE at the app root: `import 'sve-ui/theme.css';`. Without it, components render unstyled. The consumer project needs NO Tailwind and NO config.
 - Single components are default imports; composite components are namespaces composed with dots:
-  - Singles: `import { Button, Input, Textarea, Label, Badge, Spinner, Text, Heading, Slider, Skeleton, Separator, Code } from 'sve-ui'`
+  - Singles: `import { Button, Input, Textarea, Label, Badge, Spinner, Text, Heading, Slider, Skeleton, Separator, Toggle, Progress, Meter, AspectRatio, Code } from 'sve-ui'`
   - Namespaces: `Dialog.*`, `Select.*`, `Combobox.*`, `Card.*`, `Alert.*`, `Tabs.*`, `Accordion.*`, `Avatar.*`, `DropdownMenu.*`, `Popover.*`, `Tooltip.*`, `Switch.*`, `Checkbox.*`, `RadioGroup.*`.
 - Overlays (Dialog/DropdownMenu/Popover/Tooltip/Select/Combobox) portal to `<body>`. Put the theme class (`dark`/`light`) on `<body>` so portaled content gets the right `--sve-*` tokens — not only on an inner wrapper.
 - To use a custom element as an overlay trigger, use the Bits `child` snippet:

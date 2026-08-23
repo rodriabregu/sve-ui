@@ -19,6 +19,12 @@
 	import Label from '$lib/components/Label/Label.svelte';
 	import Skeleton from '$lib/components/Skeleton/Skeleton.svelte';
 	import Separator from '$lib/components/Separator/Separator.svelte';
+	import Toggle from '$lib/components/Toggle/Toggle.svelte';
+	import Progress from '$lib/components/Progress/Progress.svelte';
+	import Meter from '$lib/components/Meter/Meter.svelte';
+	import AspectRatio from '$lib/components/AspectRatio/AspectRatio.svelte';
+	import * as Collapsible from '$lib/components/Collapsible/index.js';
+	import * as ToggleGroup from '$lib/components/ToggleGroup/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -40,6 +46,9 @@
 	let tabValue = $state('a');
 	let selectValue = $state('');
 	let comboValue = $state('');
+	let togglePressed = $state(false);
+	let toggleGroupValue = $state('left');
+	let collapsibleOpen = $state(false);
 </script>
 
 <!-- Display -->
@@ -69,6 +78,13 @@
 		<RadioGroup.Item value="b" aria-label="Compact" />
 	</RadioGroup.Root>
 </section>
+<section aria-label="Toggle"><Toggle bind:pressed={togglePressed} aria-label="Bold">B</Toggle></section>
+<section aria-label="Toggle group">
+	<ToggleGroup.Root type="single" bind:value={toggleGroupValue} aria-label="Text alignment">
+		<ToggleGroup.Item value="left" aria-label="Align left">L</ToggleGroup.Item>
+		<ToggleGroup.Item value="right" aria-label="Align right">R</ToggleGroup.Item>
+	</ToggleGroup.Root>
+</section>
 <section aria-label="Slider"><Slider value={40} max={100} thumbLabel="Volume" /></section>
 <section aria-label="Select">
 	<Select.Root type="single" bind:value={selectValue}>
@@ -90,6 +106,8 @@
 <!-- Feedback -->
 <section aria-label="Alert"><Alert.Root color="success"><Alert.Title>Saved</Alert.Title><Alert.Description>Your changes are live.</Alert.Description></Alert.Root></section>
 <section aria-label="Spinner"><Spinner label="Loading" /></section>
+<section aria-label="Progress"><Progress value={40} aria-label="Upload progress" /></section>
+<section aria-label="Meter"><Meter value={70} aria-label="Disk usage" /></section>
 
 <!-- Navigation -->
 <section aria-label="Tabs">
@@ -111,6 +129,13 @@
 	</Accordion.Root>
 </section>
 
+<section aria-label="Collapsible">
+	<Collapsible.Root bind:open={collapsibleOpen}>
+		<Collapsible.Trigger>Show details</Collapsible.Trigger>
+		<Collapsible.Content>Panel content.</Collapsible.Content>
+	</Collapsible.Root>
+</section>
+
 <!-- Overlays (trigger / closed state) -->
 <section aria-label="Dialog"><Dialog.Root><Dialog.Trigger>Open dialog</Dialog.Trigger></Dialog.Root></section>
 <section aria-label="Dropdown menu"><DropdownMenu.Root><DropdownMenu.Trigger>Open menu</DropdownMenu.Trigger></DropdownMenu.Root></section>
@@ -126,6 +151,9 @@
 	<Separator />
 	<Separator orientation="vertical" />
 	<Separator decorative />
+</section>
+<section aria-label="Aspect ratio">
+	<AspectRatio ratio={16 / 9}><img src="" alt="Sunset over the harbour" /></AspectRatio>
 </section>
 
 <!-- Utilities -->

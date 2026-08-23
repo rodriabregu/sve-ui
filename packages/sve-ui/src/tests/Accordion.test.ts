@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, fireEvent, waitFor } from '@testing-library/svelte';
 import AccordionFixture from './AccordionFixture.svelte';
+import AccordionBindFixture from './AccordionBindFixture.svelte';
 
 const contents = (root: HTMLElement) =>
   Array.from(root.querySelectorAll('[data-slot="accordion-content"]'));
@@ -37,5 +38,14 @@ describe('Accordion', () => {
       expect(second.getAttribute('data-state')).toBe('open');
       expect(first.getAttribute('data-state')).toBe('closed');
     });
+  });
+
+  // Regression: `value` used to be forwarded through the spread, which made
+  // `bind:value` one-way. The component documented it as two-way, and no test
+  // exercised the binding, so it shipped broken.
+  it('reflects the opened item back through bind:value', async () => {
+    const { getByRole, getByTestId } = render(AccordionBindFixture, { props: {} });
+    await fireEvent.click(getByRole('button', { name: 'First' }));
+    await waitFor(() => expect(getByTestId('value').textContent).toBe('one'));
   });
 });

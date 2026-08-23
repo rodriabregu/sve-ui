@@ -3,6 +3,7 @@
  *
  * Exports: ThemeProvider, Button, Dialog namespace, Text, Heading, Badge, Avatar, Spinner,
  * Card namespace, Alert namespace, Input, Textarea, Label, Skeleton, Separator,
+ * Toggle, ToggleGroup namespace, Collapsible namespace, Progress, Meter, AspectRatio,
  * variant helper + types, theme types.
  */
 
@@ -20,6 +21,10 @@ export { default as Textarea } from './components/Textarea/Textarea.svelte';
 export { default as Label } from './components/Label/Label.svelte';
 export { default as Skeleton } from './components/Skeleton/Skeleton.svelte';
 export { default as Separator } from './components/Separator/Separator.svelte';
+export { default as Toggle } from './components/Toggle/Toggle.svelte';
+export { default as Progress } from './components/Progress/Progress.svelte';
+export { default as Meter } from './components/Meter/Meter.svelte';
+export { default as AspectRatio } from './components/AspectRatio/AspectRatio.svelte';
 
 // Dialog namespace (composed over bits-ui)
 export * as Dialog from './components/Dialog/index.js';
@@ -63,6 +68,12 @@ export * as Select from './components/Select/index.js';
 // Combobox namespace (composed over bits-ui)
 export * as Combobox from './components/Combobox/index.js';
 
+// Collapsible namespace (composed over bits-ui)
+export * as Collapsible from './components/Collapsible/index.js';
+
+// ToggleGroup namespace (composed over bits-ui)
+export * as ToggleGroup from './components/ToggleGroup/index.js';
+
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';
 
@@ -91,6 +102,24 @@ export { type Size as LabelSize } from './components/Label/Label.svelte';
 
 // Skeleton types
 export { type Variant as SkeletonVariant } from './components/Skeleton/Skeleton.svelte';
+
+// Toggle types
+export {
+  type Size as ToggleSize,
+  type Variant as ToggleVariant,
+} from './components/Toggle/Toggle.svelte';
+
+// Progress types
+export {
+  type Size as ProgressSize,
+  type Color as ProgressColor,
+} from './components/Progress/Progress.svelte';
+
+// Meter types
+export {
+  type Size as MeterSize,
+  type Color as MeterColor,
+} from './components/Meter/Meter.svelte';
 
 // Variant helper and types
 export {
