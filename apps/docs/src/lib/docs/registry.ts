@@ -85,11 +85,11 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'dropdown-menu', name: 'Dropdown Menu', blurb: 'Contextual action menu.', ready: true },
 			{ slug: 'popover', name: 'Popover', blurb: 'Floating content anchored to a trigger.', ready: true },
 			{ slug: 'tooltip', name: 'Tooltip', blurb: 'Hover/focus hint text.', ready: true },
-			{ slug: 'alert-dialog', name: 'Alert Dialog', blurb: 'Confirmation modal.' },
+			{ slug: 'alert-dialog', name: 'Alert Dialog', blurb: 'Confirmation modal.', status: 'new', ready: true },
 			{ slug: 'command', name: 'Command', blurb: 'Command palette / fuzzy search menu.' },
-			{ slug: 'sheet', name: 'Sheet', blurb: 'Side drawer panel.' },
+			{ slug: 'sheet', name: 'Sheet', blurb: 'Side drawer panel.', status: 'new', ready: true },
 			{ slug: 'context-menu', name: 'Context Menu', blurb: 'Right-click action menu.' },
-			{ slug: 'link-preview', name: 'Link Preview', blurb: 'Hover card preview.' }
+			{ slug: 'link-preview', name: 'Link Preview', blurb: 'Hover card preview.', status: 'new', ready: true }
 		]
 	},
 	{

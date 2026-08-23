@@ -25,6 +25,9 @@
 	import AspectRatio from '$lib/components/AspectRatio/AspectRatio.svelte';
 	import * as Collapsible from '$lib/components/Collapsible/index.js';
 	import * as ToggleGroup from '$lib/components/ToggleGroup/index.js';
+	import * as AlertDialog from '$lib/components/AlertDialog/index.js';
+	import * as Sheet from '$lib/components/Sheet/index.js';
+	import * as LinkPreview from '$lib/components/LinkPreview/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -140,6 +143,11 @@
 <section aria-label="Dialog"><Dialog.Root><Dialog.Trigger>Open dialog</Dialog.Trigger></Dialog.Root></section>
 <section aria-label="Dropdown menu"><DropdownMenu.Root><DropdownMenu.Trigger>Open menu</DropdownMenu.Trigger></DropdownMenu.Root></section>
 <section aria-label="Popover"><Popover.Root><Popover.Trigger>Show details</Popover.Trigger></Popover.Root></section>
+<section aria-label="Alert dialog"><AlertDialog.Root><AlertDialog.Trigger>Delete project</AlertDialog.Trigger></AlertDialog.Root></section>
+<section aria-label="Sheet"><Sheet.Root><Sheet.Trigger>Open filters</Sheet.Trigger></Sheet.Root></section>
+<section aria-label="Link preview">
+	<LinkPreview.Root><LinkPreview.Trigger href="https://svelte.dev">Svelte</LinkPreview.Trigger></LinkPreview.Root>
+</section>
 <section aria-label="Tooltip">
 	<Tooltip.Provider>
 		<Tooltip.Root><Tooltip.Trigger>Hover me</Tooltip.Trigger></Tooltip.Root>

@@ -4,6 +4,7 @@
  * Exports: ThemeProvider, Button, Dialog namespace, Text, Heading, Badge, Avatar, Spinner,
  * Card namespace, Alert namespace, Input, Textarea, Label, Skeleton, Separator,
  * Toggle, ToggleGroup namespace, Collapsible namespace, Progress, Meter, AspectRatio,
+ * AlertDialog namespace, Sheet namespace, LinkPreview namespace,
  * variant helper + types, theme types.
  */
 
@@ -73,6 +74,15 @@ export * as Collapsible from './components/Collapsible/index.js';
 
 // ToggleGroup namespace (composed over bits-ui)
 export * as ToggleGroup from './components/ToggleGroup/index.js';
+
+// AlertDialog namespace (composed over bits-ui)
+export * as AlertDialog from './components/AlertDialog/index.js';
+
+// Sheet namespace (a Dialog anchored to a viewport edge)
+export * as Sheet from './components/Sheet/index.js';
+
+// LinkPreview namespace (hover card, composed over bits-ui)
+export * as LinkPreview from './components/LinkPreview/index.js';
 
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';

@@ -5,7 +5,7 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 ## Import style
 
 - **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Toggle`, `Progress`, `Meter`, `AspectRatio`, `Code`.
-- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`.
+- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`.
 
 ```svelte
 import { Button, Input, Badge, Slider } from 'sve-ui';
@@ -176,6 +176,39 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
   <Popover.Trigger>{#snippet child({ props })}<Button {...props}>Details</Button>{/snippet}</Popover.Trigger>
   <Popover.Content>…</Popover.Content>
 </Popover.Root>
+
+<!-- AlertDialog: destructive confirmation. Title is REQUIRED (aria-labelledby).
+     Backdrop click does NOT dismiss. Cancel gets initial focus.
+     GOTCHA: Cancel closes the dialog, Action does NOT — close it yourself so a
+     failed async operation can keep the dialog open and show the error. -->
+<AlertDialog.Root bind:open={open}>
+  <AlertDialog.Trigger>Delete project</AlertDialog.Trigger>
+  <AlertDialog.Content>
+    <AlertDialog.Title>Delete this project?</AlertDialog.Title>
+    <AlertDialog.Description>Removes every deployment. Cannot be undone.</AlertDialog.Description>
+    <AlertDialog.Cancel>Keep project</AlertDialog.Cancel>
+    <AlertDialog.Action onclick={destroy}>Delete project</AlertDialog.Action>
+  </AlertDialog.Content>
+</AlertDialog.Root>
+
+<!-- Sheet: a Dialog anchored to an edge. side=left|right|top|bottom (default right),
+     size=sm|md|lg applies to the axis it grows on. Title REQUIRED. -->
+<Sheet.Root>
+  <Sheet.Trigger>Open filters</Sheet.Trigger>
+  <Sheet.Content side="right" size="md">
+    <Sheet.Title>Filters</Sheet.Title>
+    <Sheet.Close>Done</Sheet.Close>
+  </Sheet.Content>
+</Sheet.Root>
+
+<!-- LinkPreview (hover card): HOVER-ONLY. No focus, no touch — keyboard and
+     mobile users NEVER see it. Enrichment only; never the sole path to an
+     action or a fact. Trigger is an <a href> but Bits reports role="button",
+     so it is not announced as a link. Need it clickable? Use Popover. -->
+<LinkPreview.Root>
+  <LinkPreview.Trigger href="https://svelte.dev">Svelte</LinkPreview.Trigger>
+  <LinkPreview.Content>A web framework.</LinkPreview.Content>
+</LinkPreview.Root>
 
 <!-- Tooltip: requires Tooltip.Provider ancestor -->
 <Tooltip.Provider>
