@@ -4,7 +4,26 @@
 
   type BitsRootProps = ComponentProps<typeof SeparatorPrimitive.Root>;
 
-  interface Props extends Omit<BitsRootProps, 'class'> {
+  // Mirrors the Bits `Orientation` union. Spelled out rather than indexed off
+  // BitsRootProps so the type reads as the two values a consumer actually
+  // writes, in editor hover and in the generated prop table alike.
+  type Orientation = 'horizontal' | 'vertical';
+
+  // `orientation` and `decorative` come from the Bits props, but they ARE this
+  // component's headline API — redeclared so the type surface and the generated
+  // docs both name them instead of hiding them behind the spread.
+  interface Props extends Omit<BitsRootProps, 'class' | 'orientation' | 'decorative'> {
+    /**
+     * Reported to assistive technology as `aria-orientation`.
+     * @default 'horizontal'
+     */
+    orientation?: Orientation;
+    /**
+     * Drops the `separator` role so the divider is ignored by assistive
+     * technology. Use it for purely visual rules.
+     * @default false
+     */
+    decorative?: boolean;
     class?: string;
   }
 

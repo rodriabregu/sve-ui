@@ -45,7 +45,9 @@
     variant?: Variant;
     color?: Color;
     size?: Size;
+    /** Extra classes merged onto the root. */
     class?: string;
+    /** Badge label content. */
     children?: Snippet;
   }
 

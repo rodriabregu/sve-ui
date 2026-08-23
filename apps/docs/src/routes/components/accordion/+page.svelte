@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.accordion;
@@ -13,16 +12,6 @@
 		{ id: 'usage', label: 'Usage' },
 		{ id: 'multiple', label: 'Multiple' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{ prop: 'type', type: `'single' | 'multiple'`, default: `'single'`, description: 'Single allows one open item at a time; multiple allows many.' },
-		{ prop: 'value', type: 'string | string[]', description: 'Controlled open item(s). Use bind:value for two-way binding.' },
-		{ prop: 'onValueChange', type: '(value: string & string[]) => void', description: 'Called when the open item(s) change.' },
-		{ prop: 'disabled', type: 'boolean', default: 'false', description: 'Disables all triggers in the accordion.' },
-		{ prop: 'loop', type: 'boolean', default: 'true', description: 'Keyboard focus loops from last trigger back to first.' },
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' },
-		{ prop: 'children', type: 'Snippet', description: 'Compose Accordion.Item blocks inside.' }
 	];
 
 	const usageCode = `<script>
@@ -147,7 +136,7 @@
 			that pairs its <code class="ic">Trigger</code> with its <code class="ic">Content</code>.
 			All parts accept <code class="ic">class</code> for custom overrides.
 		</p>
-		<PropsTable rows={props} />
+		<PropsTable component="AccordionRoot" />
 	</section>
 </DocPage>
 

@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.badge;
@@ -15,18 +14,6 @@
 		{ id: 'colors', label: 'Colors' },
 		{ id: 'sizes', label: 'Sizes' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{ prop: 'variant', type: `'subtle' | 'solid' | 'outline'`, default: `'subtle'` },
-		{
-			prop: 'color',
-			type: `'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'`,
-			default: `'default'`
-		},
-		{ prop: 'size', type: `'sm' | 'md' | 'lg'`, default: `'md'` },
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' },
-		{ prop: 'children', type: 'Snippet', description: 'Badge label content.' }
 	];
 
 	const usageCode = `<script>
@@ -103,7 +90,7 @@
 		<p class="sec__p">
 			Plus every native <code class="ic">&lt;span&gt;</code> attribute via prop spreading.
 		</p>
-		<PropsTable rows={props} />
+		<PropsTable component="Badge" />
 	</section>
 </DocPage>
 

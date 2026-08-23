@@ -30,3 +30,7 @@ jobs:
       - run: pnpm run lint
       - run: pnpm run check
       - run: pnpm run test
+
+      # The committed prop metadata must match the components it documents.
+      - name: Prop tables up to date
+        run: pnpm --filter docs run gen:props:check

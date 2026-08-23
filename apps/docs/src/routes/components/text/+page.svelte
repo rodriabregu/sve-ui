@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.text;
@@ -15,26 +14,6 @@
 		{ id: 'tones', label: 'Tones' },
 		{ id: 'as-element', label: 'As element' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{
-			prop: 'as',
-			type: `'p' | 'span' | 'div' | 'label' | 'strong' | 'em' | 'small' | 'li' | 'code' | 'blockquote' | …`,
-			default: `'p'`,
-			description: 'HTML element to render.'
-		},
-		{ prop: 'size', type: `'sm' | 'md' | 'lg'`, description: 'Text size.' },
-		{ prop: 'weight', type: `'normal' | 'medium' | 'bold'`, description: 'Font weight.' },
-		{
-			prop: 'color',
-			type: `'inherit' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'`,
-			default: `'inherit'`
-		},
-		{ prop: 'align', type: `'left' | 'center' | 'right' | 'justify'`, description: 'Text alignment.' },
-		{ prop: 'truncate', type: 'boolean', default: 'false', description: 'Truncate with ellipsis on overflow.' },
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' },
-		{ prop: 'children', type: 'Snippet', description: 'Text content.' }
 	];
 
 	const usageCode = `<script>
@@ -127,7 +106,7 @@
 		<p class="sec__p">
 			Plus every native HTML attribute for the rendered element via prop spreading.
 		</p>
-		<PropsTable rows={props} />
+		<PropsTable component="Text" />
 	</section>
 </DocPage>
 

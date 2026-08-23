@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.separator;
@@ -14,23 +13,6 @@
 		{ id: 'orientation', label: 'Orientation' },
 		{ id: 'decorative', label: 'Decorative' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{
-			prop: 'orientation',
-			type: `'horizontal' | 'vertical'`,
-			default: `'horizontal'`,
-			description: 'Reported to assistive technology as aria-orientation.'
-		},
-		{
-			prop: 'decorative',
-			type: 'boolean',
-			default: 'false',
-			description:
-				'Drops the separator role so the divider is ignored by assistive technology. Use it for purely visual rules.'
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root element.' }
 	];
 
 	const usageCode = `<script>
@@ -123,7 +105,7 @@
 			comes from the <code class="ic">--sve-color-default-border</code> token, so it follows the
 			active theme with no extra work.
 		</p>
-		<PropsTable rows={props} />
+		<PropsTable component="Separator" />
 	</section>
 </DocPage>
 

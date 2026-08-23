@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.skeleton;
@@ -16,26 +15,6 @@
 		{ id: 'composition', label: 'Composition' },
 		{ id: 'a11y', label: 'Accessibility' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{
-			prop: 'variant',
-			type: `'text' | 'circle' | 'rect'`,
-			default: `'text'`,
-			description: 'Shape preset: one line of text, an avatar circle, or a content block.'
-		},
-		{
-			prop: 'width',
-			type: 'string',
-			description: 'Any CSS length. Defaults to 100% (2.5rem for circle).'
-		},
-		{
-			prop: 'height',
-			type: 'string',
-			description: "Any CSS length. Defaults to the variant's intrinsic height."
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root element.' }
 	];
 
 	const usageCode = `<script>
@@ -158,7 +137,7 @@
 			shimmer animation is disabled automatically under
 			<code class="ic">prefers-reduced-motion</code>; the placeholder itself remains.
 		</p>
-		<PropsTable rows={props} />
+		<PropsTable component="Skeleton" />
 	</section>
 </DocPage>
 

@@ -12,11 +12,17 @@
    * avoid TypeScript's "union too complex" overflow.
    */
   interface Props extends Omit<HTMLAttributes<HTMLSpanElement>, 'class'> {
+    /** @default 'single' */
     type?: 'single' | 'multiple';
+    /** Current value(s). NOT bindable — read changes through `onValueChange`. */
     value?: number | number[];
+    /** Called when the value changes. This is how you track the slider. */
     onValueChange?: (value: number & number[]) => void;
+    /** Minimum value. */
     min?: number;
+    /** Maximum value. */
     max?: number;
+    /** Step increment. */
     step?: number;
     disabled?: boolean;
     orientation?: 'horizontal' | 'vertical';
@@ -25,6 +31,7 @@
      * in `multiple` mode each thumb gets the label suffixed with its position.
      */
     thumbLabel?: string;
+    /** Extra classes merged onto the root. */
     class?: string;
   }
 

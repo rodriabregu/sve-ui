@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.spinner;
@@ -16,21 +15,6 @@
 		{ id: 'props', label: 'Props' }
 	];
 
-	const props: PropRow[] = [
-		{ prop: 'size', type: `'sm' | 'md' | 'lg'`, default: `'md'` },
-		{
-			prop: 'color',
-			type: `'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'`,
-			default: `'default'`
-		},
-		{
-			prop: 'label',
-			type: 'string',
-			default: `'Loading'`,
-			description: 'Accessible label exposed as aria-label on the status span.'
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root element.' }
-	];
 
 	const usageCode = `<script>
   import { Spinner } from 'sve-ui';
@@ -90,7 +74,7 @@
 			The <code class="ic">role="status"</code> and <code class="ic">aria-label</code> are always
 			applied — override <code class="ic">label</code> to localise the accessible name.
 		</p>
-		<PropsTable rows={props} />
+		<PropsTable component="Spinner" />
 	</section>
 </DocPage>
 

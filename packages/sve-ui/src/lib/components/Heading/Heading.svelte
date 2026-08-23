@@ -8,11 +8,15 @@
   type Color = 'inherit' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default';
 
   interface Props extends Omit<HTMLAttributes<HTMLHeadingElement>, 'class'> {
+    /** Which heading element is rendered (h1–h6). */
     level?: Level;
+    /** Visual size, deliberately decoupled from the semantic `level`. */
     size?: Size;
     weight?: Weight;
     color?: Color;
+    /** Extra classes merged onto the root. */
     class?: string;
+    /** Heading text content. */
     children?: Snippet;
   }
 
