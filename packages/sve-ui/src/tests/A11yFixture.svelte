@@ -15,6 +15,10 @@
 	import Spinner from '$lib/components/Spinner/Spinner.svelte';
 	import Slider from '$lib/components/Slider/Slider.svelte';
 	import Code from '$lib/components/Code/Code.svelte';
+	import Textarea from '$lib/components/Textarea/Textarea.svelte';
+	import Label from '$lib/components/Label/Label.svelte';
+	import Skeleton from '$lib/components/Skeleton/Skeleton.svelte';
+	import Separator from '$lib/components/Separator/Separator.svelte';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -43,10 +47,20 @@
 <section aria-label="Badge"><Badge>New</Badge></section>
 <section aria-label="Card"><Card.Root><Card.Header><Heading level={3}>Card title</Heading></Card.Header><Card.Content><Text>Card body content.</Text></Card.Content></Card.Root></section>
 <section aria-label="Typography"><Heading level={2}>Heading</Heading><Text>Body text.</Text></section>
+<section aria-label="Skeleton">
+	<div role="status" aria-busy="true" aria-label="Loading profile">
+		<Skeleton variant="circle" />
+		<Skeleton variant="text" width="14rem" />
+	</div>
+</section>
 
 <!-- Forms -->
 <section aria-label="Button"><Button>Save</Button></section>
 <section aria-label="Input"><label>Email<Input type="email" /></label></section>
+<section aria-label="Label and Textarea">
+	<Label for="a11y-bio" required>Bio</Label>
+	<Textarea id="a11y-bio" required />
+</section>
 <section aria-label="Switch"><Switch.Root aria-label="Enable notifications" bind:checked={switchOn} /></section>
 <section aria-label="Checkbox"><Checkbox.Root aria-label="Accept terms" bind:checked={checkboxOn} /></section>
 <section aria-label="Radio group">
@@ -105,6 +119,13 @@
 	<Tooltip.Provider>
 		<Tooltip.Root><Tooltip.Trigger>Hover me</Tooltip.Trigger></Tooltip.Root>
 	</Tooltip.Provider>
+</section>
+
+<!-- Layout -->
+<section aria-label="Separator">
+	<Separator />
+	<Separator orientation="vertical" />
+	<Separator decorative />
 </section>
 
 <!-- Utilities -->

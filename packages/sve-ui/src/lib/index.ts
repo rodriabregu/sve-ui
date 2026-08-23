@@ -2,7 +2,7 @@
  * sve-ui main entry point.
  *
  * Exports: ThemeProvider, Button, Dialog namespace, Text, Heading, Badge, Avatar, Spinner,
- * Card namespace, Alert namespace, Input,
+ * Card namespace, Alert namespace, Input, Textarea, Label, Skeleton, Separator,
  * variant helper + types, theme types.
  */
 
@@ -16,6 +16,10 @@ export { default as Spinner } from './components/Spinner/Spinner.svelte';
 export { default as Input } from './components/Input/Input.svelte';
 export { default as Code } from './components/Code/Code.svelte';
 export { default as Slider } from './components/Slider/Slider.svelte';
+export { default as Textarea } from './components/Textarea/Textarea.svelte';
+export { default as Label } from './components/Label/Label.svelte';
+export { default as Skeleton } from './components/Skeleton/Skeleton.svelte';
+export { default as Separator } from './components/Separator/Separator.svelte';
 
 // Dialog namespace (composed over bits-ui)
 export * as Dialog from './components/Dialog/index.js';
@@ -73,6 +77,20 @@ export { alertVariants, type Color as AlertColor, type Variant as AlertVariant }
 
 // Input variant types
 export { inputVariants, type Size as InputSize, type Variant as InputVariant } from './components/Input/Input.svelte';
+
+// Textarea variant types
+export {
+  textareaVariants,
+  type Size as TextareaSize,
+  type Variant as TextareaVariant,
+  type Resize as TextareaResize,
+} from './components/Textarea/Textarea.svelte';
+
+// Label types
+export { type Size as LabelSize } from './components/Label/Label.svelte';
+
+// Skeleton types
+export { type Variant as SkeletonVariant } from './components/Skeleton/Skeleton.svelte';
 
 // Variant helper and types
 export {
