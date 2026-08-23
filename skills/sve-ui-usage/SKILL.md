@@ -21,6 +21,9 @@ Load when building or editing a Svelte 5 app that consumes `sve-ui` — importin
 - To use a custom element as an overlay trigger, use the Bits `child` snippet:
   `<Dialog.Trigger>{#snippet child({ props })}<Button {...props}>Open</Button>{/snippet}</Dialog.Trigger>`
 - Theme by overriding `--sve-*` CSS variables (e.g. `--sve-color-primary`). Do NOT put Tailwind layout/margin utilities on sve-ui components — scoped styles win; wrap in a `<div>` instead.
+- `AlertDialog.Action` does NOT close the dialog (only `Cancel` does) — close it yourself, so a failed async operation can keep it open. `AlertDialog`/`Sheet` both REQUIRE a `Title`; Bits wires `aria-labelledby` to it.
+- `LinkPreview` is hover-only: keyboard and touch users never see it. Never put the only copy of an action or a fact inside it — use `Popover` when the content is essential.
+- `Progress`, `Meter` and `ToggleGroup.Root` need an `aria-label`; Bits gives the role and value attributes but not the name.
 - `Slider` is NOT `bind:value`; use `value` + `onValueChange`, and give it an accessible name with `thumbLabel`. `Switch`/`Checkbox` need `aria-label` when unlabelled. `Tooltip` requires a `Tooltip.Provider` ancestor.
 
 ## Decision Gates

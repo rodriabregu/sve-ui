@@ -156,6 +156,79 @@
 		],
 		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
 	},
+	"AlertDialogAction": {
+		"props": [
+			{
+				"prop": "color",
+				"type": "'danger' | 'primary'",
+				"required": false,
+				"default": "'danger'",
+				"description": "Tone of the confirming button. `danger` is the default because an alert dialog usually guards a destructive action."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			}
+		],
+		"spreads": "Omit<BitsActionProps, 'class'>"
+	},
+	"AlertDialogCancel": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			}
+		],
+		"spreads": "Omit<BitsCancelProps, 'class'>"
+	},
+	"AlertDialogContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the panel."
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"AlertDialogDescription": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the description."
+			}
+		],
+		"spreads": "Omit<BitsDescriptionProps, 'class'>"
+	},
+	"AlertDialogOverlay": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the backdrop."
+			}
+		],
+		"spreads": "Omit<BitsOverlayProps, 'class'>"
+	},
+	"AlertDialogTitle": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the title."
+			}
+		],
+		"spreads": "Omit<BitsTitleProps, 'class'>"
+	},
 	"AspectRatio": {
 		"props": [
 			{
@@ -684,6 +757,17 @@
 		],
 		"spreads": "Omit<BitsRootProps, 'class' | 'children'>"
 	},
+	"LinkPreviewContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the floating card."
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
 	"Meter": {
 		"props": [
 			{
@@ -855,6 +939,64 @@
 			}
 		],
 		"spreads": "Omit<BitsRootProps, 'class' | 'orientation' | 'decorative'>"
+	},
+	"SheetContent": {
+		"props": [
+			{
+				"prop": "side",
+				"type": "'left' | 'right' | 'top' | 'bottom'",
+				"required": false,
+				"default": "'right'",
+				"description": "Which edge the panel slides in from."
+			},
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'",
+				"description": "Panel thickness — width for left/right, height for top/bottom."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the panel."
+			}
+		],
+		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"SheetDescription": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the description."
+			}
+		],
+		"spreads": "Omit<BitsDescriptionProps, 'class'>"
+	},
+	"SheetOverlay": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the backdrop."
+			}
+		],
+		"spreads": "Omit<BitsOverlayProps, 'class'>"
+	},
+	"SheetTitle": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the title."
+			}
+		],
+		"spreads": "Omit<BitsTitleProps, 'class'>"
 	},
 	"Skeleton": {
 		"props": [
