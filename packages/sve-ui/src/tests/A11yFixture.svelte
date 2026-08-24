@@ -40,6 +40,8 @@
 	import * as RatingGroup from '$lib/components/RatingGroup/index.js';
 	import Stack from '$lib/components/Stack/Stack.svelte';
 	import Flex from '$lib/components/Flex/Flex.svelte';
+	import * as Calendar from '$lib/components/Calendar/index.js';
+	import { CalendarDate } from '@internationalized/date';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -71,6 +73,8 @@
 	let commandValue = $state('');
 	let pin = $state('');
 	let rating = $state(3);
+	let calValue = $state(new CalendarDate(2026, 1, 15));
+	let calPlaceholder = $state(new CalendarDate(2026, 1, 1));
 </script>
 
 <!-- Display -->
@@ -106,6 +110,37 @@
 		<ToggleGroup.Item value="left" aria-label="Align left">L</ToggleGroup.Item>
 		<ToggleGroup.Item value="right" aria-label="Align right">R</ToggleGroup.Item>
 	</ToggleGroup.Root>
+</section>
+<section aria-label="Calendar">
+	<Calendar.Root type="single" bind:value={calValue} bind:placeholder={calPlaceholder} calendarLabel="Departure date">
+		{#snippet children({ months, weekdays })}
+			<Calendar.Header>
+				<Calendar.PrevButton>‹</Calendar.PrevButton>
+				<Calendar.Heading />
+				<Calendar.NextButton>›</Calendar.NextButton>
+			</Calendar.Header>
+			{#each months as month (month.value)}
+				<Calendar.Grid>
+					<Calendar.GridHead>
+						<Calendar.GridRow>
+							{#each weekdays as day, i (i)}
+								<Calendar.HeadCell>{day}</Calendar.HeadCell>
+							{/each}
+						</Calendar.GridRow>
+					</Calendar.GridHead>
+					<Calendar.GridBody>
+						{#each month.weeks as week, i (i)}
+							<Calendar.GridRow>
+								{#each week as date (date)}
+									<Calendar.Cell {date} month={month.value}><Calendar.Day /></Calendar.Cell>
+								{/each}
+							</Calendar.GridRow>
+						{/each}
+					</Calendar.GridBody>
+				</Calendar.Grid>
+			{/each}
+		{/snippet}
+	</Calendar.Root>
 </section>
 <section aria-label="PIN input">
 	<span id="a11y-pin-label">Verification code</span>

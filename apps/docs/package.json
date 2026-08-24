@@ -15,6 +15,7 @@
 		"gen:props:check": "node scripts/gen-props.mjs && git diff --exit-code -- src/lib/docs/generated/props.json"
 	},
 	"devDependencies": {
+		"@internationalized/date": "catalog:",
 		"@repo/eslint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@sveltejs/adapter-vercel": "^6.3.4",

@@ -10,6 +10,9 @@ onlyBuiltDependencies:
 # Reference in package.json with "catalog:".
 catalog:
   svelte: ^5.56.3
+  # Peer of bits-ui AND of sve-ui itself. One version only: two copies of a
+  # date library means DateValue objects that stop lining up.
+  '@internationalized/date': ^3.8.1
   '@sveltejs/kit': ^2.66.0
   '@sveltejs/package': ^2.5.8
   '@sveltejs/vite-plugin-svelte': ^7.1.2
