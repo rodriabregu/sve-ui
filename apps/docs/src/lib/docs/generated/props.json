@@ -1203,6 +1203,35 @@
 		],
 		"spreads": "Omit<BitsRootProps, 'class' | 'page'>"
 	},
+	"PinInputCell": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the cell."
+			}
+		],
+		"spreads": "Omit<BitsCellProps, 'class'>"
+	},
+	"PinInputRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "string",
+				"required": false,
+				"default": "''",
+				"description": "The entered code. Bindable."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'value'>"
+	},
 	"PopoverContent": {
 		"props": [
 			{
@@ -1274,6 +1303,41 @@
 			}
 		],
 		"spreads": "Omit<BitsRootProps, 'class'>"
+	},
+	"RatingGroupItem": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the item."
+			}
+		],
+		"spreads": "Omit<BitsItemProps, 'class'>"
+	},
+	"RatingGroupRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "number",
+				"required": false,
+				"default": "0",
+				"description": "Current rating. Bindable."
+			},
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			}
+		],
+		"spreads": "Omit<BitsRootProps, 'class' | 'value'>"
 	},
 	"ScrollAreaRoot": {
 		"props": [

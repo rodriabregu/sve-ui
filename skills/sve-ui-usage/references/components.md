@@ -5,7 +5,7 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 ## Import style
 
 - **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Toggle`, `Progress`, `Meter`, `AspectRatio`, `Code`.
-- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`.
+- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`, `PinInput`, `RatingGroup`.
 
 ```svelte
 import { Button, Input, Badge, Slider } from 'sve-ui';
@@ -60,6 +60,35 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 <!-- Textarea: resize none|vertical|horizontal|both (default vertical) -->
 <Textarea rows={5} resize="vertical" bind:value={bio} />
 <Textarea invalid aria-describedby="bio-error" />
+
+<!-- PinInput (OTP / PIN). ONE real input behind the cells — that is what makes
+     paste + mobile SMS autofill work. maxlength = number of cells (required).
+     GOTCHA: <label for> does NOT work. The id lands on the wrapper div and the
+     real input gets an unpredictable Bits-internal id. Name it from Root with
+     aria-label, or aria-labelledby pointing at your own visible label. -->
+<span id="otp-label">Verification code</span>
+<PinInput.Root bind:value={code} maxlength={6} aria-labelledby="otp-label" onComplete={submit}>
+  {#snippet children({ cells })}
+    {#each cells as cell, i (i)}<PinInput.Cell {cell} />{/each}
+  {/snippet}
+</PinInput.Root>
+
+<!-- RatingGroup: Root is role="slider" (arrow keys adjust it), items are
+     role="presentation". Needs aria-label AND aria-valuetext — pass the function
+     form so the SCALE is announced, not a bare number. Items carry
+     data-state active|partial|inactive, so half-stars are expressible. -->
+<RatingGroup.Root
+  bind:value={rating}
+  max={5}
+  aria-label="Rating"
+  aria-valuetext={(v, max) => `${v} of ${max} stars`}
+>
+  {#snippet children({ items })}
+    {#each items as item (item.index)}
+      <RatingGroup.Item index={item.index}>★</RatingGroup.Item>
+    {/each}
+  {/snippet}
+</RatingGroup.Root>
 
 <!-- Toggle: a pressed BUTTON (toolbar), not a setting. Switch is the setting. -->
 <Toggle bind:pressed={bold} aria-label="Bold">B</Toggle>
