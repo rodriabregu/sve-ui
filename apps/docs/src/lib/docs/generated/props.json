@@ -2888,6 +2888,226 @@
 		],
 		"spreads": "Omit<BitsRootProps, 'class'>"
 	},
+	"TableBody": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the `<tbody>`."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLTableSectionElement>, 'class'>"
+	},
+	"TableCaption": {
+		"props": [
+			{
+				"prop": "visuallyHidden",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Keep the caption available to assistive technology but hide it visually. Use it when the heading above the table already says the same thing — removing the caption entirely would leave the table unnamed."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the caption."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
+	},
+	"TableCell": {
+		"props": [
+			{
+				"prop": "numeric",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Right-align and use tabular figures. Numbers are compared by reading down the column, which only works when the digits line up: right alignment aligns the units place, and `tabular-nums` stops a proportional font from giving `1` less width than `8`. Apply it to the matching `Table.Head` too."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the `<td>`."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLTdAttributes, 'class'>"
+	},
+	"TableFooter": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the `<tfoot>`."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLTableSectionElement>, 'class'>"
+	},
+	"TableHead": {
+		"props": [
+			{
+				"prop": "sortable",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Render the label as a button and expose `aria-sort`. A clickable `<th>` is not focusable and not operable by keyboard, so the control has to be a real `<button>` inside the cell."
+			},
+			{
+				"prop": "sort",
+				"type": "'none' | 'asc' | 'desc'",
+				"required": false,
+				"default": "'none'",
+				"description": "Current sort of this column. Only ONE column should be anything other than `'none'` unless you genuinely sort by several at once — `aria-sort` on two columns claims a sort order the data does not have."
+			},
+			{
+				"prop": "onSortChange",
+				"type": "(direction: SortDirection) => void",
+				"required": false,
+				"description": "Called with the next direction when the header is activated, cycling none → asc → desc → none. This component does NOT sort your data. Sorting is application logic: it may be server-side, it interacts with pagination, and comparing text correctly needs an `Intl.Collator` for the user's locale. Announcing a sort you did not apply is a lie to assistive technology."
+			},
+			{
+				"prop": "numeric",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Right-align and use tabular figures, for a column of numbers."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the `<th>`."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLThAttributes, 'class' | 'scope' | 'onclick'>"
+	},
+	"TableHeader": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the `<thead>`."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLTableSectionElement>, 'class'>"
+	},
+	"TableRoot": {
+		"props": [
+			{
+				"prop": "scrollLabel",
+				"type": "string",
+				"required": false,
+				"description": "Names the horizontal scroll region so a keyboard user can reach it. A table wider than its container scrolls, and a scroll container that is not focusable cannot be scrolled without a pointer — the columns off the right edge are simply unreachable. Focusability requires a name, though: an unnamed focusable region is announced as nothing at all, which is why `tabindex` is only added when this is set. It is NOT the table's accessible name. Use `Table.Caption` for that."
+			},
+			{
+				"prop": "density",
+				"type": "'compact' | 'default' | 'comfortable'",
+				"required": false,
+				"default": "'default'",
+				"description": "Row height. Compact fits more on screen; comfortable is easier to track across a wide row."
+			},
+			{
+				"prop": "zebra",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Shade alternating body rows."
+			},
+			{
+				"prop": "stickyHeader",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Pin the header while the body scrolls vertically. Needs a height on the scroll container — set `--sve-table-max-height`, or the page scrolls instead of the table and there is nothing for the header to stick to."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the `<table>`."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false,
+				"description": "Caption, Header, Body and Footer."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLTableElement>, 'class'>"
+	},
+	"TableRow": {
+		"props": [
+			{
+				"prop": "selected",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Mark the row as selected. This styles the row and sets `data-selected`; it does NOT set `aria-selected`, which is only valid inside a `grid`, `listbox` or `treegrid` and is ignored — or reported as an error — on a plain `<tr>`. Selection has to be operable, so put a real `Checkbox` in the first cell and let this follow its state. Styling alone tells sighted users and nobody else."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the `<tr>`."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLTableRowElement>, 'class'>"
+	},
+	"TableRowHeader": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the `<th>`."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLThAttributes, 'class' | 'scope'>"
+	},
 	"TabsContent": {
 		"props": [
 			{

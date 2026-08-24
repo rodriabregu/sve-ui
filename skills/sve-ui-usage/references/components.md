@@ -47,6 +47,70 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 </div>
 ```
 
+### Table
+
+```svelte
+<script>
+  import { Table } from 'sve-ui';
+  let sort = $state('none'); // 'none' | 'asc' | 'desc'
+
+  // THE COMPONENT DOES NOT SORT. You apply the order, because only you know
+  // whether the rows are local, how this interacts with pagination, and which
+  // locale the text compares in ('a' < 'b' is not universal).
+  const collator = new Intl.Collator(locale, { numeric: true, sensitivity: 'base' });
+  const sorted = $derived(
+    sort === 'none'
+      ? rows
+      : [...rows].sort((a, b) => (sort === 'asc' ? 1 : -1) * collator.compare(a.region, b.region))
+  );
+</script>
+
+<!-- Root is a plain <table>: NO role="grid", which would promise arrow-key cell
+     navigation this does not implement. Root also owns the horizontal scroll
+     container; scrollLabel makes it focusable so the columns past the right
+     edge are reachable by keyboard. scrollLabel is NOT the table's name.
+     stickyHeader needs --sve-table-max-height (24rem default). -->
+<Table.Root scrollLabel="Revenue by region, scrollable" zebra density="compact">
+  <!-- The table's accessible name. MUST be the first child. Use
+       visuallyHidden when a heading above already says it. -->
+  <Table.Caption>Revenue by region</Table.Caption>
+
+  <Table.Header>
+    <Table.Row>
+      <Table.Head>Region</Table.Head>
+      <!-- Renders a real <button> in the cell (a clickable <th> is not
+           focusable) and sets aria-sort. Cycles none -> asc -> desc -> none.
+           Keep aria-sort on ONE column, and only when you applied it. -->
+      <Table.Head sortable {sort} onSortChange={(d) => (sort = d)} numeric>Revenue</Table.Head>
+    </Table.Row>
+  </Table.Header>
+
+  <Table.Body>
+    {#each sorted as row (row.region)}
+      <!-- selected sets data-selected, NOT aria-selected (invalid on a plain
+           <tr>). Pair it with a real Checkbox — styling alone tells sighted
+           users and nobody else. -->
+      <Table.Row selected={row.id === selectedId}>
+        <!-- <th scope="row">: turns "1200" into "Revenue, Argentina, 1200". -->
+        <Table.RowHeader>{row.region}</Table.RowHeader>
+        <!-- numeric on BOTH Head and Cell: right-align + tabular-nums so the
+             digits line up. Format with Intl.NumberFormat yourself. -->
+        <Table.Cell numeric>{fmt.format(row.revenue)}</Table.Cell>
+      </Table.Row>
+    {/each}
+  </Table.Body>
+
+  <!-- Totals go in tfoot, not as a last body row — it is not data. -->
+  <Table.Footer>
+    <Table.Row>
+      <Table.RowHeader>Total</Table.RowHeader>
+      <Table.Cell numeric>{fmt.format(total)}</Table.Cell>
+    </Table.Row>
+  </Table.Footer>
+</Table.Root>
+```
+
+
 ## Forms
 
 ```svelte
