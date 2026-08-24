@@ -1,4 +1,4 @@
-import { afterEach } from 'vitest';
+import { afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/svelte';
 
 /**
@@ -73,5 +73,12 @@ if (typeof Element !== 'undefined' && !Element.prototype.animate) {
  */
 afterEach(async () => {
   cleanup();
+  // Fake timers leak to the next test in a file unless restored, and the wait
+  // below is a real `setTimeout` — on fake timers it never fires, so this hook
+  // hangs until the hook timeout and the run fails somewhere unrelated to the
+  // test that installed them. Restoring here makes that impossible instead of
+  // depending on every future test file nesting its own `afterEach` correctly.
+  // Safe when fake timers were never installed.
+  vi.useRealTimers();
   await new Promise((resolve) => setTimeout(resolve, 50));
 });

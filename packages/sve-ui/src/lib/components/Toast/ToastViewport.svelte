@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { untrack } from 'svelte';
   import { fly } from 'svelte/transition';
   import type { HTMLAttributes } from 'svelte/elements';
   import ToastItem from './ToastItem.svelte';
@@ -43,6 +44,11 @@
     ...rest
   }: Props = $props();
 
+  // Applied at init, NOT only in an `$effect`. Effects flush after mount, so a
+  // `toast()` called in the same tick the Viewport mounts — or before the first
+  // effect runs at all — would be capped by the default instead of by `max`.
+  // The effect then keeps it in sync when the prop changes.
+  setLimit(untrack(() => max));
   $effect(() => setLimit(max));
 
   // Svelte transitions run regardless of the user's motion preference, so it
