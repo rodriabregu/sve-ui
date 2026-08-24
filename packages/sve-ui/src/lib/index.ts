@@ -12,6 +12,7 @@
  * Calendar namespace, RangeCalendar namespace, DateField, TimeField,
  * DateRangeField and TimeRangeField namespaces, DatePicker and
  * DateRangePicker namespaces, Sidebar namespace, Table namespace,
+ * Toast namespace + the imperative `toast`,
  * RatingGroup namespace,
  * variant helper + types, theme types.
  */
@@ -151,6 +152,11 @@ export * as Sidebar from './components/Sidebar/index.js';
 
 // Table namespace (custom — a styled data table; it does not sort your data)
 export * as Table from './components/Table/index.js';
+
+// Toast namespace (custom — imperative trigger, declarative Viewport)
+export * as Toast from './components/Toast/index.js';
+// The imperative entry point. Requires a mounted <Toast.Viewport />.
+export { toast } from './components/Toast/store.svelte.js';
 
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';
