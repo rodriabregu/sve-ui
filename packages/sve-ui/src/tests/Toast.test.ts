@@ -154,6 +154,15 @@ describe('Toast', () => {
     expect(toasts.length).toBe(1);
   });
 
+  it('applies max before any effect has flushed', () => {
+    // The limit has to be live from init: effects run after mount, and a toast
+    // enqueued in that same tick would otherwise be capped by the default.
+    render(ToastFixture, { max: 1 });
+    toast('first');
+    toast('second');
+    expect(toasts.map((t) => t.title)).toEqual(['second']);
+  });
+
   it('drops the oldest toast past max', () => {
     render(ToastFixture, { max: 2 });
     toast('first');

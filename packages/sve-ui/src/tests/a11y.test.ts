@@ -41,9 +41,25 @@ const AXE_OPTIONS = {
 } as const;
 
 describe('accessibility (axe)', () => {
-	it('every component passes axe when used as intended', async () => {
-		const { container } = render(A11yFixture);
-		const results = await axe(container, AXE_OPTIONS);
-		expect(results).toHaveNoViolations();
-	});
+	/*
+		An explicit timeout, not the 5s default. This one test mounts EVERY component
+		in the library at once and runs a full axe sweep over the result, so its cost
+		grows with the catalog — around 60 components now. On a loaded machine (a
+		parallel `turbo run lint check test build`) it crossed 5s and failed as a
+		timeout, which reads like a flaky assertion but is nothing of the kind: the
+		work simply does not fit the default budget.
+
+		The alternatives were worse. Retrying would hide it, and splitting the
+		fixture would trade whole-page coverage — where landmark and live-region
+		conflicts BETWEEN components actually surface — for a faster number.
+	*/
+	it(
+		'every component passes axe when used as intended',
+		async () => {
+			const { container } = render(A11yFixture);
+			const results = await axe(container, AXE_OPTIONS);
+			expect(results).toHaveNoViolations();
+		},
+		60_000
+	);
 });
