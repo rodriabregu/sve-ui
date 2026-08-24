@@ -107,8 +107,8 @@ export const componentGroups: ComponentGroup[] = [
 	{
 		label: 'Layout',
 		items: [
-			{ slug: 'stack', name: 'Stack', blurb: 'Vertical spacing primitive.' },
-			{ slug: 'flex', name: 'Flex', blurb: 'Flexbox layout primitive.' },
+			{ slug: 'stack', name: 'Stack', blurb: 'Vertical spacing primitive.', status: 'new', ready: true },
+			{ slug: 'flex', name: 'Flex', blurb: 'Flexbox layout primitive.', status: 'new', ready: true },
 			{ slug: 'separator', name: 'Separator', blurb: 'Visual or semantic divider.', status: 'new', ready: true },
 			{ slug: 'scroll-area', name: 'Scroll Area', blurb: 'Styled custom scroll container.', status: 'new', ready: true },
 			{ slug: 'aspect-ratio', name: 'Aspect Ratio', blurb: 'Constrain content ratio.', status: 'new', ready: true }

@@ -38,6 +38,8 @@
 	import * as Command from '$lib/components/Command/index.js';
 	import * as PinInput from '$lib/components/PinInput/index.js';
 	import * as RatingGroup from '$lib/components/RatingGroup/index.js';
+	import Stack from '$lib/components/Stack/Stack.svelte';
+	import Flex from '$lib/components/Flex/Flex.svelte';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -242,6 +244,16 @@
 </section>
 
 <!-- Layout -->
+<section aria-label="Layout primitives">
+	<Stack gap={2} as="ul">
+		<li>Stacked one</li>
+		<li>Stacked two</li>
+	</Stack>
+	<Flex gap={2} justify="between">
+		<span>Left</span>
+		<span>Right</span>
+	</Flex>
+</section>
 <section aria-label="Separator">
 	<Separator />
 	<Separator orientation="vertical" />

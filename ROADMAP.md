@@ -165,7 +165,7 @@ Ship in prioritized waves; each component = tests + a11y + docs page + Storybook
 - [x] **Wave 2 (overlays, Bits UI):** Dialog/Modal, Dropdown Menu, Tooltip, Popover — **except Toast**, which is blocked on the external-dep decision below and moved to Wave 4
 - [x] **Wave 3 (forms, Bits UI):** Select, Combobox, Checkbox, Radio Group, Switch, Slider, Tabs, Accordion
 - [x] **Wave 4a (low-risk batch, 2026-08-22):** Textarea (native), Label (Bits), Skeleton (custom), Separator (Bits) — no new dependencies
-- [ ] **Wave 4b (advanced):** Toast region (blocked: svelte-sonner vs melt-ui), Date Picker, Command/Search, Table, Pagination
+- [ ] **Wave 4b (advanced):** Toast region (blocked: svelte-sonner vs `melt` (the next-gen rewrite; `@melt-ui/svelte` v1 is out on its peerDependency)), Date Picker, Command/Search, Table, Pagination
 - [ ] **Sidebar (composable app-shell nav):** `Sidebar.Root/Header/Content/Group/Item/Footer` + collapsible state + mobile behavior + context provider. Precedent: shadcn-svelte ships one (HeroUI/Bits UI do not). NOTE: the docs `/components` sidebar we built is **app composition** (coupled to the docs registry + routing + soon/new tags), NOT this primitive. Build the generic component first, then **rebuild the docs sidebar on top of it (dogfood)**. One of the larger components — its own item, not a "while we're at it".
 - [ ] Minimal internal layout layer (Box/Stack/Flex) — building blocks, not headline
 
@@ -173,7 +173,7 @@ Ship in prioritized waves; each component = tests + a11y + docs page + Storybook
 Because every styled component wraps a Bits UI primitive, **the Bits UI catalog IS our low-effort backlog**: anything Bits already ships is a styling job, not a behavior/a11y job. Bits UI provides 41 primitives; map every one to a `sve-ui` component before reaching for custom builds.
 
 - [ ] **Remaining Bits UI primitives to wrap (surfaced as `soon` in /components):** Alert Dialog, Aspect Ratio, Calendar, Collapsible, Date Field, Date Picker, Link Preview (hover card), Menubar, Meter, Navigation Menu, PIN Input, Progress, Rating Group, Scroll Area, Toggle, Toggle Group, Toolbar, Range Calendar, Date/Time Range variants — **Label and Separator wrapped in Wave 4a**
-- [ ] **Custom (non-Bits) components still needed:** Toast region (external dep — svelte-sonner vs melt-ui), Table (custom), Breadcrumb, Sheet (styled Dialog), Pagination, Carousel (embla), Stack/Flex — **Textarea and Skeleton shipped in Wave 4a**
+- [ ] **Custom (non-Bits) components still needed:** Toast region (external dep — svelte-sonner vs `melt` (the next-gen rewrite; `@melt-ui/svelte` v1 is out on its peerDependency)), Table (custom), Breadcrumb, Sheet (styled Dialog), Pagination, Carousel (embla), Stack/Flex — **Textarea and Skeleton shipped in Wave 4a**
 - [x] **Gap found 2026-06-21:** Textarea and Alert Dialog were missing from the plan entirely — added. Textarea shipped in Wave 4a (2026-08-22); Alert Dialog still open.
 
 ### Phase 2 — Testing
