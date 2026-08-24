@@ -1,0 +1,12 @@
+# Revisions to skip when running `git blame`.
+#
+# Configure it once per clone (it is not picked up automatically):
+#
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# Only pure-formatting commits belong here. A commit that changes behaviour must
+# never be listed, or blame will silently point past the change that matters.
+
+# chore: format the repo with prettier and gate it in CI (#39)
+# 419 files reformatted; 63 of 64 prerendered pages verified byte-identical.
+2d8d4a134b4bdc85ce96b31db826baf9f33b5b6a
