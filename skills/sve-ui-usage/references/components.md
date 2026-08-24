@@ -322,6 +322,55 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 <Meter value={70} max={100} aria-label="Disk usage" />
 ```
 
+### Toast
+
+The only imperative API in the library. A toast reports an EVENT, not state, and
+an imperative call is reachable from code that is not a component at all (a
+`fetch` wrapper, an interceptor) where context cannot reach.
+
+```svelte
+<script>
+  import { Toast, toast } from 'sve-ui';
+</script>
+
+<!-- REQUIRED, once, high in the layout. Without it the calls queue into a list
+     nothing renders. It is a persistent live region that renders even when
+     empty: assistive technology only announces additions to a region it was
+     ALREADY observing. Politeness is fixed at polite and is not configurable. -->
+<Toast.Viewport position="bottom-right" max={5} label="Notifications" />
+```
+
+```ts
+toast('Copied');                                  // info
+toast.success('Project saved');
+toast.warning('Your trial ends in 3 days');
+toast.error('Upload failed', { description: 'The file is over 10 MB.' });
+
+toast('Copied', { duration: 2000 });              // Infinity keeps it
+toast('Working...', { dismissible: false });
+
+// An action flips duration to Infinity by default: a control the user can lose
+// a race against is not a control. Pass duration explicitly to override.
+toast('Message deleted', { action: { label: 'Undo', onclick: restore } });
+
+const id = toast('Uploading...', { duration: Infinity });
+await upload();
+toast.dismiss(id);
+toast.success('Uploaded');
+toast.clear();
+```
+
+NEVER call `toast()` during server rendering — not from the top level of a
+`load`, not from a component body. The queue is module state, shared across
+requests, so the toast would appear in a DIFFERENT user's HTML. The call is
+refused and reported to the console rather than thrown (a toast is not essential
+to the page). Call it from an event handler, `onMount`, or a client-only module.
+
+Timers pause on hover AND on focus. Past `max` the OLDEST is dropped. Never let a
+toast hold the only copy of information or an action — it disappears and there is
+no history.
+
+
 ## Navigation
 
 ```svelte

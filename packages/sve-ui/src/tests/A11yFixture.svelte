@@ -47,6 +47,7 @@
 	import * as DatePicker from '$lib/components/DatePicker/index.js';
 	import * as Sidebar from '$lib/components/Sidebar/index.js';
 	import * as Table from '$lib/components/Table/index.js';
+	import * as Toast from '$lib/components/Toast/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -433,3 +434,9 @@
 		</Table.Footer>
 	</Table.Root>
 </section>
+
+<!--
+  The Viewport is a persistent live region that renders even when empty, so axe
+  sees it in exactly the state it spends most of its life in.
+-->
+<Toast.Viewport label="Notifications" />

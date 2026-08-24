@@ -65,7 +65,13 @@ export const componentGroups: ComponentGroup[] = [
 		items: [
 			{ slug: 'alert', name: 'Alert', blurb: 'Inline status and messaging.', ready: true },
 			{ slug: 'spinner', name: 'Spinner', blurb: 'Indeterminate loading indicator.', ready: true },
-			{ slug: 'toast', name: 'Toast', blurb: 'Transient, stacked notifications.' },
+			{
+				slug: 'toast',
+				name: 'Toast',
+				blurb: 'Transient notifications, triggered imperatively.',
+				status: 'new',
+				ready: true
+			},
 			{ slug: 'progress', name: 'Progress', blurb: 'Determinate progress bar.', status: 'new', ready: true },
 			{ slug: 'meter', name: 'Meter', blurb: 'Bounded scalar measurement.', status: 'new', ready: true }
 		]

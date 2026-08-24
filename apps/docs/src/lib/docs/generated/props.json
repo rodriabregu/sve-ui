@@ -3485,6 +3485,60 @@
 		],
 		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
 	},
+	"ToastItem": {
+		"props": [
+			{
+				"prop": "item",
+				"type": "ToastItem",
+				"required": true
+			},
+			{
+				"prop": "dismissLabel",
+				"type": "string",
+				"required": true,
+				"description": "Base label for the dismiss button, for translation."
+			}
+		]
+	},
+	"ToastViewport": {
+		"props": [
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"default": "'Notifications'",
+				"description": "Names the notification region. An unnamed landmark is announced as nothing, and this one is present from first render whether or not there is anything in it."
+			},
+			{
+				"prop": "position",
+				"type": "| 'top-left'\n    | 'top-center'\n    | 'top-right'\n    | 'bottom-left'\n    | 'bottom-center'\n    | 'bottom-right'",
+				"required": false,
+				"default": "'bottom-right'",
+				"description": "Where the stack sits."
+			},
+			{
+				"prop": "max",
+				"type": "number",
+				"required": false,
+				"default": "5",
+				"description": "How many toasts may be on screen. Beyond this the oldest is dropped — the newest message is the one the user is waiting for."
+			},
+			{
+				"prop": "dismissLabel",
+				"type": "string",
+				"required": false,
+				"default": "'Dismiss'",
+				"description": "Base label for each dismiss button, for translation."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the region."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
+	},
 	"Toggle": {
 		"props": [
 			{
