@@ -11,7 +11,7 @@
  * NavigationMenu namespace, Command namespace, PinInput namespace,
  * Calendar namespace, RangeCalendar namespace, DateField, TimeField,
  * DateRangeField and TimeRangeField namespaces, DatePicker and
- * DateRangePicker namespaces, Sidebar namespace,
+ * DateRangePicker namespaces, Sidebar namespace, Table namespace,
  * RatingGroup namespace,
  * variant helper + types, theme types.
  */
@@ -148,6 +148,9 @@ export * as DateRangePicker from './components/DateRangePicker/index.js';
 
 // Sidebar namespace (custom — a composable app-shell nav panel)
 export * as Sidebar from './components/Sidebar/index.js';
+
+// Table namespace (custom — a styled data table; it does not sort your data)
+export * as Table from './components/Table/index.js';
 
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';

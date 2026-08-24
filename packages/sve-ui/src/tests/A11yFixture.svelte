@@ -46,6 +46,7 @@
 	import * as DateRangeField from '$lib/components/DateRangeField/index.js';
 	import * as DatePicker from '$lib/components/DatePicker/index.js';
 	import * as Sidebar from '$lib/components/Sidebar/index.js';
+	import * as Table from '$lib/components/Table/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -404,3 +405,31 @@
 
 <!-- Utilities -->
 <section aria-label="Code"><Code code="const answer = 42;" /></section>
+
+<section aria-label="Table">
+	<Table.Root scrollLabel="Quarterly revenue, scrollable" zebra stickyHeader>
+		<Table.Caption>Quarterly revenue by region</Table.Caption>
+		<Table.Header>
+			<Table.Row>
+				<Table.Head>Region</Table.Head>
+				<Table.Head sortable sort="asc" numeric>Revenue</Table.Head>
+			</Table.Row>
+		</Table.Header>
+		<Table.Body>
+			<Table.Row selected>
+				<Table.RowHeader>Argentina</Table.RowHeader>
+				<Table.Cell numeric>1200</Table.Cell>
+			</Table.Row>
+			<Table.Row>
+				<Table.RowHeader>Uruguay</Table.RowHeader>
+				<Table.Cell numeric>340</Table.Cell>
+			</Table.Row>
+		</Table.Body>
+		<Table.Footer>
+			<Table.Row>
+				<Table.RowHeader>Total</Table.RowHeader>
+				<Table.Cell numeric>1540</Table.Cell>
+			</Table.Row>
+		</Table.Footer>
+	</Table.Root>
+</section>

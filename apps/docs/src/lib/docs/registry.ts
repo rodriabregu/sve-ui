@@ -100,7 +100,13 @@ export const componentGroups: ComponentGroup[] = [
 	{
 		label: 'Data',
 		items: [
-			{ slug: 'table', name: 'Table', blurb: 'Sortable, styled data table.' },
+			{
+				slug: 'table',
+				name: 'Table',
+				blurb: 'Styled data table with sortable headers.',
+				status: 'new',
+				ready: true
+			},
 			{ slug: 'pagination', name: 'Pagination', blurb: 'Page-by-page navigation.', status: 'new', ready: true }
 		]
 	},
