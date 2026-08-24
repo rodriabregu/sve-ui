@@ -1049,6 +1049,241 @@
 		],
 		"spreads": "Omit<BitsTriggerProps, 'class'>"
 	},
+	"DateFieldInput": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"DateFieldLabel": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"DateFieldRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "DateValue | undefined",
+				"required": false,
+				"description": "The date value. Bindable. A `DateValue`, not a JS `Date`."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: FieldValue) => void",
+				"required": false,
+				"description": "Called when the value changes."
+			},
+			{
+				"prop": "placeholder",
+				"type": "DateValue",
+				"required": false,
+				"description": "Which date the empty segments are formatted from. Bindable."
+			},
+			{
+				"prop": "minValue",
+				"type": "DateValue",
+				"required": false,
+				"description": "Earliest accepted value."
+			},
+			{
+				"prop": "maxValue",
+				"type": "DateValue",
+				"required": false,
+				"description": "Latest accepted value."
+			},
+			{
+				"prop": "granularity",
+				"type": "'day' | 'hour' | 'minute' | 'second'",
+				"required": false,
+				"default": "'day'",
+				"description": "Smallest unit the user can edit, which decides which segments appear. `day` gives a plain date; `minute` adds time segments."
+			},
+			{
+				"prop": "locale",
+				"type": "string",
+				"required": false,
+				"default": "'en'",
+				"description": "BCP-47 locale. It decides the SEGMENT ORDER — month/day/year versus day/month/year — so getting it wrong does not just relabel the field, it rearranges it. Pass the user's locale."
+			},
+			{
+				"prop": "name",
+				"type": "string",
+				"required": false,
+				"description": "Name for form submission; Bits renders a hidden input."
+			},
+			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "readonly",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "validate",
+				"type": "(value: never) => string | string[] | void",
+				"required": false,
+				"description": "Return a message to mark the value invalid. Bits then sets `data-invalid` and wires `aria-invalid` on the segments."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+	},
+	"DateFieldSegment": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"DateRangeFieldInput": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"DateRangeFieldLabel": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"DateRangeFieldRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "{ start: DateValue | undefined; end: DateValue | undefined }",
+				"required": false,
+				"description": "The date value range. Bindable. A `DateValue`, not a JS `Date`."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: FieldValue) => void",
+				"required": false,
+				"description": "Called when the value changes."
+			},
+			{
+				"prop": "placeholder",
+				"type": "DateValue",
+				"required": false,
+				"description": "Which date the empty segments are formatted from. Bindable."
+			},
+			{
+				"prop": "minValue",
+				"type": "DateValue",
+				"required": false,
+				"description": "Earliest accepted value."
+			},
+			{
+				"prop": "maxValue",
+				"type": "DateValue",
+				"required": false,
+				"description": "Latest accepted value."
+			},
+			{
+				"prop": "granularity",
+				"type": "'day' | 'hour' | 'minute' | 'second'",
+				"required": false,
+				"default": "'day'",
+				"description": "Smallest unit the user can edit, which decides which segments appear. `day` gives a plain date; `minute` adds time segments."
+			},
+			{
+				"prop": "locale",
+				"type": "string",
+				"required": false,
+				"default": "'en'",
+				"description": "BCP-47 locale. It decides the SEGMENT ORDER — month/day/year versus day/month/year — so getting it wrong does not just relabel the field, it rearranges it. Pass the user's locale."
+			},
+			{
+				"prop": "name",
+				"type": "string",
+				"required": false,
+				"description": "Name for form submission; Bits renders a hidden input."
+			},
+			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "readonly",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "validate",
+				"type": "(value: never) => string | string[] | void",
+				"required": false,
+				"description": "Return a message to mark the value invalid. Bits then sets `data-invalid` and wires `aria-invalid` on the segments."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+	},
 	"DialogContent": {
 		"props": [
 			{
@@ -2242,6 +2477,253 @@
 			}
 		],
 		"spreads": "Omit<HTMLTextareaAttributes, 'class'>"
+	},
+	"TimeFieldInput": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"TimeFieldLabel": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"TimeFieldRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "TimeValue | undefined",
+				"required": false,
+				"description": "The time value. Bindable. A `TimeValue`, not a JS `Date`."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: FieldValue) => void",
+				"required": false,
+				"description": "Called when the value changes."
+			},
+			{
+				"prop": "placeholder",
+				"type": "Time | CalendarDateTime | ZonedDateTime",
+				"required": false,
+				"description": "Which time the empty segments are formatted from. Bindable."
+			},
+			{
+				"prop": "minValue",
+				"type": "Time | CalendarDateTime | ZonedDateTime",
+				"required": false,
+				"description": "Earliest accepted value."
+			},
+			{
+				"prop": "maxValue",
+				"type": "Time | CalendarDateTime | ZonedDateTime",
+				"required": false,
+				"description": "Latest accepted value."
+			},
+			{
+				"prop": "granularity",
+				"type": "'hour' | 'minute' | 'second'",
+				"required": false,
+				"default": "'minute'",
+				"description": "Smallest unit the user can edit, which decides which segments appear."
+			},
+			{
+				"prop": "hourCycle",
+				"type": "12 | 24",
+				"required": false,
+				"description": "12- or 24-hour clock. Leave it unset to follow the locale — hardcoding 12 is wrong for most of the world."
+			},
+			{
+				"prop": "locale",
+				"type": "string",
+				"required": false,
+				"default": "'en'",
+				"description": "BCP-47 locale. It decides the SEGMENT ORDER — month/day/year versus day/month/year — so getting it wrong does not just relabel the field, it rearranges it. Pass the user's locale."
+			},
+			{
+				"prop": "name",
+				"type": "string",
+				"required": false,
+				"description": "Name for form submission; Bits renders a hidden input."
+			},
+			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "readonly",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "validate",
+				"type": "(value: never) => string | string[] | void",
+				"required": false,
+				"description": "Return a message to mark the value invalid. Bits then sets `data-invalid` and wires `aria-invalid` on the segments."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+	},
+	"TimeFieldSegment": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"TimeRangeFieldInput": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"TimeRangeFieldLabel": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"TimeRangeFieldRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "{ start: TimeValue | undefined; end: TimeValue | undefined }",
+				"required": false,
+				"description": "The time value range. Bindable. A `TimeValue`, not a JS `Date`."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: FieldValue) => void",
+				"required": false,
+				"description": "Called when the value changes."
+			},
+			{
+				"prop": "placeholder",
+				"type": "Time | CalendarDateTime | ZonedDateTime",
+				"required": false,
+				"description": "Which time the empty segments are formatted from. Bindable."
+			},
+			{
+				"prop": "minValue",
+				"type": "Time | CalendarDateTime | ZonedDateTime",
+				"required": false,
+				"description": "Earliest accepted value."
+			},
+			{
+				"prop": "maxValue",
+				"type": "Time | CalendarDateTime | ZonedDateTime",
+				"required": false,
+				"description": "Latest accepted value."
+			},
+			{
+				"prop": "granularity",
+				"type": "'hour' | 'minute' | 'second'",
+				"required": false,
+				"default": "'minute'",
+				"description": "Smallest unit the user can edit, which decides which segments appear."
+			},
+			{
+				"prop": "hourCycle",
+				"type": "12 | 24",
+				"required": false,
+				"description": "12- or 24-hour clock. Leave it unset to follow the locale — hardcoding 12 is wrong for most of the world."
+			},
+			{
+				"prop": "locale",
+				"type": "string",
+				"required": false,
+				"default": "'en'",
+				"description": "BCP-47 locale. It decides the SEGMENT ORDER — month/day/year versus day/month/year — so getting it wrong does not just relabel the field, it rearranges it. Pass the user's locale."
+			},
+			{
+				"prop": "name",
+				"type": "string",
+				"required": false,
+				"description": "Name for form submission; Bits renders a hidden input."
+			},
+			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "readonly",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "validate",
+				"type": "(value: never) => string | string[] | void",
+				"required": false,
+				"description": "Return a message to mark the value invalid. Bits then sets `data-invalid` and wires `aria-invalid` on the segments."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
 	},
 	"Toggle": {
 		"props": [

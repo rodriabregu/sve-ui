@@ -9,7 +9,8 @@
  * ContextMenu namespace, ScrollArea namespace, Toolbar namespace,
  * Menubar namespace, Pagination namespace, Breadcrumb namespace,
  * NavigationMenu namespace, Command namespace, PinInput namespace,
- * Calendar namespace, RangeCalendar namespace,
+ * Calendar namespace, RangeCalendar namespace, DateField, TimeField,
+ * DateRangeField and TimeRangeField namespaces,
  * RatingGroup namespace,
  * variant helper + types, theme types.
  */
@@ -131,6 +132,13 @@ export * as Calendar from './components/Calendar/index.js';
 
 // RangeCalendar namespace (shares the styled chrome with Calendar)
 export * as RangeCalendar from './components/RangeCalendar/index.js';
+
+// Segmented date and time fields (composed over bits-ui). Dates are
+// `DateValue` from @internationalized/date — a peerDependency.
+export * as DateField from './components/DateField/index.js';
+export * as TimeField from './components/TimeField/index.js';
+export * as DateRangeField from './components/DateRangeField/index.js';
+export * as TimeRangeField from './components/TimeRangeField/index.js';
 
 // Button variant types
 export { buttonVariants } from './components/Button/Button.svelte';

@@ -5,7 +5,7 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 ## Import style
 
 - **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Toggle`, `Progress`, `Meter`, `AspectRatio`, `Code`.
-- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`, `PinInput`, `RatingGroup`, `Stack`, `Flex`, `Calendar`, `RangeCalendar`.
+- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`, `PinInput`, `RatingGroup`, `Stack`, `Flex`, `Calendar`, `RangeCalendar`, `DateField`, `TimeField`, `DateRangeField`, `TimeRangeField`.
 
 > **Date components need a peer install:** `pnpm add @internationalized/date`.
 > Dates are `DateValue`, NOT JavaScript `Date`. One copy only — two copies means
@@ -131,6 +131,37 @@ import { Dialog, Select, Tabs } from 'sve-ui';
     {/each}
   {/snippet}
 </Calendar.Root>
+
+<!-- DateField / TimeField: SEGMENTED fields, not text inputs. Every part is its
+     own role="spinbutton" with aria-valuenow/valuetext/label, so arrow keys
+     adjust it and the value only commits once ALL segments are filled.
+     `locale` decides SEGMENT ORDER (en-US month-first, en-GB day-first) — wrong
+     locale = wrong date silently entered, not just wrong labels.
+     `granularity` decides which segments exist. TimeField: leave `hourCycle`
+     unset to follow the locale (12 adds a dayPeriod segment, 24 does not).
+     Key the each by INDEX — segment parts repeat (multiple "literal"). -->
+<DateField.Root bind:value locale={userLocale}>
+  <DateField.Label>Departure date</DateField.Label>
+  <DateField.Input>
+    {#snippet children({ segments })}
+      {#each segments as { part, value }, i (i)}
+        <DateField.Segment {part}>{value}</DateField.Segment>
+      {/each}
+    {/snippet}
+  </DateField.Input>
+</DateField.Root>
+
+<!-- DateRangeField / TimeRangeField: TWO Inputs, `type` is REQUIRED.
+     GOTCHA: Bits leaves the range Root's role="group" UNNAMED — it labels the
+     Inputs, which have no role, so nothing exposed gets a name. YOU must pass
+     aria-labelledby (or aria-label) on Root. The single-value field does not
+     have this problem. Mark your separator aria-hidden. -->
+<DateRangeField.Root bind:value locale={userLocale} aria-labelledby="range-label">
+  <DateRangeField.Label id="range-label">Stay dates</DateRangeField.Label>
+  <DateRangeField.Input type="start">...</DateRangeField.Input>
+  <span aria-hidden="true">–</span>
+  <DateRangeField.Input type="end">...</DateRangeField.Input>
+</DateRangeField.Root>
 
 <!-- RangeCalendar: same composition; value is { start, end }. Bits handles the
      two-step pick and normalises a backwards selection. minDays/maxDays bound
