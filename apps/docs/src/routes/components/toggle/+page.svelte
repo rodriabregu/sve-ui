@@ -52,8 +52,8 @@
 		<h2 class="sec__h">Variants</h2>
 		<p class="sec__p">
 			<code class="ic">outline</code> keeps a visible border when off;
-			<code class="ic">ghost</code> shows nothing until hovered or pressed. Both use the primary
-			tone for the on state.
+			<code class="ic">ghost</code> shows nothing until hovered or pressed. Both use the primary tone
+			for the on state.
 		</p>
 		<Preview code={variantsCode}>
 			<div class="row">

@@ -8,16 +8,16 @@ import globals from 'globals';
  * linting; Oxlint covers plain .ts/.js for speed — see ROADMAP D6).
  */
 export const base = [
-  {
-    ignores: ['dist/', '.svelte-kit/', 'build/', 'node_modules/', '.turbo/', '.vercel/', '.output/']
-  },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  {
-    languageOptions: {
-      globals: { ...globals.browser, ...globals.node }
-    }
-  }
+	{
+		ignores: ['dist/', '.svelte-kit/', 'build/', 'node_modules/', '.turbo/', '.vercel/', '.output/']
+	},
+	js.configs.recommended,
+	...tseslint.configs.recommended,
+	{
+		languageOptions: {
+			globals: { ...globals.browser, ...globals.node }
+		}
+	}
 ];
 
 export default base;

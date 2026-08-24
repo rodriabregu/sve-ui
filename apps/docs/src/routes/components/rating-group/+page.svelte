@@ -19,9 +19,18 @@
 	// Forwarded to the Bits primitive, so not declared on our own Props.
 	const rootForwarded: PropRow[] = [
 		{ prop: 'max', type: 'number', description: 'How many items. Also the aria-valuemax.' },
-		{ prop: 'aria-valuetext', type: 'string | ((value, max) => string)', description: 'Spoken value. Pass the function form so the scale is announced, not just a number.' },
+		{
+			prop: 'aria-valuetext',
+			type: 'string | ((value, max) => string)',
+			description:
+				'Spoken value. Pass the function form so the scale is announced, not just a number.'
+		},
 		{ prop: 'onValueChange', type: '(value: number) => void' },
-		{ prop: 'name', type: 'string', description: 'Include it in a form submission; Bits renders a hidden input.' },
+		{
+			prop: 'name',
+			type: 'string',
+			description: 'Include it in a form submission; Bits renders a hidden input.'
+		},
 		{ prop: 'orientation', type: `'horizontal' | 'vertical'`, default: `'horizontal'` },
 		{ prop: 'disabled', type: 'boolean', default: 'false' },
 		{ prop: 'required', type: 'boolean', default: 'false' }
@@ -84,12 +93,12 @@
 			Pass the <strong>function</strong> form:
 			<code class="ic">{'(v, max) => `${v} of ${max} stars`'}</code>. Without it the rating is
 			announced as a bare number, and "3" tells the user nothing — three out of five? out of ten? A
-			rating is meaningless without its scale, and that is precisely what a sighted user gets for free
-			from seeing five stars.
+			rating is meaningless without its scale, and that is precisely what a sighted user gets for
+			free from seeing five stars.
 		</p>
 		<p class="sec__p">
-			Root also needs a <strong>name</strong> via <code class="ic">aria-label</code>. Bits supplies the
-			role and the numeric values; it cannot invent what is being rated.
+			Root also needs a <strong>name</strong> via <code class="ic">aria-label</code>. Bits supplies
+			the role and the numeric values; it cannot invent what is being rated.
 		</p>
 		<Preview code={`<RatingGroup.Root size="lg" max={5} aria-label="Overall quality" />`}>
 			<RatingGroup.Root
@@ -112,8 +121,8 @@
 		<h2 class="sec__h">It is a slider, not buttons</h2>
 		<p class="sec__p">
 			Bits gives Root <code class="ic">role="slider"</code> with the
-			<code class="ic">aria-value*</code> attributes, so the arrow keys adjust the rating and the whole
-			control is one tab stop. The items are
+			<code class="ic">aria-value*</code> attributes, so the arrow keys adjust the rating and the
+			whole control is one tab stop. The items are
 			<code class="ic">role="presentation"</code> — decorative, with the value living on the Root.
 		</p>
 		<p class="sec__p">
@@ -124,7 +133,9 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
-		<p class="sec__p"><code class="ic">RatingGroup.Root</code> — <code class="ic">value</code> is bindable.</p>
+		<p class="sec__p">
+			<code class="ic">RatingGroup.Root</code> — <code class="ic">value</code> is bindable.
+		</p>
 		<PropsTable component="RatingGroupRoot" extra={rootForwarded} />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">RatingGroup.Item</code> takes <code class="ic">index</code> from the snippet
@@ -135,20 +146,39 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
-	.field { display: flex; flex-direction: column; gap: 8px; }
-	.cap { margin: 0; font-size: 12.5px; color: var(--doc-fg-subtle); }
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	.cap {
+		margin: 0;
+		font-size: 12.5px;
+		color: var(--doc-fg-subtle);
+	}
 </style>

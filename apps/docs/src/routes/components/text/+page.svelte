@@ -46,8 +46,8 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			A polymorphic text primitive. Renders as <code class="ic">&lt;p&gt;</code> by default; swap the
-			element via the <code class="ic">as</code> prop without changing any styling.
+			A polymorphic text primitive. Renders as <code class="ic">&lt;p&gt;</code> by default; swap
+			the element via the <code class="ic">as</code> prop without changing any styling.
 		</p>
 		<Preview code={usageCode}>
 			<Text>Body copy, ready to go.</Text>
@@ -89,8 +89,8 @@
 	<section id="as-element" class="sec">
 		<h2 class="sec__h">As element</h2>
 		<p class="sec__p">
-			Render as any semantic HTML element via the <code class="ic">as</code> prop. The component
-			carries the right styles regardless of the underlying tag.
+			Render as any semantic HTML element via the <code class="ic">as</code> prop. The component carries
+			the right styles regardless of the underlying tag.
 		</p>
 		<Preview code={asCode} align="start">
 			<div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">

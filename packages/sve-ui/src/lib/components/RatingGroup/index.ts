@@ -18,8 +18,5 @@
  * input. `value` is bindable.
  */
 
-export {
-  default as Root,
-  type Size as RatingGroupSize,
-} from './RatingGroupRoot.svelte';
+export { default as Root, type Size as RatingGroupSize } from './RatingGroupRoot.svelte';
 export { default as Item } from './RatingGroupItem.svelte';

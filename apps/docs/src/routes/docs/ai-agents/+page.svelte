@@ -35,11 +35,11 @@ cp -r sve-ui/skills/sve-ui-usage .claude/skills/
 	<section id="why" class="sec">
 		<h2 class="sec__h">Why a skill</h2>
 		<p class="sec__p">
-			LLMs guess component APIs. sve-ui ships an <strong>LLM-first skill</strong> that teaches an agent
-			the real rules: the <code class="ic">theme.css</code> setup, single-vs-namespace imports, the
-			Bits <code class="ic">child</code> snippet for overlay triggers, the body-class theming gotcha, and
-			the <code class="ic">--sve-*</code> model. The result: generated code that compiles and matches the
-			library.
+			LLMs guess component APIs. sve-ui ships an <strong>LLM-first skill</strong> that teaches an
+			agent the real rules: the <code class="ic">theme.css</code> setup, single-vs-namespace
+			imports, the Bits <code class="ic">child</code> snippet for overlay triggers, the body-class
+			theming gotcha, and the <code class="ic">--sve-*</code> model. The result: generated code that compiles
+			and matches the library.
 		</p>
 	</section>
 
@@ -47,21 +47,33 @@ cp -r sve-ui/skills/sve-ui-usage .claude/skills/
 		<h2 class="sec__h">Add the skill</h2>
 		<p class="sec__p">The skill lives in the repo:</p>
 		<Code code={pathCode} label="skills/" />
-		<p class="sec__p" style="margin-top: 16px;">
-			Drop it into your agent's skills directory:
-		</p>
+		<p class="sec__p" style="margin-top: 16px;">Drop it into your agent's skills directory:</p>
 		<Code code={useCode} label="Terminal" />
 	</section>
 
 	<section id="encodes" class="sec">
 		<h2 class="sec__h">What it encodes</h2>
 		<ul class="sec__list">
-			<li>Import <code class="ic">sve-ui/theme.css</code> once; no Tailwind/config in the consumer.</li>
-			<li>Single (default) vs namespace (<code class="ic">Dialog.*</code>, <code class="ic">Select.*</code>) imports.</li>
-			<li>Overlays portal to <code class="ic">&lt;body&gt;</code> → mirror the theme class onto it.</li>
+			<li>
+				Import <code class="ic">sve-ui/theme.css</code> once; no Tailwind/config in the consumer.
+			</li>
+			<li>
+				Single (default) vs namespace (<code class="ic">Dialog.*</code>,
+				<code class="ic">Select.*</code>) imports.
+			</li>
+			<li>
+				Overlays portal to <code class="ic">&lt;body&gt;</code> → mirror the theme class onto it.
+			</li>
 			<li>Custom overlay triggers use the Bits <code class="ic">child</code> snippet.</li>
-			<li><code class="ic">Slider</code> uses <code class="ic">value</code> + <code class="ic">onValueChange</code> (+ <code class="ic">thumbLabel</code>); controls need accessible names.</li>
-			<li>Theme via <code class="ic">--sve-*</code>; don't put Tailwind layout utilities on components.</li>
+			<li>
+				<code class="ic">Slider</code> uses <code class="ic">value</code> +
+				<code class="ic">onValueChange</code>
+				(+ <code class="ic">thumbLabel</code>); controls need accessible names.
+			</li>
+			<li>
+				Theme via <code class="ic">--sve-*</code>; don't put Tailwind layout utilities on
+				components.
+			</li>
 		</ul>
 	</section>
 
@@ -69,9 +81,9 @@ cp -r sve-ui/skills/sve-ui-usage .claude/skills/
 		<h2 class="sec__h">llms.txt</h2>
 		<p class="sec__p">
 			Any agent (no skill install needed) can read
-			<a class="lnk" href="/llms.txt">sveui.org/llms.txt</a> — a concise, always-current index of
-			the usage rules, docs and full component catalog, generated from the component registry so it
-			never drifts.
+			<a class="lnk" href="/llms.txt">sveui.org/llms.txt</a> — a concise, always-current index of the
+			usage rules, docs and full component catalog, generated from the component registry so it never
+			drifts.
 		</p>
 	</section>
 
@@ -80,19 +92,20 @@ cp -r sve-ui/skills/sve-ui-usage .claude/skills/
 		<Alert.Root color="success" variant="subtle">
 			<Alert.Title>Skill &amp; llms.txt: available · MCP: not planned</Alert.Title>
 			<Alert.Description>
-				The skill and <code class="ic">llms.txt</code> ship today. An MCP server is intentionally
-				deferred.
+				The skill and <code class="ic">llms.txt</code> ship today. An MCP server is intentionally deferred.
 			</Alert.Description>
 		</Alert.Root>
 		<p class="sec__p" style="margin-top: 16px;">
 			An MCP server's headline value (browse + <strong>install</strong> components from a registry)
 			doesn't apply here: sve-ui is a styled npm package, not a copy-paste registry — you
-			<code class="ic">pnpm add sve-ui</code> once. The remaining need (feeding agents the real API) is
-			already covered by the skill and <code class="ic">llms.txt</code> at zero hosting/config cost.
-			We'll revisit an MCP only for agent <em>actions</em> a static file can't do.
+			<code class="ic">pnpm add sve-ui</code> once. The remaining need (feeding agents the real API)
+			is already covered by the skill and <code class="ic">llms.txt</code> at zero hosting/config
+			cost. We'll revisit an MCP only for agent <em>actions</em> a static file can't do.
 		</p>
 		<p class="sec__p" style="margin-top: 16px;">
-			Source: <a class="lnk" href={REPO} target="_blank" rel="noopener">github.com/rodriabregu/sve-ui</a>.
+			Source: <a class="lnk" href={REPO} target="_blank" rel="noopener"
+				>github.com/rodriabregu/sve-ui</a
+			>.
 		</p>
 	</section>
 </DocPage>

@@ -11,18 +11,18 @@ import { base } from './index.js';
  * eslint-plugin-svelte v3 — validate on first `pnpm lint` after install.
  */
 export const svelteConfig = [
-  ...base,
-  ...svelte.configs.recommended,
-  {
-    files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
-    languageOptions: {
-      parserOptions: {
-        parser: tseslint.parser,
-        projectService: true,
-        extraFileExtensions: ['.svelte']
-      }
-    }
-  }
+	...base,
+	...svelte.configs.recommended,
+	{
+		files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
+		languageOptions: {
+			parserOptions: {
+				parser: tseslint.parser,
+				projectService: true,
+				extraFileExtensions: ['.svelte']
+			}
+		}
+	}
 ];
 
 export default svelteConfig;

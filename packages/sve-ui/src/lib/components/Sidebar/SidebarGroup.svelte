@@ -1,14 +1,14 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import type { HTMLAttributes } from 'svelte/elements';
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-  interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'class'> {
-    /** Extra classes merged onto the group. */
-    class?: string;
-    children?: Snippet;
-  }
+	interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'class'> {
+		/** Extra classes merged onto the group. */
+		class?: string;
+		children?: Snippet;
+	}
 
-  let { class: cls, children, ...rest }: Props = $props();
+	let { class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -17,18 +17,18 @@
   technology cannot connect to its items is decoration, not structure.
 -->
 <div
-  role="group"
-  class={['sve-sidebar__group', cls].filter(Boolean).join(' ')}
-  data-slot="sidebar-group"
-  {...rest}
+	role="group"
+	class={['sve-sidebar__group', cls].filter(Boolean).join(' ')}
+	data-slot="sidebar-group"
+	{...rest}
 >
-  {@render children?.()}
+	{@render children?.()}
 </div>
 
 <style>
-  .sve-sidebar__group {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
+	.sve-sidebar__group {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
 </style>

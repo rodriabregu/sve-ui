@@ -86,26 +86,28 @@
 								<DateRangePicker.Heading />
 								<DateRangePicker.NextButton>›</DateRangePicker.NextButton>
 							</DateRangePicker.Header>
-						{#each months as month (month.value)}
-							<DateRangePicker.Grid>
-								<DateRangePicker.GridHead>
-									<DateRangePicker.GridRow>
-										{#each weekdays as day, i (i)}
-											<DateRangePicker.HeadCell>{day}</DateRangePicker.HeadCell>
-										{/each}
-									</DateRangePicker.GridRow>
-								</DateRangePicker.GridHead>
-								<DateRangePicker.GridBody>
-									{#each month.weeks as week, i (i)}
+							{#each months as month (month.value)}
+								<DateRangePicker.Grid>
+									<DateRangePicker.GridHead>
 										<DateRangePicker.GridRow>
-											{#each week as date (date)}
-												<DateRangePicker.Cell {date} month={month.value}><DateRangePicker.Day /></DateRangePicker.Cell>
+											{#each weekdays as day, i (i)}
+												<DateRangePicker.HeadCell>{day}</DateRangePicker.HeadCell>
 											{/each}
 										</DateRangePicker.GridRow>
-									{/each}
-								</DateRangePicker.GridBody>
-							</DateRangePicker.Grid>
-						{/each}
+									</DateRangePicker.GridHead>
+									<DateRangePicker.GridBody>
+										{#each month.weeks as week, i (i)}
+											<DateRangePicker.GridRow>
+												{#each week as date (date)}
+													<DateRangePicker.Cell {date} month={month.value}
+														><DateRangePicker.Day /></DateRangePicker.Cell
+													>
+												{/each}
+											</DateRangePicker.GridRow>
+										{/each}
+									</DateRangePicker.GridBody>
+								</DateRangePicker.Grid>
+							{/each}
 						{/snippet}
 					</DateRangePicker.Calendar>
 				</DateRangePicker.Content>
@@ -116,17 +118,17 @@
 	<section id="months" class="sec">
 		<h2 class="sec__h">Show two months</h2>
 		<p class="sec__p">
-			Set <code class="ic">numberOfMonths={2}</code> for most range pickers. A stay that crosses a
-			month boundary is the common case, and one month forces the user to page back and forth just to
-			see both ends of their own selection.
+			Set <code class="ic">numberOfMonths={2}</code> for most range pickers. A stay that crosses a month
+			boundary is the common case, and one month forces the user to page back and forth just to see both
+			ends of their own selection.
 		</p>
 	</section>
 
 	<section id="naming" class="sec">
 		<h2 class="sec__h">Name the Root</h2>
 		<p class="warn">
-			Like the <a href="/components/date-range-field">range field</a>, the range picker's group carries
-			no accessible name of its own.
+			Like the <a href="/components/date-range-field">range field</a>, the range picker's group
+			carries no accessible name of its own.
 		</p>
 		<p class="sec__p">
 			Pass <code class="ic">aria-labelledby</code> pointing at your Label's id, or
@@ -142,11 +144,21 @@
 			already have:
 		</p>
 		<ul class="sec__p">
-			<li><code class="ic">Label</code>, <code class="ic">Input</code> → <a href="/components/date-range-field">Date Range Field</a> (Input takes the required <code class="ic">type</code>)</li>
+			<li>
+				<code class="ic">Label</code>, <code class="ic">Input</code> →
+				<a href="/components/date-range-field">Date Range Field</a>
+				(Input takes the required <code class="ic">type</code>)
+			</li>
 			<li><code class="ic">Segment</code> → <a href="/components/date-field">Date Field</a></li>
-			<li><code class="ic">Content</code> → <a href="/components/date-picker">Date Picker</a> — literally the same panel</li>
+			<li>
+				<code class="ic">Content</code> → <a href="/components/date-picker">Date Picker</a> — literally
+				the same panel
+			</li>
 			<li>the calendar chrome → <a href="/components/calendar">Calendar</a></li>
-			<li><code class="ic">Cell</code>, <code class="ic">Day</code> → <a href="/components/range-calendar">Range Calendar</a>, since they carry the range states</li>
+			<li>
+				<code class="ic">Cell</code>, <code class="ic">Day</code> →
+				<a href="/components/range-calendar">Range Calendar</a>, since they carry the range states
+			</li>
 		</ul>
 	</section>
 
@@ -161,27 +173,47 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.warn {
-		margin: 0 0 16px; padding: 12px 14px;
+		margin: 0 0 16px;
+		padding: 12px 14px;
 		border-left: 3px solid var(--doc-primary-text);
 		background: var(--doc-surface-2);
 		border-radius: 0 8px 8px 0;
-		font-size: 14px; line-height: 1.55; color: var(--doc-fg-muted);
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--doc-fg-muted);
 	}
-	.row { display: flex; align-items: center; gap: 8px; }
+	.row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
 </style>

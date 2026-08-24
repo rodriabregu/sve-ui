@@ -44,8 +44,8 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			Bind <code class="ic">checked</code> for two-way state. The switch is fully keyboard and
-			screen-reader accessible out of the box.
+			Bind <code class="ic">checked</code> for two-way state. The switch is fully keyboard and screen-reader
+			accessible out of the box.
 		</p>
 		<Preview code={usageCode}>
 			<Switch.Root bind:checked={switchOn} />
@@ -65,8 +65,8 @@
 	<section id="states" class="sec">
 		<h2 class="sec__h">States</h2>
 		<p class="sec__p">
-			Checked on, checked off, and disabled. The <code class="ic">disabled</code> prop blocks all
-			interaction while keeping the current visual state.
+			Checked on, checked off, and disabled. The <code class="ic">disabled</code> prop blocks all interaction
+			while keeping the current visual state.
 		</p>
 		<Preview code={statesCode}>
 			<Switch.Root checked />

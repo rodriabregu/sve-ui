@@ -32,26 +32,26 @@ overriding `--sve-*` CSS custom properties.
 
 ### Still here, with a different API
 
-| `0.1.x` | Now | What changed |
-| --- | --- | --- |
-| `Button` | `Button` | The `onClick` **prop** is gone — use the native `onclick`. The `label` prop is gone — pass children. Hardcoded colour strings became a typed `variant` × `color` × `size` system. |
-| `Text` | `Text` | Prop set replaced: `fontSize`/`fontWeight`/`textAlign`/`letterSpacing`/`lineHeight`/`fontStyle`/`textDecoration` → `size`, `weight`, `align`, plus `color` and `truncate`. `color` no longer defaults to hardcoded `black`; it derives from tokens. |
-| `Flex` | `Flex` | Rebuilt with a narrow API. The `dir`/`direction` and `d`/`display` alias pairs are gone, and `gap` is now a **spacing token key** (`gap={4}`) rather than a raw rem number. |
-| `CodeExample` | `Code` | Renamed. `typeCodeLabel` → `label`. The `basic` prop is now `copyable`, and it is the **logical inverse**: `basic={true}` hid the copy button, so write `copyable={false}`. Its type is a primitive `boolean` rather than the `Boolean` object wrapper, and the clipboard is SSR-safe — it no longer reaches for `document.querySelector`. |
-| `DotPulse`, `DotSpinner`, `DotWave` | `Spinner` | Three components collapsed into one. Use `size` and `color`; the `speed` prop is gone. |
-| `theme` object | `lightTokens` / `darkTokens` + `ThemeProvider` | The theme is no longer a JS object you read at runtime. It is emitted as CSS custom properties. Import the token maps from `sve-ui/theme` if you need the values in JS. |
+| `0.1.x`                             | Now                                            | What changed                                                                                                                                                                                                                                                                                                                               |
+| ----------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Button`                            | `Button`                                       | The `onClick` **prop** is gone — use the native `onclick`. The `label` prop is gone — pass children. Hardcoded colour strings became a typed `variant` × `color` × `size` system.                                                                                                                                                          |
+| `Text`                              | `Text`                                         | Prop set replaced: `fontSize`/`fontWeight`/`textAlign`/`letterSpacing`/`lineHeight`/`fontStyle`/`textDecoration` → `size`, `weight`, `align`, plus `color` and `truncate`. `color` no longer defaults to hardcoded `black`; it derives from tokens.                                                                                        |
+| `Flex`                              | `Flex`                                         | Rebuilt with a narrow API. The `dir`/`direction` and `d`/`display` alias pairs are gone, and `gap` is now a **spacing token key** (`gap={4}`) rather than a raw rem number.                                                                                                                                                                |
+| `CodeExample`                       | `Code`                                         | Renamed. `typeCodeLabel` → `label`. The `basic` prop is now `copyable`, and it is the **logical inverse**: `basic={true}` hid the copy button, so write `copyable={false}`. Its type is a primitive `boolean` rather than the `Boolean` object wrapper, and the clipboard is SSR-safe — it no longer reaches for `document.querySelector`. |
+| `DotPulse`, `DotSpinner`, `DotWave` | `Spinner`                                      | Three components collapsed into one. Use `size` and `color`; the `speed` prop is gone.                                                                                                                                                                                                                                                     |
+| `theme` object                      | `lightTokens` / `darkTokens` + `ThemeProvider` | The theme is no longer a JS object you read at runtime. It is emitted as CSS custom properties. Import the token maps from `sve-ui/theme` if you need the values in JS.                                                                                                                                                                    |
 
 ### Removed with no direct replacement
 
-| `0.1.x` | Do this instead |
-| --- | --- |
-| `Box` | Use a plain element and CSS. `Box` accepted 17 style props with duplicate aliases (`p`/`padding`, `m`/`margin`, `w`/`width`, …) and concatenated inline style strings — it had reinvented CSS with a worse syntax. It was dropped deliberately, not overlooked. |
-| `Center` | `<Flex justify="center" align="center">` |
-| `Spacer` | Use `gap` on `Stack` or `Flex`. Spacer elements make rhythm depend on where you remembered to put them; one `gap` on the parent does not. |
-| `Square`, `Circle` | CSS (`width`/`height`/`border-radius`), or `AspectRatio` when you need a ratio box that reserves its space before media loads. |
-| `Grid`, `GridItem` | CSS Grid directly. These wrapped a handful of grid properties and got in the way of the rest. |
-| `VerifiedIcon`, `HomeIcon` | The library ships no icons. Use an icon set — the four unexported arrow icons in `0.1.x` are gone too. |
-| `*Props` type exports | Types are generated by `svelte-package` now. Import the variant unions instead — `ButtonVariant`, `BadgeColor`, `InputSize`, and so on. |
+| `0.1.x`                    | Do this instead                                                                                                                                                                                                                                                 |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Box`                      | Use a plain element and CSS. `Box` accepted 17 style props with duplicate aliases (`p`/`padding`, `m`/`margin`, `w`/`width`, …) and concatenated inline style strings — it had reinvented CSS with a worse syntax. It was dropped deliberately, not overlooked. |
+| `Center`                   | `<Flex justify="center" align="center">`                                                                                                                                                                                                                        |
+| `Spacer`                   | Use `gap` on `Stack` or `Flex`. Spacer elements make rhythm depend on where you remembered to put them; one `gap` on the parent does not.                                                                                                                       |
+| `Square`, `Circle`         | CSS (`width`/`height`/`border-radius`), or `AspectRatio` when you need a ratio box that reserves its space before media loads.                                                                                                                                  |
+| `Grid`, `GridItem`         | CSS Grid directly. These wrapped a handful of grid properties and got in the way of the rest.                                                                                                                                                                   |
+| `VerifiedIcon`, `HomeIcon` | The library ships no icons. Use an icon set — the four unexported arrow icons in `0.1.x` are gone too.                                                                                                                                                          |
+| `*Props` type exports      | Types are generated by `svelte-package` now. Import the variant unions instead — `ButtonVariant`, `BadgeColor`, `InputSize`, and so on.                                                                                                                         |
 
 ## New: `Stack`
 

@@ -105,8 +105,7 @@
 		<h2 class="sec__h">States</h2>
 		<p class="sec__p">
 			<code class="ic">indeterminate</code> renders the mixed state. Both
-			<code class="ic">indeterminate</code> and <code class="ic">disabled</code> are fully
-			accessible.
+			<code class="ic">indeterminate</code> and <code class="ic">disabled</code> are fully accessible.
 		</p>
 		<Preview code={statesCode}>
 			<label class="flex items-center gap-2">

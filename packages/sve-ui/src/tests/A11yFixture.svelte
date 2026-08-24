@@ -82,16 +82,31 @@
 	let calValue = $state(new CalendarDate(2026, 1, 15));
 	let calPlaceholder = $state(new CalendarDate(2026, 1, 1));
 	let dfValue = $state<CalendarDate | undefined>(undefined);
-	let drfValue = $state({ start: undefined as CalendarDate | undefined, end: undefined as CalendarDate | undefined });
+	let drfValue = $state({
+		start: undefined as CalendarDate | undefined,
+		end: undefined as CalendarDate | undefined
+	});
 	let dpValue = $state<CalendarDate | undefined>(new CalendarDate(2026, 1, 15));
 	let sidebarCollapsed = $state(false);
 </script>
 
 <!-- Display -->
-<section aria-label="Avatar"><Avatar.Root><Avatar.Image src="" alt="Ada Lovelace" /><Avatar.Fallback>AL</Avatar.Fallback></Avatar.Root></section>
+<section aria-label="Avatar">
+	<Avatar.Root
+		><Avatar.Image src="" alt="Ada Lovelace" /><Avatar.Fallback>AL</Avatar.Fallback></Avatar.Root
+	>
+</section>
 <section aria-label="Badge"><Badge>New</Badge></section>
-<section aria-label="Card"><Card.Root><Card.Header><Heading level={3}>Card title</Heading></Card.Header><Card.Content><Text>Card body content.</Text></Card.Content></Card.Root></section>
-<section aria-label="Typography"><Heading level={2}>Heading</Heading><Text>Body text.</Text></section>
+<section aria-label="Card">
+	<Card.Root
+		><Card.Header><Heading level={3}>Card title</Heading></Card.Header><Card.Content
+			><Text>Card body content.</Text></Card.Content
+		></Card.Root
+	>
+</section>
+<section aria-label="Typography">
+	<Heading level={2}>Heading</Heading><Text>Body text.</Text>
+</section>
 <section aria-label="Skeleton">
 	<div role="status" aria-busy="true" aria-label="Loading profile">
 		<Skeleton variant="circle" />
@@ -106,15 +121,21 @@
 	<Label for="a11y-bio" required>Bio</Label>
 	<Textarea id="a11y-bio" required />
 </section>
-<section aria-label="Switch"><Switch.Root aria-label="Enable notifications" bind:checked={switchOn} /></section>
-<section aria-label="Checkbox"><Checkbox.Root aria-label="Accept terms" bind:checked={checkboxOn} /></section>
+<section aria-label="Switch">
+	<Switch.Root aria-label="Enable notifications" bind:checked={switchOn} />
+</section>
+<section aria-label="Checkbox">
+	<Checkbox.Root aria-label="Accept terms" bind:checked={checkboxOn} />
+</section>
 <section aria-label="Radio group">
 	<RadioGroup.Root bind:value={radioValue} aria-label="Density">
 		<RadioGroup.Item value="a" aria-label="Comfortable" />
 		<RadioGroup.Item value="b" aria-label="Compact" />
 	</RadioGroup.Root>
 </section>
-<section aria-label="Toggle"><Toggle bind:pressed={togglePressed} aria-label="Bold">B</Toggle></section>
+<section aria-label="Toggle">
+	<Toggle bind:pressed={togglePressed} aria-label="Bold">B</Toggle>
+</section>
 <section aria-label="Toggle group">
 	<ToggleGroup.Root type="single" bind:value={toggleGroupValue} aria-label="Text alignment">
 		<ToggleGroup.Item value="left" aria-label="Align left">L</ToggleGroup.Item>
@@ -167,7 +188,12 @@
 	</DateRangeField.Root>
 </section>
 <section aria-label="Calendar">
-	<Calendar.Root type="single" bind:value={calValue} bind:placeholder={calPlaceholder} calendarLabel="Departure date">
+	<Calendar.Root
+		type="single"
+		bind:value={calValue}
+		bind:placeholder={calPlaceholder}
+		calendarLabel="Departure date"
+	>
 		{#snippet children({ months, weekdays })}
 			<Calendar.Header>
 				<Calendar.PrevButton>‹</Calendar.PrevButton>
@@ -240,7 +266,12 @@
 </section>
 
 <!-- Feedback -->
-<section aria-label="Alert"><Alert.Root color="success"><Alert.Title>Saved</Alert.Title><Alert.Description>Your changes are live.</Alert.Description></Alert.Root></section>
+<section aria-label="Alert">
+	<Alert.Root color="success"
+		><Alert.Title>Saved</Alert.Title><Alert.Description>Your changes are live.</Alert.Description
+		></Alert.Root
+	>
+</section>
 <section aria-label="Spinner"><Spinner label="Loading" /></section>
 <section aria-label="Progress"><Progress value={40} aria-label="Upload progress" /></section>
 <section aria-label="Meter"><Meter value={70} aria-label="Disk usage" /></section>
@@ -334,16 +365,30 @@
 </section>
 
 <!-- Overlays (trigger / closed state) -->
-<section aria-label="Dialog"><Dialog.Root><Dialog.Trigger>Open dialog</Dialog.Trigger></Dialog.Root></section>
-<section aria-label="Dropdown menu"><DropdownMenu.Root><DropdownMenu.Trigger>Open menu</DropdownMenu.Trigger></DropdownMenu.Root></section>
-<section aria-label="Popover"><Popover.Root><Popover.Trigger>Show details</Popover.Trigger></Popover.Root></section>
-<section aria-label="Context menu">
-	<ContextMenu.Root><ContextMenu.Trigger>Right-click this row</ContextMenu.Trigger></ContextMenu.Root>
+<section aria-label="Dialog">
+	<Dialog.Root><Dialog.Trigger>Open dialog</Dialog.Trigger></Dialog.Root>
 </section>
-<section aria-label="Alert dialog"><AlertDialog.Root><AlertDialog.Trigger>Delete project</AlertDialog.Trigger></AlertDialog.Root></section>
-<section aria-label="Sheet"><Sheet.Root><Sheet.Trigger>Open filters</Sheet.Trigger></Sheet.Root></section>
+<section aria-label="Dropdown menu">
+	<DropdownMenu.Root><DropdownMenu.Trigger>Open menu</DropdownMenu.Trigger></DropdownMenu.Root>
+</section>
+<section aria-label="Popover">
+	<Popover.Root><Popover.Trigger>Show details</Popover.Trigger></Popover.Root>
+</section>
+<section aria-label="Context menu">
+	<ContextMenu.Root
+		><ContextMenu.Trigger>Right-click this row</ContextMenu.Trigger></ContextMenu.Root
+	>
+</section>
+<section aria-label="Alert dialog">
+	<AlertDialog.Root><AlertDialog.Trigger>Delete project</AlertDialog.Trigger></AlertDialog.Root>
+</section>
+<section aria-label="Sheet">
+	<Sheet.Root><Sheet.Trigger>Open filters</Sheet.Trigger></Sheet.Root>
+</section>
 <section aria-label="Link preview">
-	<LinkPreview.Root><LinkPreview.Trigger href="https://svelte.dev">Svelte</LinkPreview.Trigger></LinkPreview.Root>
+	<LinkPreview.Root
+		><LinkPreview.Trigger href="https://svelte.dev">Svelte</LinkPreview.Trigger></LinkPreview.Root
+	>
 </section>
 <section aria-label="Tooltip">
 	<Tooltip.Provider>

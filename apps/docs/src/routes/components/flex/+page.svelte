@@ -56,12 +56,12 @@
 		<h2 class="sec__h">Why align defaults to center</h2>
 		<p class="sec__p">
 			CSS defaults <code class="ic">align-items</code> to
-			<code class="ic">stretch</code>. That is rarely what you want in a row: a label beside a button,
-			or an icon beside text, gets visibly stretched to the tallest sibling's height.
+			<code class="ic">stretch</code>. That is rarely what you want in a row: a label beside a
+			button, or an icon beside text, gets visibly stretched to the tallest sibling's height.
 		</p>
 		<p class="sec__p">
-			So <code class="ic">Flex</code> defaults to <code class="ic">center</code>, which is right for a
-			row of mixed-height things. Pass <code class="ic">align="stretch"</code> when you genuinely want
+			So <code class="ic">Flex</code> defaults to <code class="ic">center</code>, which is right for
+			a row of mixed-height things. Pass <code class="ic">align="stretch"</code> when you genuinely want
 			the CSS behaviour — equal-height cards in a row, for instance.
 		</p>
 	</section>
@@ -88,9 +88,9 @@
 		<h2 class="sec__h">Flex vs Stack</h2>
 		<p class="sec__p">
 			<a href="/components/stack">Stack</a> is the vertical case with a narrower API and
-			<code class="ic">align="stretch"</code> as its default, which is what stacked form fields want.
-			Use it whenever the direction is vertical — <code class="ic">Flex direction="column"</code> works
-			but says less about intent.
+			<code class="ic">align="stretch"</code> as its default, which is what stacked form fields
+			want. Use it whenever the direction is vertical —
+			<code class="ic">Flex direction="column"</code> works but says less about intent.
 		</p>
 		<p class="sec__p">
 			And for anything genuinely two-dimensional, use CSS Grid directly. Neither of these tries to
@@ -107,26 +107,44 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.box {
-		padding: 8px 12px; border-radius: 8px;
+		padding: 8px 12px;
+		border-radius: 8px;
 		background: var(--doc-surface-2);
 		border: 1px solid var(--doc-border);
-		font-size: 13px; color: var(--doc-fg-muted);
+		font-size: 13px;
+		color: var(--doc-fg-muted);
 	}
-	.demo { width: 100%; max-width: 420px; }
+	.demo {
+		width: 100%;
+		max-width: 420px;
+	}
 </style>

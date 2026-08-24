@@ -1,31 +1,31 @@
 {
-  "name": "sve-ui-monorepo",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "packageManager": "pnpm@11.8.0",
-  "engines": {
-    "node": ">=22.14.0",
-    "pnpm": ">=11.0.0"
-  },
-  "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint && oxlint",
-    "check": "turbo run check",
-    "test": "turbo run test",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "changeset": "changeset",
-    "version-packages": "changeset version",
-    "release": "turbo run build lint check test && changeset publish"
-  },
-  "devDependencies": {
-    "@changesets/cli": "2.31.0",
-    "oxlint": "1.70.0",
-    "prettier": "3.8.4",
-    "prettier-plugin-svelte": "4.1.1",
-    "turbo": "2.9.18"
-  }
+	"name": "sve-ui-monorepo",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"packageManager": "pnpm@11.8.0",
+	"engines": {
+		"node": ">=22.14.0",
+		"pnpm": ">=11.0.0"
+	},
+	"scripts": {
+		"preinstall": "npx only-allow pnpm",
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint && oxlint",
+		"check": "turbo run check",
+		"test": "turbo run test",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"changeset": "changeset",
+		"version-packages": "changeset version",
+		"release": "turbo run build lint check test && changeset publish"
+	},
+	"devDependencies": {
+		"@changesets/cli": "2.31.0",
+		"oxlint": "1.70.0",
+		"prettier": "3.8.4",
+		"prettier-plugin-svelte": "4.1.1",
+		"turbo": "2.9.18"
+	}
 }

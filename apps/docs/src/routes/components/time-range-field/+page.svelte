@@ -86,15 +86,16 @@
 	<section id="naming" class="sec">
 		<h2 class="sec__h">You must name the Root</h2>
 		<p class="warn">
-			Bits gives the range Root <code class="ic">role="group"</code> with <strong>no accessible
-			name</strong>. Without your help the field announces as an anonymous group.
+			Bits gives the range Root <code class="ic">role="group"</code> with
+			<strong>no accessible name</strong>. Without your help the field announces as an anonymous
+			group.
 		</p>
 		<p class="sec__p">
 			Verified in the rendered DOM: Bits points each <code class="ic">Input</code>'s
-			<code class="ic">aria-labelledby</code> at your Label, but the Inputs carry no role — so nothing
-			exposed to assistive technology ends up labelled. On the single-value
-			<a href="/components/time-field">Time Field</a> the Input <em>is</em> the group and Bits
-			does label it, so this gap is specific to ranges.
+			<code class="ic">aria-labelledby</code> at your Label, but the Inputs carry no role — so
+			nothing exposed to assistive technology ends up labelled. On the single-value
+			<a href="/components/time-field">Time Field</a> the Input <em>is</em> the group and Bits does label
+			it, so this gap is specific to ranges.
 		</p>
 		<p class="sec__p">
 			Pass <code class="ic">aria-labelledby</code> pointing at your Label's id, or
@@ -107,15 +108,18 @@
 		<h2 class="sec__h">Shared with Time Field</h2>
 		<p class="sec__p">
 			<code class="ic">Segment</code> is the <strong>same component</strong>
-			<a href="/components/time-field">Time Field</a> uses — Bits re-exports the identical
-			module to both namespaces, so one styled implementation serves each and the two cannot drift
-			apart. Everything in that page's "why not a native input" section applies here too.
+			<a href="/components/time-field">Time Field</a> uses — Bits re-exports the identical module to both
+			namespaces, so one styled implementation serves each and the two cannot drift apart. Everything
+			in that page's "why not a native input" section applies here too.
 		</p>
 	</section>
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
-		<p class="sec__p"><code class="ic">TimeRangeField.Root</code> — <code class="ic">value</code> and <code class="ic">placeholder</code> are bindable.</p>
+		<p class="sec__p">
+			<code class="ic">TimeRangeField.Root</code> — <code class="ic">value</code> and
+			<code class="ic">placeholder</code> are bindable.
+		</p>
 		<PropsTable component="TimeRangeFieldRoot" />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">Input</code> takes a required <code class="ic">type</code> of
@@ -127,27 +131,47 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.warn {
-		margin: 0 0 16px; padding: 12px 14px;
+		margin: 0 0 16px;
+		padding: 12px 14px;
 		border-left: 3px solid var(--doc-primary-text);
 		background: var(--doc-surface-2);
 		border-radius: 0 8px 8px 0;
-		font-size: 14px; line-height: 1.55; color: var(--doc-fg-muted);
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--doc-fg-muted);
 	}
-	.row { display: flex; align-items: center; gap: 8px; }
+	.row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
 </style>

@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { ContextMenu } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { ContextMenu } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsTriggerProps = ComponentProps<typeof ContextMenu.Trigger>;
+	type BitsTriggerProps = ComponentProps<typeof ContextMenu.Trigger>;
 
-  interface Props extends Omit<BitsTriggerProps, 'class'> {
-    /** Extra classes merged onto the trigger region. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsTriggerProps, 'class'> {
+		/** Extra classes merged onto the trigger region. */
+		class?: string;
+	}
 
-  let { class: cls, children, ...rest }: Props = $props();
+	let { class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -21,14 +21,14 @@
   here must also be reachable from a visible control.
 -->
 <ContextMenu.Trigger
-  class={['sve-context-menu-trigger', cls].filter(Boolean).join(' ')}
-  data-slot="context-menu-trigger"
-  {children}
-  {...rest}
+	class={['sve-context-menu-trigger', cls].filter(Boolean).join(' ')}
+	data-slot="context-menu-trigger"
+	{children}
+	{...rest}
 />
 
 <style>
-  :global(.sve-context-menu-trigger) {
-    display: block;
-  }
+	:global(.sve-context-menu-trigger) {
+		display: block;
+	}
 </style>

@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { Toolbar } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { Toolbar } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsRootProps = ComponentProps<typeof Toolbar.Root>;
+	type BitsRootProps = ComponentProps<typeof Toolbar.Root>;
 
-  interface Props extends Omit<BitsRootProps, 'class'> {
-    /** Extra classes merged onto the toolbar. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsRootProps, 'class'> {
+		/** Extra classes merged onto the toolbar. */
+		class?: string;
+	}
 
-  let { class: cls, children, ...rest }: Props = $props();
+	let { class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -22,26 +22,26 @@
   toolbar is announced with no indication of what it controls.
 -->
 <Toolbar.Root
-  class={['sve-toolbar', cls].filter(Boolean).join(' ')}
-  data-slot="toolbar"
-  {children}
-  {...rest}
+	class={['sve-toolbar', cls].filter(Boolean).join(' ')}
+	data-slot="toolbar"
+	{children}
+	{...rest}
 />
 
 <style>
-  :global(.sve-toolbar) {
-    display: flex;
-    align-items: center;
-    gap: var(--sve-space-1);
-    padding: var(--sve-space-1);
-    border: 1px solid var(--sve-color-default-border);
-    border-radius: var(--sve-radius-md);
-    background-color: var(--sve-color-default-surface);
-    font-family: var(--sve-font-family-sans);
-  }
+	:global(.sve-toolbar) {
+		display: flex;
+		align-items: center;
+		gap: var(--sve-space-1);
+		padding: var(--sve-space-1);
+		border: 1px solid var(--sve-color-default-border);
+		border-radius: var(--sve-radius-md);
+		background-color: var(--sve-color-default-surface);
+		font-family: var(--sve-font-family-sans);
+	}
 
-  :global(.sve-toolbar[data-orientation='vertical']) {
-    flex-direction: column;
-    align-items: stretch;
-  }
+	:global(.sve-toolbar[data-orientation='vertical']) {
+		flex-direction: column;
+		align-items: stretch;
+	}
 </style>

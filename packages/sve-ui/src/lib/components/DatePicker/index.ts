@@ -41,23 +41,23 @@ export { Label, Input, Segment } from '../DateField/index.js';
 
 // The calendar half — Calendar's components.
 export {
-  Header,
-  Heading,
-  PrevButton,
-  NextButton,
-  Grid,
-  GridHead,
-  GridBody,
-  GridRow,
-  HeadCell,
-  Cell,
-  Day,
-  MonthSelect,
-  YearSelect
+	Header,
+	Heading,
+	PrevButton,
+	NextButton,
+	Grid,
+	GridHead,
+	GridBody,
+	GridRow,
+	HeadCell,
+	Cell,
+	Day,
+	MonthSelect,
+	YearSelect
 } from '../Calendar/index.js';
 
 // Popover's floating extras, re-exported for a pointer arrow and a close button.
 export const Arrow: Component<PopoverArrowProps> =
-  BitsPopover.Arrow as Component<PopoverArrowProps>;
+	BitsPopover.Arrow as Component<PopoverArrowProps>;
 export const Close: Component<PopoverCloseProps> =
-  BitsPopover.Close as Component<PopoverCloseProps>;
+	BitsPopover.Close as Component<PopoverCloseProps>;

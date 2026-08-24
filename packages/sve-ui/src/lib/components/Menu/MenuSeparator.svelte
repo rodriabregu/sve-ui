@@ -1,27 +1,27 @@
 <script lang="ts">
-  import { DropdownMenu } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { DropdownMenu } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsSeparatorProps = ComponentProps<typeof DropdownMenu.Separator>;
+	type BitsSeparatorProps = ComponentProps<typeof DropdownMenu.Separator>;
 
-  interface Props extends Omit<BitsSeparatorProps, 'class'> {
-    /** Extra classes merged onto the divider. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsSeparatorProps, 'class'> {
+		/** Extra classes merged onto the divider. */
+		class?: string;
+	}
 
-  let { class: cls, ...rest }: Props = $props();
+	let { class: cls, ...rest }: Props = $props();
 </script>
 
 <DropdownMenu.Separator
-  class={['sve-menu-separator', cls].filter(Boolean).join(' ')}
-  data-slot="menu-separator"
-  {...rest}
+	class={['sve-menu-separator', cls].filter(Boolean).join(' ')}
+	data-slot="menu-separator"
+	{...rest}
 />
 
 <style>
-  :global(.sve-menu-separator) {
-    height: 1px;
-    background-color: var(--sve-color-default-border, #e5e7eb);
-    margin: var(--sve-space-1) 0;
-  }
+	:global(.sve-menu-separator) {
+		height: 1px;
+		background-color: var(--sve-color-default-border, #e5e7eb);
+		margin: var(--sve-space-1) 0;
+	}
 </style>

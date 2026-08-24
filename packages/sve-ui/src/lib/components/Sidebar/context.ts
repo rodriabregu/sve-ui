@@ -6,16 +6,16 @@ export type Collapsible = 'icon' | 'offcanvas' | 'none';
 export type Side = 'left' | 'right';
 
 export interface SidebarContext {
-  /** Whether the sidebar is currently collapsed. */
-  readonly collapsed: boolean;
-  /** How collapsing presents itself. */
-  readonly collapsible: Collapsible;
-  /** Which edge the sidebar is anchored to. */
-  readonly side: Side;
-  /** The id of the sidebar element, so a Trigger can point `aria-controls` at it. */
-  readonly id: string;
-  /** Flip the collapsed state. */
-  toggle(): void;
+	/** Whether the sidebar is currently collapsed. */
+	readonly collapsed: boolean;
+	/** How collapsing presents itself. */
+	readonly collapsible: Collapsible;
+	/** Which edge the sidebar is anchored to. */
+	readonly side: Side;
+	/** The id of the sidebar element, so a Trigger can point `aria-controls` at it. */
+	readonly id: string;
+	/** Flip the collapsed state. */
+	toggle(): void;
 }
 
 /**
@@ -26,7 +26,7 @@ export interface SidebarContext {
  * when the provider mounted.
  */
 export function setSidebarContext(ctx: SidebarContext): void {
-  setContext(SIDEBAR_CONTEXT_KEY, ctx);
+	setContext(SIDEBAR_CONTEXT_KEY, ctx);
 }
 
 /**
@@ -37,5 +37,5 @@ export function setSidebarContext(ctx: SidebarContext): void {
  * (a test, a Storybook-style page) should still render.
  */
 export function useSidebar(): SidebarContext | undefined {
-  return getContext<SidebarContext>(SIDEBAR_CONTEXT_KEY);
+	return getContext<SidebarContext>(SIDEBAR_CONTEXT_KEY);
 }

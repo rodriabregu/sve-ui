@@ -14,10 +14,7 @@
  * `type="always"` when the overflow is not otherwise obvious.
  */
 
-export {
-  default as Root,
-  type Type as ScrollAreaType,
-} from './ScrollAreaRoot.svelte';
+export { default as Root, type Type as ScrollAreaType } from './ScrollAreaRoot.svelte';
 export { default as Viewport } from './ScrollAreaViewport.svelte';
 export { default as Scrollbar } from './ScrollAreaScrollbar.svelte';
 export { default as Thumb } from './ScrollAreaThumb.svelte';

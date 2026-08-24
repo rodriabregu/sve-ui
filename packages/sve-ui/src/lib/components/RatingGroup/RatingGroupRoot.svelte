@@ -1,32 +1,32 @@
 <script module lang="ts">
-  export type Size = 'sm' | 'md' | 'lg';
+	export type Size = 'sm' | 'md' | 'lg';
 </script>
 
 <script lang="ts">
-  import { RatingGroup } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { RatingGroup } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsRootProps = ComponentProps<typeof RatingGroup.Root>;
+	type BitsRootProps = ComponentProps<typeof RatingGroup.Root>;
 
-  interface Props extends Omit<BitsRootProps, 'class' | 'value'> {
-    /**
-     * Current rating. Bindable.
-     * @default 0
-     */
-    value?: number;
-    /** @default 'md' */
-    size?: Size;
-    /** Extra classes merged onto the root. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsRootProps, 'class' | 'value'> {
+		/**
+		 * Current rating. Bindable.
+		 * @default 0
+		 */
+		value?: number;
+		/** @default 'md' */
+		size?: Size;
+		/** Extra classes merged onto the root. */
+		class?: string;
+	}
 
-  // `value` must be destructured and passed as `bind:value`. Forwarding it in
-  // the spread makes it one-way, so clicking a star would not reach the caller.
-  let { value = $bindable(0), size = 'md', class: cls, children, ...rest }: Props = $props();
+	// `value` must be destructured and passed as `bind:value`. Forwarding it in
+	// the spread makes it one-way, so clicking a star would not reach the caller.
+	let { value = $bindable(0), size = 'md', class: cls, children, ...rest }: Props = $props();
 
-  const className = $derived(
-    ['sve-rating-group', `sve-rating-group--${size}`, cls].filter(Boolean).join(' ')
-  );
+	const className = $derived(
+		['sve-rating-group', `sve-rating-group--${size}`, cls].filter(Boolean).join(' ')
+	);
 </script>
 
 <!--
@@ -45,29 +45,35 @@
 <RatingGroup.Root bind:value class={className} data-slot="rating-group" {children} {...rest} />
 
 <style>
-  :global(.sve-rating-group) {
-    display: inline-flex;
-    align-items: center;
-    gap: 2px;
-    font-family: var(--sve-font-family-sans);
-  }
+	:global(.sve-rating-group) {
+		display: inline-flex;
+		align-items: center;
+		gap: 2px;
+		font-family: var(--sve-font-family-sans);
+	}
 
-  :global(.sve-rating-group[data-orientation='vertical']) {
-    flex-direction: column;
-  }
+	:global(.sve-rating-group[data-orientation='vertical']) {
+		flex-direction: column;
+	}
 
-  :global(.sve-rating-group:focus-visible) {
-    outline: 2px solid var(--sve-color-primary);
-    outline-offset: 2px;
-    border-radius: var(--sve-radius-sm);
-  }
+	:global(.sve-rating-group:focus-visible) {
+		outline: 2px solid var(--sve-color-primary);
+		outline-offset: 2px;
+		border-radius: var(--sve-radius-sm);
+	}
 
-  :global(.sve-rating-group[data-disabled]) {
-    opacity: 0.5;
-  }
+	:global(.sve-rating-group[data-disabled]) {
+		opacity: 0.5;
+	}
 
-  /* --- Sizes drive the item icon size --- */
-  :global(.sve-rating-group--sm) { font-size: 1rem; }
-  :global(.sve-rating-group--md) { font-size: 1.25rem; }
-  :global(.sve-rating-group--lg) { font-size: 1.75rem; }
+	/* --- Sizes drive the item icon size --- */
+	:global(.sve-rating-group--sm) {
+		font-size: 1rem;
+	}
+	:global(.sve-rating-group--md) {
+		font-size: 1.25rem;
+	}
+	:global(.sve-rating-group--lg) {
+		font-size: 1.75rem;
+	}
 </style>

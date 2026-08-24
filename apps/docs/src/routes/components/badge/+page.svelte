@@ -41,9 +41,7 @@
 <DocPage group={meta.group} name={meta.name} description={meta.blurb} {toc}>
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
-		<p class="sec__p">
-			Import and drop in. No setup required — styles ship with the package.
-		</p>
+		<p class="sec__p">Import and drop in. No setup required — styles ship with the package.</p>
 		<Preview code={usageCode}>
 			<Badge color="primary">New</Badge>
 		</Preview>
@@ -52,7 +50,8 @@
 	<section id="variants" class="sec">
 		<h2 class="sec__h">Variants</h2>
 		<p class="sec__p">
-			Three visual styles via the <code class="ic">variant</code> prop: <code class="ic">subtle</code>
+			Three visual styles via the <code class="ic">variant</code> prop:
+			<code class="ic">subtle</code>
 			(default), <code class="ic">solid</code>, and <code class="ic">outline</code>.
 		</p>
 		<Preview code={variantsCode}>

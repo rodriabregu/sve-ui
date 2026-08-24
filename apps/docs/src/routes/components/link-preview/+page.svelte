@@ -10,14 +10,37 @@
 	// Forwarded straight to the Bits primitive, so they are not declared on our
 	// own Props and cannot be generated. Curated here instead of omitted.
 	const rootProps: PropRow[] = [
-		{ prop: 'open', type: 'boolean', default: 'false', description: 'Bindable open state of the card.' },
-		{ prop: 'onOpenChange', type: '(open: boolean) => void', description: 'Called when the card opens or closes.' },
-		{ prop: 'openDelay', type: 'number', default: '700', description: 'Milliseconds of hover before the card opens.' },
-		{ prop: 'closeDelay', type: 'number', default: '300', description: 'Milliseconds after the pointer leaves before it closes.' }
+		{
+			prop: 'open',
+			type: 'boolean',
+			default: 'false',
+			description: 'Bindable open state of the card.'
+		},
+		{
+			prop: 'onOpenChange',
+			type: '(open: boolean) => void',
+			description: 'Called when the card opens or closes.'
+		},
+		{
+			prop: 'openDelay',
+			type: 'number',
+			default: '700',
+			description: 'Milliseconds of hover before the card opens.'
+		},
+		{
+			prop: 'closeDelay',
+			type: 'number',
+			default: '300',
+			description: 'Milliseconds after the pointer leaves before it closes.'
+		}
 	];
 
 	const triggerProps: PropRow[] = [
-		{ prop: 'href', type: 'string', description: 'Destination. Kept as a real anchor href so the link works without the card.' },
+		{
+			prop: 'href',
+			type: 'string',
+			description: 'Destination. Kept as a real anchor href so the link works without the card.'
+		},
 		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the trigger.' }
 	];
 
@@ -64,18 +87,18 @@
 	<section id="limits" class="sec">
 		<h2 class="sec__h">Know the limits</h2>
 		<p class="warn">
-			<strong>This card opens on pointer hover only.</strong> It does not open on focus, so keyboard
-			users never see it, and there is no hover on touch, so mobile users never see it either.
+			<strong>This card opens on pointer hover only.</strong> It does not open on focus, so keyboard users
+			never see it, and there is no hover on touch, so mobile users never see it either.
 		</p>
 		<p class="sec__p">
 			That makes it enrichment, never a delivery mechanism. Everything inside the card must be
-			reachable another way — put an action or a fact only in here and you have hidden it from a large
-			share of your users. The upside is that the trigger stays a real
+			reachable another way — put an action or a fact only in here and you have hidden it from a
+			large share of your users. The upside is that the trigger stays a real
 			<code class="ic">&lt;a href&gt;</code>, so the destination itself is always reachable.
 		</p>
 		<p class="sec__p">
-			If the content is essential, use a <a href="/components/popover">Popover</a> — it opens on
-			click, which works for every input method.
+			If the content is essential, use a <a href="/components/popover">Popover</a> — it opens on click,
+			which works for every input method.
 		</p>
 	</section>
 
@@ -90,8 +113,8 @@
 		</p>
 		<p class="sec__p">
 			The practical consequence: do not rely on the trigger alone to communicate a destination. Make
-			the link text say where it goes, or provide the same navigation somewhere that is announced as a
-			link.
+			the link text say where it goes, or provide the same navigation somewhere that is announced as
+			a link.
 		</p>
 	</section>
 
@@ -104,34 +127,56 @@
 		</p>
 		<p class="sec__p"><code class="ic">LinkPreview.Root</code></p>
 		<PropsTable rows={rootProps} />
-		<p class="sec__p" style="margin-top:16px"><code class="ic">LinkPreview.Trigger</code> — plus the native anchor attributes.</p>
+		<p class="sec__p" style="margin-top:16px">
+			<code class="ic">LinkPreview.Trigger</code> — plus the native anchor attributes.
+		</p>
 		<PropsTable rows={triggerProps} />
-		<p class="sec__p" style="margin-top:16px"><code class="ic">LinkPreview.Content</code> — plus the Bits floating-position props (<code class="ic">side</code>, <code class="ic">align</code>, <code class="ic">sideOffset</code>).</p>
+		<p class="sec__p" style="margin-top:16px">
+			<code class="ic">LinkPreview.Content</code> — plus the Bits floating-position props (<code
+				class="ic">side</code
+			>, <code class="ic">align</code>, <code class="ic">sideOffset</code>).
+		</p>
 		<PropsTable component="LinkPreviewContent" />
 	</section>
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.warn {
-		margin: 0 0 16px; padding: 12px 14px;
+		margin: 0 0 16px;
+		padding: 12px 14px;
 		border-left: 3px solid var(--doc-primary-text);
 		background: var(--doc-surface-2);
 		border-radius: 0 8px 8px 0;
-		font-size: 14px; line-height: 1.55; color: var(--doc-fg-muted);
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--doc-fg-muted);
 	}
 </style>

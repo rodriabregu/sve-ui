@@ -9,14 +9,14 @@
 
 ## Review Workload Forecast
 
-| Field | Value |
-|-------|-------|
-| Estimated changed lines | 900–1 200 (new files dominant) |
-| 400-line budget risk | High |
-| Chained PRs recommended | Yes |
-| Suggested split | PR 1 → Packaging + Theme foundation / PR 2 → ThemeProvider + Variant helper / PR 3 → Button + Dialog + Wiring |
-| Delivery strategy | ask-on-risk |
-| Chain strategy | pending (user decision required) |
+| Field                   | Value                                                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Estimated changed lines | 900–1 200 (new files dominant)                                                                                |
+| 400-line budget risk    | High                                                                                                          |
+| Chained PRs recommended | Yes                                                                                                           |
+| Suggested split         | PR 1 → Packaging + Theme foundation / PR 2 → ThemeProvider + Variant helper / PR 3 → Button + Dialog + Wiring |
+| Delivery strategy       | ask-on-risk                                                                                                   |
+| Chain strategy          | pending (user decision required)                                                                              |
 
 Decision needed before apply: Yes
 Chained PRs recommended: Yes
@@ -25,15 +25,15 @@ Chain strategy: pending
 
 ### Suggested Work Units
 
-| Unit | Goal | Likely PR | Notes |
-|------|------|-----------|-------|
-| WU-1 | package.json rewrite + delete old code + `pnpm install` | PR 1 | Base: main; enables test runner |
-| WU-2 | Token system: palette, tokens, theme.css, theme/index.ts | PR 1 | Can land with WU-1; no runtme deps |
-| WU-3 | ThemeProvider (context + component + tests) | PR 2 | Base: PR 1 branch |
-| WU-4 | `defineVariants` helper + unit tests | PR 2 | Can be parallel with WU-3 |
-| WU-5 | Button rewrite + tests | PR 3 | Base: PR 2 branch |
-| WU-6 | Dialog styled wrappers + tests | PR 3 | Can be parallel with WU-5 |
-| WU-7 | lib/index.ts wiring + full chain validation | PR 3 | Must follow WU-5 and WU-6 |
+| Unit | Goal                                                     | Likely PR | Notes                              |
+| ---- | -------------------------------------------------------- | --------- | ---------------------------------- |
+| WU-1 | package.json rewrite + delete old code + `pnpm install`  | PR 1      | Base: main; enables test runner    |
+| WU-2 | Token system: palette, tokens, theme.css, theme/index.ts | PR 1      | Can land with WU-1; no runtme deps |
+| WU-3 | ThemeProvider (context + component + tests)              | PR 2      | Base: PR 1 branch                  |
+| WU-4 | `defineVariants` helper + unit tests                     | PR 2      | Can be parallel with WU-3          |
+| WU-5 | Button rewrite + tests                                   | PR 3      | Base: PR 2 branch                  |
+| WU-6 | Dialog styled wrappers + tests                           | PR 3      | Can be parallel with WU-5          |
+| WU-7 | lib/index.ts wiring + full chain validation              | PR 3      | Must follow WU-5 and WU-6          |
 
 ---
 
@@ -135,12 +135,12 @@ Phase 3 (WU-3)        Phase 4 (WU-4)                              ← parallel
 
 ## Spec Traceability
 
-| Task | Spec Requirement |
-|------|-----------------|
-| 1.1–1.4 | §4.1, §4.2, §4.3 |
-| 2.1–2.4 | §1.1–§1.5 |
+| Task    | Spec Requirement             |
+| ------- | ---------------------------- |
+| 1.1–1.4 | §4.1, §4.2, §4.3             |
+| 2.1–2.4 | §1.1–§1.5                    |
 | 3.1–3.3 | §2.1–§2.4, scenarios A/B/C/D |
-| 4.1–4.3 | §3.1–§3.4, scenario K |
-| 5.1–5.2 | §5.1, scenarios E/F |
-| 6.1–6.6 | §5.2, scenarios G/H |
-| 7.1–7.6 | §4.3, §5.3, scenarios I/J |
+| 4.1–4.3 | §3.1–§3.4, scenario K        |
+| 5.1–5.2 | §5.1, scenarios E/F          |
+| 6.1–6.6 | §5.2, scenarios G/H          |
+| 7.1–7.6 | §4.3, §5.3, scenarios I/J    |

@@ -17,17 +17,53 @@
 
 	const props: PropRow[] = [
 		// Root
-		{ prop: 'Popover.Root — open', type: 'boolean', default: 'false', description: 'Controlled open state.' },
-		{ prop: 'Popover.Root — onOpenChange', type: '(open: boolean) => void', description: 'Callback fired when open state changes.' },
+		{
+			prop: 'Popover.Root — open',
+			type: 'boolean',
+			default: 'false',
+			description: 'Controlled open state.'
+		},
+		{
+			prop: 'Popover.Root — onOpenChange',
+			type: '(open: boolean) => void',
+			description: 'Callback fired when open state changes.'
+		},
 		// Trigger
-		{ prop: 'Popover.Trigger — child', type: 'Snippet<[{ props: object }]>', description: 'Render prop that spreads trigger props onto a real element.' },
+		{
+			prop: 'Popover.Trigger — child',
+			type: 'Snippet<[{ props: object }]>',
+			description: 'Render prop that spreads trigger props onto a real element.'
+		},
 		// Content
-		{ prop: 'Popover.Content — class', type: 'string', description: 'Extra classes merged onto the content panel.' },
-		{ prop: 'Popover.Content — side', type: `'top' | 'right' | 'bottom' | 'left'`, default: `'bottom'`, description: 'Preferred side to render the popover.' },
-		{ prop: 'Popover.Content — sideOffset', type: 'number', default: '4', description: 'Gap in px between trigger and content.' },
-		{ prop: 'Popover.Content — align', type: `'start' | 'center' | 'end'`, default: `'start'`, description: 'Alignment of the content relative to the trigger.' },
+		{
+			prop: 'Popover.Content — class',
+			type: 'string',
+			description: 'Extra classes merged onto the content panel.'
+		},
+		{
+			prop: 'Popover.Content — side',
+			type: `'top' | 'right' | 'bottom' | 'left'`,
+			default: `'bottom'`,
+			description: 'Preferred side to render the popover.'
+		},
+		{
+			prop: 'Popover.Content — sideOffset',
+			type: 'number',
+			default: '4',
+			description: 'Gap in px between trigger and content.'
+		},
+		{
+			prop: 'Popover.Content — align',
+			type: `'start' | 'center' | 'end'`,
+			default: `'start'`,
+			description: 'Alignment of the content relative to the trigger.'
+		},
 		// Close
-		{ prop: 'Popover.Close — child', type: 'Snippet<[{ props: object }]>', description: 'Render prop that spreads close props onto a real element.' }
+		{
+			prop: 'Popover.Close — child',
+			type: 'Snippet<[{ props: object }]>',
+			description: 'Render prop that spreads close props onto a real element.'
+		}
 	];
 
 	const usageCode = `<script>
@@ -112,8 +148,8 @@
 	<section id="placement" class="sec">
 		<h2 class="sec__h">Placement</h2>
 		<p class="sec__p">
-			The <code class="ic">side</code> prop sets the preferred placement. The popover
-			auto-flips when there is not enough space near a viewport edge.
+			The <code class="ic">side</code> prop sets the preferred placement. The popover auto-flips when
+			there is not enough space near a viewport edge.
 		</p>
 		<Preview code={placementCode}>
 			<div style="display:flex; gap:12px; flex-wrap:wrap;">
@@ -124,7 +160,9 @@
 						{/snippet}
 					</Popover.Trigger>
 					<Popover.Content side="top">
-						<p style="margin:0; font-size:13px; color:var(--doc-fg-muted);">Opens above the trigger.</p>
+						<p style="margin:0; font-size:13px; color:var(--doc-fg-muted);">
+							Opens above the trigger.
+						</p>
 					</Popover.Content>
 				</Popover.Root>
 
@@ -146,7 +184,9 @@
 						{/snippet}
 					</Popover.Trigger>
 					<Popover.Content side="bottom">
-						<p style="margin:0; font-size:13px; color:var(--doc-fg-muted);">Opens below (default).</p>
+						<p style="margin:0; font-size:13px; color:var(--doc-fg-muted);">
+							Opens below (default).
+						</p>
 					</Popover.Content>
 				</Popover.Root>
 
@@ -167,8 +207,7 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
-			Built on <code class="ic">bits-ui</code> — all underlying Bits UI Popover props are forwarded
-			transparently.
+			Built on <code class="ic">bits-ui</code> — all underlying Bits UI Popover props are forwarded transparently.
 		</p>
 		<PropsTable rows={props} />
 	</section>

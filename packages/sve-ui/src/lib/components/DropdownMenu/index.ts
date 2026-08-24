@@ -16,30 +16,39 @@
 import { DropdownMenu as BitsDropdownMenu } from 'bits-ui';
 import type { Component } from 'svelte';
 import type {
-  DropdownMenuRootProps,
-  DropdownMenuTriggerProps,
-  DropdownMenuSubProps,
-  DropdownMenuSubTriggerProps,
-  DropdownMenuSubContentProps,
-  DropdownMenuCheckboxItemProps,
-  DropdownMenuRadioItemProps,
-  DropdownMenuRadioGroupProps,
-  DropdownMenuArrowProps,
+	DropdownMenuRootProps,
+	DropdownMenuTriggerProps,
+	DropdownMenuSubProps,
+	DropdownMenuSubTriggerProps,
+	DropdownMenuSubContentProps,
+	DropdownMenuCheckboxItemProps,
+	DropdownMenuRadioItemProps,
+	DropdownMenuRadioGroupProps,
+	DropdownMenuArrowProps
 } from 'bits-ui';
 
 // Behavior re-exports — cast to portable Component types to avoid referencing
 // bits-ui internal types (OnChangeFn) in the exported declaration.
-export const Root: Component<DropdownMenuRootProps> = BitsDropdownMenu.Root as Component<DropdownMenuRootProps>;
-export const Trigger: Component<DropdownMenuTriggerProps> = BitsDropdownMenu.Trigger as Component<DropdownMenuTriggerProps>;
-export const Sub: Component<DropdownMenuSubProps> = BitsDropdownMenu.Sub as Component<DropdownMenuSubProps>;
-export const SubTrigger: Component<DropdownMenuSubTriggerProps> = BitsDropdownMenu.SubTrigger as Component<DropdownMenuSubTriggerProps>;
-export const SubContent: Component<DropdownMenuSubContentProps> = BitsDropdownMenu.SubContent as Component<DropdownMenuSubContentProps>;
-export const CheckboxItem: Component<DropdownMenuCheckboxItemProps> = BitsDropdownMenu.CheckboxItem as Component<DropdownMenuCheckboxItemProps>;
-export const RadioItem: Component<DropdownMenuRadioItemProps> = BitsDropdownMenu.RadioItem as Component<DropdownMenuRadioItemProps>;
-export const RadioGroup: Component<DropdownMenuRadioGroupProps> = BitsDropdownMenu.RadioGroup as Component<DropdownMenuRadioGroupProps>;
+export const Root: Component<DropdownMenuRootProps> =
+	BitsDropdownMenu.Root as Component<DropdownMenuRootProps>;
+export const Trigger: Component<DropdownMenuTriggerProps> =
+	BitsDropdownMenu.Trigger as Component<DropdownMenuTriggerProps>;
+export const Sub: Component<DropdownMenuSubProps> =
+	BitsDropdownMenu.Sub as Component<DropdownMenuSubProps>;
+export const SubTrigger: Component<DropdownMenuSubTriggerProps> =
+	BitsDropdownMenu.SubTrigger as Component<DropdownMenuSubTriggerProps>;
+export const SubContent: Component<DropdownMenuSubContentProps> =
+	BitsDropdownMenu.SubContent as Component<DropdownMenuSubContentProps>;
+export const CheckboxItem: Component<DropdownMenuCheckboxItemProps> =
+	BitsDropdownMenu.CheckboxItem as Component<DropdownMenuCheckboxItemProps>;
+export const RadioItem: Component<DropdownMenuRadioItemProps> =
+	BitsDropdownMenu.RadioItem as Component<DropdownMenuRadioItemProps>;
+export const RadioGroup: Component<DropdownMenuRadioGroupProps> =
+	BitsDropdownMenu.RadioGroup as Component<DropdownMenuRadioGroupProps>;
 
 // Arrow: bits-ui floating-ui arrow for visual pointer; positioning is automatic.
-export const Arrow: Component<DropdownMenuArrowProps> = BitsDropdownMenu.Arrow as Component<DropdownMenuArrowProps>;
+export const Arrow: Component<DropdownMenuArrowProps> =
+	BitsDropdownMenu.Arrow as Component<DropdownMenuArrowProps>;
 
 // Styled wrapper unique to this menu
 export { default as Content } from './DropdownMenuContent.svelte';

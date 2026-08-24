@@ -44,10 +44,10 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			A Sheet is a <a href="/components/dialog">Dialog</a> anchored to an edge — it is not a separate
-			primitive. It composes Bits Dialog, so the focus trap, ESC handling, scroll lock and ARIA all
-			come from there rather than being reimplemented. <code class="ic">Title</code> is required,
-			because Bits points <code class="ic">aria-labelledby</code> at it.
+			A Sheet is a <a href="/components/dialog">Dialog</a> anchored to an edge — it is not a
+			separate primitive. It composes Bits Dialog, so the focus trap, ESC handling, scroll lock and
+			ARIA all come from there rather than being reimplemented. <code class="ic">Title</code> is
+			required, because Bits points <code class="ic">aria-labelledby</code> at it.
 		</p>
 		<Preview code={usageCode}>
 			<Sheet.Root>
@@ -126,9 +126,9 @@
 		<h2 class="sec__h">Sheet vs Dialog</h2>
 		<p class="sec__p">
 			Same mechanics, different intent. Use a <strong>Dialog</strong> for a focused, self-contained
-			task the user finishes and leaves. Use a <strong>Sheet</strong> for a secondary surface they
-			move through and refer back to — a nav drawer, a filter panel, a detail pane. The edge anchoring
-			is what signals "this sits beside your work" rather than "this interrupts it".
+			task the user finishes and leaves. Use a <strong>Sheet</strong> for a secondary surface they move
+			through and refer back to — a nav drawer, a filter panel, a detail pane. The edge anchoring is what
+			signals "this sits beside your work" rather than "this interrupts it".
 		</p>
 	</section>
 
@@ -143,27 +143,44 @@
 		<PropsTable component="SheetContent" />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">Title</code>, <code class="ic">Description</code> and
-			<code class="ic">Overlay</code> each take <code class="ic">class</code> plus their native
-			attributes.
+			<code class="ic">Overlay</code> each take <code class="ic">class</code> plus their native attributes.
 		</p>
 	</section>
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
-	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+	.sec__p a {
 		color: var(--doc-primary-text);
 	}
-	.row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+	.ic {
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
+		color: var(--doc-primary-text);
+	}
+	.row {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+	}
 </style>

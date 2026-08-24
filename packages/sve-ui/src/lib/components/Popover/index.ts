@@ -14,18 +14,21 @@
 import { Popover as BitsPopover } from 'bits-ui';
 import type { Component } from 'svelte';
 import type {
-  PopoverRootProps,
-  PopoverTriggerProps,
-  PopoverCloseProps,
-  PopoverArrowProps,
+	PopoverRootProps,
+	PopoverTriggerProps,
+	PopoverCloseProps,
+	PopoverArrowProps
 } from 'bits-ui';
 
 // Behavior re-exports — cast to portable Component types to avoid referencing
 // bits-ui internal types (OnChangeFn) in the exported declaration.
 export const Root: Component<PopoverRootProps> = BitsPopover.Root as Component<PopoverRootProps>;
-export const Trigger: Component<PopoverTriggerProps> = BitsPopover.Trigger as Component<PopoverTriggerProps>;
-export const Close: Component<PopoverCloseProps> = BitsPopover.Close as Component<PopoverCloseProps>;
+export const Trigger: Component<PopoverTriggerProps> =
+	BitsPopover.Trigger as Component<PopoverTriggerProps>;
+export const Close: Component<PopoverCloseProps> =
+	BitsPopover.Close as Component<PopoverCloseProps>;
 // Arrow: bits-ui floating-ui arrow for visual pointer; positioning is automatic.
-export const Arrow: Component<PopoverArrowProps> = BitsPopover.Arrow as Component<PopoverArrowProps>;
+export const Arrow: Component<PopoverArrowProps> =
+	BitsPopover.Arrow as Component<PopoverArrowProps>;
 
 export { default as Content } from './PopoverContent.svelte';

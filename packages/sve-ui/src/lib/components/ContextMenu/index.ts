@@ -18,34 +18,34 @@
 import { ContextMenu as BitsContextMenu } from 'bits-ui';
 import type { Component } from 'svelte';
 import type {
-  ContextMenuRootProps,
-  ContextMenuSubProps,
-  ContextMenuSubTriggerProps,
-  ContextMenuSubContentProps,
-  ContextMenuCheckboxItemProps,
-  ContextMenuRadioItemProps,
-  ContextMenuRadioGroupProps,
-  ContextMenuArrowProps,
+	ContextMenuRootProps,
+	ContextMenuSubProps,
+	ContextMenuSubTriggerProps,
+	ContextMenuSubContentProps,
+	ContextMenuCheckboxItemProps,
+	ContextMenuRadioItemProps,
+	ContextMenuRadioGroupProps,
+	ContextMenuArrowProps
 } from 'bits-ui';
 
 // Behaviour re-exports — cast to portable Component types so the emitted
 // declaration does not reference bits-ui internals (OnChangeFn).
 export const Root: Component<ContextMenuRootProps> =
-  BitsContextMenu.Root as Component<ContextMenuRootProps>;
+	BitsContextMenu.Root as Component<ContextMenuRootProps>;
 export const Sub: Component<ContextMenuSubProps> =
-  BitsContextMenu.Sub as Component<ContextMenuSubProps>;
+	BitsContextMenu.Sub as Component<ContextMenuSubProps>;
 export const SubTrigger: Component<ContextMenuSubTriggerProps> =
-  BitsContextMenu.SubTrigger as Component<ContextMenuSubTriggerProps>;
+	BitsContextMenu.SubTrigger as Component<ContextMenuSubTriggerProps>;
 export const SubContent: Component<ContextMenuSubContentProps> =
-  BitsContextMenu.SubContent as Component<ContextMenuSubContentProps>;
+	BitsContextMenu.SubContent as Component<ContextMenuSubContentProps>;
 export const CheckboxItem: Component<ContextMenuCheckboxItemProps> =
-  BitsContextMenu.CheckboxItem as Component<ContextMenuCheckboxItemProps>;
+	BitsContextMenu.CheckboxItem as Component<ContextMenuCheckboxItemProps>;
 export const RadioItem: Component<ContextMenuRadioItemProps> =
-  BitsContextMenu.RadioItem as Component<ContextMenuRadioItemProps>;
+	BitsContextMenu.RadioItem as Component<ContextMenuRadioItemProps>;
 export const RadioGroup: Component<ContextMenuRadioGroupProps> =
-  BitsContextMenu.RadioGroup as Component<ContextMenuRadioGroupProps>;
+	BitsContextMenu.RadioGroup as Component<ContextMenuRadioGroupProps>;
 export const Arrow: Component<ContextMenuArrowProps> =
-  BitsContextMenu.Arrow as Component<ContextMenuArrowProps>;
+	BitsContextMenu.Arrow as Component<ContextMenuArrowProps>;
 
 // Styled wrappers unique to this menu
 export { default as Trigger } from './ContextMenuTrigger.svelte';

@@ -60,10 +60,11 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			<code class="ic">Label</code> wraps the Bits UI Label primitive, which owns the
-			click-to-focus behaviour and stops double-click text selection from leaking into the control.
-			Point <code class="ic">for</code> at the control's <code class="ic">id</code> — that
-			association is what gives the field its accessible name.
+			<code class="ic">Label</code> wraps the Bits UI Label primitive, which owns the click-to-focus
+			behaviour and stops double-click text selection from leaking into the control. Point
+			<code class="ic">for</code>
+			at the control's <code class="ic">id</code> — that association is what gives the field its accessible
+			name.
 		</p>
 		<Preview code={usageCode} align="start">
 			<div class="field">
@@ -108,8 +109,8 @@
 		<h2 class="sec__h">Nesting the control</h2>
 		<p class="sec__p">
 			You can also nest the control inside the label and skip
-			<code class="ic">for</code> entirely. This is the tidiest option for checkboxes and switches,
-			where the label text is the hit target you actually want.
+			<code class="ic">for</code> entirely. This is the tidiest option for checkboxes and switches, where
+			the label text is the hit target you actually want.
 		</p>
 		<Preview code={nestingCode} align="start">
 			<Label>
@@ -122,10 +123,10 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
-			Plus every native <code class="ic">&lt;label&gt;</code> attribute via prop spreading.
-			The <code class="ic">Textarea</code>, <code class="ic">Input</code>,
-			<code class="ic">Select</code> and <code class="ic">Slider</code> components all pair with it
-			the same way.
+			Plus every native <code class="ic">&lt;label&gt;</code> attribute via prop spreading. The
+			<code class="ic">Textarea</code>, <code class="ic">Input</code>,
+			<code class="ic">Select</code> and <code class="ic">Slider</code> components all pair with it the
+			same way.
 		</p>
 		<PropsTable rows={props} />
 	</section>

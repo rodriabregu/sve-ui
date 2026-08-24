@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { Menubar } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { Menubar } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsRootProps = ComponentProps<typeof Menubar.Root>;
+	type BitsRootProps = ComponentProps<typeof Menubar.Root>;
 
-  interface Props extends Omit<BitsRootProps, 'class'> {
-    /** Extra classes merged onto the menubar. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsRootProps, 'class'> {
+		/** Extra classes merged onto the menubar. */
+		class?: string;
+	}
 
-  let { class: cls, children, ...rest }: Props = $props();
+	let { class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -20,21 +20,21 @@
   Give it an `aria-label` — "Main" — so it is not announced as an unnamed menubar.
 -->
 <Menubar.Root
-  class={['sve-menubar', cls].filter(Boolean).join(' ')}
-  data-slot="menubar"
-  {children}
-  {...rest}
+	class={['sve-menubar', cls].filter(Boolean).join(' ')}
+	data-slot="menubar"
+	{children}
+	{...rest}
 />
 
 <style>
-  :global(.sve-menubar) {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    padding: var(--sve-space-1);
-    border: 1px solid var(--sve-color-default-border);
-    border-radius: var(--sve-radius-md);
-    background-color: var(--sve-color-default-surface);
-    font-family: var(--sve-font-family-sans);
-  }
+	:global(.sve-menubar) {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		padding: var(--sve-space-1);
+		border: 1px solid var(--sve-color-default-border);
+		border-radius: var(--sve-radius-md);
+		background-color: var(--sve-color-default-surface);
+		font-family: var(--sve-font-family-sans);
+	}
 </style>

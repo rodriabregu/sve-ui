@@ -1,10 +1,10 @@
 ---
 name: sve-ui-usage
-description: "Trigger: using sve-ui, sve-ui components, Svelte 5 UI with sve-ui, theming sve-ui. Use the sve-ui component library correctly: imports, namespaces, theming, a11y."
+description: 'Trigger: using sve-ui, sve-ui components, Svelte 5 UI with sve-ui, theming sve-ui. Use the sve-ui component library correctly: imports, namespaces, theming, a11y.'
 license: MIT
 metadata:
   author: rodriabregu
-  version: "1.0"
+  version: '1.0'
 ---
 
 ## Activation Contract
@@ -45,14 +45,14 @@ Load when building or editing a Svelte 5 app that consumes `sve-ui` — importin
 
 ## Decision Gates
 
-| Need | Use |
-|------|-----|
-| Action button | `Button` |
-| Modal / confirm | `Dialog.*` |
-| Pick one option | `Select.*` (listbox) or `RadioGroup.*` |
-| Filterable pick | `Combobox.*` |
-| On/off vs boolean | `Switch.*` vs `Checkbox.*` |
-| Theme a subtree | wrap in `ThemeProvider` + override `--sve-*` |
+| Need              | Use                                          |
+| ----------------- | -------------------------------------------- |
+| Action button     | `Button`                                     |
+| Modal / confirm   | `Dialog.*`                                   |
+| Pick one option   | `Select.*` (listbox) or `RadioGroup.*`       |
+| Filterable pick   | `Combobox.*`                                 |
+| On/off vs boolean | `Switch.*` vs `Checkbox.*`                   |
+| Theme a subtree   | wrap in `ThemeProvider` + override `--sve-*` |
 
 ## Execution Steps
 

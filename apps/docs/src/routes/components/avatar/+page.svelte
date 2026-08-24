@@ -26,7 +26,11 @@
 
 	const imageProps: PropRow[] = [
 		{ prop: 'src', type: 'string', description: 'Image URL.' },
-		{ prop: 'alt', type: 'string', description: 'Required. Describes the image for screen readers.' },
+		{
+			prop: 'alt',
+			type: 'string',
+			description: 'Required. Describes the image for screen readers.'
+		},
 		{ prop: 'class', type: 'string', description: 'Extra classes.' }
 	];
 
@@ -85,8 +89,8 @@
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
 			Compose <code class="ic">Avatar.Root</code>, <code class="ic">Avatar.Image</code>, and
-			<code class="ic">Avatar.Fallback</code> together. The fallback renders automatically when the
-			image is absent or fails to load.
+			<code class="ic">Avatar.Fallback</code> together. The fallback renders automatically when the image
+			is absent or fails to load.
 		</p>
 		<Preview code={usageCode}>
 			<Avatar.Root>
@@ -98,7 +102,9 @@
 
 	<section id="sizes" class="sec">
 		<h2 class="sec__h">Sizes</h2>
-		<p class="sec__p">Three sizes via the <code class="ic">size</code> prop on <code class="ic">Avatar.Root</code>.</p>
+		<p class="sec__p">
+			Three sizes via the <code class="ic">size</code> prop on <code class="ic">Avatar.Root</code>.
+		</p>
 		<Preview code={sizesCode}>
 			<Avatar.Root size="sm">
 				<Avatar.Image src="https://i.pravatar.cc/150?img=12" alt="User" />
@@ -135,8 +141,8 @@
 	<section id="fallback" class="sec">
 		<h2 class="sec__h">Fallback</h2>
 		<p class="sec__p">
-			<code class="ic">Avatar.Fallback</code> renders when no image is provided or when the image
-			fails to load. Typically used with initials.
+			<code class="ic">Avatar.Fallback</code> renders when no image is provided or when the image fails
+			to load. Typically used with initials.
 		</p>
 		<Preview code={fallbackCode}>
 			<Avatar.Root size="md">

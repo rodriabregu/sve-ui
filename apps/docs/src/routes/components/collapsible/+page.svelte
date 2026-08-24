@@ -60,8 +60,8 @@
 	<section id="controlled" class="sec">
 		<h2 class="sec__h">Controlled</h2>
 		<p class="sec__p">
-			<code class="ic">open</code> is bindable, so you can read the state to change the label or
-			drive something else on the page.
+			<code class="ic">open</code> is bindable, so you can read the state to change the label or drive
+			something else on the page.
 		</p>
 		<Preview code={controlledCode} align="start">
 			<div class="stack">
@@ -80,9 +80,8 @@
 		<h2 class="sec__h">Collapsible vs Accordion</h2>
 		<p class="sec__p">
 			<code class="ic">Collapsible</code> is one independent region.
-			<a href="/components/accordion">Accordion</a> is a set of regions that know about each other —
-			it can enforce that only one is open at a time and gives you arrow-key navigation between
-			triggers.
+			<a href="/components/accordion">Accordion</a> is a set of regions that know about each other — it
+			can enforce that only one is open at a time and gives you arrow-key navigation between triggers.
 		</p>
 		<p class="sec__p">
 			A row of Collapsibles is not an Accordion. It has no shared state and no keyboard relationship
@@ -92,7 +91,9 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
-		<p class="sec__p"><code class="ic">Collapsible.Root</code> — <code class="ic">open</code> is bindable.</p>
+		<p class="sec__p">
+			<code class="ic">Collapsible.Root</code> — <code class="ic">open</code> is bindable.
+		</p>
 		<PropsTable component="CollapsibleRoot" />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">Collapsible.Trigger</code></p>
 		<PropsTable component="CollapsibleTrigger" />
@@ -102,24 +103,44 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.stack {
-		display: flex; flex-direction: column; gap: 14px;
-		width: 100%; max-width: 420px;
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+		width: 100%;
+		max-width: 420px;
 	}
-	.cap { margin: 0; font-size: 12.5px; color: var(--doc-fg-subtle); }
+	.cap {
+		margin: 0;
+		font-size: 12.5px;
+		color: var(--doc-fg-subtle);
+	}
 </style>

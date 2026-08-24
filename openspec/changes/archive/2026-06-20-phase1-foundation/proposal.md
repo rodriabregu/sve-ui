@@ -10,13 +10,13 @@ Phase 0 (skeleton, tooling, config packages, `Box` validation gate) is committed
 
 ## What success looks like
 
-| Outcome | Demonstrable signal |
-|---------|---------------------|
-| Theming works | A consumer can wrap UI in `<ThemeProvider>`, see correct light/dark rendering, and override any token via CSS custom properties — zero config |
-| Variants are typed | `Button` consumes the variant helper across variant × color × size with full type safety and no `any` |
-| Authoring pattern proven | `Button` proves the runes-only path; `Dialog` proves the styled-presentational-over-Bits-UI path (overlay, focus trap, portal, a11y) |
-| Package is publishable-shaped | `exports` map (`svelte`/`types`/`default`) + `./theme` subpath resolve correctly; `pnpm install` succeeds |
-| Full chain green | `build → svelte-package → types → test` all pass for the validation slice |
+| Outcome                       | Demonstrable signal                                                                                                                           |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Theming works                 | A consumer can wrap UI in `<ThemeProvider>`, see correct light/dark rendering, and override any token via CSS custom properties — zero config |
+| Variants are typed            | `Button` consumes the variant helper across variant × color × size with full type safety and no `any`                                         |
+| Authoring pattern proven      | `Button` proves the runes-only path; `Dialog` proves the styled-presentational-over-Bits-UI path (overlay, focus trap, portal, a11y)          |
+| Package is publishable-shaped | `exports` map (`svelte`/`types`/`default`) + `./theme` subpath resolve correctly; `pnpm install` succeeds                                     |
+| Full chain green              | `build → svelte-package → types → test` all pass for the validation slice                                                                     |
 
 ## Scope
 
@@ -50,34 +50,34 @@ Phase 0 (skeleton, tooling, config packages, `Box` validation gate) is committed
 
 ### Out of scope (explicit non-goals)
 
-| Non-goal | Where it belongs |
-|----------|------------------|
-| Component waves (Input, Card, Select, Badge, etc.) | Phase 1.5 |
-| Docs app modernization | Phase 3 |
-| CI / release workflows | Phase 4 |
-| Minimal internal layout layer (Box/Stack/Flex) | Phase 1.5 (minimal internal layer) |
+| Non-goal                                           | Where it belongs                   |
+| -------------------------------------------------- | ---------------------------------- |
+| Component waves (Input, Card, Select, Badge, etc.) | Phase 1.5                          |
+| Docs app modernization                             | Phase 3                            |
+| CI / release workflows                             | Phase 4                            |
+| Minimal internal layout layer (Box/Stack/Flex)     | Phase 1.5 (minimal internal layer) |
 
 These are deliberately excluded so the foundation can be reviewed and validated in isolation. `Button` and `Dialog` exist here **only as validation slices**, not as the start of the waves — they prove the architecture, they are not the architecture's output.
 
 ## Approach (high level)
 
-| In-scope item | Approach | Rationale |
-|---------------|----------|-----------|
-| Theming | `<ThemeProvider>` writes `--sve-*` custom properties onto a scope root; semantic tokens map to palette values; light/dark via class and/or media query; SSR-safe so server render and hydration agree | CSS variables are zero-runtime and themeable without forcing a styling layer on consumers (D4/D20) |
-| Variants | A single typed helper resolving `variant × color × size` to scoped class/style state, exported for all components | One source of truth for variant logic; avoids per-component string concatenation (the old `Box.svelte` anti-pattern) |
-| Authoring pattern | Two reference implementations: runes-only (`Button`) and presentational-over-Bits-UI-container (`Dialog`) | Bits UI owns behavior/a11y (container); our component owns style/variants (presentational) — never reinvent focus traps/ARIA (D18/D19) |
-| Packaging | Rewrite `package.json` exports/peer/deps per the ROADMAP §5 export contract; run first `pnpm install`; validate resolution | Establishes the public API surface and `sve-ui/theme` subpath seam before components depend on it (D11/D12/D13) |
-| Validation slice | Build both components, then run the full chain build → `svelte-package` → types → test | Two end-to-end paths are the cheapest way to catch foundation gaps before the waves multiply the cost |
+| In-scope item     | Approach                                                                                                                                                                                              | Rationale                                                                                                                              |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Theming           | `<ThemeProvider>` writes `--sve-*` custom properties onto a scope root; semantic tokens map to palette values; light/dark via class and/or media query; SSR-safe so server render and hydration agree | CSS variables are zero-runtime and themeable without forcing a styling layer on consumers (D4/D20)                                     |
+| Variants          | A single typed helper resolving `variant × color × size` to scoped class/style state, exported for all components                                                                                     | One source of truth for variant logic; avoids per-component string concatenation (the old `Box.svelte` anti-pattern)                   |
+| Authoring pattern | Two reference implementations: runes-only (`Button`) and presentational-over-Bits-UI-container (`Dialog`)                                                                                             | Bits UI owns behavior/a11y (container); our component owns style/variants (presentational) — never reinvent focus traps/ARIA (D18/D19) |
+| Packaging         | Rewrite `package.json` exports/peer/deps per the ROADMAP §5 export contract; run first `pnpm install`; validate resolution                                                                            | Establishes the public API surface and `sve-ui/theme` subpath seam before components depend on it (D11/D12/D13)                        |
+| Validation slice  | Build both components, then run the full chain build → `svelte-package` → types → test                                                                                                                | Two end-to-end paths are the cheapest way to catch foundation gaps before the waves multiply the cost                                  |
 
 ## Risks and open questions
 
-| Risk | Impact | Mitigation / note |
-|------|--------|-------------------|
-| SSR theming flash-of-unstyled-content | Dark-mode users see a light flash on load | ThemeProvider must emit correct CSS-var state before hydration; design decision deferred to spec/design (class vs media-query default, inline critical vars) |
-| Bits UI 2.18.1 version/API currency | Dialog wrapper could target a stale API surface | Confirm Bits UI 2.18.1 Dialog API (overlay/portal/focus-trap props) at design time; peers `svelte ^5.33.0`, `@internationalized/date ^3.8.1` already validated in ROADMAP §8 |
-| Strict TDD provisional until install | `strict_tdd: true` is provisional because `node_modules` is not yet installed | First `pnpm install` confirms the test runner (`pnpm test` → vitest). Until install succeeds, treat TDD enforcement as provisional |
-| Light/dark strategy choice (class vs media-query) | Affects override mechanism and SSR design | Open question for the spec — confirm default strategy and documented override path |
-| Variant helper API shape | Locks the contract every component depends on | Settle the helper's type signature in the spec/design before `Button` consumes it |
+| Risk                                              | Impact                                                                        | Mitigation / note                                                                                                                                                            |
+| ------------------------------------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SSR theming flash-of-unstyled-content             | Dark-mode users see a light flash on load                                     | ThemeProvider must emit correct CSS-var state before hydration; design decision deferred to spec/design (class vs media-query default, inline critical vars)                 |
+| Bits UI 2.18.1 version/API currency               | Dialog wrapper could target a stale API surface                               | Confirm Bits UI 2.18.1 Dialog API (overlay/portal/focus-trap props) at design time; peers `svelte ^5.33.0`, `@internationalized/date ^3.8.1` already validated in ROADMAP §8 |
+| Strict TDD provisional until install              | `strict_tdd: true` is provisional because `node_modules` is not yet installed | First `pnpm install` confirms the test runner (`pnpm test` → vitest). Until install succeeds, treat TDD enforcement as provisional                                           |
+| Light/dark strategy choice (class vs media-query) | Affects override mechanism and SSR design                                     | Open question for the spec — confirm default strategy and documented override path                                                                                           |
+| Variant helper API shape                          | Locks the contract every component depends on                                 | Settle the helper's type signature in the spec/design before `Button` consumes it                                                                                            |
 
 ## Next step
 

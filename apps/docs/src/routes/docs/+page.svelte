@@ -26,7 +26,8 @@
 				href="https://bits-ui.com"
 				target="_blank"
 				rel="noopener">Bits UI</a
-			> for behavior and accessibility, and styled with scoped CSS and
+			>
+			for behavior and accessibility, and styled with scoped CSS and
 			<code class="ic">--sve-*</code> custom properties. You install it, import one stylesheet, and use
 			the components — there is no setup step.
 		</p>
@@ -35,9 +36,15 @@
 	<section id="why" class="sec">
 		<h2 class="sec__h">Why sve-ui</h2>
 		<ul class="sec__list">
-			<li><strong>No Tailwind, no config</strong> in your project — styles ship with the package.</li>
-			<li><strong>Accessible by default</strong> — focus traps, ARIA and keyboard nav via Bits UI.</li>
-			<li><strong>Themeable</strong> — every color, radius and space is a CSS variable; light & dark included.</li>
+			<li>
+				<strong>No Tailwind, no config</strong> in your project — styles ship with the package.
+			</li>
+			<li>
+				<strong>Accessible by default</strong> — focus traps, ARIA and keyboard nav via Bits UI.
+			</li>
+			<li>
+				<strong>Themeable</strong> — every color, radius and space is a CSS variable; light & dark included.
+			</li>
 			<li><strong>Svelte 5 + runes</strong>, fully typed, tree-shakeable.</li>
 		</ul>
 	</section>
@@ -49,7 +56,11 @@
 			<Button color="primary" onclick={() => (window.location.href = '/docs/installation')}>
 				Installation
 			</Button>
-			<Button variant="outline" color="default" onclick={() => (window.location.href = '/components')}>
+			<Button
+				variant="outline"
+				color="default"
+				onclick={() => (window.location.href = '/components')}
+			>
 				Browse components
 			</Button>
 		</div>

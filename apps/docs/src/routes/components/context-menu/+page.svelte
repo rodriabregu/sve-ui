@@ -10,8 +10,17 @@
 	// Forwarded to the Bits primitive, so not declared on our own Props.
 	const rootProps: PropRow[] = [
 		{ prop: 'open', type: 'boolean', default: 'false', description: 'Bindable open state.' },
-		{ prop: 'onOpenChange', type: '(open: boolean) => void', description: 'Called when the menu opens or closes.' },
-		{ prop: 'dir', type: `'ltr' | 'rtl'`, default: `'ltr'`, description: 'Reading direction, which flips submenu placement.' }
+		{
+			prop: 'onOpenChange',
+			type: '(open: boolean) => void',
+			description: 'Called when the menu opens or closes.'
+		},
+		{
+			prop: 'dir',
+			type: `'ltr' | 'rtl'`,
+			default: `'ltr'`,
+			description: 'Reading direction, which flips submenu placement.'
+		}
 	];
 
 	const meta = componentBySlug['context-menu'];
@@ -77,8 +86,8 @@
 		<p class="sec__p">
 			That is not a nitpick — put "Delete" only in a context menu and a phone user simply cannot
 			delete anything. Treat this as an accelerator for people who already know the action exists:
-			pair it with a <a href="/components/dropdown-menu">Dropdown Menu</a> on a visible trigger, or
-			with inline buttons on the row.
+			pair it with a <a href="/components/dropdown-menu">Dropdown Menu</a> on a visible trigger, or with
+			inline buttons on the row.
 		</p>
 	</section>
 
@@ -87,16 +96,15 @@
 		<p class="sec__p">
 			<code class="ic">Item</code>, <code class="ic">Group</code>,
 			<code class="ic">Label</code> and <code class="ic">Separator</code> are the
-			<strong>same components</strong> <a href="/components/dropdown-menu">Dropdown Menu</a> uses.
-			Bits re-exports identical menu internals under both namespaces, so one styled implementation
-			serves each rather than two copies of the same CSS drifting apart.
+			<strong>same components</strong> <a href="/components/dropdown-menu">Dropdown Menu</a> uses. Bits
+			re-exports identical menu internals under both namespaces, so one styled implementation serves each
+			rather than two copies of the same CSS drifting apart.
 		</p>
 		<p class="sec__p">
 			They stay context-aware: Bits derives its data attributes from whichever Root wraps them, so
 			the same wrapper emits <code class="ic">data-context-menu-item</code> here and
 			<code class="ic">data-dropdown-menu-item</code> there. The class is
-			<code class="ic">sve-menu-item</code> in both, which is what keeps the two menus looking
-			identical.
+			<code class="ic">sve-menu-item</code> in both, which is what keeps the two menus looking identical.
 		</p>
 	</section>
 
@@ -106,8 +114,7 @@
 			<code class="ic">Root</code>, <code class="ic">Sub</code>,
 			<code class="ic">SubTrigger</code>, <code class="ic">SubContent</code>,
 			<code class="ic">CheckboxItem</code>, <code class="ic">RadioItem</code>,
-			<code class="ic">RadioGroup</code> and <code class="ic">Arrow</code> are re-exported from Bits
-			unchanged.
+			<code class="ic">RadioGroup</code> and <code class="ic">Arrow</code> are re-exported from Bits unchanged.
 		</p>
 		<p class="sec__p"><code class="ic">ContextMenu.Root</code></p>
 		<PropsTable rows={rootProps} />
@@ -115,32 +122,50 @@
 		<PropsTable component="ContextMenuTrigger" />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">ContextMenu.Content</code></p>
 		<PropsTable component="ContextMenuContent" />
-		<p class="sec__p" style="margin-top:16px"><code class="ic">ContextMenu.Item</code> — shared with Dropdown Menu.</p>
+		<p class="sec__p" style="margin-top:16px">
+			<code class="ic">ContextMenu.Item</code> — shared with Dropdown Menu.
+		</p>
 		<PropsTable component="MenuItem" />
 	</section>
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.warn {
-		margin: 0 0 16px; padding: 12px 14px;
+		margin: 0 0 16px;
+		padding: 12px 14px;
 		border-left: 3px solid var(--doc-primary-text);
 		background: var(--doc-surface-2);
 		border-radius: 0 8px 8px 0;
-		font-size: 14px; line-height: 1.55; color: var(--doc-fg-muted);
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--doc-fg-muted);
 	}
 </style>

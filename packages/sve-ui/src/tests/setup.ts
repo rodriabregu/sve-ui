@@ -6,9 +6,9 @@ import { cleanup } from '@testing-library/svelte';
  * Provide a no-op stub so those components mount in tests.
  */
 class ResizeObserverStub {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
+	observe() {}
+	unobserve() {}
+	disconnect() {}
 }
 globalThis.ResizeObserver ??= ResizeObserverStub as unknown as typeof ResizeObserver;
 
@@ -22,7 +22,7 @@ globalThis.ResizeObserver ??= ResizeObserverStub as unknown as typeof ResizeObse
  * no-op: scroll position is not something jsdom can meaningfully assert anyway.
  */
 if (typeof Element !== 'undefined' && !Element.prototype.scrollIntoView) {
-  Element.prototype.scrollIntoView = function scrollIntoViewStub() {};
+	Element.prototype.scrollIntoView = function scrollIntoViewStub() {};
 }
 
 /**
@@ -37,28 +37,28 @@ if (typeof Element !== 'undefined' && !Element.prototype.scrollIntoView) {
  * make every transition-bearing component hang.
  */
 if (typeof Element !== 'undefined' && !Element.prototype.animate) {
-  Element.prototype.animate = function animateStub() {
-    const animation = {
-      currentTime: 0,
-      startTime: 0,
-      playState: 'finished',
-      finished: Promise.resolve(),
-      effect: null,
-      onfinish: null as (() => void) | null,
-      oncancel: null as (() => void) | null,
-      play() {},
-      pause() {},
-      cancel() {},
-      finish() {},
-      commitStyles() {},
-      addEventListener() {},
-      removeEventListener() {}
-    };
-    // Svelte subscribes to `onfinish` after `animate()` returns, so the callback
-    // has to be given a turn to be attached before it fires.
-    queueMicrotask(() => animation.onfinish?.());
-    return animation as unknown as Animation;
-  };
+	Element.prototype.animate = function animateStub() {
+		const animation = {
+			currentTime: 0,
+			startTime: 0,
+			playState: 'finished',
+			finished: Promise.resolve(),
+			effect: null,
+			onfinish: null as (() => void) | null,
+			oncancel: null as (() => void) | null,
+			play() {},
+			pause() {},
+			cancel() {},
+			finish() {},
+			commitStyles() {},
+			addEventListener() {},
+			removeEventListener() {}
+		};
+		// Svelte subscribes to `onfinish` after `animate()` returns, so the callback
+		// has to be given a turn to be attached before it fires.
+		queueMicrotask(() => animation.onfinish?.());
+		return animation as unknown as Animation;
+	};
 }
 
 /**
@@ -72,13 +72,13 @@ if (typeof Element !== 'undefined' && !Element.prototype.animate) {
  * exists. (cleanup() is idempotent with @testing-library's auto-cleanup.)
  */
 afterEach(async () => {
-  cleanup();
-  // Fake timers leak to the next test in a file unless restored, and the wait
-  // below is a real `setTimeout` — on fake timers it never fires, so this hook
-  // hangs until the hook timeout and the run fails somewhere unrelated to the
-  // test that installed them. Restoring here makes that impossible instead of
-  // depending on every future test file nesting its own `afterEach` correctly.
-  // Safe when fake timers were never installed.
-  vi.useRealTimers();
-  await new Promise((resolve) => setTimeout(resolve, 50));
+	cleanup();
+	// Fake timers leak to the next test in a file unless restored, and the wait
+	// below is a real `setTimeout` — on fake timers it never fires, so this hook
+	// hangs until the hook timeout and the run fails somewhere unrelated to the
+	// test that installed them. Restoring here makes that impossible instead of
+	// depending on every future test file nesting its own `afterEach` correctly.
+	// Safe when fake timers were never installed.
+	vi.useRealTimers();
+	await new Promise((resolve) => setTimeout(resolve, 50));
 });

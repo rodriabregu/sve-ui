@@ -17,14 +17,14 @@ All CSS custom properties emitted by the theming system MUST use the `--sve-` pr
 
 The following six semantic color roles MUST be defined as CSS custom properties:
 
-| Semantic role | CSS variable |
-|---|---|
-| `primary` | `--sve-color-primary` |
-| `secondary` | `--sve-color-secondary` |
-| `success` | `--sve-color-success` |
-| `warning` | `--sve-color-warning` |
-| `danger` | `--sve-color-danger` |
-| `default` | `--sve-color-default` |
+| Semantic role | CSS variable            |
+| ------------- | ----------------------- |
+| `primary`     | `--sve-color-primary`   |
+| `secondary`   | `--sve-color-secondary` |
+| `success`     | `--sve-color-success`   |
+| `warning`     | `--sve-color-warning`   |
+| `danger`      | `--sve-color-danger`    |
+| `default`     | `--sve-color-default`   |
 
 Each role MUST also expose foreground (text-on-color), surface (background), border, and hover variants as sub-tokens — at minimum:
 
@@ -39,12 +39,12 @@ Exact palette hex values are resolved in the design document. The spec mandates 
 
 The theming system MUST include all of the following categories, each exposed as `--sve-*` custom properties:
 
-| Category | Example tokens |
-|---|---|
-| Colors | Semantic roles (§1.2) |
-| Spacing | `--sve-space-1` … `--sve-space-16` (4px base unit or equivalent scale) |
-| Border radius | `--sve-radius-none`, `--sve-radius-sm`, `--sve-radius-md`, `--sve-radius-lg`, `--sve-radius-full` |
-| Typography | `--sve-font-family-sans`, `--sve-font-size-sm/md/lg`, `--sve-font-weight-normal/medium/bold`, `--sve-line-height-tight/normal/relaxed` |
+| Category      | Example tokens                                                                                                                         |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Colors        | Semantic roles (§1.2)                                                                                                                  |
+| Spacing       | `--sve-space-1` … `--sve-space-16` (4px base unit or equivalent scale)                                                                 |
+| Border radius | `--sve-radius-none`, `--sve-radius-sm`, `--sve-radius-md`, `--sve-radius-lg`, `--sve-radius-full`                                      |
+| Typography    | `--sve-font-family-sans`, `--sve-font-size-sm/md/lg`, `--sve-font-weight-normal/medium/bold`, `--sve-line-height-tight/normal/relaxed` |
 
 ### 1.4 Light and Dark Theme Values
 
@@ -74,12 +74,12 @@ The `./theme` subpath export MUST resolve to a module that re-exports:
 
 `ThemeProvider` MUST accept:
 
-| Prop | Type | Required | Behavior |
-|---|---|---|---|
-| `theme` | `Partial<SveTheme>` | No | Deep-merges consumer overrides onto the default theme; when present, writes overrides as inline CSS custom properties on the scope root |
-| `colorScheme` | `'light' \| 'dark' \| 'system'` | No | Controls which token set is active; defaults to `'system'` |
-| `class` | `string` | No | Forwarded to the scope root element |
-| `children` (snippet) | `Snippet` | Yes | Slotted content rendered inside the scoped root |
+| Prop                 | Type                            | Required | Behavior                                                                                                                                |
+| -------------------- | ------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `theme`              | `Partial<SveTheme>`             | No       | Deep-merges consumer overrides onto the default theme; when present, writes overrides as inline CSS custom properties on the scope root |
+| `colorScheme`        | `'light' \| 'dark' \| 'system'` | No       | Controls which token set is active; defaults to `'system'`                                                                              |
+| `class`              | `string`                        | No       | Forwarded to the scope root element                                                                                                     |
+| `children` (snippet) | `Snippet`                       | Yes      | Slotted content rendered inside the scoped root                                                                                         |
 
 `SveTheme` is a typed interface generated from the token contract (§1.2 + §1.3).
 
@@ -114,11 +114,11 @@ The `./theme` subpath export MUST resolve to a module that re-exports:
 
 The helper MUST accept exactly three orthogonal axes:
 
-| Axis | Allowed values |
-|---|---|
-| `variant` | `'solid' \| 'outline' \| 'ghost' \| 'flat'` (minimum set; may extend) |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'default'` (matches §1.2) |
-| `size` | `'sm' \| 'md' \| 'lg'` |
+| Axis      | Allowed values                                                                               |
+| --------- | -------------------------------------------------------------------------------------------- |
+| `variant` | `'solid' \| 'outline' \| 'ghost' \| 'flat'` (minimum set; may extend)                        |
+| `color`   | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'default'` (matches §1.2) |
+| `size`    | `'sm' \| 'md' \| 'lg'`                                                                       |
 
 ### 3.2 Output
 
@@ -148,18 +148,18 @@ ARIA attributes are NOT the helper's responsibility — they are applied by each
 
 ```jsonc
 {
-  "exports": {
-    ".": {
-      "types":   "./dist/index.d.ts",
-      "svelte":  "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./theme": {
-      "types":   "./dist/theme/index.d.ts",
-      "svelte":  "./dist/theme/index.js",
-      "default": "./dist/theme/index.js"
-    }
-  }
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./theme": {
+			"types": "./dist/theme/index.d.ts",
+			"svelte": "./dist/theme/index.js",
+			"default": "./dist/theme/index.js"
+		}
+	}
 }
 ```
 
@@ -276,16 +276,16 @@ All steps MUST be runnable top-to-bottom in a clean environment.
 
 ## 7. Conformance Checkpoints (v1.0)
 
-| Requirement | Status | Notes |
-|---|---|---|
-| All `--sve-*` at `:root` | PASS | Static theme.css; light mode default |
-| Light + dark token sets | PASS | Both available; class-based selection |
-| ThemeProvider component | PASS | Synthesis model (optional scoped overrides) |
-| `defineVariants` helper | PASS | Full type safety; no `any` |
-| Button component | PASS | 34/34 tests; no Tailwind; scoped styles |
-| Dialog component | PASS | Bits UI composition; 34/34 tests; focus trap (unit), escape dismiss (unit), overlay structure (unit) |
-| Package exports | PASS | `.` + `./theme` subpaths; `publint` 0 errors |
-| Full build chain | PASS | install → build → check → test all green |
+| Requirement              | Status | Notes                                                                                                |
+| ------------------------ | ------ | ---------------------------------------------------------------------------------------------------- |
+| All `--sve-*` at `:root` | PASS   | Static theme.css; light mode default                                                                 |
+| Light + dark token sets  | PASS   | Both available; class-based selection                                                                |
+| ThemeProvider component  | PASS   | Synthesis model (optional scoped overrides)                                                          |
+| `defineVariants` helper  | PASS   | Full type safety; no `any`                                                                           |
+| Button component         | PASS   | 34/34 tests; no Tailwind; scoped styles                                                              |
+| Dialog component         | PASS   | Bits UI composition; 34/34 tests; focus trap (unit), escape dismiss (unit), overlay structure (unit) |
+| Package exports          | PASS   | `.` + `./theme` subpaths; `publint` 0 errors                                                         |
+| Full build chain         | PASS   | install → build → check → test all green                                                             |
 
 ---
 
@@ -298,6 +298,7 @@ Decision D4/D20 from ROADMAP: CSS custom properties are zero-runtime, zero-confi
 ### Why Synthesis Model for ThemeProvider
 
 The `ThemeProvider` uses a hybrid approach:
+
 - **Default**: Static `:root` CSS variables (SSR-safe, no runtime).
 - **Optional scoped overrides**: Inline vars on the wrapper only when a `theme` prop is provided.
 

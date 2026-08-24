@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { Pagination } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { Pagination } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsNextProps = ComponentProps<typeof Pagination.NextButton>;
+	type BitsNextProps = ComponentProps<typeof Pagination.NextButton>;
 
-  interface Props extends Omit<BitsNextProps, 'class'> {
-    /** Extra classes merged onto the button. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsNextProps, 'class'> {
+		/** Extra classes merged onto the button. */
+		class?: string;
+	}
 
-  let { class: cls, children, ...rest }: Props = $props();
+	let { class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -17,8 +17,8 @@
   with PrevButton so the pair always matches.
 -->
 <Pagination.NextButton
-  class={['sve-pagination__nav', cls].filter(Boolean).join(' ')}
-  data-slot="pagination-next"
-  {children}
-  {...rest}
+	class={['sve-pagination__nav', cls].filter(Boolean).join(' ')}
+	data-slot="pagination-next"
+	{children}
+	{...rest}
 />

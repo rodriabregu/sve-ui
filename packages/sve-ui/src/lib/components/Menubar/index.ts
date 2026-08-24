@@ -37,15 +37,15 @@ type ArrowProps = ComponentProps<typeof BitsMenubar.Arrow>;
 export const Menu: Component<MenuProps> = BitsMenubar.Menu as Component<MenuProps>;
 export const Sub: Component<SubProps> = BitsMenubar.Sub as Component<SubProps>;
 export const SubTrigger: Component<SubTriggerProps> =
-  BitsMenubar.SubTrigger as Component<SubTriggerProps>;
+	BitsMenubar.SubTrigger as Component<SubTriggerProps>;
 export const SubContent: Component<SubContentProps> =
-  BitsMenubar.SubContent as Component<SubContentProps>;
+	BitsMenubar.SubContent as Component<SubContentProps>;
 export const CheckboxItem: Component<CheckboxItemProps> =
-  BitsMenubar.CheckboxItem as Component<CheckboxItemProps>;
+	BitsMenubar.CheckboxItem as Component<CheckboxItemProps>;
 export const RadioItem: Component<RadioItemProps> =
-  BitsMenubar.RadioItem as Component<RadioItemProps>;
+	BitsMenubar.RadioItem as Component<RadioItemProps>;
 export const RadioGroup: Component<RadioGroupProps> =
-  BitsMenubar.RadioGroup as Component<RadioGroupProps>;
+	BitsMenubar.RadioGroup as Component<RadioGroupProps>;
 export const Arrow: Component<ArrowProps> = BitsMenubar.Arrow as Component<ArrowProps>;
 
 // Styled wrappers unique to the menubar

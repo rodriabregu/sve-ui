@@ -17,17 +17,49 @@
 
 	const props: PropRow[] = [
 		// Provider
-		{ prop: 'Tooltip.Provider — delayDuration', type: 'number', default: '700', description: 'Delay in ms before the tooltip opens on hover.' },
-		{ prop: 'Tooltip.Provider — skipDelayDuration', type: 'number', default: '300', description: 'Delay in ms before a second tooltip opens without the full delay.' },
+		{
+			prop: 'Tooltip.Provider — delayDuration',
+			type: 'number',
+			default: '700',
+			description: 'Delay in ms before the tooltip opens on hover.'
+		},
+		{
+			prop: 'Tooltip.Provider — skipDelayDuration',
+			type: 'number',
+			default: '300',
+			description: 'Delay in ms before a second tooltip opens without the full delay.'
+		},
 		// Root
 		{ prop: 'Tooltip.Root — open', type: 'boolean', description: 'Controlled open state.' },
-		{ prop: 'Tooltip.Root — onOpenChange', type: '(open: boolean) => void', description: 'Callback fired when open state changes.' },
+		{
+			prop: 'Tooltip.Root — onOpenChange',
+			type: '(open: boolean) => void',
+			description: 'Callback fired when open state changes.'
+		},
 		// Trigger
-		{ prop: 'Tooltip.Trigger — child', type: 'Snippet<[{ props: object }]>', description: 'Render prop that spreads trigger props onto a real element.' },
+		{
+			prop: 'Tooltip.Trigger — child',
+			type: 'Snippet<[{ props: object }]>',
+			description: 'Render prop that spreads trigger props onto a real element.'
+		},
 		// Content
-		{ prop: 'Tooltip.Content — side', type: `'top' | 'right' | 'bottom' | 'left'`, default: `'top'`, description: 'Preferred side for the tooltip.' },
-		{ prop: 'Tooltip.Content — sideOffset', type: 'number', default: '4', description: 'Gap in px between trigger and tooltip.' },
-		{ prop: 'Tooltip.Content — class', type: 'string', description: 'Extra classes merged onto the tooltip panel.' }
+		{
+			prop: 'Tooltip.Content — side',
+			type: `'top' | 'right' | 'bottom' | 'left'`,
+			default: `'top'`,
+			description: 'Preferred side for the tooltip.'
+		},
+		{
+			prop: 'Tooltip.Content — sideOffset',
+			type: 'number',
+			default: '4',
+			description: 'Gap in px between trigger and tooltip.'
+		},
+		{
+			prop: 'Tooltip.Content — class',
+			type: 'string',
+			description: 'Extra classes merged onto the tooltip panel.'
+		}
 	];
 
 	const usageCode = `<script>
@@ -84,8 +116,8 @@
 		<p class="sec__p">
 			Wrap all tooltips in a single <code class="ic">Tooltip.Provider</code> — it manages shared
 			delay timing and the "skip delay" behaviour when moving between triggers quickly. The
-			<code class="ic">child</code> snippet on <code class="ic">Tooltip.Trigger</code> renders any
-			focusable element as the anchor.
+			<code class="ic">child</code> snippet on <code class="ic">Tooltip.Trigger</code> renders any focusable
+			element as the anchor.
 		</p>
 		<Preview code={usageCode}>
 			<Tooltip.Provider>
@@ -115,8 +147,8 @@
 	<section id="placement" class="sec">
 		<h2 class="sec__h">Placement</h2>
 		<p class="sec__p">
-			The <code class="ic">side</code> prop on <code class="ic">Tooltip.Content</code> controls
-			preferred placement. Like all floating elements, it auto-flips near viewport edges.
+			The <code class="ic">side</code> prop on <code class="ic">Tooltip.Content</code> controls preferred
+			placement. Like all floating elements, it auto-flips near viewport edges.
 		</p>
 		<Preview code={placementCode}>
 			<Tooltip.Provider>
@@ -164,8 +196,7 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
-			Built on <code class="ic">bits-ui</code> — all underlying Bits UI Tooltip props are forwarded
-			transparently.
+			Built on <code class="ic">bits-ui</code> — all underlying Bits UI Tooltip props are forwarded transparently.
 		</p>
 		<PropsTable rows={props} />
 	</section>

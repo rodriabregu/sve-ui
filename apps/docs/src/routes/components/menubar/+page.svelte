@@ -19,10 +19,28 @@
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
 	const rootForwarded: PropRow[] = [
-		{ prop: 'value', type: 'string', description: 'Which menu is open, by its Menu value. Bindable.' },
-		{ prop: 'onValueChange', type: '(value: string) => void', description: 'Called when the open menu changes.' },
-		{ prop: 'loop', type: 'boolean', default: 'true', description: 'Arrow-key focus wraps at either end.' },
-		{ prop: 'dir', type: `'ltr' | 'rtl'`, default: `'ltr'`, description: 'Reading direction, which flips submenu placement.' }
+		{
+			prop: 'value',
+			type: 'string',
+			description: 'Which menu is open, by its Menu value. Bindable.'
+		},
+		{
+			prop: 'onValueChange',
+			type: '(value: string) => void',
+			description: 'Called when the open menu changes.'
+		},
+		{
+			prop: 'loop',
+			type: 'boolean',
+			default: 'true',
+			description: 'Arrow-key focus wraps at either end.'
+		},
+		{
+			prop: 'dir',
+			type: `'ltr' | 'rtl'`,
+			default: `'ltr'`,
+			description: 'Reading direction, which flips submenu placement.'
+		}
 	];
 
 	const usageCode = `<script>
@@ -55,8 +73,10 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			Compose <code class="ic">Root</code> &gt; <code class="ic">Menu</code> &gt;
-			(<code class="ic">Trigger</code> + <code class="ic">Content</code>).
+			Compose <code class="ic">Root</code> &gt; <code class="ic">Menu</code> &gt; (<code class="ic"
+				>Trigger</code
+			>
+			+ <code class="ic">Content</code>).
 			<code class="ic">Menu</code> pairs one trigger with its panel; a menubar holds several. Give
 			Root an <code class="ic">aria-label</code>.
 		</p>
@@ -100,8 +120,8 @@
 		<ul class="sec__p">
 			<li>Arrow keys move between the top-level menus, so the whole bar is one tab stop.</li>
 			<li>
-				Once one menu is open, hovering a sibling <strong>switches</strong> to it — no second click.
-				That is the desktop-app behaviour people already expect from a menu bar.
+				Once one menu is open, hovering a sibling <strong>switches</strong> to it — no second click. That
+				is the desktop-app behaviour people already expect from a menu bar.
 			</li>
 		</ul>
 		<p class="sec__p">
@@ -116,9 +136,9 @@
 			<code class="ic">Item</code>, <code class="ic">Group</code>,
 			<code class="ic">Label</code> and <code class="ic">Separator</code> are the same components
 			<a href="/components/dropdown-menu">Dropdown Menu</a> and
-			<a href="/components/context-menu">Context Menu</a> use. Bits re-exports identical menu
-			internals to all three, so the three menus look and behave the same by construction rather than
-			by three copies of the same CSS agreeing for now.
+			<a href="/components/context-menu">Context Menu</a> use. Bits re-exports identical menu internals
+			to all three, so the three menus look and behave the same by construction rather than by three copies
+			of the same CSS agreeing for now.
 		</p>
 		<p class="sec__p">
 			They stay context-aware — the same wrapper emits
@@ -132,8 +152,8 @@
 			A menubar is a desktop-application pattern. On a website it is usually the wrong shape.
 		</p>
 		<p class="sec__p">
-			It assumes a pointer that hovers and a screen wide enough for several always-visible triggers —
-			neither holds on a phone. For site navigation reach for a
+			It assumes a pointer that hovers and a screen wide enough for several always-visible triggers
+			— neither holds on a phone. For site navigation reach for a
 			<a href="/components/navigation-menu">Navigation Menu</a>; for a handful of actions on a
 			toolbar, a <a href="/components/dropdown-menu">Dropdown Menu</a> or
 			<a href="/components/toolbar">Toolbar</a>. Use a menubar when you are genuinely building an
@@ -153,33 +173,48 @@
 			<code class="ic">Menu</code>, <code class="ic">Sub</code>,
 			<code class="ic">SubTrigger</code>, <code class="ic">SubContent</code>,
 			<code class="ic">CheckboxItem</code>, <code class="ic">RadioItem</code>,
-			<code class="ic">RadioGroup</code> and <code class="ic">Arrow</code> are re-exported from Bits
-			unchanged.
+			<code class="ic">RadioGroup</code> and <code class="ic">Arrow</code> are re-exported from Bits unchanged.
 		</p>
 	</section>
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.warn {
-		margin: 0 0 16px; padding: 12px 14px;
+		margin: 0 0 16px;
+		padding: 12px 14px;
 		border-left: 3px solid var(--doc-primary-text);
 		background: var(--doc-surface-2);
 		border-radius: 0 8px 8px 0;
-		font-size: 14px; line-height: 1.55; color: var(--doc-fg-muted);
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--doc-fg-muted);
 	}
 </style>

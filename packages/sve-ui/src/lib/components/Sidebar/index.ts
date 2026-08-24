@@ -60,8 +60,8 @@ export { default as Menu } from './SidebarMenu.svelte';
 export { default as Item } from './SidebarItem.svelte';
 
 export {
-  useSidebar,
-  type SidebarContext,
-  type Collapsible as SidebarCollapsible,
-  type Side as SidebarSide
+	useSidebar,
+	type SidebarContext,
+	type Collapsible as SidebarCollapsible,
+	type Side as SidebarSide
 } from './context.js';

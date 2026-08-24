@@ -14,19 +14,15 @@
 
 import { LinkPreview as BitsLinkPreview } from 'bits-ui';
 import type { Component } from 'svelte';
-import type {
-  LinkPreviewRootProps,
-  LinkPreviewTriggerProps,
-  LinkPreviewArrowProps,
-} from 'bits-ui';
+import type { LinkPreviewRootProps, LinkPreviewTriggerProps, LinkPreviewArrowProps } from 'bits-ui';
 
 // Behaviour re-exports — cast to portable Component types so the emitted
 // declaration does not reference bits-ui internals (OnChangeFn).
 export const Root: Component<LinkPreviewRootProps> =
-  BitsLinkPreview.Root as Component<LinkPreviewRootProps>;
+	BitsLinkPreview.Root as Component<LinkPreviewRootProps>;
 export const Trigger: Component<LinkPreviewTriggerProps> =
-  BitsLinkPreview.Trigger as Component<LinkPreviewTriggerProps>;
+	BitsLinkPreview.Trigger as Component<LinkPreviewTriggerProps>;
 export const Arrow: Component<LinkPreviewArrowProps> =
-  BitsLinkPreview.Arrow as Component<LinkPreviewArrowProps>;
+	BitsLinkPreview.Arrow as Component<LinkPreviewArrowProps>;
 
 export { default as Content } from './LinkPreviewContent.svelte';

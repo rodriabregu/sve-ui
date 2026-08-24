@@ -1,11 +1,11 @@
 <script lang="ts">
-  import * as RadioGroup from '$lib/components/RadioGroup/index.js';
+	import * as RadioGroup from '$lib/components/RadioGroup/index.js';
 
-  let value = $state('');
+	let value = $state('');
 </script>
 
 <RadioGroup.Root bind:value>
-  <RadioGroup.Item value="a" />
-  <RadioGroup.Item value="b" />
+	<RadioGroup.Item value="a" />
+	<RadioGroup.Item value="b" />
 </RadioGroup.Root>
 <output data-testid="value">{value}</output>

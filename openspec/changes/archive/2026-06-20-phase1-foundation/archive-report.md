@@ -17,6 +17,7 @@ Phase 1 Foundation — the load-bearing theming, variant helper, and component a
 ## What Shipped
 
 ### 1. CSS Variable Theming System
+
 - **Static `--sve-*` tokens at `:root`** (zero runtime, SSR-safe).
 - **Light + dark modes** via `@media (prefers-color-scheme: dark)` and `.dark` class override.
 - **Six semantic color roles** (primary, secondary, success, warning, danger, default) with sub-tokens (foreground, surface, border, hover).
@@ -24,12 +25,14 @@ Phase 1 Foundation — the load-bearing theming, variant helper, and component a
 - **Exported via `sve-ui/theme`** as typed TypeScript objects (`lightTokens`, `darkTokens`, `SveTheme`).
 
 ### 2. ThemeProvider Component (Synthesis Model)
+
 - **Minimal runtime footprint:** wraps content in a scoped `<div class="sve-theme">` and applies class-based dark/light selection.
 - **Optional scoped overrides:** accepts a `theme` prop for subtree token customization via inline CSS variables (SSR-safe).
 - **Zero config default:** consumers get full token set from static `:root` without any ThemeProvider usage.
 - **SSR-safe:** server render and hydration produce identical DOM; no flash-of-unstyled-content.
 
 ### 3. Typed Variant Helper
+
 - **Pure TypeScript function** `defineVariants()` — no new dependencies.
 - **Three orthogonal axes:** variant × color × size.
 - **Full type safety:** compile-time errors for invalid axis values; no `any` escapes in public surface.
@@ -38,6 +41,7 @@ Phase 1 Foundation — the load-bearing theming, variant helper, and component a
 ### 4. Component Authoring Pattern (Validated via Two Paths)
 
 #### Button (Runes-Only Path)
+
 - Non-interactive Svelte 5 component using `$props()` runes.
 - Variant resolution via `defineVariants`.
 - Scoped CSS reading `--sve-*` tokens.
@@ -45,12 +49,14 @@ Phase 1 Foundation — the load-bearing theming, variant helper, and component a
 - Full accessibility via native attributes and semantic HTML.
 
 #### Dialog (Bits UI Integration Path)
+
 - Styled presentational wrapper over Bits UI's `Dialog` primitive.
 - Bits UI owns behavior (focus trap, ARIA, escape/scroll-lock); sve-ui owns paint (CSS + tokens).
 - Portal-based rendering; SSR-safe (Bits renders nothing on server, portals on client only).
 - Scoped CSS for overlay, panel, title, and description using `--sve-*` tokens.
 
 ### 5. Package Export Contract
+
 - **Main entry:** `sve-ui` exports `Button`, `ThemeProvider`, `Dialog`, `defineVariants`, `SveTheme`.
 - **Theme subpath:** `sve-ui/theme` exports tokens and palette objects.
 - **Peer dependency:** `svelte ^5`.
@@ -63,11 +69,13 @@ Phase 1 Foundation — the load-bearing theming, variant helper, and component a
 ## Verification Results
 
 ### Test Coverage: 34/34 Passing
+
 - 6 test suites across theme, variants, Button, Dialog, and ThemeProvider.
 - All spec acceptance scenarios (A–K) covered or documented as out-of-scope.
 - Strict TDD: RED → GREEN pathway followed throughout.
 
 ### Build Chain: All Green
+
 1. `pnpm install` — dependencies resolved; test runner (Vitest) confirmed.
 2. `pnpm build` — Vite + `svelte-package` compile; 0 errors.
 3. `svelte-check` — 771 files, 0 type errors, 0 warnings.
@@ -75,20 +83,24 @@ Phase 1 Foundation — the load-bearing theming, variant helper, and component a
 5. `publint` — 0 errors; 1 cosmetic suggestion (git URL format).
 
 ### Dual-Review Outcome (Judgment Day)
+
 **2 judges** conducted adversarial review post-implementation. **13 issues found and ALL FIXED before commit:**
 
 #### Critical Issue (SSR Recursion Bug)
+
 - **Found:** Inner `{#snippet children()}` inside Dialog.Content called itself recursively in compiled SSR output.
 - **Fixed:** Removed inner snippet wrappers; forward `{children}` prop directly to Bits UI components.
 - **Impact:** Prevented runtime infinite recursion on SSR; tests now pass cleanly.
 
 #### High-Priority Fixes
+
 - Moved all test files from `src/lib/` to `src/tests/` to avoid shipping tests in dist/.
 - Fixed `themeToVars` typography var names to use correct `--sve-font-*` prefixes.
 - Typed Dialog wrapper props using `ComponentProps<typeof Dialog.X>` (Bits UI's native types).
 - Button default color changed from `'primary'` to `'default'` (spec compliance).
 
 #### Medium-Priority Fixes
+
 - Added missing `overlay` token to token system.
 - Configured defineVariants in module-level `<script module>` to prevent per-instance re-initialization.
 - Enhanced test coverage: onclick handler, dialog content projection, accessible name scenarios.
@@ -96,6 +108,7 @@ Phase 1 Foundation — the load-bearing theming, variant helper, and component a
 - Updated bits-ui version range to `^2.18.1` (allow patch updates).
 
 #### Low-Priority Fixes
+
 - Updated `package.json` repository URL format for publint suggestion compliance.
 - Added convenience export `tokens = { light, dark }` to theme/index.ts.
 
@@ -106,30 +119,34 @@ Phase 1 Foundation — the load-bearing theming, variant helper, and component a
 ## Known Follow-Ups (Phase 1.5+)
 
 ### FOUC / Persisted Dark Mode (Phase 2)
+
 The `headSnippet` helper for persisted dark-mode preference (cookie/localStorage) is documented but not implemented. This is a Phase 2 task. Marked as TODO in ThemeProvider.svelte.
 
 ### Button `:active` State Non-Primary Colors (Phase 1.5)
+
 Button CSS only provides `:active` styling for primary color. Other colors fall back to browser default. Minor visual inconsistency; does not affect functionality or accessibility.
 
 ### Dialog Overlay-Click Dismiss (Phase 1 e2e)
+
 Escape-key dismiss is unit-tested and passes. Overlay-click dismiss requires Playwright e2e because jsdom's DismissibleLayer debounce + composed-path inspection cannot be simulated in jsdom. Test documents this limitation. Marked as TODO for e2e phase.
 
 ### Test Files and Fixtures in dist/ (Phase 1.5)
+
 `svelte-package` includes `*.test.*` and fixture files in dist/ without filtering. Unreachable via exports map but inflates package size. Requires `.sveltepkg` config or `files` allowlist in Phase 1.5.
 
 ---
 
 ## Spec Compliance Checkpoints
 
-| Requirement | Status | Notes |
-|---|---|---|
-| Theming contract (§1) | PASS | All tokens, categories, light/dark modes present |
-| ThemeProvider contract (§2) | PASS | Synthesis model implemented; SSR-safe |
-| Variant helper contract (§3) | PASS | Fully typed; three axes; no `any` |
-| Package exports (§4) | PASS | Correct shape; peer/direct deps correct |
-| Button validation (§5.1) | PASS | 34/34 tests; native `<button>`; no Tailwind |
-| Dialog validation (§5.2) | PASS | Bits UI composed; focus trap (unit), escape dismiss (unit), portal (confirmed) |
-| Full build chain (§5.3) | PASS | install → build → check → test all green |
+| Requirement                  | Status | Notes                                                                          |
+| ---------------------------- | ------ | ------------------------------------------------------------------------------ |
+| Theming contract (§1)        | PASS   | All tokens, categories, light/dark modes present                               |
+| ThemeProvider contract (§2)  | PASS   | Synthesis model implemented; SSR-safe                                          |
+| Variant helper contract (§3) | PASS   | Fully typed; three axes; no `any`                                              |
+| Package exports (§4)         | PASS   | Correct shape; peer/direct deps correct                                        |
+| Button validation (§5.1)     | PASS   | 34/34 tests; native `<button>`; no Tailwind                                    |
+| Dialog validation (§5.2)     | PASS   | Bits UI composed; focus trap (unit), escape dismiss (unit), portal (confirmed) |
+| Full build chain (§5.3)      | PASS   | install → build → check → test all green                                       |
 
 **Non-Goals (§6):** Docs, CI/CD, layout layer, storybook — correctly excluded.
 

@@ -9,14 +9,38 @@
 
 	// Forwarded to Bits, so not declared on our own Props.
 	const rootForwarded: PropRow[] = [
-		{ prop: 'orientation', type: `'horizontal' | 'vertical'`, default: `'horizontal'`, description: 'Axis the arrow keys navigate along.' },
-		{ prop: 'loop', type: 'boolean', default: 'true', description: 'Focus wraps from the last control back to the first.' }
+		{
+			prop: 'orientation',
+			type: `'horizontal' | 'vertical'`,
+			default: `'horizontal'`,
+			description: 'Axis the arrow keys navigate along.'
+		},
+		{
+			prop: 'loop',
+			type: 'boolean',
+			default: 'true',
+			description: 'Focus wraps from the last control back to the first.'
+		}
 	];
 
 	const groupForwarded: PropRow[] = [
-		{ prop: 'type', type: `'single' | 'multiple'`, required: true, description: 'Required. Sets the shape of value: single gives a string, multiple a string[].' },
-		{ prop: 'onValueChange', type: '(value: string & string[]) => void', description: 'Called when the active item(s) change.' },
-		{ prop: 'disabled', type: 'boolean', default: 'false', description: 'Disables every item in the group.' }
+		{
+			prop: 'type',
+			type: `'single' | 'multiple'`,
+			required: true,
+			description: 'Required. Sets the shape of value: single gives a string, multiple a string[].'
+		},
+		{
+			prop: 'onValueChange',
+			type: '(value: string & string[]) => void',
+			description: 'Called when the active item(s) change.'
+		},
+		{
+			prop: 'disabled',
+			type: 'boolean',
+			default: 'false',
+			description: 'Disables every item in the group.'
+		}
 	];
 
 	const meta = componentBySlug.toolbar;
@@ -49,9 +73,9 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			Give <code class="ic">Root</code> an <code class="ic">aria-label</code> — "Formatting",
-			"Actions" — and give icon-only controls their own. A toolbar announced with no name tells the
-			user nothing about what it controls.
+			Give <code class="ic">Root</code> an <code class="ic">aria-label</code> — "Formatting", "Actions"
+			— and give icon-only controls their own. A toolbar announced with no name tells the user nothing
+			about what it controls.
 		</p>
 		<Preview code={usageCode}>
 			<Toolbar.Root aria-label="Formatting">
@@ -74,9 +98,9 @@
 			one tab stop and the arrow keys move between controls.
 		</p>
 		<p class="sec__p">
-			A twelve-button toolbar built from plain buttons costs a keyboard user twelve presses of Tab to
-			get past. The same toolbar built with this costs one. That is the entire reason the role exists,
-			and it is invisible if you only ever test with a mouse.
+			A twelve-button toolbar built from plain buttons costs a keyboard user twelve presses of Tab
+			to get past. The same toolbar built with this costs one. That is the entire reason the role
+			exists, and it is invisible if you only ever test with a mouse.
 		</p>
 	</section>
 
@@ -112,26 +136,38 @@
 		<PropsTable component="ToolbarGroup" extra={groupForwarded} />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">Button</code>, <code class="ic">Link</code> and
-			<code class="ic">GroupItem</code> each take <code class="ic">class</code> plus their native
-			attributes.
+			<code class="ic">GroupItem</code> each take <code class="ic">class</code> plus their native attributes.
 		</p>
 	</section>
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 </style>

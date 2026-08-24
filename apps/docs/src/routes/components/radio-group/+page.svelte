@@ -90,8 +90,8 @@
 	<section id="orientation" class="sec">
 		<h2 class="sec__h">Orientation</h2>
 		<p class="sec__p">
-			Pass <code class="ic">orientation="horizontal"</code> to <code class="ic">RadioGroup.Root</code
-			> to lay items in a row.
+			Pass <code class="ic">orientation="horizontal"</code> to
+			<code class="ic">RadioGroup.Root</code> to lay items in a row.
 		</p>
 		<Preview code={orientationCode}>
 			<RadioGroup.Root orientation="horizontal">

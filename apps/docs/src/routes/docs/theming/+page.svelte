@@ -48,9 +48,9 @@ $effect(() => {
 	<section id="model" class="sec">
 		<h2 class="sec__h">The token model</h2>
 		<p class="sec__p">
-			Components read <code class="ic">--sve-*</code> custom properties for every visual value. To theme,
-			you set those variables — globally on <code class="ic">:root</code> or scoped to any element. There
-			is no config file and no rebuild.
+			Components read <code class="ic">--sve-*</code> custom properties for every visual value. To
+			theme, you set those variables — globally on <code class="ic">:root</code> or scoped to any element.
+			There is no config file and no rebuild.
 		</p>
 	</section>
 
@@ -62,7 +62,9 @@ $effect(() => {
 		<Code code={scopeCode} label="App.svelte" />
 		<div class="mt-4">
 			<Preview code={accentCode} align="center">
-				<div style="--sve-color-primary: #8b5cf6; --sve-color-primary-hover: #7c3aed; --sve-color-primary-foreground: #fff; --sve-color-primary-surface: color-mix(in srgb, #8b5cf6 14%, transparent); display: flex; gap: 10px; align-items: center;">
+				<div
+					style="--sve-color-primary: #8b5cf6; --sve-color-primary-hover: #7c3aed; --sve-color-primary-foreground: #fff; --sve-color-primary-surface: color-mix(in srgb, #8b5cf6 14%, transparent); display: flex; gap: 10px; align-items: center;"
+				>
 					<Button color="primary">Themed</Button>
 					<Badge color="primary" variant="subtle">Accent</Badge>
 				</div>
@@ -84,8 +86,8 @@ $effect(() => {
 			<Alert.Title>Overlays portal to &lt;body&gt;</Alert.Title>
 			<Alert.Description>
 				Dialog, Dropdown, Tooltip, Popover, Select and Combobox render their content at the end of
-				&lt;body&gt; — outside your ThemeProvider wrapper. Mirror the theme class onto &lt;body&gt; so
-				they get the right tokens.
+				&lt;body&gt; — outside your ThemeProvider wrapper. Mirror the theme class onto &lt;body&gt;
+				so they get the right tokens.
 			</Alert.Description>
 		</Alert.Root>
 		<div class="mt-4">
@@ -95,17 +97,40 @@ $effect(() => {
 
 	<section id="tokens" class="sec">
 		<h2 class="sec__h">Token reference</h2>
-		<p class="sec__p">The most-used token families. Each semantic color has hover / active / foreground / surface / border variants.</p>
+		<p class="sec__p">
+			The most-used token families. Each semantic color has hover / active / foreground / surface /
+			border variants.
+		</p>
 		<div class="tok">
 			<table class="tok__table">
 				<thead><tr><th>Token</th><th>Purpose</th></tr></thead>
 				<tbody>
-					<tr><td><code class="ic">--sve-color-primary</code></td><td>Primary accent (+ secondary, success, warning, danger, default)</td></tr>
-					<tr><td><code class="ic">--sve-color-*-foreground</code></td><td>Text/icon color on that surface</td></tr>
-					<tr><td><code class="ic">--sve-color-*-surface</code></td><td>Subtle background tint (flat/ghost states)</td></tr>
-					<tr><td><code class="ic">--sve-radius-md</code></td><td>Corner radius (sm / md / lg / full)</td></tr>
+					<tr
+						><td><code class="ic">--sve-color-primary</code></td><td
+							>Primary accent (+ secondary, success, warning, danger, default)</td
+						></tr
+					>
+					<tr
+						><td><code class="ic">--sve-color-*-foreground</code></td><td
+							>Text/icon color on that surface</td
+						></tr
+					>
+					<tr
+						><td><code class="ic">--sve-color-*-surface</code></td><td
+							>Subtle background tint (flat/ghost states)</td
+						></tr
+					>
+					<tr
+						><td><code class="ic">--sve-radius-md</code></td><td
+							>Corner radius (sm / md / lg / full)</td
+						></tr
+					>
 					<tr><td><code class="ic">--sve-space-*</code></td><td>Spacing scale</td></tr>
-					<tr><td><code class="ic">--sve-font-family-sans</code></td><td>Base font family (and -mono)</td></tr>
+					<tr
+						><td><code class="ic">--sve-font-family-sans</code></td><td
+							>Base font family (and -mono)</td
+						></tr
+					>
 				</tbody>
 			</table>
 		</div>

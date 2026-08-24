@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { DatePicker } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { DatePicker } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsProps = ComponentProps<typeof DatePicker.Calendar>;
+	type BitsProps = ComponentProps<typeof DatePicker.Calendar>;
 
-  interface Props extends Omit<BitsProps, 'class'> {
-    /** Extra classes merged onto the calendar. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsProps, 'class'> {
+		/** Extra classes merged onto the calendar. */
+		class?: string;
+	}
 
-  let { class: cls, children, ...rest }: Props = $props();
+	let { class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -18,17 +18,17 @@
   since Bits re-exports the identical modules here.
 -->
 <DatePicker.Calendar
-  class={['sve-calendar', cls].filter(Boolean).join(' ')}
-  data-slot="date-picker-calendar"
-  {children}
-  {...rest}
+	class={['sve-calendar', cls].filter(Boolean).join(' ')}
+	data-slot="date-picker-calendar"
+	{children}
+	{...rest}
 />
 
 <style>
-  /* Inside a popover the panel already provides the border and shadow, so drop
+	/* Inside a popover the panel already provides the border and shadow, so drop
      the standalone calendar's own frame rather than double-framing it. */
-  :global(.sve-picker__content .sve-calendar) {
-    border: none;
-    box-shadow: none;
-  }
+	:global(.sve-picker__content .sve-calendar) {
+		border: none;
+		box-shadow: none;
+	}
 </style>

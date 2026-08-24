@@ -29,15 +29,15 @@ export { default as Day } from './RangeCalendarDay.svelte';
 
 // Shared with Calendar
 export {
-  Header,
-  Heading,
-  PrevButton,
-  NextButton,
-  Grid,
-  GridHead,
-  GridBody,
-  GridRow,
-  HeadCell,
-  MonthSelect,
-  YearSelect
+	Header,
+	Heading,
+	PrevButton,
+	NextButton,
+	Grid,
+	GridHead,
+	GridBody,
+	GridRow,
+	HeadCell,
+	MonthSelect,
+	YearSelect
 } from '../Calendar/index.js';

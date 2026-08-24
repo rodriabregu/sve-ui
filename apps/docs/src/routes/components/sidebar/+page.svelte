@@ -52,9 +52,9 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			Custom rather than a Bits wrapper — Bits ships no sidebar, and there is no hard behaviour to buy
-			here. What a sidebar needs is a landmark, a labelled list, a shared collapsed state and a toggle
-			that announces itself, all of which the platform gives directly.
+			Custom rather than a Bits wrapper — Bits ships no sidebar, and there is no hard behaviour to
+			buy here. What a sidebar needs is a landmark, a labelled list, a shared collapsed state and a
+			toggle that announces itself, all of which the platform gives directly.
 		</p>
 		<Preview code={usageCode} align="start">
 			<div class="demo">
@@ -68,7 +68,9 @@
 							<Sidebar.Group aria-labelledby="demo-grp">
 								<Sidebar.GroupLabel id="demo-grp">Platform</Sidebar.GroupLabel>
 								<Sidebar.Menu>
-									<Sidebar.Item href="/components/sidebar" active label="Dashboard">Dashboard</Sidebar.Item>
+									<Sidebar.Item href="/components/sidebar" active label="Dashboard"
+										>Dashboard</Sidebar.Item
+									>
 									<Sidebar.Item href="/components/button" label="Projects">Projects</Sidebar.Item>
 									<Sidebar.Item disabled label="Reports">Reports</Sidebar.Item>
 								</Sidebar.Menu>
@@ -80,7 +82,9 @@
 				</Sidebar.Provider>
 			</div>
 		</Preview>
-		<p class="cap">Toggle it — the labels hide, the items stay reachable, and "Reports" is a non-link.</p>
+		<p class="cap">
+			Toggle it — the labels hide, the items stay reachable, and "Reports" is a non-link.
+		</p>
 	</section>
 
 	<section id="provider" class="sec">
@@ -91,18 +95,18 @@
 			context reaches <strong>descendants</strong>, not siblings.
 		</p>
 		<p class="sec__p">
-			Put the state on <code class="ic">Root</code> and a <code class="ic">Trigger</code> sitting in a
-			top bar next to the sidebar never sees it — and with
+			Put the state on <code class="ic">Root</code> and a <code class="ic">Trigger</code> sitting in
+			a top bar next to the sidebar never sees it — and with
 			<code class="ic">collapsible="offcanvas"</code> the Trigger <em>has</em> to be outside, or
 			collapsing hides the only way back. A test caught exactly that: the Trigger got a null
 			<code class="ic">aria-controls</code> and clicking it did nothing.
 		</p>
 		<p class="sec__p">
 			The Provider imposes <strong>no layout</strong> unless you pass
-			<code class="ic">shell</code>. By default it is <code class="ic">display: contents</code>, so it
-			is invisible to layout and the children sit where they would without it — which matters when the
-			sidebar is a child of a grid your app already defined. <code class="ic">shell</code> opts into the
-			flex row.
+			<code class="ic">shell</code>. By default it is <code class="ic">display: contents</code>, so
+			it is invisible to layout and the children sit where they would without it — which matters
+			when the sidebar is a child of a grid your app already defined. <code class="ic">shell</code> opts
+			into the flex row.
 		</p>
 	</section>
 
@@ -110,12 +114,15 @@
 		<h2 class="sec__h">Collapse modes</h2>
 		<ul class="sec__p">
 			<li><code class="ic">icon</code> — narrows to a rail. Labels hide, items stay reachable.</li>
-			<li><code class="ic">offcanvas</code> — slides out entirely, and its contents become unfocusable so the cursor cannot vanish into a hidden panel.</li>
+			<li>
+				<code class="ic">offcanvas</code> — slides out entirely, and its contents become unfocusable so
+				the cursor cannot vanish into a hidden panel.
+			</li>
 			<li><code class="ic">none</code> — not collapsible; the Trigger becomes pointless.</li>
 		</ul>
 		<p class="sec__p">
-			<code class="ic">collapsed</code> is bindable on the Provider. <strong>Persist it</strong> — a
-			sidebar that forgets its state on every navigation is worse than one that never collapsed.
+			<code class="ic">collapsed</code> is bindable on the Provider. <strong>Persist it</strong> — a sidebar
+			that forgets its state on every navigation is worse than one that never collapsed.
 		</p>
 		<p class="sec__p">
 			Size it with <code class="ic">--sve-sidebar-width</code> and
@@ -130,22 +137,47 @@
 		</p>
 		<p class="sec__p">
 			A library that swaps the markup for a drawer below some breakpoint hardcodes that breakpoint
-			inside itself, cannot know it during server rendering, and flashes the wrong layout on hydration.
-			<code class="ic">collapsible="offcanvas"</code> plus <em>your</em> breakpoint gets the same
-			result, and your app decides when it happens.
+			inside itself, cannot know it during server rendering, and flashes the wrong layout on
+			hydration.
+			<code class="ic">collapsible="offcanvas"</code> plus <em>your</em> breakpoint gets the same result,
+			and your app decides when it happens.
 		</p>
 	</section>
 
 	<section id="a11y" class="sec">
 		<h2 class="sec__h">Accessibility</h2>
 		<ul class="sec__p">
-			<li><code class="ic">Root</code> is a named <code class="ic">&lt;aside&gt;</code> — an app shell usually has more than one complementary region.</li>
-			<li>Point each <code class="ic">Group</code>'s <code class="ic">aria-labelledby</code> at its <code class="ic">GroupLabel</code> id. A visual heading assistive technology cannot connect to its items is decoration, not structure.</li>
-			<li>On an icon rail the <code class="ic">GroupLabel</code> is hidden <strong>visually</strong>, not removed — deleting it would strip the group of its name for someone who has plenty of room for it.</li>
-			<li>Give icon-only <code class="ic">Item</code>s a <code class="ic">label</code>. It becomes the accessible name when collapsed; without it the rail is a column of unnamed links.</li>
-			<li><code class="ic">Item</code> sets <code class="ic">aria-current="page"</code> when <code class="ic">active</code> — not just a highlight, which tells sighted users and nobody else.</li>
-			<li><code class="ic">disabled</code> renders a <code class="ic">&lt;span&gt;</code>, not a link. A link that goes nowhere takes a tab stop and lies about what will happen.</li>
-			<li>The Trigger's label stays the <strong>same</strong> in both states. <code class="ic">aria-expanded</code> already carries the state; a label that flips to "Close" says it twice and contradicts itself mid-announcement.</li>
+			<li>
+				<code class="ic">Root</code> is a named <code class="ic">&lt;aside&gt;</code> — an app shell usually
+				has more than one complementary region.
+			</li>
+			<li>
+				Point each <code class="ic">Group</code>'s <code class="ic">aria-labelledby</code> at its
+				<code class="ic">GroupLabel</code> id. A visual heading assistive technology cannot connect to
+				its items is decoration, not structure.
+			</li>
+			<li>
+				On an icon rail the <code class="ic">GroupLabel</code> is hidden <strong>visually</strong>,
+				not removed — deleting it would strip the group of its name for someone who has plenty of
+				room for it.
+			</li>
+			<li>
+				Give icon-only <code class="ic">Item</code>s a <code class="ic">label</code>. It becomes the
+				accessible name when collapsed; without it the rail is a column of unnamed links.
+			</li>
+			<li>
+				<code class="ic">Item</code> sets <code class="ic">aria-current="page"</code> when
+				<code class="ic">active</code> — not just a highlight, which tells sighted users and nobody else.
+			</li>
+			<li>
+				<code class="ic">disabled</code> renders a <code class="ic">&lt;span&gt;</code>, not a link.
+				A link that goes nowhere takes a tab stop and lies about what will happen.
+			</li>
+			<li>
+				The Trigger's label stays the <strong>same</strong> in both states.
+				<code class="ic">aria-expanded</code> already carries the state; a label that flips to "Close"
+				says it twice and contradicts itself mid-announcement.
+			</li>
 		</ul>
 	</section>
 
@@ -154,8 +186,7 @@
 		<p class="sec__p">
 			This is an <strong>app-shell</strong> panel: fixed header and footer, a scrolling middle, and an
 			icon rail when collapsed. It is not the right shape for a documentation table of contents — like
-			the one on the left of this page — which is a sticky list that becomes a disclosure panel on
-			mobile.
+			the one on the left of this page — which is a sticky list that becomes a disclosure panel on mobile.
 		</p>
 		<p class="sec__p">
 			We tried rebuilding this site's own navigation on top of it, as a test. Making it fit meant
@@ -174,11 +205,15 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
-		<p class="sec__p"><code class="ic">Sidebar.Provider</code> — <code class="ic">collapsed</code> is bindable.</p>
+		<p class="sec__p">
+			<code class="ic">Sidebar.Provider</code> — <code class="ic">collapsed</code> is bindable.
+		</p>
 		<PropsTable component="SidebarProvider" />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">Sidebar.Root</code></p>
 		<PropsTable component="SidebarRoot" />
-		<p class="sec__p" style="margin-top:16px"><code class="ic">Sidebar.Item</code> — plus the native anchor attributes.</p>
+		<p class="sec__p" style="margin-top:16px">
+			<code class="ic">Sidebar.Item</code> — plus the native anchor attributes.
+		</p>
 		<PropsTable component="SidebarItem" />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">Sidebar.Trigger</code></p>
 		<PropsTable component="SidebarTrigger" />
@@ -192,26 +227,40 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.warn {
-		margin: 0 0 16px; padding: 12px 14px;
+		margin: 0 0 16px;
+		padding: 12px 14px;
 		border-left: 3px solid var(--doc-primary-text);
 		background: var(--doc-surface-2);
 		border-radius: 0 8px 8px 0;
-		font-size: 14px; line-height: 1.55; color: var(--doc-fg-muted);
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--doc-fg-muted);
 	}
 	.demo {
 		display: flex;
@@ -227,6 +276,12 @@
 		font-size: 13px;
 		color: var(--doc-fg-subtle);
 	}
-	.brand { font-size: 14px; }
-	.cap { margin: 12px 0 0; font-size: 12.5px; color: var(--doc-fg-subtle); }
+	.brand {
+		font-size: 14px;
+	}
+	.cap {
+		margin: 12px 0 0;
+		font-size: 12.5px;
+		color: var(--doc-fg-subtle);
+	}
 </style>

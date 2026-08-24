@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { TimeField } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { TimeField } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsProps = ComponentProps<typeof TimeField.Label>;
+	type BitsProps = ComponentProps<typeof TimeField.Label>;
 
-  interface Props extends Omit<BitsProps, 'class'> {
-    /** Extra classes merged onto the element. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsProps, 'class'> {
+		/** Extra classes merged onto the element. */
+		class?: string;
+	}
 
-  let { class: cls, children, ...rest }: Props = $props();
+	let { class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -18,19 +18,19 @@
   `for` attribute. Verified in the rendered DOM.
 -->
 <TimeField.Label
-  class={['sve-field-label', cls].filter(Boolean).join(' ')}
-  data-slot="time-field-label"
-  {children}
-  {...rest}
+	class={['sve-field-label', cls].filter(Boolean).join(' ')}
+	data-slot="time-field-label"
+	{children}
+	{...rest}
 />
 
 <style>
-  :global(.sve-field-label) {
-    display: block;
-    margin-bottom: var(--sve-space-1);
-    font-family: var(--sve-font-family-sans);
-    font-size: var(--sve-font-size-sm);
-    font-weight: var(--sve-font-weight-medium);
-    color: var(--sve-color-default-foreground);
-  }
+	:global(.sve-field-label) {
+		display: block;
+		margin-bottom: var(--sve-space-1);
+		font-family: var(--sve-font-family-sans);
+		font-size: var(--sve-font-size-sm);
+		font-weight: var(--sve-font-weight-medium);
+		color: var(--sve-color-default-foreground);
+	}
 </style>

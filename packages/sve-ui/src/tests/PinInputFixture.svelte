@@ -1,8 +1,8 @@
 <script lang="ts">
-  import * as PinInput from '$lib/components/PinInput/index.js';
+	import * as PinInput from '$lib/components/PinInput/index.js';
 
-  let value = $state('');
-  let completed = $state('');
+	let value = $state('');
+	let completed = $state('');
 </script>
 
 <!--
@@ -13,16 +13,16 @@
 -->
 <span id="otp-label">Verification code</span>
 <PinInput.Root
-  bind:value
-  maxlength={6}
-  aria-labelledby="otp-label"
-  onComplete={(v: string) => (completed = v)}
+	bind:value
+	maxlength={6}
+	aria-labelledby="otp-label"
+	onComplete={(v: string) => (completed = v)}
 >
-  {#snippet children({ cells })}
-    {#each cells as cell, i (i)}
-      <PinInput.Cell {cell} />
-    {/each}
-  {/snippet}
+	{#snippet children({ cells })}
+		{#each cells as cell, i (i)}
+			<PinInput.Cell {cell} />
+		{/each}
+	{/snippet}
 </PinInput.Root>
 <output data-testid="value">{value}</output>
 <output data-testid="completed">{completed}</output>

@@ -52,11 +52,11 @@
 export { default as Viewport } from './ToastViewport.svelte';
 
 export {
-  toast,
-  dismiss,
-  clear,
-  type ToastItem,
-  type ToastVariant,
-  type ToastAction,
-  type ToastOptions
+	toast,
+	dismiss,
+	clear,
+	type ToastItem,
+	type ToastVariant,
+	type ToastAction,
+	type ToastOptions
 } from './store.svelte.js';
