@@ -35,6 +35,7 @@ Load when building or editing a Svelte 5 app that consumes `sve-ui` — importin
 - `Pagination.Root` renders nothing itself — it hands you a `pages` snippet prop and you render the buttons. `page` is bindable.
 - `ContextMenu` is an accelerator, never the only route: right-click is undiscoverable and touch has none. Mirror every action in a visible control.
 - `ScrollArea` default `type="hover"` does not even mount the scrollbar until pointer enter — use `type="always"` unless the overflow is obvious. Put the size constraint on `Root`.
+- `Sidebar` needs BOTH `Sidebar.Provider` (owns state) and `Sidebar.Root` (the `<aside>`) — context reaches descendants, not siblings, so a Trigger outside Root only works under the Provider. Provider is `display: contents` unless you pass `shell`. Give collapsed icon-only Items a `label`, and point each `Group`'s `aria-labelledby` at its `GroupLabel` id.
 - `Toolbar` needs `aria-label` on Root. Use `Toolbar.Link` for navigation (stays a real anchor) and `Toolbar.Button` for actions — they are not interchangeable.
 - `LinkPreview` is hover-only: keyboard and touch users never see it. Never put the only copy of an action or a fact inside it — use `Popover` when the content is essential.
 - `Progress`, `Meter` and `ToggleGroup.Root` need an `aria-label`; Bits gives the role and value attributes but not the name.

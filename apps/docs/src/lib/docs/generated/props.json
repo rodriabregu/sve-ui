@@ -2485,6 +2485,235 @@
 		],
 		"spreads": "Omit<BitsTitleProps, 'class'>"
 	},
+	"SidebarContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the region."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"SidebarFooter": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the footer."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
+	},
+	"SidebarGroup": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the group."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"SidebarGroupLabel": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the label."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"SidebarHeader": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the header."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
+	},
+	"SidebarItem": {
+		"props": [
+			{
+				"prop": "active",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the current page. It sets `aria-current=\"page\"`, not just a highlight — styling it without that tells sighted users and nobody else."
+			},
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"description": "Accessible name used when the label is hidden on an icon rail. Required in practice for icon-only items: without it a collapsed sidebar becomes a column of unnamed links."
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "A visible entry that cannot be navigated to — a feature not shipped yet, a section the user lacks access to. It renders a `<span>` rather than an `<a>`, because a link that goes nowhere is worse than not being a link: it takes a tab stop and lies about what will happen. Found by rebuilding this library's own docs sidebar on top of this component, which needed exactly that for its \"soon\" entries."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the item."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAnchorAttributes, 'class'>"
+	},
+	"SidebarMenu": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the list."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLUListElement>, 'class'>"
+	},
+	"SidebarProvider": {
+		"props": [
+			{
+				"prop": "collapsed",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Whether the sidebar is collapsed. Bindable, so the app can persist it — a sidebar that forgets its state on every navigation is worse than one that never collapsed."
+			},
+			{
+				"prop": "collapsible",
+				"type": "Collapsible",
+				"required": false,
+				"default": "'icon'",
+				"description": "How collapsing presents itself. `icon` — narrows to a rail; labels hide, items stay reachable. `offcanvas` — slides out of view entirely. `none` — not collapsible; the Trigger becomes pointless."
+			},
+			{
+				"prop": "side",
+				"type": "Side",
+				"required": false,
+				"default": "'left'",
+				"description": "Which edge the sidebar is anchored to."
+			},
+			{
+				"prop": "shell",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Lay the children out as an app shell — a flex row with the sidebar beside the main content (reversed when `side=\"right\"`). OFF by default, and deliberately so: this component's job is state, and a provider that silently imposes a layout fights whatever the app already has. Without it the wrapper is `display: contents`, so it does not participate in layout at all and the children behave as if it were not there — which is what you want when the sidebar sits inside a grid the app already defined. Found by trying to rebuild this library's own docs navigation on top of this component: the forced flex row put the mobile toggle beside the panel instead of above it."
+			},
+			{
+				"prop": "sidebarId",
+				"type": "string",
+				"required": false,
+				"default": "'sve-sidebar'",
+				"description": "Id given to the sidebar element, so a Trigger anywhere inside this provider can point `aria-controls` at it."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the shell."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"SidebarRoot": {
+		"props": [
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"default": "'Sidebar'",
+				"description": "Accessible name for the landmark. An app shell usually has more than one complementary region, so this is how a screen reader user tells them apart."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class' | 'aria-label'>"
+	},
+	"SidebarTrigger": {
+		"props": [
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"default": "'Toggle sidebar'",
+				"description": "Accessible name. It stays the SAME in both states — `aria-expanded` already carries whether the sidebar is open, so a label that flips between \"Open\" and \"Close\" says it twice and contradicts itself mid-announcement."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLButtonAttributes, 'class' | 'onclick'>"
+	},
 	"Skeleton": {
 		"props": [
 			{
