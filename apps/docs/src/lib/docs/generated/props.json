@@ -1172,6 +1172,162 @@
 		],
 		"spreads": "Omit<BitsProps, 'class'>"
 	},
+	"DatePickerCalendar": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the calendar."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"DatePickerContent": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the popover panel."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"DatePickerRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "DateValue",
+				"required": false,
+				"description": "The selected date. Bindable. A `DateValue`, not a JS `Date`."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: DateValue | undefined) => void",
+				"required": false,
+				"description": "Called when the selection changes."
+			},
+			{
+				"prop": "open",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Whether the calendar popover is open. Bindable."
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "(open: boolean) => void",
+				"required": false,
+				"description": "Called when the popover opens or closes."
+			},
+			{
+				"prop": "placeholder",
+				"type": "DateValue",
+				"required": false,
+				"description": "The month on screen. Bindable."
+			},
+			{
+				"prop": "minValue",
+				"type": "DateValue",
+				"required": false,
+				"description": "Earliest selectable date."
+			},
+			{
+				"prop": "maxValue",
+				"type": "DateValue",
+				"required": false,
+				"description": "Latest selectable date."
+			},
+			{
+				"prop": "isDateUnavailable",
+				"type": "(date: DateValue) => boolean",
+				"required": false,
+				"description": "Exists but cannot be picked — a booked day."
+			},
+			{
+				"prop": "isDateDisabled",
+				"type": "(date: DateValue) => boolean",
+				"required": false,
+				"description": "Disabled outright."
+			},
+			{
+				"prop": "granularity",
+				"type": "'day' | 'hour' | 'minute' | 'second'",
+				"required": false,
+				"default": "'day'",
+				"description": "Smallest editable unit, which decides the field's segments."
+			},
+			{
+				"prop": "locale",
+				"type": "string",
+				"required": false,
+				"default": "'en'",
+				"description": "BCP-47 locale. It drives the field's SEGMENT ORDER and the calendar's month names and first day of week, so it is not cosmetic."
+			},
+			{
+				"prop": "calendarLabel",
+				"type": "string",
+				"required": false,
+				"default": "'Event'",
+				"description": "What this picker is FOR. Bits builds the calendar's accessible name as `${calendarLabel} ${month} ${year}` and defaults it to the literal word \"Event\", so leaving it unset announces \"Event January 2026\"."
+			},
+			{
+				"prop": "numberOfMonths",
+				"type": "number",
+				"required": false,
+				"default": "1",
+				"description": "How many months the calendar shows at once."
+			},
+			{
+				"prop": "name",
+				"type": "string",
+				"required": false,
+				"description": "Name for form submission; Bits renders a hidden input."
+			},
+			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "readonly",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+	},
+	"DatePickerTrigger": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the trigger."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
 	"DateRangeFieldInput": {
 		"props": [
 			{
@@ -1283,6 +1439,161 @@
 			}
 		],
 		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+	},
+	"DateRangePickerCalendar": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the calendar."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
+	},
+	"DateRangePickerRoot": {
+		"props": [
+			{
+				"prop": "value",
+				"type": "{ start: DateValue | undefined; end: DateValue | undefined }",
+				"required": false,
+				"description": "The selected range. Bindable."
+			},
+			{
+				"prop": "onValueChange",
+				"type": "(value: DateRange) => void",
+				"required": false,
+				"description": "Called when the range changes."
+			},
+			{
+				"prop": "open",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Whether the calendar popover is open. Bindable."
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "(open: boolean) => void",
+				"required": false
+			},
+			{
+				"prop": "placeholder",
+				"type": "DateValue",
+				"required": false,
+				"description": "The month on screen. Bindable."
+			},
+			{
+				"prop": "minValue",
+				"type": "DateValue",
+				"required": false
+			},
+			{
+				"prop": "maxValue",
+				"type": "DateValue",
+				"required": false
+			},
+			{
+				"prop": "minDays",
+				"type": "number",
+				"required": false,
+				"description": "Smallest number of days the range may span."
+			},
+			{
+				"prop": "maxDays",
+				"type": "number",
+				"required": false,
+				"description": "Largest number of days the range may span."
+			},
+			{
+				"prop": "excludeDisabled",
+				"type": "boolean",
+				"required": false,
+				"description": "Refuse a range that would straddle an unavailable date."
+			},
+			{
+				"prop": "isDateUnavailable",
+				"type": "(date: DateValue) => boolean",
+				"required": false
+			},
+			{
+				"prop": "isDateDisabled",
+				"type": "(date: DateValue) => boolean",
+				"required": false
+			},
+			{
+				"prop": "granularity",
+				"type": "'day' | 'hour' | 'minute' | 'second'",
+				"required": false,
+				"default": "'day'"
+			},
+			{
+				"prop": "locale",
+				"type": "string",
+				"required": false,
+				"default": "'en'",
+				"description": "BCP-47 locale. Drives the fields' segment order and the calendar's month names and first day of week."
+			},
+			{
+				"prop": "calendarLabel",
+				"type": "string",
+				"required": false,
+				"default": "'Event'",
+				"description": "What this picker is FOR. Bits defaults it to the literal word \"Event\", so leaving it unset announces \"Event January 2026\"."
+			},
+			{
+				"prop": "numberOfMonths",
+				"type": "number",
+				"required": false,
+				"default": "1 — two is usually right for a range, so both ends are visible."
+			},
+			{
+				"prop": "name",
+				"type": "string",
+				"required": false
+			},
+			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "readonly",
+				"type": "boolean",
+				"required": false,
+				"default": "false"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+	},
+	"DateRangePickerTrigger": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the trigger."
+			}
+		],
+		"spreads": "Omit<BitsProps, 'class'>"
 	},
 	"DialogContent": {
 		"props": [

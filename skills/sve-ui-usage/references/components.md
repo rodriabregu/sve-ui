@@ -5,7 +5,7 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 ## Import style
 
 - **Singles (default exports):** `Button`, `Input`, `Textarea`, `Label`, `Badge`, `Spinner`, `Text`, `Heading`, `Slider`, `Skeleton`, `Separator`, `Toggle`, `Progress`, `Meter`, `AspectRatio`, `Code`.
-- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`, `PinInput`, `RatingGroup`, `Stack`, `Flex`, `Calendar`, `RangeCalendar`, `DateField`, `TimeField`, `DateRangeField`, `TimeRangeField`.
+- **Namespaces (`* as`):** `Dialog`, `Select`, `Combobox`, `Card`, `Alert`, `Tabs`, `Accordion`, `Avatar`, `DropdownMenu`, `Popover`, `Tooltip`, `Switch`, `Checkbox`, `RadioGroup`, `Collapsible`, `ToggleGroup`, `AlertDialog`, `Sheet`, `LinkPreview`, `ContextMenu`, `ScrollArea`, `Toolbar`, `Menubar`, `Pagination`, `Breadcrumb`, `NavigationMenu`, `Command`, `PinInput`, `RatingGroup`, `Stack`, `Flex`, `Calendar`, `RangeCalendar`, `DateField`, `TimeField`, `DateRangeField`, `TimeRangeField`, `DatePicker`, `DateRangePicker`.
 
 > **Date components need a peer install:** `pnpm add @internationalized/date`.
 > Dates are `DateValue`, NOT JavaScript `Date`. One copy only — two copies means
@@ -162,6 +162,31 @@ import { Dialog, Select, Tabs } from 'sve-ui';
   <span aria-hidden="true">–</span>
   <DateRangeField.Input type="end">...</DateRangeField.Input>
 </DateRangeField.Root>
+
+<!-- DatePicker / DateRangePicker: a segmented FIELD + a calendar POPOVER sharing
+     ONE value. Trigger goes INSIDE the Input, after the segments (icon-only, so
+     needs aria-label). Almost every part is re-exported from what you already
+     have: Input/Label/Segment from DateField, calendar chrome from Calendar,
+     Arrow/Close from Popover, and DateRangePicker's Content IS DatePicker's.
+     Range picker: TWO Inputs (type required), Cell/Day come from RangeCalendar,
+     set numberOfMonths={2}, and NAME THE ROOT (aria-labelledby) — same unnamed
+     group gap as the range field. Pass calendarLabel and locale. -->
+<DatePicker.Root bind:value locale={userLocale} calendarLabel="Departure date">
+  <DatePicker.Label>Departure</DatePicker.Label>
+  <DatePicker.Input>
+    {#snippet children({ segments })}
+      {#each segments as { part, value }, i (i)}
+        <DatePicker.Segment {part}>{value}</DatePicker.Segment>
+      {/each}
+      <DatePicker.Trigger aria-label="Open calendar">📅</DatePicker.Trigger>
+    {/snippet}
+  </DatePicker.Input>
+  <DatePicker.Content>
+    <DatePicker.Calendar>
+      <!-- compose exactly as a standalone Calendar -->
+    </DatePicker.Calendar>
+  </DatePicker.Content>
+</DatePicker.Root>
 
 <!-- RangeCalendar: same composition; value is { start, end }. Bits handles the
      two-step pick and normalises a backwards selection. minDays/maxDays bound

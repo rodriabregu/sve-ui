@@ -44,6 +44,7 @@
 	import { CalendarDate } from '@internationalized/date';
 	import * as DateField from '$lib/components/DateField/index.js';
 	import * as DateRangeField from '$lib/components/DateRangeField/index.js';
+	import * as DatePicker from '$lib/components/DatePicker/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -79,6 +80,7 @@
 	let calPlaceholder = $state(new CalendarDate(2026, 1, 1));
 	let dfValue = $state<CalendarDate | undefined>(undefined);
 	let drfValue = $state({ start: undefined as CalendarDate | undefined, end: undefined as CalendarDate | undefined });
+	let dpValue = $state<CalendarDate | undefined>(new CalendarDate(2026, 1, 15));
 </script>
 
 <!-- Display -->
@@ -114,6 +116,19 @@
 		<ToggleGroup.Item value="left" aria-label="Align left">L</ToggleGroup.Item>
 		<ToggleGroup.Item value="right" aria-label="Align right">R</ToggleGroup.Item>
 	</ToggleGroup.Root>
+</section>
+<section aria-label="Date picker">
+	<DatePicker.Root bind:value={dpValue} locale="en-US" calendarLabel="Departure date">
+		<DatePicker.Label>Departure</DatePicker.Label>
+		<DatePicker.Input>
+			{#snippet children({ segments })}
+				{#each segments as { part, value: sv }, i (i)}
+					<DatePicker.Segment {part}>{sv}</DatePicker.Segment>
+				{/each}
+				<DatePicker.Trigger aria-label="Open calendar">C</DatePicker.Trigger>
+			{/snippet}
+		</DatePicker.Input>
+	</DatePicker.Root>
 </section>
 <section aria-label="Date field">
 	<DateField.Root bind:value={dfValue} locale="en-US">
