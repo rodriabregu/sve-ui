@@ -19,15 +19,19 @@
 	const styleCode = `// src/routes/+layout.svelte (or your root)
 import 'sve-ui/theme.css';`;
 
-	const useCode = `<script>
+	const useCode =
+		`<script>
   import { Button } from 'sve-ui';
-</` + `script>
+</` +
+		`script>
 
 <Button color="primary">Ship it</Button>`;
 
-	const providerCode = `<script>
+	const providerCode =
+		`<script>
   import { ThemeProvider } from 'sve-ui';
-</` + `script>
+</` +
+		`script>
 
 <ThemeProvider colorScheme="dark">
   <!-- your app -->
@@ -57,7 +61,9 @@ import 'sve-ui/theme.css';`;
 		<div class="mt-4">
 			<Alert.Root color="warning" variant="subtle">
 				<Alert.Title>Without the stylesheet, components render unstyled.</Alert.Title>
-				<Alert.Description>It's the only required setup step — there is no Tailwind or config to add.</Alert.Description>
+				<Alert.Description
+					>It's the only required setup step — there is no Tailwind or config to add.</Alert.Description
+				>
 			</Alert.Root>
 		</div>
 	</section>
@@ -73,8 +79,8 @@ import 'sve-ui/theme.css';`;
 	<section id="provider" class="sec">
 		<h2 class="sec__h">ThemeProvider (optional)</h2>
 		<p class="sec__p">
-			Wrap your app (or any subtree) in <code class="ic">ThemeProvider</code> to control light/dark and
-			scope theme overrides. See <a class="lnk" href="/docs/theming">Theming</a>.
+			Wrap your app (or any subtree) in <code class="ic">ThemeProvider</code> to control light/dark
+			and scope theme overrides. See <a class="lnk" href="/docs/theming">Theming</a>.
 		</p>
 		<Code code={providerCode} label="+layout.svelte" />
 	</section>

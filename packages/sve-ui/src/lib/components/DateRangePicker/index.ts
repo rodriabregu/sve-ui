@@ -45,17 +45,17 @@ export { Segment } from '../DateField/index.js';
 
 // The calendar chrome.
 export {
-  Header,
-  Heading,
-  PrevButton,
-  NextButton,
-  Grid,
-  GridHead,
-  GridBody,
-  GridRow,
-  HeadCell,
-  MonthSelect,
-  YearSelect
+	Header,
+	Heading,
+	PrevButton,
+	NextButton,
+	Grid,
+	GridHead,
+	GridBody,
+	GridRow,
+	HeadCell,
+	MonthSelect,
+	YearSelect
 } from '../Calendar/index.js';
 
 // Range-aware Cell and Day, which carry data-selection-start / range-middle /

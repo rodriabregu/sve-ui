@@ -82,40 +82,60 @@
 		<p class="sec__p">
 			Use <code class="ic">Meter</code> for a measurement that simply is what it is — disk usage,
 			password strength, a score out of ten. Use
-			<a href="/components/progress">Progress</a> for advancement toward completion, where reaching
-			the end is the point. A meter at 100% is full; a progress bar at 100% is done.
+			<a href="/components/progress">Progress</a> for advancement toward completion, where reaching the
+			end is the point. A meter at 100% is full; a progress bar at 100% is done.
 		</p>
 	</section>
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
-			Plus every native <code class="ic">&lt;div&gt;</code> attribute via prop spreading. Values
-			outside the range are clamped rather than overflowing the track.
+			Plus every native <code class="ic">&lt;div&gt;</code> attribute via prop spreading. Values outside
+			the range are clamped rather than overflowing the track.
 		</p>
 		<PropsTable component="Meter" />
 	</section>
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.stack {
-		display: flex; flex-direction: column; gap: 14px;
-		width: 100%; max-width: 420px;
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+		width: 100%;
+		max-width: 420px;
 	}
-	.cap { margin: 0; font-size: 12.5px; color: var(--doc-fg-subtle); }
+	.cap {
+		margin: 0;
+		font-size: 12.5px;
+		color: var(--doc-fg-subtle);
+	}
 </style>

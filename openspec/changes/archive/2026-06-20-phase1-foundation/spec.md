@@ -20,13 +20,13 @@ All CSS custom properties emitted by the theming system MUST use the `--sve-` pr
 The following six semantic color roles MUST be defined as CSS custom properties:
 
 | Semantic role | CSS variable (example — exact palette value set in design) |
-|---|---|
-| `primary` | `--sve-color-primary` |
-| `secondary` | `--sve-color-secondary` |
-| `success` | `--sve-color-success` |
-| `warning` | `--sve-color-warning` |
-| `danger` | `--sve-color-danger` |
-| `default` | `--sve-color-default` |
+| ------------- | ---------------------------------------------------------- |
+| `primary`     | `--sve-color-primary`                                      |
+| `secondary`   | `--sve-color-secondary`                                    |
+| `success`     | `--sve-color-success`                                      |
+| `warning`     | `--sve-color-warning`                                      |
+| `danger`      | `--sve-color-danger`                                       |
+| `default`     | `--sve-color-default`                                      |
 
 Each role MUST also expose foreground (text-on-color), surface (background), border, and hover variants as sub-tokens — at minimum:
 
@@ -41,12 +41,12 @@ Exact palette hex values are resolved in the design document. The spec mandates 
 
 The theming system MUST include all of the following categories, each exposed as `--sve-*` custom properties:
 
-| Category | Example tokens |
-|---|---|
-| Colors | Semantic roles (§1.2) |
-| Spacing | `--sve-space-1` … `--sve-space-16` (4px base unit or equivalent scale) |
-| Border radius | `--sve-radius-none`, `--sve-radius-sm`, `--sve-radius-md`, `--sve-radius-lg`, `--sve-radius-full` |
-| Typography | `--sve-font-family-sans`, `--sve-font-size-sm/md/lg`, `--sve-font-weight-normal/medium/bold`, `--sve-line-height-tight/normal/relaxed` |
+| Category      | Example tokens                                                                                                                         |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Colors        | Semantic roles (§1.2)                                                                                                                  |
+| Spacing       | `--sve-space-1` … `--sve-space-16` (4px base unit or equivalent scale)                                                                 |
+| Border radius | `--sve-radius-none`, `--sve-radius-sm`, `--sve-radius-md`, `--sve-radius-lg`, `--sve-radius-full`                                      |
+| Typography    | `--sve-font-family-sans`, `--sve-font-size-sm/md/lg`, `--sve-font-weight-normal/medium/bold`, `--sve-line-height-tight/normal/relaxed` |
 
 ### 1.4 Light and Dark Theme Values
 
@@ -72,12 +72,12 @@ The `./theme` subpath export MUST resolve to a module that re-exports:
 
 `ThemeProvider` MUST accept:
 
-| Prop | Type | Required | Behavior |
-|---|---|---|---|
-| `theme` | `Partial<SveTheme>` | No | Deep-merges consumer overrides onto the default theme before writing CSS vars |
-| `colorScheme` | `'light' \| 'dark' \| 'system'` | No | Controls which token set is active; defaults to `'system'` |
-| `class` | `string` | No | Forwarded to the scope root element |
-| `children` (snippet) | `Snippet` | Yes | Slotted content rendered inside the scoped root |
+| Prop                 | Type                            | Required | Behavior                                                                      |
+| -------------------- | ------------------------------- | -------- | ----------------------------------------------------------------------------- |
+| `theme`              | `Partial<SveTheme>`             | No       | Deep-merges consumer overrides onto the default theme before writing CSS vars |
+| `colorScheme`        | `'light' \| 'dark' \| 'system'` | No       | Controls which token set is active; defaults to `'system'`                    |
+| `class`              | `string`                        | No       | Forwarded to the scope root element                                           |
+| `children` (snippet) | `Snippet`                       | Yes      | Slotted content rendered inside the scoped root                               |
 
 `SveTheme` is a typed interface generated from the token contract (§1.2 + §1.3).
 
@@ -111,11 +111,11 @@ The `./theme` subpath export MUST resolve to a module that re-exports:
 
 The helper MUST accept exactly three orthogonal axes:
 
-| Axis | Allowed values |
-|---|---|
-| `variant` | `'solid' \| 'outline' \| 'ghost' \| 'flat'` (minimum set; design may add) |
-| `color` | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'default'` (matches §1.2) |
-| `size` | `'sm' \| 'md' \| 'lg'` |
+| Axis      | Allowed values                                                                               |
+| --------- | -------------------------------------------------------------------------------------------- |
+| `variant` | `'solid' \| 'outline' \| 'ghost' \| 'flat'` (minimum set; design may add)                    |
+| `color`   | `'primary' \| 'secondary' \| 'success' \| 'warning' \| 'danger' \| 'default'` (matches §1.2) |
+| `size`    | `'sm' \| 'md' \| 'lg'`                                                                       |
 
 ### 3.2 Output
 
@@ -145,18 +145,18 @@ Given a resolved (or partially-resolved) `{ variant, color, size }` input, the h
 
 ```jsonc
 {
-  "exports": {
-    ".": {
-      "types":   "./dist/index.d.ts",
-      "svelte":  "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./theme": {
-      "types":   "./dist/theme/index.d.ts",
-      "svelte":  "./dist/theme/index.js",
-      "default": "./dist/theme/index.js"
-    }
-  }
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./theme": {
+			"types": "./dist/theme/index.d.ts",
+			"svelte": "./dist/theme/index.js",
+			"default": "./dist/theme/index.js"
+		}
+	}
 }
 ```
 
@@ -264,12 +264,12 @@ The following are out of scope for phase1-foundation and MUST NOT appear in any 
 
 The proposal's open questions were resolved in the design and the spec/design reconciliation (synthesis ThemeProvider model confirmed by the user):
 
-| Question | Resolution |
-|---|---|
-| Light/dark strategy | Static `--sve-*` at `:root`; dark via class (`.dark` on the ThemeProvider wrapper, scoped) with `@media (prefers-color-scheme)` as fallback for `colorScheme="system"`. Both modes ship in v1. |
-| ThemeProvider element / scope root | Wraps `children` in a `<div class="sve-theme">`. Default tokens come from `:root` (static); the provider only sets the `colorScheme` class + Svelte context, and — only when a `theme` prop is given — writes scoped overrides as **inline CSS vars on the wrapper** (synthesis). |
-| Variant helper shape | Pure TypeScript factory `defineVariants(config) → (props?) => string` returning a merged **class string** (not an object). |
-| Bits UI Dialog API | Composed over Bits UI 2.18.1 `Dialog` parts (`Root`/`Trigger`/`Portal`/`Overlay`/`Content`/`Title`/`Description`/`Close`); `Root`/`Trigger`/`Close` re-exported as-is, `Overlay`/`Content`/`Title`/`Description` styled wrappers. Runtime confirmation gate = first install + Dialog test. |
+| Question                           | Resolution                                                                                                                                                                                                                                                                                 |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Light/dark strategy                | Static `--sve-*` at `:root`; dark via class (`.dark` on the ThemeProvider wrapper, scoped) with `@media (prefers-color-scheme)` as fallback for `colorScheme="system"`. Both modes ship in v1.                                                                                             |
+| ThemeProvider element / scope root | Wraps `children` in a `<div class="sve-theme">`. Default tokens come from `:root` (static); the provider only sets the `colorScheme` class + Svelte context, and — only when a `theme` prop is given — writes scoped overrides as **inline CSS vars on the wrapper** (synthesis).          |
+| Variant helper shape               | Pure TypeScript factory `defineVariants(config) → (props?) => string` returning a merged **class string** (not an object).                                                                                                                                                                 |
+| Bits UI Dialog API                 | Composed over Bits UI 2.18.1 `Dialog` parts (`Root`/`Trigger`/`Portal`/`Overlay`/`Content`/`Title`/`Description`/`Close`); `Root`/`Trigger`/`Close` re-exported as-is, `Overlay`/`Content`/`Title`/`Description` styled wrappers. Runtime confirmation gate = first install + Dialog test. |
 
 ---
 

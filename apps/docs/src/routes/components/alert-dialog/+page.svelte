@@ -10,7 +10,11 @@
 	// Forwarded to the Bits primitive, so not declared on our own Props.
 	const rootProps: PropRow[] = [
 		{ prop: 'open', type: 'boolean', default: 'false', description: 'Bindable open state.' },
-		{ prop: 'onOpenChange', type: '(open: boolean) => void', description: 'Called when the dialog opens or closes.' }
+		{
+			prop: 'onOpenChange',
+			type: '(open: boolean) => void',
+			description: 'Called when the dialog opens or closes.'
+		}
 	];
 
 	const meta = componentBySlug['alert-dialog'];
@@ -66,8 +70,8 @@
 		<p class="sec__p">
 			Use this when the user must decide before continuing and one outcome is destructive.
 			<code class="ic">Title</code> is not optional — Bits points the dialog's
-			<code class="ic">aria-labelledby</code> at it, so leaving it out ships a dialog with no
-			accessible name.
+			<code class="ic">aria-labelledby</code> at it, so leaving it out ships a dialog with no accessible
+			name.
 		</p>
 		<Preview code={usageCode}>
 			<div class="row">
@@ -84,7 +88,12 @@
 						</AlertDialog.Description>
 						<div class="row">
 							<AlertDialog.Cancel>Keep project</AlertDialog.Cancel>
-							<AlertDialog.Action onclick={() => { deleted = true; open = false; }}>
+							<AlertDialog.Action
+								onclick={() => {
+									deleted = true;
+									open = false;
+								}}
+							>
 								Delete project
 							</AlertDialog.Action>
 						</div>
@@ -98,14 +107,14 @@
 	<section id="action-does-not-close" class="sec">
 		<h2 class="sec__h">Action does not close</h2>
 		<p class="warn">
-			<strong>Cancel closes the dialog. Action does not.</strong> This is deliberate, and it is the
-			one thing people get wrong here.
+			<strong>Cancel closes the dialog. Action does not.</strong> This is deliberate, and it is the one
+			thing people get wrong here.
 		</p>
 		<p class="sec__p">
 			The reason is that your destructive operation is usually async and can fail. If Action closed
 			the dialog for you, a failed delete would leave the user staring at a dismissed dialog with no
-			idea whether it worked. So closing is yours to decide: close after it succeeds, or keep it open
-			and show the error.
+			idea whether it worked. So closing is yours to decide: close after it succeeds, or keep it
+			open and show the error.
 		</p>
 		<Preview code={asyncCode} align="start">
 			<p class="sec__p" style="margin:0">
@@ -124,8 +133,8 @@
 			<li><code class="ic">role="alertdialog"</code>, so it is announced as an interruption.</li>
 			<li>
 				Clicking the backdrop does <strong>not</strong> dismiss it. Bits omits
-				<code class="ic">onInteractOutside</code> on Content, so a stray click cannot resolve a
-				destructive choice.
+				<code class="ic">onInteractOutside</code> on Content, so a stray click cannot resolve a destructive
+				choice.
 			</li>
 			<li>Cancel takes initial focus, so pressing Enter never destroys anything.</li>
 		</ul>
@@ -139,18 +148,18 @@
 		<h2 class="sec__h">Writing the copy</h2>
 		<p class="sec__p">
 			The component is the easy part. Label the buttons with the <strong>verb</strong>, not
-			<code class="ic">OK</code> and <code class="ic">Cancel</code> — "Delete project" and "Keep
-			project" tell the user what each button does without re-reading anything. And put the
-			consequence in the description: what disappears, and whether it can be undone. "Are you sure?"
-			is not a description; it just moves the question back to the user.
+			<code class="ic">OK</code> and <code class="ic">Cancel</code> — "Delete project" and "Keep project"
+			tell the user what each button does without re-reading anything. And put the consequence in the
+			description: what disappears, and whether it can be undone. "Are you sure?" is not a description;
+			it just moves the question back to the user.
 		</p>
 	</section>
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
-			<code class="ic">AlertDialog.Root</code> and <code class="ic">Trigger</code> are re-exported
-			from Bits unchanged, so their props are forwarded rather than redeclared.
+			<code class="ic">AlertDialog.Root</code> and <code class="ic">Trigger</code> are re-exported from
+			Bits unchanged, so their props are forwarded rather than redeclared.
 		</p>
 		<p class="sec__p"><code class="ic">AlertDialog.Root</code></p>
 		<PropsTable rows={rootProps} />
@@ -167,27 +176,48 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.warn {
-		margin: 0 0 16px; padding: 12px 14px;
+		margin: 0 0 16px;
+		padding: 12px 14px;
 		border-left: 3px solid var(--doc-primary-text);
 		background: var(--doc-surface-2);
 		border-radius: 0 8px 8px 0;
-		font-size: 14px; line-height: 1.55; color: var(--doc-fg-muted);
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--doc-fg-muted);
 	}
-	.row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+	.row {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+	}
 </style>

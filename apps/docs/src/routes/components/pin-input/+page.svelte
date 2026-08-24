@@ -18,10 +18,23 @@
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
 	const rootForwarded: PropRow[] = [
-		{ prop: 'maxlength', type: 'number', required: true, description: 'Number of cells, and the max length of the real input.' },
-		{ prop: 'onComplete', type: '(value: string) => void', description: 'Fires once every cell is filled. Submit from here.' },
+		{
+			prop: 'maxlength',
+			type: 'number',
+			required: true,
+			description: 'Number of cells, and the max length of the real input.'
+		},
+		{
+			prop: 'onComplete',
+			type: '(value: string) => void',
+			description: 'Fires once every cell is filled. Submit from here.'
+		},
 		{ prop: 'onValueChange', type: '(value: string) => void' },
-		{ prop: 'pasteTransformer', type: '(text: string) => string', description: 'Sanitise pasted text — strip hyphens and spaces before they reach the cells.' },
+		{
+			prop: 'pasteTransformer',
+			type: '(text: string) => string',
+			description: 'Sanitise pasted text — strip hyphens and spaces before they reach the cells.'
+		},
 		{ prop: 'textalign', type: `'left' | 'center' | 'right'`, default: `'left'` },
 		{ prop: 'disabled', type: 'boolean', default: 'false' }
 	];
@@ -52,10 +65,11 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			<code class="ic">maxlength</code> is required — it is how many cells there are. Root hands you a
+			<code class="ic">maxlength</code> is required — it is how many cells there are. Root hands you
+			a
 			<code class="ic">cells</code> array through a snippet, so you render them. Use
-			<code class="ic">onComplete</code> to submit rather than making the user hunt for a button
-			after typing the last digit.
+			<code class="ic">onComplete</code> to submit rather than making the user hunt for a button after
+			typing the last digit.
 		</p>
 		<Preview code={usageCode} align="start">
 			<div class="field">
@@ -103,23 +117,25 @@
 		<p class="sec__p">
 			The <code class="ic">id</code> you pass lands on the wrapper
 			<code class="ic">&lt;div&gt;</code>, and the real input gets a Bits-internal id you cannot
-			predict — so a <code class="ic">for</code> attribute has nothing to point at, and you ship an
-			unnamed field. Verified against the rendered DOM, and pinned by a test.
+			predict — so a <code class="ic">for</code> attribute has nothing to point at, and you ship an unnamed
+			field. Verified against the rendered DOM, and pinned by a test.
 		</p>
 		<p class="sec__p">Name it from Root instead; the spread reaches the input:</p>
 		<ul class="sec__p">
 			<li><code class="ic">aria-label="Verification code"</code> — simplest.</li>
 			<li>
 				<code class="ic">aria-labelledby="my-label-id"</code> — when you want a
-				<strong>visible</strong> label. Give your own element an id and point at it, as the example
-				above does.
+				<strong>visible</strong> label. Give your own element an id and point at it, as the example above
+				does.
 			</li>
 		</ul>
 	</section>
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
-		<p class="sec__p"><code class="ic">PinInput.Root</code> — <code class="ic">value</code> is bindable.</p>
+		<p class="sec__p">
+			<code class="ic">PinInput.Root</code> — <code class="ic">value</code> is bindable.
+		</p>
 		<PropsTable component="PinInputRoot" extra={rootForwarded} />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">PinInput.Cell</code> takes the <code class="ic">cell</code> object from the
@@ -130,28 +146,54 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.warn {
-		margin: 0 0 16px; padding: 12px 14px;
+		margin: 0 0 16px;
+		padding: 12px 14px;
 		border-left: 3px solid var(--doc-primary-text);
 		background: var(--doc-surface-2);
 		border-radius: 0 8px 8px 0;
-		font-size: 14px; line-height: 1.55; color: var(--doc-fg-muted);
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--doc-fg-muted);
 	}
-	.field { display: flex; flex-direction: column; gap: 8px; }
-	.cap { margin: 0; font-size: 12.5px; color: var(--doc-fg-subtle); }
-	.lbl { font-size: 13px; font-weight: 600; color: var(--doc-fg); }
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	.cap {
+		margin: 0;
+		font-size: 12.5px;
+		color: var(--doc-fg-subtle);
+	}
+	.lbl {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--doc-fg);
+	}
 </style>

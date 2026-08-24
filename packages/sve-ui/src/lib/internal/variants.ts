@@ -14,19 +14,19 @@
 export type VariantSchema = Record<string, Record<string, string>>;
 
 export interface VariantConfig<S extends VariantSchema> {
-  /** Base class always included in the output */
-  base?: string;
-  /** Per-axis variant definitions: axis → value → class */
-  variants: S;
-  /** Default value for each axis (used when props are omitted) */
-  defaultVariants?: {
-    [K in keyof S]?: keyof S[K];
-  };
+	/** Base class always included in the output */
+	base?: string;
+	/** Per-axis variant definitions: axis → value → class */
+	variants: S;
+	/** Default value for each axis (used when props are omitted) */
+	defaultVariants?: {
+		[K in keyof S]?: keyof S[K];
+	};
 }
 
 /** Props accepted by the resolver (each axis is optional + extra class string) */
 export type VariantProps<S extends VariantSchema> = {
-  [K in keyof S]?: keyof S[K];
+	[K in keyof S]?: keyof S[K];
 } & { class?: string };
 
 // ---------------------------------------------------------------------------
@@ -51,37 +51,35 @@ export type VariantProps<S extends VariantSchema> = {
  * button({ class: 'extra' })        // → 'btn btn--solid btn--md extra'
  */
 export function defineVariants<S extends VariantSchema>(
-  config: VariantConfig<S>,
+	config: VariantConfig<S>
 ): (props?: VariantProps<S>) => string {
-  return function resolveVariants(props?: VariantProps<S>): string {
-    const parts: string[] = [];
+	return function resolveVariants(props?: VariantProps<S>): string {
+		const parts: string[] = [];
 
-    // 1. Base class
-    if (config.base) {
-      parts.push(config.base);
-    }
+		// 1. Base class
+		if (config.base) {
+			parts.push(config.base);
+		}
 
-    // 2. Per-axis class resolution
-    for (const axis in config.variants) {
-      const axisMap = config.variants[axis];
-      // Prefer explicit prop value, fall back to defaultVariants
-      const value =
-        props?.[axis as keyof S] ??
-        config.defaultVariants?.[axis as keyof S];
+		// 2. Per-axis class resolution
+		for (const axis in config.variants) {
+			const axisMap = config.variants[axis];
+			// Prefer explicit prop value, fall back to defaultVariants
+			const value = props?.[axis as keyof S] ?? config.defaultVariants?.[axis as keyof S];
 
-      if (value !== undefined) {
-        const cls = axisMap[value as string];
-        if (cls) {
-          parts.push(cls);
-        }
-      }
-    }
+			if (value !== undefined) {
+				const cls = axisMap[value as string];
+				if (cls) {
+					parts.push(cls);
+				}
+			}
+		}
 
-    // 3. Extra class prop
-    if (props?.class) {
-      parts.push(props.class);
-    }
+		// 3. Extra class prop
+		if (props?.class) {
+			parts.push(props.class);
+		}
 
-    return parts.join(' ');
-  };
+		return parts.join(' ');
+	};
 }

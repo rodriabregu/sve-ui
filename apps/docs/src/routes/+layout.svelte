@@ -45,7 +45,8 @@
 					<span
 						class="inline-flex h-[30px] w-[30px] items-center justify-center font-extrabold"
 						style="border-radius: 8px; background: var(--sve-color-primary); color: var(--sve-color-primary-foreground); font-size: 16px; box-shadow: 0 4px 14px -4px var(--sve-color-primary);"
-					>S</span>
+						>S</span
+					>
 					<span class="font-bold" style="font-size: 17px; letter-spacing: -0.02em;"
 						>Sve<span style="color: var(--doc-primary-text);">·</span>UI</span
 					>
@@ -100,14 +101,30 @@
 						style="border-radius: 9px; border: 1px solid var(--doc-border-2); background: var(--doc-surface); color: var(--doc-fg);"
 					>
 						{#if isDark}
-							<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"
+							<svg
+								width="17"
+								height="17"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								aria-hidden="true"
 								><circle cx="12" cy="12" r="4" /><path
 									d="M12 2v2M12 20v2M5 5l1.5 1.5M17.5 17.5 19 19M2 12h2M20 12h2M5 19l1.5-1.5M17.5 6.5 19 5"
 								/></svg
 							>
 						{:else}
-							<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
-								><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg
+							<svg
+								width="17"
+								height="17"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg
 							>
 						{/if}
 					</button>
@@ -136,10 +153,30 @@
 					>
 				</div>
 				<div class="flex items-center gap-6" style="font-size: 14px;">
-					<a href={REPO} target="_blank" rel="noopener" class="no-underline transition-opacity hover:opacity-70" style="color: var(--doc-fg-muted);">GitHub</a>
-					<a href={NPM} target="_blank" rel="noopener" class="no-underline transition-opacity hover:opacity-70" style="color: var(--doc-fg-muted);">npm</a>
-					<a href="/components" class="no-underline transition-opacity hover:opacity-70" style="color: var(--doc-fg-muted);">Components</a>
-					<a href="/#theming" class="no-underline transition-opacity hover:opacity-70" style="color: var(--doc-fg-muted);">Theming</a>
+					<a
+						href={REPO}
+						target="_blank"
+						rel="noopener"
+						class="no-underline transition-opacity hover:opacity-70"
+						style="color: var(--doc-fg-muted);">GitHub</a
+					>
+					<a
+						href={NPM}
+						target="_blank"
+						rel="noopener"
+						class="no-underline transition-opacity hover:opacity-70"
+						style="color: var(--doc-fg-muted);">npm</a
+					>
+					<a
+						href="/components"
+						class="no-underline transition-opacity hover:opacity-70"
+						style="color: var(--doc-fg-muted);">Components</a
+					>
+					<a
+						href="/#theming"
+						class="no-underline transition-opacity hover:opacity-70"
+						style="color: var(--doc-fg-muted);">Theming</a
+					>
 				</div>
 			</div>
 		</footer>

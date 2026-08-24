@@ -19,16 +19,46 @@
 
 	const props: PropRow[] = [
 		// Root
-		{ prop: 'Dialog.Root — open', type: 'boolean', default: 'false', description: 'Controlled open state.' },
-		{ prop: 'Dialog.Root — onOpenChange', type: '(open: boolean) => void', description: 'Callback fired when open state changes.' },
+		{
+			prop: 'Dialog.Root — open',
+			type: 'boolean',
+			default: 'false',
+			description: 'Controlled open state.'
+		},
+		{
+			prop: 'Dialog.Root — onOpenChange',
+			type: '(open: boolean) => void',
+			description: 'Callback fired when open state changes.'
+		},
 		// Trigger / Close
-		{ prop: 'Dialog.Trigger — child', type: 'Snippet<[{ props: object }]>', description: 'Render prop that spreads trigger props onto a real element.' },
-		{ prop: 'Dialog.Close — child', type: 'Snippet<[{ props: object }]>', description: 'Render prop that spreads close props onto a real element.' },
+		{
+			prop: 'Dialog.Trigger — child',
+			type: 'Snippet<[{ props: object }]>',
+			description: 'Render prop that spreads trigger props onto a real element.'
+		},
+		{
+			prop: 'Dialog.Close — child',
+			type: 'Snippet<[{ props: object }]>',
+			description: 'Render prop that spreads close props onto a real element.'
+		},
 		// Content
-		{ prop: 'Dialog.Content — class', type: 'string', description: 'Extra classes merged onto the content panel.' },
+		{
+			prop: 'Dialog.Content — class',
+			type: 'string',
+			description: 'Extra classes merged onto the content panel.'
+		},
 		// Title / Description
-		{ prop: 'Dialog.Title — level', type: '1 | 2 | 3 | 4 | 5 | 6', default: '2', description: 'Heading level for the dialog title.' },
-		{ prop: 'Dialog.Description — class', type: 'string', description: 'Extra classes merged onto the description.' }
+		{
+			prop: 'Dialog.Title — level',
+			type: '1 | 2 | 3 | 4 | 5 | 6',
+			default: '2',
+			description: 'Heading level for the dialog title.'
+		},
+		{
+			prop: 'Dialog.Description — class',
+			type: 'string',
+			description: 'Extra classes merged onto the description.'
+		}
 	];
 
 	const usageCode = `<script>
@@ -88,8 +118,8 @@
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
 			Use the <code class="ic">child</code> snippet on <code class="ic">Dialog.Trigger</code> and
-			<code class="ic">Dialog.Close</code> to render real, accessible elements. The trigger spreads
-			all required ARIA and event props onto whatever element you pass.
+			<code class="ic">Dialog.Close</code> to render real, accessible elements. The trigger spreads all
+			required ARIA and event props onto whatever element you pass.
 		</p>
 		<Preview code={usageCode}>
 			<Dialog.Root bind:open>
@@ -137,8 +167,7 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
-			Built on <code class="ic">bits-ui</code> — all underlying Bits UI Dialog props are forwarded
-			transparently.
+			Built on <code class="ic">bits-ui</code> — all underlying Bits UI Dialog props are forwarded transparently.
 		</p>
 		<PropsTable rows={props} />
 	</section>

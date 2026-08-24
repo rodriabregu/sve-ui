@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { Pagination } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { Pagination } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsRootProps = ComponentProps<typeof Pagination.Root>;
+	type BitsRootProps = ComponentProps<typeof Pagination.Root>;
 
-  interface Props extends Omit<BitsRootProps, 'class' | 'page'> {
-    /** Current page number. Bindable. */
-    page?: number;
-    /** Extra classes merged onto the root. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsRootProps, 'class' | 'page'> {
+		/** Current page number. Bindable. */
+		page?: number;
+		/** Extra classes merged onto the root. */
+		class?: string;
+	}
 
-  // `page` must be destructured and passed as `bind:page`. Forwarding it in the
-  // spread makes it one-way, so clicking a page would never reach the caller.
-  let { page = $bindable(1), class: cls, children, ...rest }: Props = $props();
+	// `page` must be destructured and passed as `bind:page`. Forwarding it in the
+	// spread makes it one-way, so clicking a page would never reach the caller.
+	let { page = $bindable(1), class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -31,18 +31,18 @@
   Wrap it in a <nav aria-label="Pagination"> so the region is announced.
 -->
 <Pagination.Root
-  bind:page
-  class={['sve-pagination', cls].filter(Boolean).join(' ')}
-  data-slot="pagination"
-  {children}
-  {...rest}
+	bind:page
+	class={['sve-pagination', cls].filter(Boolean).join(' ')}
+	data-slot="pagination"
+	{children}
+	{...rest}
 />
 
 <style>
-  :global(.sve-pagination) {
-    display: flex;
-    align-items: center;
-    gap: var(--sve-space-1);
-    font-family: var(--sve-font-family-sans);
-  }
+	:global(.sve-pagination) {
+		display: flex;
+		align-items: center;
+		gap: var(--sve-space-1);
+		font-family: var(--sve-font-family-sans);
+	}
 </style>

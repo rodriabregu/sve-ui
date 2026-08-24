@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { Dialog } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { Dialog } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsOverlayProps = ComponentProps<typeof Dialog.Overlay>;
+	type BitsOverlayProps = ComponentProps<typeof Dialog.Overlay>;
 
-  interface Props extends Omit<BitsOverlayProps, 'class'> {
-    class?: string;
-  }
+	interface Props extends Omit<BitsOverlayProps, 'class'> {
+		class?: string;
+	}
 
-  let { class: cls, ...rest }: Props = $props();
+	let { class: cls, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -17,16 +17,16 @@
   No children forwarded — the overlay is a purely visual backdrop element.
 -->
 <Dialog.Overlay
-  class={['sve-dialog-overlay', cls].filter(Boolean).join(' ')}
-  data-slot="dialog-overlay"
-  {...rest}
+	class={['sve-dialog-overlay', cls].filter(Boolean).join(' ')}
+	data-slot="dialog-overlay"
+	{...rest}
 />
 
 <style>
-  :global(.sve-dialog-overlay) {
-    position: fixed;
-    inset: 0;
-    z-index: 50;
-    background-color: var(--sve-color-overlay);
-  }
+	:global(.sve-dialog-overlay) {
+		position: fixed;
+		inset: 0;
+		z-index: 50;
+		background-color: var(--sve-color-overlay);
+	}
 </style>

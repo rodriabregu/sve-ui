@@ -12,8 +12,7 @@ Minimal correct usage per component. All examples assume `import 'sve-ui/theme.c
 > objects that stop lining up.
 
 ```svelte
-import { Button, Input, Badge, Slider } from 'sve-ui';
-import { Dialog, Select, Tabs } from 'sve-ui';
+import {(Button, Input, Badge, Slider)} from 'sve-ui'; import {(Dialog, Select, Tabs)} from 'sve-ui';
 ```
 
 ## Display
@@ -21,8 +20,8 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 ```svelte
 <!-- Avatar -->
 <Avatar.Root size="md">
-  <Avatar.Image src={url} alt="Ada Lovelace" />
-  <Avatar.Fallback>AL</Avatar.Fallback>
+	<Avatar.Image src={url} alt="Ada Lovelace" />
+	<Avatar.Fallback>AL</Avatar.Fallback>
 </Avatar.Root>
 
 <!-- Badge -->
@@ -30,9 +29,9 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 
 <!-- Card -->
 <Card.Root>
-  <Card.Header><Heading level={3}>Title</Heading></Card.Header>
-  <Card.Content><Text>Body.</Text></Card.Content>
-  <Card.Footer>…</Card.Footer>
+	<Card.Header><Heading level={3}>Title</Heading></Card.Header>
+	<Card.Content><Text>Body.</Text></Card.Content>
+	<Card.Footer>…</Card.Footer>
 </Card.Root>
 
 <!-- Heading / Text -->
@@ -41,9 +40,9 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 
 <!-- Skeleton: variant text|circle|rect. Always aria-hidden — announce on the region. -->
 <div role="status" aria-busy="true" aria-label="Loading profile">
-  <Skeleton variant="circle" width="3rem" height="3rem" />
-  <Skeleton variant="text" width="12rem" />
-  <Skeleton variant="rect" height="6rem" />
+	<Skeleton variant="circle" width="3rem" height="3rem" />
+	<Skeleton variant="text" width="12rem" />
+	<Skeleton variant="rect" height="6rem" />
 </div>
 ```
 
@@ -51,18 +50,18 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 
 ```svelte
 <script>
-  import { Table } from 'sve-ui';
-  let sort = $state('none'); // 'none' | 'asc' | 'desc'
+	import { Table } from 'sve-ui';
+	let sort = $state('none'); // 'none' | 'asc' | 'desc'
 
-  // THE COMPONENT DOES NOT SORT. You apply the order, because only you know
-  // whether the rows are local, how this interacts with pagination, and which
-  // locale the text compares in ('a' < 'b' is not universal).
-  const collator = new Intl.Collator(locale, { numeric: true, sensitivity: 'base' });
-  const sorted = $derived(
-    sort === 'none'
-      ? rows
-      : [...rows].sort((a, b) => (sort === 'asc' ? 1 : -1) * collator.compare(a.region, b.region))
-  );
+	// THE COMPONENT DOES NOT SORT. You apply the order, because only you know
+	// whether the rows are local, how this interacts with pagination, and which
+	// locale the text compares in ('a' < 'b' is not universal).
+	const collator = new Intl.Collator(locale, { numeric: true, sensitivity: 'base' });
+	const sorted = $derived(
+		sort === 'none'
+			? rows
+			: [...rows].sort((a, b) => (sort === 'asc' ? 1 : -1) * collator.compare(a.region, b.region))
+	);
 </script>
 
 <!-- Root is a plain <table>: NO role="grid", which would promise arrow-key cell
@@ -71,45 +70,44 @@ import { Dialog, Select, Tabs } from 'sve-ui';
      edge are reachable by keyboard. scrollLabel is NOT the table's name.
      stickyHeader needs --sve-table-max-height (24rem default). -->
 <Table.Root scrollLabel="Revenue by region, scrollable" zebra density="compact">
-  <!-- The table's accessible name. MUST be the first child. Use
+	<!-- The table's accessible name. MUST be the first child. Use
        visuallyHidden when a heading above already says it. -->
-  <Table.Caption>Revenue by region</Table.Caption>
+	<Table.Caption>Revenue by region</Table.Caption>
 
-  <Table.Header>
-    <Table.Row>
-      <Table.Head>Region</Table.Head>
-      <!-- Renders a real <button> in the cell (a clickable <th> is not
+	<Table.Header>
+		<Table.Row>
+			<Table.Head>Region</Table.Head>
+			<!-- Renders a real <button> in the cell (a clickable <th> is not
            focusable) and sets aria-sort. Cycles none -> asc -> desc -> none.
            Keep aria-sort on ONE column, and only when you applied it. -->
-      <Table.Head sortable {sort} onSortChange={(d) => (sort = d)} numeric>Revenue</Table.Head>
-    </Table.Row>
-  </Table.Header>
+			<Table.Head sortable {sort} onSortChange={(d) => (sort = d)} numeric>Revenue</Table.Head>
+		</Table.Row>
+	</Table.Header>
 
-  <Table.Body>
-    {#each sorted as row (row.region)}
-      <!-- selected sets data-selected, NOT aria-selected (invalid on a plain
+	<Table.Body>
+		{#each sorted as row (row.region)}
+			<!-- selected sets data-selected, NOT aria-selected (invalid on a plain
            <tr>). Pair it with a real Checkbox — styling alone tells sighted
            users and nobody else. -->
-      <Table.Row selected={row.id === selectedId}>
-        <!-- <th scope="row">: turns "1200" into "Revenue, Argentina, 1200". -->
-        <Table.RowHeader>{row.region}</Table.RowHeader>
-        <!-- numeric on BOTH Head and Cell: right-align + tabular-nums so the
+			<Table.Row selected={row.id === selectedId}>
+				<!-- <th scope="row">: turns "1200" into "Revenue, Argentina, 1200". -->
+				<Table.RowHeader>{row.region}</Table.RowHeader>
+				<!-- numeric on BOTH Head and Cell: right-align + tabular-nums so the
              digits line up. Format with Intl.NumberFormat yourself. -->
-        <Table.Cell numeric>{fmt.format(row.revenue)}</Table.Cell>
-      </Table.Row>
-    {/each}
-  </Table.Body>
+				<Table.Cell numeric>{fmt.format(row.revenue)}</Table.Cell>
+			</Table.Row>
+		{/each}
+	</Table.Body>
 
-  <!-- Totals go in tfoot, not as a last body row — it is not data. -->
-  <Table.Footer>
-    <Table.Row>
-      <Table.RowHeader>Total</Table.RowHeader>
-      <Table.Cell numeric>{fmt.format(total)}</Table.Cell>
-    </Table.Row>
-  </Table.Footer>
+	<!-- Totals go in tfoot, not as a last body row — it is not data. -->
+	<Table.Footer>
+		<Table.Row>
+			<Table.RowHeader>Total</Table.RowHeader>
+			<Table.Cell numeric>{fmt.format(total)}</Table.Cell>
+		</Table.Row>
+	</Table.Footer>
 </Table.Root>
 ```
-
 
 ## Forms
 
@@ -307,8 +305,8 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 
 ```svelte
 <Alert.Root color="warning" variant="subtle">
-  <Alert.Title>Heads up</Alert.Title>
-  <Alert.Description>Check your settings.</Alert.Description>
+	<Alert.Title>Heads up</Alert.Title>
+	<Alert.Description>Check your settings.</Alert.Description>
 </Alert.Root>
 
 <Spinner size="sm" color="primary" label="Loading" />
@@ -330,7 +328,7 @@ an imperative call is reachable from code that is not a component at all (a
 
 ```svelte
 <script>
-  import { Toast, toast } from 'sve-ui';
+	import { Toast, toast } from 'sve-ui';
 </script>
 
 <!-- REQUIRED, once, high in the layout. Without it the calls queue into a list
@@ -341,12 +339,12 @@ an imperative call is reachable from code that is not a component at all (a
 ```
 
 ```ts
-toast('Copied');                                  // info
+toast('Copied'); // info
 toast.success('Project saved');
 toast.warning('Your trial ends in 3 days');
 toast.error('Upload failed', { description: 'The file is over 10 MB.' });
 
-toast('Copied', { duration: 2000 });              // Infinity keeps it
+toast('Copied', { duration: 2000 }); // Infinity keeps it
 toast('Working...', { dismissible: false });
 
 // An action flips duration to Infinity by default: a control the user can lose
@@ -370,31 +368,30 @@ Timers pause on hover AND on focus. Past `max` the OLDEST is dropped. Never let 
 toast hold the only copy of information or an action — it disappears and there is
 no history.
 
-
 ## Navigation
 
 ```svelte
 <Tabs.Root bind:value={tab}>
-  <Tabs.List>
-    <Tabs.Trigger value="a">Account</Tabs.Trigger>
-    <Tabs.Trigger value="b">Password</Tabs.Trigger>
-  </Tabs.List>
-  <Tabs.Content value="a">…</Tabs.Content>
-  <Tabs.Content value="b">…</Tabs.Content>
+	<Tabs.List>
+		<Tabs.Trigger value="a">Account</Tabs.Trigger>
+		<Tabs.Trigger value="b">Password</Tabs.Trigger>
+	</Tabs.List>
+	<Tabs.Content value="a">…</Tabs.Content>
+	<Tabs.Content value="b">…</Tabs.Content>
 </Tabs.Root>
 
 <Accordion.Root type="single">
-  <Accordion.Item value="a">
-    <Accordion.Header><Accordion.Trigger>Section</Accordion.Trigger></Accordion.Header>
-    <Accordion.Content>…</Accordion.Content>
-  </Accordion.Item>
+	<Accordion.Item value="a">
+		<Accordion.Header><Accordion.Trigger>Section</Accordion.Trigger></Accordion.Header>
+		<Accordion.Content>…</Accordion.Content>
+	</Accordion.Item>
 </Accordion.Root>
 
 <!-- Collapsible: ONE independent region. Accordion is a SET that knows about
      itself (one-open-at-a-time + arrow keys between triggers). -->
-<Collapsible.Root bind:open={open}>
-  <Collapsible.Trigger>Shipping details</Collapsible.Trigger>
-  <Collapsible.Content>Ships in 2-3 days.</Collapsible.Content>
+<Collapsible.Root bind:open>
+	<Collapsible.Trigger>Shipping details</Collapsible.Trigger>
+	<Collapsible.Content>Ships in 2-3 days.</Collapsible.Content>
 </Collapsible.Root>
 
 <!-- NavigationMenu: THE choice for SITE navigation. Triggers open on hover AND
@@ -402,59 +399,59 @@ no history.
      Root is a <nav> — needs aria-label. `active` on a Link gives aria-current="page".
      Viewport is optional: it gives all panels one shared, resizing container. -->
 <NavigationMenu.Root bind:value={navValue} aria-label="Site">
-  <NavigationMenu.List>
-    <NavigationMenu.Item value="products">
-      <NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
-      <NavigationMenu.Content>
-        <NavigationMenu.Link href="/analytics">Analytics</NavigationMenu.Link>
-      </NavigationMenu.Content>
-    </NavigationMenu.Item>
-    <NavigationMenu.Item value="pricing">
-      <NavigationMenu.Link href="/pricing" active>Pricing</NavigationMenu.Link>
-    </NavigationMenu.Item>
-  </NavigationMenu.List>
-  <NavigationMenu.Viewport />
+	<NavigationMenu.List>
+		<NavigationMenu.Item value="products">
+			<NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
+			<NavigationMenu.Content>
+				<NavigationMenu.Link href="/analytics">Analytics</NavigationMenu.Link>
+			</NavigationMenu.Content>
+		</NavigationMenu.Item>
+		<NavigationMenu.Item value="pricing">
+			<NavigationMenu.Link href="/pricing" active>Pricing</NavigationMenu.Link>
+		</NavigationMenu.Item>
+	</NavigationMenu.List>
+	<NavigationMenu.Viewport />
 </NavigationMenu.Root>
 
 <!-- Menubar: desktop-app chrome, NOT site nav and NOT a row of dropdowns.
      Arrow keys move between menus; hovering a sibling while open switches to it.
      Root needs aria-label. Item/Group/Label/Separator are the SHARED menu parts. -->
 <Menubar.Root aria-label="Main">
-  <Menubar.Menu>
-    <Menubar.Trigger>File</Menubar.Trigger>
-    <Menubar.Content>
-      <Menubar.Item>New</Menubar.Item>
-      <Menubar.Separator />
-      <Menubar.Item>Quit</Menubar.Item>
-    </Menubar.Content>
-  </Menubar.Menu>
+	<Menubar.Menu>
+		<Menubar.Trigger>File</Menubar.Trigger>
+		<Menubar.Content>
+			<Menubar.Item>New</Menubar.Item>
+			<Menubar.Separator />
+			<Menubar.Item>Quit</Menubar.Item>
+		</Menubar.Content>
+	</Menubar.Menu>
 </Menubar.Root>
 
 <!-- Breadcrumb: custom (native nav + <ol>). LAST crumb takes `current` — renders
      as text with aria-current="page", not a dead-end link. Separators aria-hidden. -->
 <Breadcrumb.Root>
-  <Breadcrumb.List>
-    <Breadcrumb.Item><Breadcrumb.Link href="/">Home</Breadcrumb.Link></Breadcrumb.Item>
-    <Breadcrumb.Separator />
-    <Breadcrumb.Item><Breadcrumb.Link current>Settings</Breadcrumb.Link></Breadcrumb.Item>
-  </Breadcrumb.List>
+	<Breadcrumb.List>
+		<Breadcrumb.Item><Breadcrumb.Link href="/">Home</Breadcrumb.Link></Breadcrumb.Item>
+		<Breadcrumb.Separator />
+		<Breadcrumb.Item><Breadcrumb.Link current>Settings</Breadcrumb.Link></Breadcrumb.Item>
+	</Breadcrumb.List>
 </Breadcrumb.Root>
 
 <!-- Pagination: Root takes count + perPage and hands you a `pages` snippet prop;
      YOU render the buttons. `page` is bindable. Wrap in <nav aria-label="Pagination">.
      Arrow-only Prev/Next need aria-label. -->
 <nav aria-label="Pagination">
-  <Pagination.Root count={100} perPage={10} bind:page={page}>
-    {#snippet children({ pages })}
-      <Pagination.PrevButton aria-label="Previous page">Prev</Pagination.PrevButton>
-      {#each pages as p (p.key)}
-        {#if p.type === 'page'}
-          <Pagination.Page page={p}>{p.value}</Pagination.Page>
-        {:else}<span>…</span>{/if}
-      {/each}
-      <Pagination.NextButton aria-label="Next page">Next</Pagination.NextButton>
-    {/snippet}
-  </Pagination.Root>
+	<Pagination.Root count={100} perPage={10} bind:page>
+		{#snippet children({ pages })}
+			<Pagination.PrevButton aria-label="Previous page">Prev</Pagination.PrevButton>
+			{#each pages as p (p.key)}
+				{#if p.type === 'page'}
+					<Pagination.Page page={p}>{p.value}</Pagination.Page>
+				{:else}<span>…</span>{/if}
+			{/each}
+			<Pagination.NextButton aria-label="Next page">Next</Pagination.NextButton>
+		{/snippet}
+	</Pagination.Root>
 </nav>
 ```
 
@@ -462,8 +459,8 @@ no history.
 
 ```svelte
 <script>
-  import { Sidebar } from 'sve-ui';
-  let collapsed = $state(false);
+	import { Sidebar } from 'sve-ui';
+	let collapsed = $state(false);
 </script>
 
 <!-- Provider owns the state, Root is the <aside>. They are separate because
@@ -476,35 +473,34 @@ no history.
      No JS media query inside: use collapsible="offcanvas" plus YOUR breakpoint.
      Persist `collapsed` — one that resets on navigation is worse than none. -->
 <Sidebar.Provider bind:collapsed collapsible="icon" shell>
-  <Sidebar.Root label="Main navigation">
-    <Sidebar.Header>
-      <!-- Label stays the SAME in both states; aria-expanded carries the state. -->
-      <Sidebar.Trigger aria-label="Toggle sidebar">&#9776;</Sidebar.Trigger>
-    </Sidebar.Header>
-    <Sidebar.Content>
-      <Sidebar.Group aria-labelledby="grp-platform">
-        <!-- Visually hidden on the icon rail, NOT removed. -->
-        <Sidebar.GroupLabel id="grp-platform">Platform</Sidebar.GroupLabel>
-        <Sidebar.Menu>
-          <!-- `label` becomes the accessible name on a collapsed icon rail.
+	<Sidebar.Root label="Main navigation">
+		<Sidebar.Header>
+			<!-- Label stays the SAME in both states; aria-expanded carries the state. -->
+			<Sidebar.Trigger aria-label="Toggle sidebar">&#9776;</Sidebar.Trigger>
+		</Sidebar.Header>
+		<Sidebar.Content>
+			<Sidebar.Group aria-labelledby="grp-platform">
+				<!-- Visually hidden on the icon rail, NOT removed. -->
+				<Sidebar.GroupLabel id="grp-platform">Platform</Sidebar.GroupLabel>
+				<Sidebar.Menu>
+					<!-- `label` becomes the accessible name on a collapsed icon rail.
                `active` gives aria-current="page".
                `disabled` renders a <span>, not a link. -->
-          <Sidebar.Item href="/dashboard" active label="Dashboard">Dashboard</Sidebar.Item>
-          <Sidebar.Item disabled label="Reports">Reports</Sidebar.Item>
-        </Sidebar.Menu>
-      </Sidebar.Group>
-    </Sidebar.Content>
-    <Sidebar.Footer>Account</Sidebar.Footer>
-  </Sidebar.Root>
+					<Sidebar.Item href="/dashboard" active label="Dashboard">Dashboard</Sidebar.Item>
+					<Sidebar.Item disabled label="Reports">Reports</Sidebar.Item>
+				</Sidebar.Menu>
+			</Sidebar.Group>
+		</Sidebar.Content>
+		<Sidebar.Footer>Account</Sidebar.Footer>
+	</Sidebar.Root>
 
-  <main>Page content</main>
+	<main>Page content</main>
 </Sidebar.Provider>
 ```
 
 This is an APP-SHELL panel, not a documentation table of contents. If you find
 yourself overriding `display`, `width`, `border` and the collapse mechanism, you
 want a plain sticky `<nav>` instead.
-
 
 ## Overlays
 
@@ -513,31 +509,38 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
 ```svelte
 <!-- Dialog -->
 <Dialog.Root bind:open>
-  <Dialog.Trigger>
-    {#snippet child({ props })}<Button {...props}>Delete</Button>{/snippet}
-  </Dialog.Trigger>
-  <Dialog.Overlay />
-  <Dialog.Content>
-    <Dialog.Title>Delete?</Dialog.Title>
-    <Dialog.Description>This can't be undone.</Dialog.Description>
-    <Dialog.Close>{#snippet child({ props })}<Button variant="outline" {...props}>Cancel</Button>{/snippet}</Dialog.Close>
-  </Dialog.Content>
+	<Dialog.Trigger>
+		{#snippet child({ props })}<Button {...props}>Delete</Button>{/snippet}
+	</Dialog.Trigger>
+	<Dialog.Overlay />
+	<Dialog.Content>
+		<Dialog.Title>Delete?</Dialog.Title>
+		<Dialog.Description>This can't be undone.</Dialog.Description>
+		<Dialog.Close
+			>{#snippet child({ props })}<Button variant="outline" {...props}>Cancel</Button
+				>{/snippet}</Dialog.Close
+		>
+	</Dialog.Content>
 </Dialog.Root>
 
 <!-- DropdownMenu -->
 <DropdownMenu.Root>
-  <DropdownMenu.Trigger>{#snippet child({ props })}<Button {...props}>Options</Button>{/snippet}</DropdownMenu.Trigger>
-  <DropdownMenu.Content>
-    <DropdownMenu.Item>Profile</DropdownMenu.Item>
-    <DropdownMenu.Separator />
-    <DropdownMenu.Item>Sign out</DropdownMenu.Item>
-  </DropdownMenu.Content>
+	<DropdownMenu.Trigger
+		>{#snippet child({ props })}<Button {...props}>Options</Button>{/snippet}</DropdownMenu.Trigger
+	>
+	<DropdownMenu.Content>
+		<DropdownMenu.Item>Profile</DropdownMenu.Item>
+		<DropdownMenu.Separator />
+		<DropdownMenu.Item>Sign out</DropdownMenu.Item>
+	</DropdownMenu.Content>
 </DropdownMenu.Root>
 
 <!-- Popover -->
 <Popover.Root>
-  <Popover.Trigger>{#snippet child({ props })}<Button {...props}>Details</Button>{/snippet}</Popover.Trigger>
-  <Popover.Content>…</Popover.Content>
+	<Popover.Trigger
+		>{#snippet child({ props })}<Button {...props}>Details</Button>{/snippet}</Popover.Trigger
+	>
+	<Popover.Content>…</Popover.Content>
 </Popover.Root>
 
 <!-- ContextMenu: Trigger is the right-click REGION, not a button.
@@ -545,36 +548,36 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
      here must also be reachable from a visible control.
      Item/Group/Label/Separator are the SAME components DropdownMenu uses. -->
 <ContextMenu.Root>
-  <ContextMenu.Trigger>Right-click this row</ContextMenu.Trigger>
-  <ContextMenu.Content>
-    <ContextMenu.Item>Rename</ContextMenu.Item>
-    <ContextMenu.Separator />
-    <ContextMenu.Item>Delete</ContextMenu.Item>
-  </ContextMenu.Content>
+	<ContextMenu.Trigger>Right-click this row</ContextMenu.Trigger>
+	<ContextMenu.Content>
+		<ContextMenu.Item>Rename</ContextMenu.Item>
+		<ContextMenu.Separator />
+		<ContextMenu.Item>Delete</ContextMenu.Item>
+	</ContextMenu.Content>
 </ContextMenu.Root>
 
 <!-- AlertDialog: destructive confirmation. Title is REQUIRED (aria-labelledby).
      Backdrop click does NOT dismiss. Cancel gets initial focus.
      GOTCHA: Cancel closes the dialog, Action does NOT — close it yourself so a
      failed async operation can keep the dialog open and show the error. -->
-<AlertDialog.Root bind:open={open}>
-  <AlertDialog.Trigger>Delete project</AlertDialog.Trigger>
-  <AlertDialog.Content>
-    <AlertDialog.Title>Delete this project?</AlertDialog.Title>
-    <AlertDialog.Description>Removes every deployment. Cannot be undone.</AlertDialog.Description>
-    <AlertDialog.Cancel>Keep project</AlertDialog.Cancel>
-    <AlertDialog.Action onclick={destroy}>Delete project</AlertDialog.Action>
-  </AlertDialog.Content>
+<AlertDialog.Root bind:open>
+	<AlertDialog.Trigger>Delete project</AlertDialog.Trigger>
+	<AlertDialog.Content>
+		<AlertDialog.Title>Delete this project?</AlertDialog.Title>
+		<AlertDialog.Description>Removes every deployment. Cannot be undone.</AlertDialog.Description>
+		<AlertDialog.Cancel>Keep project</AlertDialog.Cancel>
+		<AlertDialog.Action onclick={destroy}>Delete project</AlertDialog.Action>
+	</AlertDialog.Content>
 </AlertDialog.Root>
 
 <!-- Sheet: a Dialog anchored to an edge. side=left|right|top|bottom (default right),
      size=sm|md|lg applies to the axis it grows on. Title REQUIRED. -->
 <Sheet.Root>
-  <Sheet.Trigger>Open filters</Sheet.Trigger>
-  <Sheet.Content side="right" size="md">
-    <Sheet.Title>Filters</Sheet.Title>
-    <Sheet.Close>Done</Sheet.Close>
-  </Sheet.Content>
+	<Sheet.Trigger>Open filters</Sheet.Trigger>
+	<Sheet.Content side="right" size="md">
+		<Sheet.Title>Filters</Sheet.Title>
+		<Sheet.Close>Done</Sheet.Close>
+	</Sheet.Content>
 </Sheet.Root>
 
 <!-- LinkPreview (hover card): HOVER-ONLY. No focus, no touch — keyboard and
@@ -582,16 +585,18 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
      action or a fact. Trigger is an <a href> but Bits reports role="button",
      so it is not announced as a link. Need it clickable? Use Popover. -->
 <LinkPreview.Root>
-  <LinkPreview.Trigger href="https://svelte.dev">Svelte</LinkPreview.Trigger>
-  <LinkPreview.Content>A web framework.</LinkPreview.Content>
+	<LinkPreview.Trigger href="https://svelte.dev">Svelte</LinkPreview.Trigger>
+	<LinkPreview.Content>A web framework.</LinkPreview.Content>
 </LinkPreview.Root>
 
 <!-- Tooltip: requires Tooltip.Provider ancestor -->
 <Tooltip.Provider>
-  <Tooltip.Root>
-    <Tooltip.Trigger>{#snippet child({ props })}<Button {...props}>Hover</Button>{/snippet}</Tooltip.Trigger>
-    <Tooltip.Content><Text size="sm">Hint</Text></Tooltip.Content>
-  </Tooltip.Root>
+	<Tooltip.Root>
+		<Tooltip.Trigger
+			>{#snippet child({ props })}<Button {...props}>Hover</Button>{/snippet}</Tooltip.Trigger
+		>
+		<Tooltip.Content><Text size="sm">Hint</Text></Tooltip.Content>
+	</Tooltip.Root>
 </Tooltip.Provider>
 ```
 
@@ -603,8 +608,8 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
      removes the only cue that more content exists — use type="always" unless the
      overflow is obvious. Scrolling stays native; content is NOT virtualised. -->
 <ScrollArea.Root type="always" style="height: 12rem;">
-  <ScrollArea.Viewport>{content}</ScrollArea.Viewport>
-  <ScrollArea.Scrollbar orientation="vertical"><ScrollArea.Thumb /></ScrollArea.Scrollbar>
+	<ScrollArea.Viewport>{content}</ScrollArea.Viewport>
+	<ScrollArea.Scrollbar orientation="vertical"><ScrollArea.Thumb /></ScrollArea.Scrollbar>
 </ScrollArea.Root>
 
 <!-- Stack / Flex: layout primitives with a DELIBERATELY narrow API.
@@ -645,18 +650,18 @@ A vertical separator is 1px wide and stretches to its parent, so the parent need
      Add `keywords` for words users type that are not in the label.
      Use Loading (not Empty) while fetching. Wrap in a Dialog for a modal palette. -->
 <Command.Root label="Command palette">
-  <Command.Input bind:value={search} placeholder="Type a command" />
-  <Command.List aria-label="Commands">
-    <Command.Viewport>
-      <Command.Empty>No results found.</Command.Empty>
-      <Command.Group>
-        <Command.GroupHeading>Actions</Command.GroupHeading>
-        <Command.GroupItems>
-          <Command.Item value="delete" keywords={['trash']}>Delete</Command.Item>
-        </Command.GroupItems>
-      </Command.Group>
-    </Command.Viewport>
-  </Command.List>
+	<Command.Input bind:value={search} placeholder="Type a command" />
+	<Command.List aria-label="Commands">
+		<Command.Viewport>
+			<Command.Empty>No results found.</Command.Empty>
+			<Command.Group>
+				<Command.GroupHeading>Actions</Command.GroupHeading>
+				<Command.GroupItems>
+					<Command.Item value="delete" keywords={['trash']}>Delete</Command.Item>
+				</Command.GroupItems>
+			</Command.Group>
+		</Command.Viewport>
+	</Command.List>
 </Command.Root>
 
 <!-- Toolbar: role="toolbar" + roving focus = ONE tab stop for the whole bar.
@@ -664,11 +669,11 @@ A vertical separator is 1px wide and stretches to its parent, so the parent need
      Button acts, Link NAVIGATES (stays a real anchor), Group is a toggle group
      (type required, value bindable), GroupItem is one toggle inside it. -->
 <Toolbar.Root aria-label="Formatting">
-  <Toolbar.Group type="multiple" bind:value={marks} aria-label="Text style">
-    <Toolbar.GroupItem value="bold" aria-label="Bold">B</Toolbar.GroupItem>
-  </Toolbar.Group>
-  <Toolbar.Button>Save</Toolbar.Button>
-  <Toolbar.Link href="/help">Help</Toolbar.Link>
+	<Toolbar.Group type="multiple" bind:value={marks} aria-label="Text style">
+		<Toolbar.GroupItem value="bold" aria-label="Bold">B</Toolbar.GroupItem>
+	</Toolbar.Group>
+	<Toolbar.Button>Save</Toolbar.Button>
+	<Toolbar.Link href="/help">Help</Toolbar.Link>
 </Toolbar.Root>
 ```
 
@@ -676,14 +681,14 @@ A vertical separator is 1px wide and stretches to its parent, so the parent need
 
 ```svelte
 <script>
-  import { ThemeProvider } from 'sve-ui';
+	import { ThemeProvider } from 'sve-ui';
 </script>
 
 <ThemeProvider colorScheme="dark">
-  <!-- override tokens on any wrapper -->
-  <div style="--sve-color-primary: #8b5cf6;">
-    <Button color="primary">Themed</Button>
-  </div>
+	<!-- override tokens on any wrapper -->
+	<div style="--sve-color-primary: #8b5cf6;">
+		<Button color="primary">Themed</Button>
+	</div>
 </ThemeProvider>
 ```
 

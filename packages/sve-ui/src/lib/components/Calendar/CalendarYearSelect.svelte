@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { Calendar } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { Calendar } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsProps = ComponentProps<typeof Calendar.YearSelect>;
+	type BitsProps = ComponentProps<typeof Calendar.YearSelect>;
 
-  interface Props extends Omit<BitsProps, 'class'> {
-    /** Extra classes merged onto the select. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsProps, 'class'> {
+		/** Extra classes merged onto the select. */
+		class?: string;
+	}
 
-  let { class: cls, ...rest }: Props = $props();
+	let { class: cls, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -18,7 +18,7 @@
   birth year is not navigation, it is a punishment.
 -->
 <Calendar.YearSelect
-  class={['sve-calendar__select', cls].filter(Boolean).join(' ')}
-  data-slot="calendar-year-select"
-  {...rest}
+	class={['sve-calendar__select', cls].filter(Boolean).join(' ')}
+	data-slot="calendar-year-select"
+	{...rest}
 />

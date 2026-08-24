@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { Calendar } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { Calendar } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsProps = ComponentProps<typeof Calendar.NextButton>;
+	type BitsProps = ComponentProps<typeof Calendar.NextButton>;
 
-  interface Props extends Omit<BitsProps, 'class'> {
-    /** Extra classes merged onto the button. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsProps, 'class'> {
+		/** Extra classes merged onto the button. */
+		class?: string;
+	}
 
-  let { class: cls, children, ...rest }: Props = $props();
+	let { class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -20,8 +20,8 @@
   is an upstream change.
 -->
 <Calendar.NextButton
-  class={['sve-calendar__nav', cls].filter(Boolean).join(' ')}
-  data-slot="calendar-next-button"
-  {children}
-  {...rest}
+	class={['sve-calendar__nav', cls].filter(Boolean).join(' ')}
+	data-slot="calendar-next-button"
+	{children}
+	{...rest}
 />

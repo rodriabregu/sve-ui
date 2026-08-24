@@ -705,7 +705,7 @@
 				"required": false
 			}
 		],
-		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+		"spreads": "Omit<\n\t\tHTMLAttributes<HTMLDivElement>,\n\t\t'class' | 'placeholder' | 'children'\n\t>"
 	},
 	"CalendarYearSelect": {
 		"props": [
@@ -1159,7 +1159,7 @@
 				"required": false
 			}
 		],
-		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+		"spreads": "Omit<\n\t\tHTMLAttributes<HTMLDivElement>,\n\t\t'class' | 'placeholder' | 'children'\n\t>"
 	},
 	"DateFieldSegment": {
 		"props": [
@@ -1315,7 +1315,7 @@
 				"required": false
 			}
 		],
-		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+		"spreads": "Omit<\n\t\tHTMLAttributes<HTMLDivElement>,\n\t\t'class' | 'placeholder' | 'children'\n\t>"
 	},
 	"DatePickerTrigger": {
 		"props": [
@@ -1438,7 +1438,7 @@
 				"required": false
 			}
 		],
-		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+		"spreads": "Omit<\n\t\tHTMLAttributes<HTMLDivElement>,\n\t\t'class' | 'placeholder' | 'children'\n\t>"
 	},
 	"DateRangePickerCalendar": {
 		"props": [
@@ -1582,7 +1582,7 @@
 				"required": false
 			}
 		],
-		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+		"spreads": "Omit<\n\t\tHTMLAttributes<HTMLDivElement>,\n\t\t'class' | 'placeholder' | 'children'\n\t>"
 	},
 	"DateRangePickerTrigger": {
 		"props": [
@@ -2280,7 +2280,7 @@
 				"required": false
 			}
 		],
-		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+		"spreads": "Omit<\n\t\tHTMLAttributes<HTMLDivElement>,\n\t\t'class' | 'placeholder' | 'children'\n\t>"
 	},
 	"RatingGroupItem": {
 		"props": [
@@ -3354,7 +3354,7 @@
 				"required": false
 			}
 		],
-		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+		"spreads": "Omit<\n\t\tHTMLAttributes<HTMLDivElement>,\n\t\t'class' | 'placeholder' | 'children'\n\t>"
 	},
 	"TimeFieldSegment": {
 		"props": [
@@ -3483,7 +3483,7 @@
 				"required": false
 			}
 		],
-		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'placeholder' | 'children'>"
+		"spreads": "Omit<\n\t\tHTMLAttributes<HTMLDivElement>,\n\t\t'class' | 'placeholder' | 'children'\n\t>"
 	},
 	"ToastItem": {
 		"props": [
@@ -3511,7 +3511,7 @@
 			},
 			{
 				"prop": "position",
-				"type": "| 'top-left'\n    | 'top-center'\n    | 'top-right'\n    | 'bottom-left'\n    | 'bottom-center'\n    | 'bottom-right'",
+				"type": "'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'",
 				"required": false,
 				"default": "'bottom-right'",
 				"description": "Where the stack sits."

@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { PinInput } from 'bits-ui';
-  import type { ComponentProps } from 'svelte';
+	import { PinInput } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
 
-  type BitsRootProps = ComponentProps<typeof PinInput.Root>;
+	type BitsRootProps = ComponentProps<typeof PinInput.Root>;
 
-  interface Props extends Omit<BitsRootProps, 'class' | 'value'> {
-    /** The entered code. Bindable. */
-    value?: string;
-    /** Extra classes merged onto the root. */
-    class?: string;
-  }
+	interface Props extends Omit<BitsRootProps, 'class' | 'value'> {
+		/** The entered code. Bindable. */
+		value?: string;
+		/** Extra classes merged onto the root. */
+		class?: string;
+	}
 
-  // `value` must be destructured and passed as `bind:value`. Forwarding it in
-  // the spread makes it one-way, so typed digits would not reach the caller.
-  let { value = $bindable(''), class: cls, children, ...rest }: Props = $props();
+	// `value` must be destructured and passed as `bind:value`. Forwarding it in
+	// the spread makes it one-way, so typed digits would not reach the caller.
+	let { value = $bindable(''), class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -45,22 +45,22 @@
   Use `onComplete` to submit rather than making the user hunt for a button.
 -->
 <PinInput.Root
-  bind:value
-  class={['sve-pin-input', cls].filter(Boolean).join(' ')}
-  data-slot="pin-input"
-  {children}
-  {...rest}
+	bind:value
+	class={['sve-pin-input', cls].filter(Boolean).join(' ')}
+	data-slot="pin-input"
+	{children}
+	{...rest}
 />
 
 <style>
-  :global(.sve-pin-input) {
-    display: flex;
-    align-items: center;
-    gap: var(--sve-space-2);
-    font-family: var(--sve-font-family-sans);
-  }
+	:global(.sve-pin-input) {
+		display: flex;
+		align-items: center;
+		gap: var(--sve-space-2);
+		font-family: var(--sve-font-family-sans);
+	}
 
-  :global(.sve-pin-input[data-disabled]) {
-    opacity: 0.5;
-  }
+	:global(.sve-pin-input[data-disabled]) {
+		opacity: 0.5;
+	}
 </style>

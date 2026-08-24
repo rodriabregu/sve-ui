@@ -53,13 +53,9 @@ describe('accessibility (axe)', () => {
 		fixture would trade whole-page coverage — where landmark and live-region
 		conflicts BETWEEN components actually surface — for a faster number.
 	*/
-	it(
-		'every component passes axe when used as intended',
-		async () => {
-			const { container } = render(A11yFixture);
-			const results = await axe(container, AXE_OPTIONS);
-			expect(results).toHaveNoViolations();
-		},
-		60_000
-	);
+	it('every component passes axe when used as intended', async () => {
+		const { container } = render(A11yFixture);
+		const results = await axe(container, AXE_OPTIONS);
+		expect(results).toHaveNoViolations();
+	}, 60_000);
 });

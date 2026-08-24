@@ -1,40 +1,40 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import type { HTMLAttributes } from 'svelte/elements';
-  import { useSidebar } from './context.js';
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
+	import { useSidebar } from './context.js';
 
-  interface Props extends Omit<HTMLAttributes<HTMLElement>, 'class' | 'aria-label'> {
-    /**
-     * Accessible name for the landmark. An app shell usually has more than one
-     * complementary region, so this is how a screen reader user tells them
-     * apart.
-     * @default 'Sidebar'
-     */
-    label?: string;
-    /** Extra classes merged onto the root. */
-    class?: string;
-    children?: Snippet;
-  }
+	interface Props extends Omit<HTMLAttributes<HTMLElement>, 'class' | 'aria-label'> {
+		/**
+		 * Accessible name for the landmark. An app shell usually has more than one
+		 * complementary region, so this is how a screen reader user tells them
+		 * apart.
+		 * @default 'Sidebar'
+		 */
+		label?: string;
+		/** Extra classes merged onto the root. */
+		class?: string;
+		children?: Snippet;
+	}
 
-  let { label = 'Sidebar', class: cls, children, ...rest }: Props = $props();
+	let { label = 'Sidebar', class: cls, children, ...rest }: Props = $props();
 
-  // State lives on the Provider, because context reaches descendants and not
-  // siblings — see SidebarProvider for why that matters.
-  const ctx = useSidebar();
+	// State lives on the Provider, because context reaches descendants and not
+	// siblings — see SidebarProvider for why that matters.
+	const ctx = useSidebar();
 
-  const collapsed = $derived(ctx?.collapsed === true);
+	const collapsed = $derived(ctx?.collapsed === true);
 
-  const className = $derived(
-    [
-      'sve-sidebar',
-      `sve-sidebar--${ctx?.side ?? 'left'}`,
-      `sve-sidebar--${ctx?.collapsible ?? 'icon'}`,
-      collapsed ? 'sve-sidebar--collapsed' : '',
-      cls
-    ]
-      .filter(Boolean)
-      .join(' ')
-  );
+	const className = $derived(
+		[
+			'sve-sidebar',
+			`sve-sidebar--${ctx?.side ?? 'left'}`,
+			`sve-sidebar--${ctx?.collapsible ?? 'icon'}`,
+			collapsed ? 'sve-sidebar--collapsed' : '',
+			cls
+		]
+			.filter(Boolean)
+			.join(' ')
+	);
 </script>
 
 <!--
@@ -52,57 +52,63 @@
   app can size it without overriding rules.
 -->
 <aside
-  class={className}
-  aria-label={label}
-  id={ctx?.id}
-  data-slot="sidebar"
-  data-collapsed={collapsed ? '' : undefined}
-  {...rest}
+	class={className}
+	aria-label={label}
+	id={ctx?.id}
+	data-slot="sidebar"
+	data-collapsed={collapsed ? '' : undefined}
+	{...rest}
 >
-  {@render children?.()}
+	{@render children?.()}
 </aside>
 
 <style>
-  .sve-sidebar {
-    --sve-sidebar-width: 16rem;
-    --sve-sidebar-width-icon: 3.5rem;
+	.sve-sidebar {
+		--sve-sidebar-width: 16rem;
+		--sve-sidebar-width-icon: 3.5rem;
 
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    width: var(--sve-sidebar-width);
-    height: 100%;
-    overflow: hidden;
-    background-color: var(--sve-color-default-surface);
-    font-family: var(--sve-font-family-sans);
-    color: var(--sve-color-default-foreground);
-    transition: width 0.2s ease, transform 0.2s ease;
-  }
+		display: flex;
+		flex-direction: column;
+		flex-shrink: 0;
+		width: var(--sve-sidebar-width);
+		height: 100%;
+		overflow: hidden;
+		background-color: var(--sve-color-default-surface);
+		font-family: var(--sve-font-family-sans);
+		color: var(--sve-color-default-foreground);
+		transition:
+			width 0.2s ease,
+			transform 0.2s ease;
+	}
 
-  .sve-sidebar--left  { border-right: 1px solid var(--sve-color-default-border); }
-  .sve-sidebar--right { border-left: 1px solid var(--sve-color-default-border); }
+	.sve-sidebar--left {
+		border-right: 1px solid var(--sve-color-default-border);
+	}
+	.sve-sidebar--right {
+		border-left: 1px solid var(--sve-color-default-border);
+	}
 
-  /* --- icon: narrows to a rail. Items stay reachable, labels hide. --- */
-  .sve-sidebar--icon.sve-sidebar--collapsed {
-    width: var(--sve-sidebar-width-icon);
-  }
+	/* --- icon: narrows to a rail. Items stay reachable, labels hide. --- */
+	.sve-sidebar--icon.sve-sidebar--collapsed {
+		width: var(--sve-sidebar-width-icon);
+	}
 
-  /* --- offcanvas: slides out. `width: 0` rather than display:none, so the
+	/* --- offcanvas: slides out. `width: 0` rather than display:none, so the
          transition has something to animate and focus cannot land inside. --- */
-  .sve-sidebar--offcanvas.sve-sidebar--collapsed {
-    width: 0;
-    border-width: 0;
-  }
+	.sve-sidebar--offcanvas.sve-sidebar--collapsed {
+		width: 0;
+		border-width: 0;
+	}
 
-  /* Nothing inside an off-canvas sidebar should be tabbable — a hidden panel
+	/* Nothing inside an off-canvas sidebar should be tabbable — a hidden panel
      that still takes focus is the classic "where did my cursor go" bug. */
-  .sve-sidebar--offcanvas.sve-sidebar--collapsed :global(*) {
-    visibility: hidden;
-  }
+	.sve-sidebar--offcanvas.sve-sidebar--collapsed :global(*) {
+		visibility: hidden;
+	}
 
-  @media (prefers-reduced-motion: reduce) {
-    .sve-sidebar {
-      transition: none;
-    }
-  }
+	@media (prefers-reduced-motion: reduce) {
+		.sve-sidebar {
+			transition: none;
+		}
+	}
 </style>

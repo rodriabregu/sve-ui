@@ -19,16 +19,40 @@
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
 	const rootForwarded: PropRow[] = [
-		{ prop: 'onValueChange', type: '(value: string) => void', description: 'Called when the open menu changes.' },
-		{ prop: 'delayDuration', type: 'number', default: '200', description: 'Milliseconds of hover before a menu opens.' },
-		{ prop: 'skipDelayDuration', type: 'number', default: '300', description: 'Grace period in which moving to another trigger skips the delay.' },
-		{ prop: 'orientation', type: `'horizontal' | 'vertical'`, default: `'horizontal'`, description: 'Layout and arrow-key axis.' },
+		{
+			prop: 'onValueChange',
+			type: '(value: string) => void',
+			description: 'Called when the open menu changes.'
+		},
+		{
+			prop: 'delayDuration',
+			type: 'number',
+			default: '200',
+			description: 'Milliseconds of hover before a menu opens.'
+		},
+		{
+			prop: 'skipDelayDuration',
+			type: 'number',
+			default: '300',
+			description: 'Grace period in which moving to another trigger skips the delay.'
+		},
+		{
+			prop: 'orientation',
+			type: `'horizontal' | 'vertical'`,
+			default: `'horizontal'`,
+			description: 'Layout and arrow-key axis.'
+		},
 		{ prop: 'dir', type: `'ltr' | 'rtl'`, default: `'ltr'`, description: 'Reading direction.' }
 	];
 
 	const linkForwarded: PropRow[] = [
 		{ prop: 'href', type: 'string', description: 'Destination. Rendered as a real anchor.' },
-		{ prop: 'active', type: 'boolean', default: 'false', description: 'Marks the current page. Bits then reports aria-current="page".' }
+		{
+			prop: 'active',
+			type: 'boolean',
+			default: 'false',
+			description: 'Marks the current page. Bits then reports aria-current="page".'
+		}
 	];
 
 	const usageCode = `<script>
@@ -87,14 +111,14 @@
 		<h2 class="sec__h">Navigation Menu vs Menubar</h2>
 		<p class="sec__p">
 			This is the one to use for <strong>site navigation</strong>. Its triggers open on hover after
-			<code class="ic">delayDuration</code> <em>and</em> on click or Enter, so the menu works for
-			pointer, keyboard and touch alike.
+			<code class="ic">delayDuration</code> <em>and</em> on click or Enter, so the menu works for pointer,
+			keyboard and touch alike.
 		</p>
 		<p class="sec__p">
-			<a href="/components/menubar">Menubar</a> is a desktop-application pattern: it assumes hover
-			and a screen wide enough for several always-visible triggers. Neither holds on a phone. Reach
-			for a menubar when you are building application chrome — an editor, an IDE-like tool — and for
-			this when you are building a website's header.
+			<a href="/components/menubar">Menubar</a> is a desktop-application pattern: it assumes hover and
+			a screen wide enough for several always-visible triggers. Neither holds on a phone. Reach for a
+			menubar when you are building application chrome — an editor, an IDE-like tool — and for this when
+			you are building a website's header.
 		</p>
 	</section>
 
@@ -143,19 +167,32 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 </style>

@@ -49,9 +49,10 @@
 		<p class="sec__p">
 			<code class="ic">type</code> is required and it is not a detail — it decides both the
 			behaviour and the shape of <code class="ic">value</code>.
-			<code class="ic">single</code> gives you a string, <code class="ic">multiple</code> gives you a
-			<code class="ic">string[]</code>. Bits owns roving focus and arrow-key navigation, so the whole
-			group is one tab stop.
+			<code class="ic">single</code> gives you a string, <code class="ic">multiple</code> gives you
+			a
+			<code class="ic">string[]</code>. Bits owns roving focus and arrow-key navigation, so the
+			whole group is one tab stop.
 		</p>
 		<Preview code={usageCode}>
 			<ToggleGroup.Root type="single" bind:value={align} aria-label="Text alignment">
@@ -93,22 +94,30 @@
 					<tr><th>Mode</th><th>Item role</th><th>State attribute</th></tr>
 				</thead>
 				<tbody>
-					<tr><td><code class="ic">single</code></td><td><code class="ic">radio</code></td><td><code class="ic">aria-checked</code></td></tr>
-					<tr><td><code class="ic">multiple</code></td><td><code class="ic">button</code></td><td><code class="ic">aria-pressed</code></td></tr>
+					<tr
+						><td><code class="ic">single</code></td><td><code class="ic">radio</code></td><td
+							><code class="ic">aria-checked</code></td
+						></tr
+					>
+					<tr
+						><td><code class="ic">multiple</code></td><td><code class="ic">button</code></td><td
+							><code class="ic">aria-pressed</code></td
+						></tr
+					>
 				</tbody>
 			</table>
 		</div>
 		<p class="sec__p">
-			Either way, the group needs a name — pass <code class="ic">aria-label</code> on the Root — and
-			icon-only items need one each.
+			Either way, the group needs a name — pass <code class="ic">aria-label</code> on the Root — and icon-only
+			items need one each.
 		</p>
 	</section>
 
 	<section id="orientation" class="sec">
 		<h2 class="sec__h">Orientation</h2>
 		<p class="sec__p">
-			<code class="ic">orientation="vertical"</code> stacks the items and switches arrow-key
-			navigation to up/down.
+			<code class="ic">orientation="vertical"</code> stacks the items and switches arrow-key navigation
+			to up/down.
 		</p>
 		<Preview code={orientationCode}>
 			<ToggleGroup.Root type="single" orientation="vertical" bind:value={view} aria-label="View">

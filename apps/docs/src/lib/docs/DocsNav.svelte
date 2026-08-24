@@ -29,9 +29,7 @@
 		groups
 			.map((g) => ({
 				...g,
-				items: g.items.filter((it) =>
-					it.name.toLowerCase().includes(query.trim().toLowerCase())
-				)
+				items: g.items.filter((it) => it.name.toLowerCase().includes(query.trim().toLowerCase()))
 			}))
 			.filter((g) => g.items.length > 0)
 	);
@@ -68,7 +66,17 @@
 
 	<div id="docsnav-panel" class="docsnav__panel" class:is-open={menuOpen}>
 		<div class="docsnav__search">
-			<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
+			<svg
+				width="15"
+				height="15"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg
+			>
 			<input type="search" placeholder={searchLabel} bind:value={query} aria-label={searchLabel} />
 		</div>
 
@@ -238,7 +246,9 @@
 		font-weight: 500;
 		color: var(--doc-fg-muted);
 		text-decoration: none;
-		transition: background-color 120ms ease, color 120ms ease;
+		transition:
+			background-color 120ms ease,
+			color 120ms ease;
 	}
 	.docsnav__link:hover:not(.is-soon) {
 		color: var(--doc-fg);

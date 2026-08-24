@@ -6,12 +6,12 @@ export default defineConfig({
 	resolve: {
 		// Ensure Svelte resolves to the browser (client) bundle.
 		// Without this, the sveltekit() plugin defaults to SSR conditions in tests.
-		conditions: ['browser'],
+		conditions: ['browser']
 	},
 	test: {
 		include: ['src/tests/**/*.{test,spec}.{js,ts,svelte.ts}'],
 		environment: 'jsdom',
 		globals: true,
-		setupFiles: ['./src/tests/setup.ts'],
-	},
+		setupFiles: ['./src/tests/setup.ts']
+	}
 });

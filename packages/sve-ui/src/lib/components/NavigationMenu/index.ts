@@ -33,7 +33,7 @@ type IndicatorProps = ComponentProps<typeof BitsNavigationMenu.Indicator>;
 export const Item: Component<ItemProps> = BitsNavigationMenu.Item as Component<ItemProps>;
 export const Sub: Component<SubProps> = BitsNavigationMenu.Sub as Component<SubProps>;
 export const Indicator: Component<IndicatorProps> =
-  BitsNavigationMenu.Indicator as Component<IndicatorProps>;
+	BitsNavigationMenu.Indicator as Component<IndicatorProps>;
 
 // Styled wrappers
 export { default as Root } from './NavigationMenuRoot.svelte';

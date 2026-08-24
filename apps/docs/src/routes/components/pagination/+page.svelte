@@ -18,12 +18,41 @@
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
 	const rootForwarded: PropRow[] = [
-		{ prop: 'count', type: 'number', required: true, description: 'Total number of items to paginate.' },
-		{ prop: 'perPage', type: 'number', default: '1', description: 'Items per page. count / perPage gives the page count.' },
-		{ prop: 'siblingCount', type: 'number', default: '1', description: 'Visible page buttons either side of the current page.' },
-		{ prop: 'onPageChange', type: '(page: number) => void', description: 'Called when the page changes.' },
-		{ prop: 'loop', type: 'boolean', default: 'false', description: 'Keyboard navigation wraps at either end.' },
-		{ prop: 'orientation', type: `'horizontal' | 'vertical'`, default: `'horizontal'`, description: 'Axis the arrow keys navigate along.' }
+		{
+			prop: 'count',
+			type: 'number',
+			required: true,
+			description: 'Total number of items to paginate.'
+		},
+		{
+			prop: 'perPage',
+			type: 'number',
+			default: '1',
+			description: 'Items per page. count / perPage gives the page count.'
+		},
+		{
+			prop: 'siblingCount',
+			type: 'number',
+			default: '1',
+			description: 'Visible page buttons either side of the current page.'
+		},
+		{
+			prop: 'onPageChange',
+			type: '(page: number) => void',
+			description: 'Called when the page changes.'
+		},
+		{
+			prop: 'loop',
+			type: 'boolean',
+			default: 'false',
+			description: 'Keyboard navigation wraps at either end.'
+		},
+		{
+			prop: 'orientation',
+			type: `'horizontal' | 'vertical'`,
+			default: `'horizontal'`,
+			description: 'Axis the arrow keys navigate along.'
+		}
 	];
 
 	const usageCode = `<script>
@@ -80,15 +109,14 @@
 	<section id="snippet" class="sec">
 		<h2 class="sec__h">Why you render the pages</h2>
 		<p class="sec__p">
-			Root does not emit buttons — it hands you a <code class="ic">pages</code> array through a
-			snippet and you render them. That indirection looks like extra work and buys something real:
-			Bits owns the page range, the ellipsis logic and the keyboard navigation, while the markup stays
-			entirely yours.
+			Root does not emit buttons — it hands you a <code class="ic">pages</code> array through a snippet
+			and you render them. That indirection looks like extra work and buys something real: Bits owns the
+			page range, the ellipsis logic and the keyboard navigation, while the markup stays entirely yours.
 		</p>
 		<p class="sec__p">
 			Each entry is either <code class="ic">type: 'page'</code> — pass it to
-			<code class="ic">Pagination.Page</code> — or <code class="ic">type: 'ellipsis'</code>, which you
-			render however you like. Use <code class="ic">p.key</code> as the
+			<code class="ic">Pagination.Page</code> — or <code class="ic">type: 'ellipsis'</code>, which
+			you render however you like. Use <code class="ic">p.key</code> as the
 			<code class="ic">each</code> key.
 		</p>
 	</section>
@@ -96,15 +124,15 @@
 	<section id="a11y" class="sec">
 		<h2 class="sec__h">Accessibility</h2>
 		<p class="sec__p">
-			Wrap the whole thing in <code class="ic">&lt;nav aria-label="Pagination"&gt;</code>. Bits gives
-			the buttons their roles and marks the active page with
+			Wrap the whole thing in <code class="ic">&lt;nav aria-label="Pagination"&gt;</code>. Bits
+			gives the buttons their roles and marks the active page with
 			<code class="ic">data-selected</code> and <code class="ic">aria-label</code>, so the current
 			page is announced rather than only coloured differently.
 		</p>
 		<p class="sec__p">
-			Prev and Next are disabled at the ends automatically. If you render them as arrows with no text,
-			give each an <code class="ic">aria-label</code> — an unlabelled arrow button is announced as
-			nothing at all.
+			Prev and Next are disabled at the ends automatically. If you render them as arrows with no
+			text, give each an <code class="ic">aria-label</code> — an unlabelled arrow button is announced
+			as nothing at all.
 		</p>
 	</section>
 
@@ -122,18 +150,29 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 	.ellipsis {

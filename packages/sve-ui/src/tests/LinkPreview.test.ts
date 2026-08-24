@@ -17,38 +17,38 @@ import LinkPreviewFixture from './LinkPreviewFixture.svelte';
  * behaviour changes, because the docs describe both.
  */
 describe('LinkPreview', () => {
-  it('renders the trigger as a real anchor with an href', () => {
-    const { container } = render(LinkPreviewFixture, { props: {} });
-    const anchor = container.querySelector('a') as HTMLAnchorElement;
-    expect(anchor).not.toBeNull();
-    expect(anchor.getAttribute('href')).toBe('https://svelte.dev');
-    expect(anchor.textContent?.trim()).toBe('Svelte');
-  });
+	it('renders the trigger as a real anchor with an href', () => {
+		const { container } = render(LinkPreviewFixture, { props: {} });
+		const anchor = container.querySelector('a') as HTMLAnchorElement;
+		expect(anchor).not.toBeNull();
+		expect(anchor.getAttribute('href')).toBe('https://svelte.dev');
+		expect(anchor.textContent?.trim()).toBe('Svelte');
+	});
 
-  it('is announced as a button, not a link — Bits overrides the role', () => {
-    const { container } = render(LinkPreviewFixture, { props: {} });
-    const anchor = container.querySelector('a') as HTMLAnchorElement;
-    expect(anchor.getAttribute('role')).toBe('button');
-    expect(anchor.getAttribute('aria-haspopup')).toBe('dialog');
-  });
+	it('is announced as a button, not a link — Bits overrides the role', () => {
+		const { container } = render(LinkPreviewFixture, { props: {} });
+		const anchor = container.querySelector('a') as HTMLAnchorElement;
+		expect(anchor.getAttribute('role')).toBe('button');
+		expect(anchor.getAttribute('aria-haspopup')).toBe('dialog');
+	});
 
-  it('reports the closed state on the trigger', () => {
-    const { container } = render(LinkPreviewFixture, { props: {} });
-    const anchor = container.querySelector('a') as HTMLAnchorElement;
-    expect(anchor.getAttribute('aria-expanded')).toBe('false');
-    expect(anchor.getAttribute('data-state')).toBe('closed');
-  });
+	it('reports the closed state on the trigger', () => {
+		const { container } = render(LinkPreviewFixture, { props: {} });
+		const anchor = container.querySelector('a') as HTMLAnchorElement;
+		expect(anchor.getAttribute('aria-expanded')).toBe('false');
+		expect(anchor.getAttribute('data-state')).toBe('closed');
+	});
 
-  it('keeps the card closed until hovered', () => {
-    const { baseElement } = render(LinkPreviewFixture, { props: {} });
-    expect(baseElement.querySelector('.sve-link-preview-content')).toBeNull();
-  });
+	it('keeps the card closed until hovered', () => {
+		const { baseElement } = render(LinkPreviewFixture, { props: {} });
+		expect(baseElement.querySelector('.sve-link-preview-content')).toBeNull();
+	});
 
-  it('leaves the trigger keyboard-focusable', () => {
-    const { container } = render(LinkPreviewFixture, { props: {} });
-    const anchor = container.querySelector('a') as HTMLAnchorElement;
-    // A real <a href> is focusable with no tabindex management, so the
-    // destination stays reachable even though the card never opens on focus.
-    expect(anchor.getAttribute('tabindex')).not.toBe('-1');
-  });
+	it('leaves the trigger keyboard-focusable', () => {
+		const { container } = render(LinkPreviewFixture, { props: {} });
+		const anchor = container.querySelector('a') as HTMLAnchorElement;
+		// A real <a href> is focusable with no tabindex management, so the
+		// destination stays reachable even though the card never opens on focus.
+		expect(anchor.getAttribute('tabindex')).not.toBe('-1');
+	});
 });

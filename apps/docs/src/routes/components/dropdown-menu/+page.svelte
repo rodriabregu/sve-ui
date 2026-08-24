@@ -17,20 +17,64 @@
 
 	const props: PropRow[] = [
 		// Root
-		{ prop: 'DropdownMenu.Root — open', type: 'boolean', default: 'false', description: 'Controlled open state.' },
-		{ prop: 'DropdownMenu.Root — onOpenChange', type: '(open: boolean) => void', description: 'Callback fired when open state changes.' },
+		{
+			prop: 'DropdownMenu.Root — open',
+			type: 'boolean',
+			default: 'false',
+			description: 'Controlled open state.'
+		},
+		{
+			prop: 'DropdownMenu.Root — onOpenChange',
+			type: '(open: boolean) => void',
+			description: 'Callback fired when open state changes.'
+		},
 		// Trigger
-		{ prop: 'DropdownMenu.Trigger — child', type: 'Snippet<[{ props: object }]>', description: 'Render prop that spreads trigger props onto a real element.' },
+		{
+			prop: 'DropdownMenu.Trigger — child',
+			type: 'Snippet<[{ props: object }]>',
+			description: 'Render prop that spreads trigger props onto a real element.'
+		},
 		// Content
-		{ prop: 'DropdownMenu.Content — class', type: 'string', description: 'Extra classes merged onto the menu panel.' },
-		{ prop: 'DropdownMenu.Content — sideOffset', type: 'number', default: '4', description: 'Gap in px between trigger and menu.' },
-		{ prop: 'DropdownMenu.Content — align', type: `'start' | 'center' | 'end'`, default: `'start'`, description: 'Horizontal alignment relative to the trigger.' },
+		{
+			prop: 'DropdownMenu.Content — class',
+			type: 'string',
+			description: 'Extra classes merged onto the menu panel.'
+		},
+		{
+			prop: 'DropdownMenu.Content — sideOffset',
+			type: 'number',
+			default: '4',
+			description: 'Gap in px between trigger and menu.'
+		},
+		{
+			prop: 'DropdownMenu.Content — align',
+			type: `'start' | 'center' | 'end'`,
+			default: `'start'`,
+			description: 'Horizontal alignment relative to the trigger.'
+		},
 		// Item
-		{ prop: 'DropdownMenu.Item — disabled', type: 'boolean', default: 'false', description: 'Prevents selection and applies muted styling.' },
-		{ prop: 'DropdownMenu.Item — onSelect', type: '() => void', description: 'Callback fired when the item is selected.' },
-		{ prop: 'DropdownMenu.Item — class', type: 'string', description: 'Extra classes merged onto the item.' },
+		{
+			prop: 'DropdownMenu.Item — disabled',
+			type: 'boolean',
+			default: 'false',
+			description: 'Prevents selection and applies muted styling.'
+		},
+		{
+			prop: 'DropdownMenu.Item — onSelect',
+			type: '() => void',
+			description: 'Callback fired when the item is selected.'
+		},
+		{
+			prop: 'DropdownMenu.Item — class',
+			type: 'string',
+			description: 'Extra classes merged onto the item.'
+		},
 		// Separator
-		{ prop: 'DropdownMenu.Separator — class', type: 'string', description: 'Extra classes merged onto the separator.' }
+		{
+			prop: 'DropdownMenu.Separator — class',
+			type: 'string',
+			description: 'Extra classes merged onto the separator.'
+		}
 	];
 
 	const usageCode = `<script>
@@ -102,8 +146,8 @@
 		<h2 class="sec__h">Groups & Labels</h2>
 		<p class="sec__p">
 			Use <code class="ic">DropdownMenu.Group</code> with <code class="ic">DropdownMenu.Label</code>
-			to section related items. The <code class="ic">disabled</code> prop on an item prevents
-			selection while keeping it visible.
+			to section related items. The <code class="ic">disabled</code> prop on an item prevents selection
+			while keeping it visible.
 		</p>
 		<Preview code={groupsCode}>
 			<DropdownMenu.Root>
@@ -130,8 +174,8 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
-			Built on <code class="ic">bits-ui</code> — all underlying Bits UI DropdownMenu props are
-			forwarded transparently.
+			Built on <code class="ic">bits-ui</code> — all underlying Bits UI DropdownMenu props are forwarded
+			transparently.
 		</p>
 		<PropsTable rows={props} />
 	</section>

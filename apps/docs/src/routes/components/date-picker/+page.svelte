@@ -70,26 +70,28 @@
 								<DatePicker.Heading />
 								<DatePicker.NextButton>›</DatePicker.NextButton>
 							</DatePicker.Header>
-						{#each months as month (month.value)}
-							<DatePicker.Grid>
-								<DatePicker.GridHead>
-									<DatePicker.GridRow>
-										{#each weekdays as day, i (i)}
-											<DatePicker.HeadCell>{day}</DatePicker.HeadCell>
-										{/each}
-									</DatePicker.GridRow>
-								</DatePicker.GridHead>
-								<DatePicker.GridBody>
-									{#each month.weeks as week, i (i)}
+							{#each months as month (month.value)}
+								<DatePicker.Grid>
+									<DatePicker.GridHead>
 										<DatePicker.GridRow>
-											{#each week as date (date)}
-												<DatePicker.Cell {date} month={month.value}><DatePicker.Day /></DatePicker.Cell>
+											{#each weekdays as day, i (i)}
+												<DatePicker.HeadCell>{day}</DatePicker.HeadCell>
 											{/each}
 										</DatePicker.GridRow>
-									{/each}
-								</DatePicker.GridBody>
-							</DatePicker.Grid>
-						{/each}
+									</DatePicker.GridHead>
+									<DatePicker.GridBody>
+										{#each month.weeks as week, i (i)}
+											<DatePicker.GridRow>
+												{#each week as date (date)}
+													<DatePicker.Cell {date} month={month.value}
+														><DatePicker.Day /></DatePicker.Cell
+													>
+												{/each}
+											</DatePicker.GridRow>
+										{/each}
+									</DatePicker.GridBody>
+								</DatePicker.Grid>
+							{/each}
 						{/snippet}
 					</DatePicker.Calendar>
 				</DatePicker.Content>
@@ -102,13 +104,14 @@
 		<p class="sec__p">
 			The pairing is the point. Someone who <em>knows</em> the date types it in three keystrokes;
 			someone choosing "the second Tuesday" opens the calendar. Ship only the
-			<a href="/components/calendar">calendar</a> and you have made the fast path slow. Ship only the
+			<a href="/components/calendar">calendar</a> and you have made the fast path slow. Ship only
+			the
 			<a href="/components/date-field">field</a> and you have made browsing impossible.
 		</p>
 		<p class="sec__p">
 			They share one value rather than two synced ones, which is why typing a date moves the
-			calendar's selection and picking a day fills the segments — no reconciliation code on your side.
-			Asserted in the tests.
+			calendar's selection and picking a day fills the segments — no reconciliation code on your
+			side. Asserted in the tests.
 		</p>
 	</section>
 
@@ -120,19 +123,25 @@
 			Everything else is a component you already have, because Bits re-exports the identical modules:
 		</p>
 		<ul class="sec__p">
-			<li><code class="ic">Input</code>, <code class="ic">Label</code>, <code class="ic">Segment</code> → <a href="/components/date-field">Date Field</a></li>
+			<li>
+				<code class="ic">Input</code>, <code class="ic">Label</code>,
+				<code class="ic">Segment</code>
+				→ <a href="/components/date-field">Date Field</a>
+			</li>
 			<li>the calendar chrome → <a href="/components/calendar">Calendar</a></li>
-			<li><code class="ic">Arrow</code>, <code class="ic">Close</code> → <a href="/components/popover">Popover</a></li>
+			<li>
+				<code class="ic">Arrow</code>, <code class="ic">Close</code> →
+				<a href="/components/popover">Popover</a>
+			</li>
 		</ul>
 		<p class="sec__p">
-			So a field inside a picker behaves and looks exactly like a standalone one — not by convention,
-			but because it <em>is</em> the same component.
+			So a field inside a picker behaves and looks exactly like a standalone one — not by
+			convention, but because it <em>is</em> the same component.
 		</p>
 		<p class="sec__p">
-			Everything on those pages applies here: <code class="ic">locale</code> reorders the segments and
-			sets the calendar's first day of week, <code class="ic">calendarLabel</code> must be passed
-			(Bits defaults it to the literal word "Event"), and the calendar's nav buttons have hardcoded
-			aria-labels.
+			Everything on those pages applies here: <code class="ic">locale</code> reorders the segments
+			and sets the calendar's first day of week, <code class="ic">calendarLabel</code> must be passed
+			(Bits defaults it to the literal word "Event"), and the calendar's nav buttons have hardcoded aria-labels.
 		</p>
 	</section>
 
@@ -150,19 +159,32 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 </style>

@@ -20,31 +20,31 @@ const DIST = new URL('../dist/', import.meta.url).pathname;
 const COLLAPSED = /^declare const (\w+): any;$/m;
 
 function walk(dir) {
-  return readdirSync(dir).flatMap((entry) => {
-    const full = join(dir, entry);
-    return statSync(full).isDirectory() ? walk(full) : [full];
-  });
+	return readdirSync(dir).flatMap((entry) => {
+		const full = join(dir, entry);
+		return statSync(full).isDirectory() ? walk(full) : [full];
+	});
 }
 
 const declarations = walk(DIST).filter((f) => f.endsWith('.svelte.d.ts'));
 
 if (declarations.length === 0) {
-  console.error('check-dts: no .svelte.d.ts files found in dist — did svelte-package run?');
-  process.exit(1);
+	console.error('check-dts: no .svelte.d.ts files found in dist — did svelte-package run?');
+	process.exit(1);
 }
 
 const broken = declarations
-  .map((file) => ({ file, match: COLLAPSED.exec(readFileSync(file, 'utf8')) }))
-  .filter(({ match }) => match !== null)
-  .map(({ file, match }) => `  ${relative(DIST, file)} → declare const ${match[1]}: any`);
+	.map((file) => ({ file, match: COLLAPSED.exec(readFileSync(file, 'utf8')) }))
+	.filter(({ match }) => match !== null)
+	.map(({ file, match }) => `  ${relative(DIST, file)} → declare const ${match[1]}: any`);
 
 if (broken.length > 0) {
-  console.error(
-    `check-dts: ${broken.length} component type(s) collapsed to \`any\`, so consumers get no prop types:\n${broken.join(
-      '\n'
-    )}\n\nUsually a name collision between the component and something it imports.\nAlias the import — e.g. \`import { Label as LabelPrimitive } from 'bits-ui'\`.`
-  );
-  process.exit(1);
+	console.error(
+		`check-dts: ${broken.length} component type(s) collapsed to \`any\`, so consumers get no prop types:\n${broken.join(
+			'\n'
+		)}\n\nUsually a name collision between the component and something it imports.\nAlias the import — e.g. \`import { Label as LabelPrimitive } from 'bits-ui'\`.`
+	);
+	process.exit(1);
 }
 
 console.log(`check-dts: ${declarations.length} component types OK (no \`any\`).`);

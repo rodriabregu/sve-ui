@@ -45,14 +45,12 @@ type LinkItemProps = ComponentProps<typeof BitsCommand.LinkItem>;
 
 // Behaviour re-exports — cast to portable Component types so the emitted
 // declaration does not reference bits-ui internals.
-export const Viewport: Component<ViewportProps> =
-  BitsCommand.Viewport as Component<ViewportProps>;
+export const Viewport: Component<ViewportProps> = BitsCommand.Viewport as Component<ViewportProps>;
 export const GroupItems: Component<GroupItemsProps> =
-  BitsCommand.GroupItems as Component<GroupItemsProps>;
+	BitsCommand.GroupItems as Component<GroupItemsProps>;
 // LinkItem is an Item that navigates — a real anchor, so middle-click and
 // open-in-new-tab keep working.
-export const LinkItem: Component<LinkItemProps> =
-  BitsCommand.LinkItem as Component<LinkItemProps>;
+export const LinkItem: Component<LinkItemProps> = BitsCommand.LinkItem as Component<LinkItemProps>;
 
 // Styled wrappers
 export { default as Root } from './CommandRoot.svelte';

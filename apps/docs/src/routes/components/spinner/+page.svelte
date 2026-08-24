@@ -15,7 +15,6 @@
 		{ id: 'props', label: 'Props' }
 	];
 
-
 	const usageCode = `<script>
   import { Spinner } from 'sve-ui';
 <\u002fscript>
@@ -37,8 +36,8 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			Import <code class="ic">Spinner</code> and drop it anywhere you need an indeterminate loading
-			indicator. It ships as a single component — no sub-parts.
+			Import <code class="ic">Spinner</code> and drop it anywhere you need an indeterminate loading indicator.
+			It ships as a single component — no sub-parts.
 		</p>
 		<Preview code={usageCode}>
 			<Spinner color="primary" />
@@ -47,7 +46,11 @@
 
 	<section id="sizes" class="sec">
 		<h2 class="sec__h">Sizes</h2>
-		<p class="sec__p">Three sizes from the <code class="ic">size</code> prop: <code class="ic">sm</code> (16 px), <code class="ic">md</code> (24 px), and <code class="ic">lg</code> (40 px).</p>
+		<p class="sec__p">
+			Three sizes from the <code class="ic">size</code> prop: <code class="ic">sm</code> (16 px),
+			<code class="ic">md</code>
+			(24 px), and <code class="ic">lg</code> (40 px).
+		</p>
 		<Preview code={sizesCode}>
 			<Spinner size="sm" color="primary" />
 			<Spinner size="md" color="primary" />
@@ -57,7 +60,11 @@
 
 	<section id="colors" class="sec">
 		<h2 class="sec__h">Colors</h2>
-		<p class="sec__p">Semantic tones via the <code class="ic">color</code> prop — all driven by <code class="ic">--sve-*</code> tokens through <code class="ic">currentColor</code>.</p>
+		<p class="sec__p">
+			Semantic tones via the <code class="ic">color</code> prop — all driven by
+			<code class="ic">--sve-*</code>
+			tokens through <code class="ic">currentColor</code>.
+		</p>
 		<Preview code={colorsCode}>
 			<Spinner size="md" color="primary" />
 			<Spinner size="md" color="success" />
@@ -70,9 +77,10 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
-			Plus every native <code class="ic">&lt;span&gt;</code> attribute via prop spreading.
-			The <code class="ic">role="status"</code> and <code class="ic">aria-label</code> are always
-			applied — override <code class="ic">label</code> to localise the accessible name.
+			Plus every native <code class="ic">&lt;span&gt;</code> attribute via prop spreading. The
+			<code class="ic">role="status"</code>
+			and <code class="ic">aria-label</code> are always applied — override
+			<code class="ic">label</code> to localise the accessible name.
 		</p>
 		<PropsTable component="Spinner" />
 	</section>

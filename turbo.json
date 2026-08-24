@@ -1,23 +1,23 @@
 {
-  "$schema": "https://turborepo.dev/schema.json",
-  "globalPassThroughEnv": ["ENABLE_EXPERIMENTAL_COREPACK"],
-  "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".svelte-kit/**", "build/**", ".vercel/**"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "lint": {
-      "dependsOn": ["^build"]
-    },
-    "check": {
-      "dependsOn": ["^build"]
-    },
-    "test": {
-      "dependsOn": ["^build"]
-    }
-  }
+	"$schema": "https://turborepo.dev/schema.json",
+	"globalPassThroughEnv": ["ENABLE_EXPERIMENTAL_COREPACK"],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**", ".svelte-kit/**", "build/**", ".vercel/**"]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		},
+		"lint": {
+			"dependsOn": ["^build"]
+		},
+		"check": {
+			"dependsOn": ["^build"]
+		},
+		"test": {
+			"dependsOn": ["^build"]
+		}
+	}
 }

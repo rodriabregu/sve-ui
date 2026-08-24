@@ -52,8 +52,7 @@
 			Composes exactly like <a href="/components/calendar">Calendar</a>; only the selection model
 			differs. <code class="ic">value</code> is
 			<code class="ic">{'{ start, end }'}</code> of <code class="ic">DateValue</code>s, and
-			<code class="ic">@internationalized/date</code> is a peerDependency — install it alongside
-			sve-ui.
+			<code class="ic">@internationalized/date</code> is a peerDependency — install it alongside sve-ui.
 		</p>
 		<Preview code={usageCode} align="start">
 			<RangeCalendar.Root bind:value bind:placeholder calendarLabel="Stay dates">
@@ -94,8 +93,8 @@
 		<h2 class="sec__h">The two-step interaction</h2>
 		<p class="sec__p">
 			First click sets the start, second sets the end, and hovering between them previews the span.
-			Bits also <strong>normalises a backwards selection</strong>, so clicking the end before the start
-			does the sensible thing rather than producing an inverted range — which is the bug every
+			Bits also <strong>normalises a backwards selection</strong>, so clicking the end before the
+			start does the sensible thing rather than producing an inverted range — which is the bug every
 			hand-rolled range picker ships first.
 		</p>
 		<p class="sec__p">
@@ -109,14 +108,13 @@
 	<section id="bounds" class="sec">
 		<h2 class="sec__h">Bounding the span</h2>
 		<p class="sec__p">
-			<code class="ic">minDays</code> and <code class="ic">maxDays</code> bound how long a range may
-			be — a two-night minimum, a fortnight maximum.
+			<code class="ic">minDays</code> and <code class="ic">maxDays</code> bound how long a range may be
+			— a two-night minimum, a fortnight maximum.
 		</p>
 		<p class="sec__p">
 			<code class="ic">excludeDisabled</code> refuses a range that would straddle an unavailable date.
-			That one matters for booking: without it, a user can select across a day that is already taken
-			and the range silently swallows it. "Three nights including the one that is gone" is not a valid
-			answer.
+			That one matters for booking: without it, a user can select across a day that is already taken and
+			the range silently swallows it. "Three nights including the one that is gone" is not a valid answer.
 		</p>
 	</section>
 
@@ -128,8 +126,8 @@
 			<code class="ic">GridBody</code>, <code class="ic">GridRow</code>,
 			<code class="ic">HeadCell</code>, <code class="ic">MonthSelect</code> and
 			<code class="ic">YearSelect</code> are the <strong>same components</strong>
-			<a href="/components/calendar">Calendar</a> uses — Bits re-exports the identical modules to both
-			namespaces, so there is one styled implementation rather than two copies of the same CSS
+			<a href="/components/calendar">Calendar</a> uses — Bits re-exports the identical modules to
+			both namespaces, so there is one styled implementation rather than two copies of the same CSS
 			drifting apart. Only <code class="ic">Root</code>, <code class="ic">Cell</code> and
 			<code class="ic">Day</code> are range-specific.
 		</p>
@@ -147,19 +145,32 @@
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
-	.sec__p a { color: var(--doc-primary-text); }
+	.sec__p a {
+		color: var(--doc-primary-text);
+	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
 </style>

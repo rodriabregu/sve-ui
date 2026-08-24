@@ -43,9 +43,9 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			A single <code class="ic">Heading</code> component renders any <code class="ic">h1</code>–<code
-				class="ic">h6</code
-			> element. Visual size is decoupled from the semantic level.
+			A single <code class="ic">Heading</code> component renders any
+			<code class="ic">h1</code>–<code class="ic">h6</code> element. Visual size is decoupled from the
+			semantic level.
 		</p>
 		<Preview code={usageCode}>
 			<Heading level={1} size="lg">Ship it</Heading>
@@ -55,8 +55,8 @@
 	<section id="levels" class="sec">
 		<h2 class="sec__h">Levels</h2>
 		<p class="sec__p">
-			The <code class="ic">level</code> prop controls the rendered HTML element for correct document
-			structure. Size is set separately.
+			The <code class="ic">level</code> prop controls the rendered HTML element for correct document structure.
+			Size is set separately.
 		</p>
 		<Preview code={levelsCode} align="start">
 			<div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
@@ -102,9 +102,7 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
-		<p class="sec__p">
-			Plus every native heading attribute via prop spreading.
-		</p>
+		<p class="sec__p">Plus every native heading attribute via prop spreading.</p>
 		<PropsTable component="Heading" />
 	</section>
 </DocPage>

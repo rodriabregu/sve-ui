@@ -22,7 +22,11 @@
 			description: 'Required. Selection mode.'
 		},
 		{ prop: 'Select.Root · value', type: 'string', description: 'Bindable selected value.' },
-		{ prop: 'Select.Trigger · class', type: 'string', description: 'Extra classes on the trigger.' },
+		{
+			prop: 'Select.Trigger · class',
+			type: 'string',
+			description: 'Extra classes on the trigger.'
+		},
 		{
 			prop: 'Select.Item · value',
 			type: 'string',

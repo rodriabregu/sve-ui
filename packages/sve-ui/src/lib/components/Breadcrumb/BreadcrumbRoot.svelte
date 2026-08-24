@@ -1,20 +1,20 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import type { HTMLAttributes } from 'svelte/elements';
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-  interface Props extends Omit<HTMLAttributes<HTMLElement>, 'class' | 'aria-label'> {
-    /**
-     * Accessible name for the navigation landmark.
-     * @default 'Breadcrumb'
-     */
-    label?: string;
-    /** Extra classes merged onto the nav. */
-    class?: string;
-    /** Compose `Breadcrumb.List` inside. */
-    children?: Snippet;
-  }
+	interface Props extends Omit<HTMLAttributes<HTMLElement>, 'class' | 'aria-label'> {
+		/**
+		 * Accessible name for the navigation landmark.
+		 * @default 'Breadcrumb'
+		 */
+		label?: string;
+		/** Extra classes merged onto the nav. */
+		class?: string;
+		/** Compose `Breadcrumb.List` inside. */
+		children?: Snippet;
+	}
 
-  let { label = 'Breadcrumb', class: cls, children, ...rest }: Props = $props();
+	let { label = 'Breadcrumb', class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -24,18 +24,18 @@
   always has one.
 -->
 <nav
-  class={['sve-breadcrumb', cls].filter(Boolean).join(' ')}
-  aria-label={label}
-  data-slot="breadcrumb"
-  {...rest}
+	class={['sve-breadcrumb', cls].filter(Boolean).join(' ')}
+	aria-label={label}
+	data-slot="breadcrumb"
+	{...rest}
 >
-  {@render children?.()}
+	{@render children?.()}
 </nav>
 
 <style>
-  .sve-breadcrumb {
-    font-family: var(--sve-font-family-sans);
-    font-size: var(--sve-font-size-sm);
-    color: var(--sve-color-default-foreground);
-  }
+	.sve-breadcrumb {
+		font-family: var(--sve-font-family-sans);
+		font-size: var(--sve-font-size-sm);
+		color: var(--sve-color-default-foreground);
+	}
 </style>

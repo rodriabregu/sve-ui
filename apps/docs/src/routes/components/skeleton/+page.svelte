@@ -52,9 +52,9 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			<code class="ic">Skeleton</code> is a shimmering placeholder you render in place of content
-			that has not arrived yet. It is one element with no sub-parts — you compose several to sketch
-			the shape of the real layout.
+			<code class="ic">Skeleton</code> is a shimmering placeholder you render in place of content that
+			has not arrived yet. It is one element with no sub-parts — you compose several to sketch the shape
+			of the real layout.
 		</p>
 		<Preview code={usageCode} align="start">
 			<Skeleton width="14rem" />
@@ -80,9 +80,9 @@
 	<section id="sizing" class="sec">
 		<h2 class="sec__h">Sizing</h2>
 		<p class="sec__p">
-			<code class="ic">width</code> and <code class="ic">height</code> take any CSS length and win
-			over the variant defaults. Use percentages for ragged text lines — that is what makes a
-			skeleton read as text rather than as a bar chart.
+			<code class="ic">width</code> and <code class="ic">height</code> take any CSS length and win over
+			the variant defaults. Use percentages for ragged text lines — that is what makes a skeleton read
+			as text rather than as a bar chart.
 		</p>
 		<Preview code={sizingCode} align="start">
 			<div class="stack">

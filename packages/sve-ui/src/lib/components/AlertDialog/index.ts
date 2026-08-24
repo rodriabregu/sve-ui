@@ -32,7 +32,7 @@ export { default as Content } from './AlertDialogContent.svelte';
 export { default as Title } from './AlertDialogTitle.svelte';
 export { default as Description } from './AlertDialogDescription.svelte';
 export {
-  default as Action,
-  type Color as AlertDialogActionColor,
+	default as Action,
+	type Color as AlertDialogActionColor
 } from './AlertDialogAction.svelte';
 export { default as Cancel } from './AlertDialogCancel.svelte';

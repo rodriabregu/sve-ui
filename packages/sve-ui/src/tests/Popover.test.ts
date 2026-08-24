@@ -15,52 +15,52 @@ import { render, fireEvent, screen, waitFor } from '@testing-library/svelte';
 import PopoverFixture from './PopoverFixture.svelte';
 
 describe('Popover', () => {
-  it('renders trigger without error', () => {
-    render(PopoverFixture);
-    const trigger = screen.getByRole('button', { name: 'Open popover' });
-    expect(trigger).toBeTruthy();
-  });
+	it('renders trigger without error', () => {
+		render(PopoverFixture);
+		const trigger = screen.getByRole('button', { name: 'Open popover' });
+		expect(trigger).toBeTruthy();
+	});
 
-  it('popover content is NOT in the DOM before trigger click', () => {
-    render(PopoverFixture);
-    expect(screen.queryByText('Popover content')).toBeNull();
-  });
+	it('popover content is NOT in the DOM before trigger click', () => {
+		render(PopoverFixture);
+		expect(screen.queryByText('Popover content')).toBeNull();
+	});
 
-  it('after trigger click, content appears with text "Popover content"', async () => {
-    render(PopoverFixture);
-    const trigger = screen.getByRole('button', { name: 'Open popover' });
-    await fireEvent.click(trigger);
+	it('after trigger click, content appears with text "Popover content"', async () => {
+		render(PopoverFixture);
+		const trigger = screen.getByRole('button', { name: 'Open popover' });
+		await fireEvent.click(trigger);
 
-    await waitFor(() => {
-      expect(screen.getByText('Popover content')).toBeTruthy();
-    });
-  });
+		await waitFor(() => {
+			expect(screen.getByText('Popover content')).toBeTruthy();
+		});
+	});
 
-  it('close button is rendered inside when open', async () => {
-    render(PopoverFixture);
-    const trigger = screen.getByRole('button', { name: 'Open popover' });
-    await fireEvent.click(trigger);
+	it('close button is rendered inside when open', async () => {
+		render(PopoverFixture);
+		const trigger = screen.getByRole('button', { name: 'Open popover' });
+		await fireEvent.click(trigger);
 
-    await waitFor(() => {
-      const closeButton = screen.getByRole('button', { name: 'Close' });
-      expect(closeButton).toBeTruthy();
-    });
-  });
+		await waitFor(() => {
+			const closeButton = screen.getByRole('button', { name: 'Close' });
+			expect(closeButton).toBeTruthy();
+		});
+	});
 
-  it('Escape key closes the popover', async () => {
-    render(PopoverFixture);
-    const trigger = screen.getByRole('button', { name: 'Open popover' });
-    await fireEvent.click(trigger);
+	it('Escape key closes the popover', async () => {
+		render(PopoverFixture);
+		const trigger = screen.getByRole('button', { name: 'Open popover' });
+		await fireEvent.click(trigger);
 
-    await waitFor(() => expect(screen.getByText('Popover content')).toBeTruthy());
+		await waitFor(() => expect(screen.getByText('Popover content')).toBeTruthy());
 
-    await fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
+		await fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' });
 
-    await waitFor(() => {
-      expect(screen.queryByText('Popover content')).toBeNull();
-    });
-  });
+		await waitFor(() => {
+			expect(screen.queryByText('Popover content')).toBeNull();
+		});
+	});
 
-  it.todo('popover positioning relative to trigger (needs Playwright e2e)');
-  it.todo('arrow rendering and positioning (needs Playwright e2e)');
+	it.todo('popover positioning relative to trigger (needs Playwright e2e)');
+	it.todo('arrow rendering and positioning (needs Playwright e2e)');
 });

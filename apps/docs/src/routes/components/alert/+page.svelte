@@ -43,7 +43,11 @@
 	];
 
 	const descriptionProps: PropRow[] = [
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the description element.' },
+		{
+			prop: 'class',
+			type: 'string',
+			description: 'Extra classes merged onto the description element.'
+		},
 		{ prop: 'children', type: 'Snippet', description: 'Description text.' }
 	];
 
@@ -105,7 +109,10 @@
 
 	<section id="colors" class="sec">
 		<h2 class="sec__h">Colors</h2>
-		<p class="sec__p">Five semantic tones via the <code class="ic">color</code> prop, all driven by <code class="ic">--sve-*</code> tokens.</p>
+		<p class="sec__p">
+			Five semantic tones via the <code class="ic">color</code> prop, all driven by
+			<code class="ic">--sve-*</code> tokens.
+		</p>
 		<Preview code={colorsCode} align="start">
 			<Alert.Root color="primary" variant="subtle">
 				<Alert.Title>Info</Alert.Title>
@@ -148,7 +155,8 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
-			<code class="ic">Alert.Root</code> — plus every native <code class="ic">&lt;div&gt;</code> attribute via prop spreading.
+			<code class="ic">Alert.Root</code> — plus every native <code class="ic">&lt;div&gt;</code> attribute
+			via prop spreading.
 		</p>
 		<PropsTable rows={rootProps} />
 

@@ -61,10 +61,10 @@
 	<section id="why" class="sec">
 		<h2 class="sec__h">Why it matters</h2>
 		<p class="sec__p">
-			The box is reserved <strong>before</strong> the media loads. Without that, the browser has no
-			height to allocate, so everything below jumps down the moment the image arrives — the layout
-			shift users feel as the page fighting them. Reserving the space is not a styling nicety, it is
-			how you stop that.
+			The box is reserved <strong>before</strong> the media loads. Without that, the browser has no height
+			to allocate, so everything below jumps down the moment the image arrives — the layout shift users
+			feel as the page fighting them. Reserving the space is not a styling nicety, it is how you stop
+			that.
 		</p>
 		<p class="sec__p">
 			It is purely presentational and adds no ARIA of its own, so the content keeps its own
@@ -75,27 +75,43 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
-		<p class="sec__p">Plus every native <code class="ic">&lt;div&gt;</code> attribute via prop spreading.</p>
+		<p class="sec__p">
+			Plus every native <code class="ic">&lt;div&gt;</code> attribute via prop spreading.
+		</p>
 		<PropsTable component="AspectRatio" />
 	</section>
 </DocPage>
 
 <style>
-	.sec { margin-bottom: 48px; scroll-margin-top: 84px; }
+	.sec {
+		margin-bottom: 48px;
+		scroll-margin-top: 84px;
+	}
 	.sec__h {
-		font-size: 21px; font-weight: 700; letter-spacing: -0.02em;
-		color: var(--doc-fg); margin: 0 0 6px;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--doc-fg);
+		margin: 0 0 6px;
 	}
 	.sec__p {
-		margin: 0 0 16px; font-size: 14.5px; line-height: 1.55;
+		margin: 0 0 16px;
+		font-size: 14.5px;
+		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
 	.ic {
-		font-family: var(--doc-mono); font-size: 0.85em; padding: 1px 5px;
-		border-radius: 5px; background: var(--doc-surface-2);
+		font-family: var(--doc-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		border-radius: 5px;
+		background: var(--doc-surface-2);
 		color: var(--doc-primary-text);
 	}
-	.demo { width: 100%; max-width: 380px; }
+	.demo {
+		width: 100%;
+		max-width: 380px;
+	}
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));

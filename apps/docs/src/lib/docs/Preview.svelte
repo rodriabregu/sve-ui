@@ -49,10 +49,33 @@
 		</div>
 		<button class="preview__copy" onclick={copy} aria-label="Copy code">
 			{#if copied}
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+				<svg
+					width="14"
+					height="14"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.4"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg
+				>
 				Copied
 			{:else}
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></svg>
+				<svg
+					width="14"
+					height="14"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+					><rect x="9" y="9" width="11" height="11" rx="2" /><path
+						d="M5 15V5a2 2 0 0 1 2-2h10"
+					/></svg
+				>
 				Copy
 			{/if}
 		</button>
@@ -131,7 +154,9 @@
 		font-size: 12.5px;
 		font-weight: 600;
 		cursor: pointer;
-		transition: color 120ms ease, border-color 120ms ease;
+		transition:
+			color 120ms ease,
+			border-color 120ms ease;
 	}
 	.preview__copy:hover {
 		color: var(--doc-fg);

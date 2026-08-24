@@ -76,7 +76,8 @@
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
 			<code class="ic">Textarea</code> is a styled native <code class="ic">&lt;textarea&gt;</code> —
-			no Bits UI primitive behind it, because the platform already gives you everything. Pair it with
+			no Bits UI primitive behind it, because the platform already gives you everything. Pair it
+			with
 			<a href="/components/label">Label</a> so it has an accessible name.
 		</p>
 		<Preview code={usageCode} align="start">
@@ -121,8 +122,7 @@
 		<h2 class="sec__h">Resize</h2>
 		<p class="sec__p">
 			The default is <code class="ic">vertical</code> — users can grow the field without breaking
-			your layout. Use <code class="ic">none</code> when the surrounding layout cannot absorb a
-			resize.
+			your layout. Use <code class="ic">none</code> when the surrounding layout cannot absorb a resize.
 		</p>
 		<Preview code={resizeCode} align="start">
 			<div class="stack">
@@ -138,8 +138,8 @@
 		<p class="sec__p">
 			<code class="ic">invalid</code> paints the danger border and sets
 			<code class="ic">aria-invalid</code>. It does not announce why — point
-			<code class="ic">aria-describedby</code> at your error message so screen readers get the
-			reason, not just the state.
+			<code class="ic">aria-describedby</code> at your error message so screen readers get the reason,
+			not just the state.
 		</p>
 		<Preview code={invalidCode} align="start">
 			<div class="field">
@@ -153,8 +153,8 @@
 	<section id="binding" class="sec">
 		<h2 class="sec__h">Binding</h2>
 		<p class="sec__p">
-			<code class="ic">value</code> is bindable, so <code class="ic">bind:value</code> works exactly
-			like it does on a native textarea.
+			<code class="ic">value</code> is bindable, so <code class="ic">bind:value</code> works exactly like
+			it does on a native textarea.
 		</p>
 		<Preview code={bindingCode} align="start">
 			<div class="field">

@@ -17,11 +17,24 @@
 	];
 
 	const props: PropRow[] = [
-		{ prop: 'value', type: 'string', description: 'The active tab value. Use bind:value for two-way binding.' },
-		{ prop: 'onValueChange', type: '(value: string) => void', description: 'Called when the active tab changes.' },
+		{
+			prop: 'value',
+			type: 'string',
+			description: 'The active tab value. Use bind:value for two-way binding.'
+		},
+		{
+			prop: 'onValueChange',
+			type: '(value: string) => void',
+			description: 'Called when the active tab changes.'
+		},
 		{ prop: 'orientation', type: `'horizontal' | 'vertical'`, default: `'horizontal'` },
 		{ prop: 'activationMode', type: `'automatic' | 'manual'`, default: `'automatic'` },
-		{ prop: 'loop', type: 'boolean', default: 'true', description: 'Keyboard focus loops from last trigger back to first.' },
+		{
+			prop: 'loop',
+			type: 'boolean',
+			default: 'true',
+			description: 'Keyboard focus loops from last trigger back to first.'
+		},
 		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' },
 		{ prop: 'children', type: 'Snippet', description: 'Compose Tabs.List and Tabs.Content inside.' }
 	];
@@ -50,7 +63,8 @@
 		<p class="sec__p">
 			Import the namespace and compose <code class="ic">Tabs.Root</code>,
 			<code class="ic">Tabs.List</code>, <code class="ic">Tabs.Trigger</code>, and
-			<code class="ic">Tabs.Content</code>. Use <code class="ic">bind:value</code> to track the active tab.
+			<code class="ic">Tabs.Content</code>. Use <code class="ic">bind:value</code> to track the active
+			tab.
 		</p>
 		<Preview code={usageCode} align="start">
 			<div style="width: 100%; max-width: 400px;">

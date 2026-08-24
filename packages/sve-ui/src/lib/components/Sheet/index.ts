@@ -27,9 +27,9 @@ export const Close = BitsDialog.Close;
 // Styled wrappers
 export { default as Overlay } from './SheetOverlay.svelte';
 export {
-  default as Content,
-  type Side as SheetSide,
-  type Size as SheetSize,
+	default as Content,
+	type Side as SheetSide,
+	type Size as SheetSize
 } from './SheetContent.svelte';
 export { default as Title } from './SheetTitle.svelte';
 export { default as Description } from './SheetDescription.svelte';

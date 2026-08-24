@@ -1,8 +1,8 @@
 <script lang="ts">
-  import * as Switch from '$lib/components/Switch/index.js';
+	import * as Switch from '$lib/components/Switch/index.js';
 
-  let { size }: { size?: 'sm' | 'md' | 'lg' } = $props();
-  let checked = $state(false);
+	let { size }: { size?: 'sm' | 'md' | 'lg' } = $props();
+	let checked = $state(false);
 </script>
 
 <Switch.Root bind:checked {size} />

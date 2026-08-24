@@ -10,12 +10,12 @@
 
 ## Evidence — Command Execution
 
-| Command | Result |
-|---------|--------|
-| `pnpm --filter sve-ui test` | 22/22 tests, 5 suites — GREEN |
-| `pnpm --filter sve-ui check` | 770 files, 0 errors, 0 warnings — GREEN |
-| `pnpm --filter sve-ui build` | vite build + svelte-package + publint — GREEN |
-| `publint` (standalone) | 0 errors, 1 suggestion (git URL format) — GREEN |
+| Command                      | Result                                          |
+| ---------------------------- | ----------------------------------------------- |
+| `pnpm --filter sve-ui test`  | 22/22 tests, 5 suites — GREEN                   |
+| `pnpm --filter sve-ui check` | 770 files, 0 errors, 0 warnings — GREEN         |
+| `pnpm --filter sve-ui build` | vite build + svelte-package + publint — GREEN   |
+| `publint` (standalone)       | 0 errors, 1 suggestion (git URL format) — GREEN |
 
 ---
 
@@ -27,46 +27,46 @@ All 26 tasks (WU-1 through WU-7) are marked `[x]` in `tasks.md`. No unchecked ta
 
 ## Spec Compliance Matrix
 
-| Requirement | Status | Notes |
-|-------------|--------|-------|
-| §1.1 `--sve-*` namespace | PASS | All tokens use `--sve-` prefix exclusively |
-| §1.2 Six color roles | PASS | primary, secondary, success, warning, danger, default — all present |
-| §1.2 Sub-tokens (foreground, surface, border) | PASS | All four sub-tokens per role |
-| §1.3 Spacing `--sve-space-1..16` | PASS | 10 stops in theme.css |
-| §1.3 Radius tokens | PASS | none/sm/md/lg/full |
-| §1.3 Typography tokens | PASS | All font-family/size/weight/line-height tokens present |
-| §1.4 Light + dark sets | PASS | :root (light), @media + :where(.dark) (dark) |
-| §1.5 `sve-ui/theme` typed exports | PASS | lightTokens, darkTokens, SveTheme, palette scales |
-| §2.1 ThemeProvider props | PASS | theme, colorScheme, class, children — all declared |
-| §2.2 Synthesis model | PASS | div.sve-theme + class:dark/light + inline vars only when theme prop given |
-| §2.3 SSR safety | PASS | No window/document usage; themeToVars is pure |
-| §2.4 Consumer override | PASS | CSS cascade; scoped with :where() |
-| §3.1 Three variant axes | PASS | variant × color × size |
-| §3.1 Variant name 'outlined' | **WARNING** | Spec says `'outlined'`, implementation uses `'outline'` (design also uses `'outline'`) |
-| §3.2 Returns class string | PASS | defineVariants returns joined string |
-| §3.3 No `any` in public surface | PASS | Fully generic types; no any |
-| §3.3 Default = solid/default/md | **WARNING** | Spec says default color is `'default'`; Button.svelte uses `color: 'primary'` |
-| §3.4 Exportable helper | PASS | defineVariants exported from main index |
-| §4.1 exports map | PASS | Exact spec shape; ./theme.css bonus |
-| §4.2 peerDeps svelte ^5 | PASS | Confirmed in package.json |
-| §4.2 bits-ui in dependencies | PASS | `"bits-ui": "2.18.1"` |
-| §4.2 devDeps use catalog: | PASS | All major devDeps use catalog: |
-| §4.3 dist/ contents | PASS | index.js, index.d.ts, theme/index.js, theme/index.d.ts, theme.css, *.svelte.d.ts |
-| §4.3 publint zero errors | PASS | 0 errors |
-| §5.1 Native `<button>` | PASS | Root element is `<button>` |
-| §5.1 Variant×color×size via helper | PASS | defineVariants used; classes correct |
-| §5.1 onclick + native attrs forwarded | PASS | onclick guarded by disabled; {...rest} spreads |
-| §5.1 disabled: native attr + cursor:not-allowed | PASS | Confirmed in CSS + test |
-| §5.1 Snippet children | PASS | `{@render children?.()}` |
-| §5.1 No Tailwind classes | PASS | Test verifies; none present |
-| §5.1 Accessible name | PASS | Native button + snippet content |
-| §5.2 Styled wrapper over bits-ui | PASS | Compose pattern confirmed |
-| §5.2 role=dialog + aria-modal | PASS | Bits UI provides; test confirms |
-| §5.2 Portal | PASS | Dialog.Portal inside DialogContent |
-| §5.2 ESC dismiss | PASS | Test green |
-| §5.2 Overlay click dismiss | ACCEPTED DEVIATION | jsdom cannot test; documented; Escape path tested instead. E2E scope. |
-| §5.2 Focus trap | ACCEPTED (jsdom limited) | Focus-move-from-trigger confirmed; Tab-cycle is browser scope |
-| §5.3 Full chain | PASS | All three commands pass under `--filter sve-ui` |
+| Requirement                                     | Status                   | Notes                                                                                  |
+| ----------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------- |
+| §1.1 `--sve-*` namespace                        | PASS                     | All tokens use `--sve-` prefix exclusively                                             |
+| §1.2 Six color roles                            | PASS                     | primary, secondary, success, warning, danger, default — all present                    |
+| §1.2 Sub-tokens (foreground, surface, border)   | PASS                     | All four sub-tokens per role                                                           |
+| §1.3 Spacing `--sve-space-1..16`                | PASS                     | 10 stops in theme.css                                                                  |
+| §1.3 Radius tokens                              | PASS                     | none/sm/md/lg/full                                                                     |
+| §1.3 Typography tokens                          | PASS                     | All font-family/size/weight/line-height tokens present                                 |
+| §1.4 Light + dark sets                          | PASS                     | :root (light), @media + :where(.dark) (dark)                                           |
+| §1.5 `sve-ui/theme` typed exports               | PASS                     | lightTokens, darkTokens, SveTheme, palette scales                                      |
+| §2.1 ThemeProvider props                        | PASS                     | theme, colorScheme, class, children — all declared                                     |
+| §2.2 Synthesis model                            | PASS                     | div.sve-theme + class:dark/light + inline vars only when theme prop given              |
+| §2.3 SSR safety                                 | PASS                     | No window/document usage; themeToVars is pure                                          |
+| §2.4 Consumer override                          | PASS                     | CSS cascade; scoped with :where()                                                      |
+| §3.1 Three variant axes                         | PASS                     | variant × color × size                                                                 |
+| §3.1 Variant name 'outlined'                    | **WARNING**              | Spec says `'outlined'`, implementation uses `'outline'` (design also uses `'outline'`) |
+| §3.2 Returns class string                       | PASS                     | defineVariants returns joined string                                                   |
+| §3.3 No `any` in public surface                 | PASS                     | Fully generic types; no any                                                            |
+| §3.3 Default = solid/default/md                 | **WARNING**              | Spec says default color is `'default'`; Button.svelte uses `color: 'primary'`          |
+| §3.4 Exportable helper                          | PASS                     | defineVariants exported from main index                                                |
+| §4.1 exports map                                | PASS                     | Exact spec shape; ./theme.css bonus                                                    |
+| §4.2 peerDeps svelte ^5                         | PASS                     | Confirmed in package.json                                                              |
+| §4.2 bits-ui in dependencies                    | PASS                     | `"bits-ui": "2.18.1"`                                                                  |
+| §4.2 devDeps use catalog:                       | PASS                     | All major devDeps use catalog:                                                         |
+| §4.3 dist/ contents                             | PASS                     | index.js, index.d.ts, theme/index.js, theme/index.d.ts, theme.css, \*.svelte.d.ts      |
+| §4.3 publint zero errors                        | PASS                     | 0 errors                                                                               |
+| §5.1 Native `<button>`                          | PASS                     | Root element is `<button>`                                                             |
+| §5.1 Variant×color×size via helper              | PASS                     | defineVariants used; classes correct                                                   |
+| §5.1 onclick + native attrs forwarded           | PASS                     | onclick guarded by disabled; {...rest} spreads                                         |
+| §5.1 disabled: native attr + cursor:not-allowed | PASS                     | Confirmed in CSS + test                                                                |
+| §5.1 Snippet children                           | PASS                     | `{@render children?.()}`                                                               |
+| §5.1 No Tailwind classes                        | PASS                     | Test verifies; none present                                                            |
+| §5.1 Accessible name                            | PASS                     | Native button + snippet content                                                        |
+| §5.2 Styled wrapper over bits-ui                | PASS                     | Compose pattern confirmed                                                              |
+| §5.2 role=dialog + aria-modal                   | PASS                     | Bits UI provides; test confirms                                                        |
+| §5.2 Portal                                     | PASS                     | Dialog.Portal inside DialogContent                                                     |
+| §5.2 ESC dismiss                                | PASS                     | Test green                                                                             |
+| §5.2 Overlay click dismiss                      | ACCEPTED DEVIATION       | jsdom cannot test; documented; Escape path tested instead. E2E scope.                  |
+| §5.2 Focus trap                                 | ACCEPTED (jsdom limited) | Focus-move-from-trigger confirmed; Tab-cycle is browser scope                          |
+| §5.3 Full chain                                 | PASS                     | All three commands pass under `--filter sve-ui`                                        |
 
 ---
 

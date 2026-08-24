@@ -10,12 +10,12 @@ initialized: 2026-06-20
 context:
   type: pnpm + Turborepo monorepo
   package_manager: pnpm@11.8.0
-  node: ">=22.14.0"
+  node: '>=22.14.0'
   packages:
-    - packages/sve-ui       # published library (Svelte 5 rebuild)
+    - packages/sve-ui # published library (Svelte 5 rebuild)
     - packages/typescript-config
     - packages/eslint-config
-    - apps/docs             # SvelteKit 2 + Tailwind 4
+    - apps/docs # SvelteKit 2 + Tailwind 4
   product_vision: >
     HeroUI/NextUI-style accessible Svelte 5 component library.
     No Tailwind required in consumer projects. Theme via CSS custom properties.
@@ -25,9 +25,9 @@ stack:
   framework: Svelte 5.56 / SvelteKit 2.66
   build: Vite 8 + @sveltejs/package 2.5.8 (NOT tsup)
   test_runner: Vitest 4.1.9
-  component_testing: "@testing-library/svelte 5.3.1"
+  component_testing: '@testing-library/svelte 5.3.1'
   lint_hybrid:
-    - oxlint 1.70.0           # .ts/.js only
+    - oxlint 1.70.0 # .ts/.js only
     - eslint 10 (flat config) # .svelte templates via eslint-plugin-svelte
   formatter: Prettier 3.8.4 + prettier-plugin-svelte
   type_checker: TypeScript 6.0.3 + svelte-check
@@ -36,27 +36,27 @@ stack:
 
 testing:
   strict_tdd: true
-  status: provisional           # node_modules not installed yet
+  status: provisional # node_modules not installed yet
   unit:
     available: true
-    command: "pnpm test"        # turbo → vitest in packages/sve-ui
+    command: 'pnpm test' # turbo → vitest in packages/sve-ui
     framework: Vitest 4.1.9
   component:
     available: true
-    tool: "@testing-library/svelte 5.3.1"
+    tool: '@testing-library/svelte 5.3.1'
   a11y:
     available: true
-    tool: "@axe-core/playwright (planned per ROADMAP Phase 2)"
+    tool: '@axe-core/playwright (planned per ROADMAP Phase 2)'
   e2e:
     available: false
-    tool: "—"
+    tool: '—'
   coverage:
     available: true
-    command: "pnpm test -- --coverage"
+    command: 'pnpm test -- --coverage'
   quality:
-    lint: "turbo run lint && oxlint"
-    type_check: "turbo run check"
-    format_check: "prettier --check ."
+    lint: 'turbo run lint && oxlint'
+    type_check: 'turbo run check'
+    format_check: 'prettier --check .'
 
 phases:
   proposal:

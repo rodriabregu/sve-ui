@@ -47,8 +47,8 @@
 	<section id="usage" class="sec">
 		<h2 class="sec__h">Usage</h2>
 		<p class="sec__p">
-			Import and drop in. Works with all native <code class="ic">&lt;input&gt;</code> attributes via
-			prop spreading.
+			Import and drop in. Works with all native <code class="ic">&lt;input&gt;</code> attributes via prop
+			spreading.
 		</p>
 		<Preview code={usageCode}>
 			<Input placeholder="Enter text…" />
@@ -80,8 +80,8 @@
 	<section id="states" class="sec">
 		<h2 class="sec__h">States</h2>
 		<p class="sec__p">
-			Use <code class="ic">invalid</code> for error feedback and <code class="ic">disabled</code> to
-			block interaction.
+			Use <code class="ic">invalid</code> for error feedback and <code class="ic">disabled</code> to block
+			interaction.
 		</p>
 		<Preview code={statesCode}>
 			<Input placeholder="Default" />

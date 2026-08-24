@@ -85,8 +85,8 @@
 		<p class="sec__p">
 			Not every line is meaningful. If the divider is pure decoration — a rule under a heading that
 			already communicates the break — set <code class="ic">decorative</code> so it reports
-			<code class="ic">role="none"</code> and stops adding noise to the accessibility tree. Both
-			render identically.
+			<code class="ic">role="none"</code> and stops adding noise to the accessibility tree. Both render
+			identically.
 		</p>
 		<Preview code={decorativeCode} align="start">
 			<div class="demo">
@@ -102,8 +102,8 @@
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
 			Plus every native <code class="ic">&lt;div&gt;</code> attribute via prop spreading. The colour
-			comes from the <code class="ic">--sve-color-default-border</code> token, so it follows the
-			active theme with no extra work.
+			comes from the <code class="ic">--sve-color-default-border</code> token, so it follows the active
+			theme with no extra work.
 		</p>
 		<PropsTable component="Separator" />
 	</section>

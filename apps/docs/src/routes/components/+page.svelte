@@ -37,7 +37,17 @@
 							<p class="card__blurb">{item.blurb}</p>
 							<span class="card__cta">
 								View
-								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+								<svg
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg
+								>
 							</span>
 						</a>
 					{:else}
@@ -116,7 +126,10 @@
 		border-radius: 14px;
 		background: var(--doc-surface);
 		text-decoration: none;
-		transition: border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+		transition:
+			border-color 140ms ease,
+			transform 140ms ease,
+			box-shadow 140ms ease;
 	}
 	.card:not(.is-soon):hover {
 		border-color: color-mix(in srgb, var(--sve-color-primary) 45%, var(--doc-border));

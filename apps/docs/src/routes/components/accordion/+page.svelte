@@ -67,8 +67,8 @@
 		<p class="sec__p">
 			Import the namespace and compose <code class="ic">Accordion.Root</code>,
 			<code class="ic">Accordion.Item</code>, <code class="ic">Accordion.Header</code>,
-			<code class="ic">Accordion.Trigger</code>, and <code class="ic">Accordion.Content</code>.
-			The <code class="ic">type</code> prop controls whether one or many items can be open at once.
+			<code class="ic">Accordion.Trigger</code>, and <code class="ic">Accordion.Content</code>. The
+			<code class="ic">type</code> prop controls whether one or many items can be open at once.
 		</p>
 		<Preview code={usageCode} align="start">
 			<div style="width: 100%; max-width: 480px;">
@@ -133,8 +133,8 @@
 		<p class="sec__p">
 			Props for <code class="ic">Accordion.Root</code>. Each
 			<code class="ic">Accordion.Item</code> requires a unique <code class="ic">value</code> string
-			that pairs its <code class="ic">Trigger</code> with its <code class="ic">Content</code>.
-			All parts accept <code class="ic">class</code> for custom overrides.
+			that pairs its <code class="ic">Trigger</code> with its <code class="ic">Content</code>. All
+			parts accept <code class="ic">class</code> for custom overrides.
 		</p>
 		<PropsTable component="AccordionRoot" />
 	</section>
