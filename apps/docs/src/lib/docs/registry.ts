@@ -75,7 +75,7 @@ export const componentGroups: ComponentGroup[] = [
 		items: [
 			{ slug: 'tabs', name: 'Tabs', blurb: 'Switch between related panels.', status: 'new', ready: true },
 			{ slug: 'accordion', name: 'Accordion', blurb: 'Collapsible disclosure sections.', status: 'new', ready: true },
-			{ slug: 'sidebar', name: 'Sidebar', blurb: 'Composable app-shell navigation.' },
+			{ slug: 'sidebar', name: 'Sidebar', blurb: 'Composable app-shell navigation.', status: 'new', ready: true },
 			{ slug: 'breadcrumb', name: 'Breadcrumb', blurb: 'Hierarchical page trail.', status: 'new', ready: true },
 			{ slug: 'navigation-menu', name: 'Navigation Menu', blurb: 'Top-level nav with menus.', status: 'new', ready: true },
 			{ slug: 'menubar', name: 'Menubar', blurb: 'Desktop-style menu bar.', status: 'new', ready: true },

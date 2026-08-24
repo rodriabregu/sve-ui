@@ -45,6 +45,7 @@
 	import * as DateField from '$lib/components/DateField/index.js';
 	import * as DateRangeField from '$lib/components/DateRangeField/index.js';
 	import * as DatePicker from '$lib/components/DatePicker/index.js';
+	import * as Sidebar from '$lib/components/Sidebar/index.js';
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -81,6 +82,7 @@
 	let dfValue = $state<CalendarDate | undefined>(undefined);
 	let drfValue = $state({ start: undefined as CalendarDate | undefined, end: undefined as CalendarDate | undefined });
 	let dpValue = $state<CalendarDate | undefined>(new CalendarDate(2026, 1, 15));
+	let sidebarCollapsed = $state(false);
 </script>
 
 <!-- Display -->
@@ -272,6 +274,24 @@
 			</NavigationMenu.Item>
 		</NavigationMenu.List>
 	</NavigationMenu.Root>
+</section>
+<section aria-label="Sidebar">
+	<Sidebar.Provider bind:collapsed={sidebarCollapsed} sidebarId="a11y-sidebar">
+		<Sidebar.Trigger>M</Sidebar.Trigger>
+		<Sidebar.Root label="Main navigation">
+			<Sidebar.Header>Acme</Sidebar.Header>
+			<Sidebar.Content>
+				<Sidebar.Group aria-labelledby="a11y-grp">
+					<Sidebar.GroupLabel id="a11y-grp">Platform</Sidebar.GroupLabel>
+					<Sidebar.Menu>
+						<Sidebar.Item href="/dashboard" active label="Dashboard">Dashboard</Sidebar.Item>
+						<Sidebar.Item disabled label="Reports">Reports</Sidebar.Item>
+					</Sidebar.Menu>
+				</Sidebar.Group>
+			</Sidebar.Content>
+			<Sidebar.Footer>Account</Sidebar.Footer>
+		</Sidebar.Root>
+	</Sidebar.Provider>
 </section>
 <section aria-label="Menubar">
 	<Menubar.Root aria-label="Main">

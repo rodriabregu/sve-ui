@@ -345,6 +345,54 @@ import { Dialog, Select, Tabs } from 'sve-ui';
 </nav>
 ```
 
+### Sidebar
+
+```svelte
+<script>
+  import { Sidebar } from 'sve-ui';
+  let collapsed = $state(false);
+</script>
+
+<!-- Provider owns the state, Root is the <aside>. They are separate because
+     Svelte context reaches DESCENDANTS, not siblings: a Trigger in a top bar
+     next to the sidebar must still sit inside the Provider. With
+     collapsible="offcanvas" the Trigger HAS to be outside Root, or collapsing
+     hides the only way back.
+     Provider imposes no layout unless you pass `shell` (default is
+     display: contents). Size with --sve-sidebar-width / --sve-sidebar-width-icon.
+     No JS media query inside: use collapsible="offcanvas" plus YOUR breakpoint.
+     Persist `collapsed` — one that resets on navigation is worse than none. -->
+<Sidebar.Provider bind:collapsed collapsible="icon" shell>
+  <Sidebar.Root label="Main navigation">
+    <Sidebar.Header>
+      <!-- Label stays the SAME in both states; aria-expanded carries the state. -->
+      <Sidebar.Trigger aria-label="Toggle sidebar">&#9776;</Sidebar.Trigger>
+    </Sidebar.Header>
+    <Sidebar.Content>
+      <Sidebar.Group aria-labelledby="grp-platform">
+        <!-- Visually hidden on the icon rail, NOT removed. -->
+        <Sidebar.GroupLabel id="grp-platform">Platform</Sidebar.GroupLabel>
+        <Sidebar.Menu>
+          <!-- `label` becomes the accessible name on a collapsed icon rail.
+               `active` gives aria-current="page".
+               `disabled` renders a <span>, not a link. -->
+          <Sidebar.Item href="/dashboard" active label="Dashboard">Dashboard</Sidebar.Item>
+          <Sidebar.Item disabled label="Reports">Reports</Sidebar.Item>
+        </Sidebar.Menu>
+      </Sidebar.Group>
+    </Sidebar.Content>
+    <Sidebar.Footer>Account</Sidebar.Footer>
+  </Sidebar.Root>
+
+  <main>Page content</main>
+</Sidebar.Provider>
+```
+
+This is an APP-SHELL panel, not a documentation table of contents. If you find
+yourself overriding `display`, `width`, `border` and the collapse mechanism, you
+want a plain sticky `<nav>` instead.
+
+
 ## Overlays
 
 All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap custom triggers with the Bits `child` snippet.
