@@ -320,6 +320,43 @@ import {(Button, Input, Badge, Slider)} from 'sve-ui'; import {(Dialog, Select, 
 <Meter value={70} max={100} aria-label="Disk usage" />
 ```
 
+### Field
+
+The only accessible way to attach help text or a validation message to a control.
+
+```svelte
+<script>
+	import { Field, Input } from 'sve-ui';
+	let email = $state('');
+	// undefined when valid — NOT '' , which is still a message.
+	let error = $derived(email && !email.includes('@') ? 'Enter a valid email address.' : undefined);
+</script>
+
+<!-- No `invalid` prop: passing `error` is what marks the field invalid, so the
+     styling and aria-invalid cannot disagree with what the user reads.
+     aria-describedby names the error FIRST, then the description, and only ids
+     that actually exist. -->
+<Field label="Email" description="We never share it." {error} required>
+	<!-- The props MUST be spread or the label, description and error are attached
+       to nothing. Field logs an error to the console if you forget. -->
+	{#snippet control(props)}
+		<Input {...props} type="email" bind:value={email} />
+	{/snippet}
+</Field>
+```
+
+Works with any control, including a plain `<input>` — the snippet just hands you
+`id`, `aria-describedby`, `aria-invalid` and `required`.
+
+`label`, `description` and `error` each accept a string or a snippet (for markup
+like a link). Keep `description` short: it is announced every time the control
+takes focus.
+
+The error is NOT a live region, deliberately — an error that is both live and
+referenced by `aria-describedby` is announced twice. When a submit fails, move
+focus to the first invalid control instead; focusing it reads the label, the
+error and the description together.
+
 ### Button as a link
 
 ```svelte

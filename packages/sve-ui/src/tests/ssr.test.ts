@@ -2,6 +2,7 @@
 import { describe, it, expect } from 'vitest';
 import { render } from 'svelte/server';
 import A11yFixture from './A11yFixture.svelte';
+import FieldFixture from './FieldFixture.svelte';
 
 /**
  * Every component, rendered on a server.
@@ -68,5 +69,56 @@ describe('server-side rendering', () => {
 		// `head` must at least be a string: a component throwing while building
 		// head content is a failure mode invisible in the body.
 		expect(typeof head).toBe('string');
+	});
+});
+
+/**
+ * Field's whole shape follows from this file.
+ *
+ * The control arrives through a snippet, and `description`/`error` are props
+ * rather than sibling components, because `aria-describedby` must name only ids
+ * that exist and that has to hold in the SERVER html — not be repaired later by
+ * an effect. A parts-based `<Field.Description>` could only register itself
+ * after the control had already rendered, so the first paint would either miss
+ * the reference or point at an id that was not there yet.
+ *
+ * If these tests ever fail, the design argument is wrong and the API should
+ * change, not the tests.
+ */
+describe('Field on the server', () => {
+	it('resolves every aria-describedby id in the server html', () => {
+		const { body } = render(FieldFixture, {
+			props: { description: 'We never share it.', error: 'Enter a valid email address.' }
+		});
+
+		const described = body.match(/aria-describedby="([^"]+)"/);
+		expect(described).not.toBeNull();
+
+		const ids = described![1].split(' ');
+		expect(ids).toHaveLength(2);
+		for (const id of ids) {
+			// Present in the very first byte of html the browser receives, before any
+			// JavaScript has run.
+			expect(body).toContain(`id="${id}"`);
+		}
+	});
+
+	it('ties the label to the control in the server html', () => {
+		const { body } = render(FieldFixture, { props: { label: 'Email' } });
+		const forAttr = body.match(/for="([^"]+)"/);
+		expect(forAttr).not.toBeNull();
+		expect(body).toContain(`id="${forAttr![1]}"`);
+	});
+
+	it('omits aria-describedby on the server when there is nothing to describe', () => {
+		const { body } = render(FieldFixture, {});
+		// A dangling or empty reference is invalid and announces nothing, so it must
+		// be absent rather than blank — on the server too.
+		expect(body).not.toContain('aria-describedby');
+	});
+
+	it('marks invalid on the server, derived from the error', () => {
+		const { body } = render(FieldFixture, { props: { error: 'Required.' } });
+		expect(body).toContain('aria-invalid="true"');
 	});
 });
