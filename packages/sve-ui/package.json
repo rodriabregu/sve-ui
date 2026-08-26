@@ -28,6 +28,10 @@
 		"dark-mode",
 		"css-variables"
 	],
+	"//sideEffects": "Everything here is side-effect-free EXCEPT the stylesheet. NOT `false`: ./theme.css is an exported subpath that consumers import for its effect alone, and a blanket false lets bundlers drop that import, taking every --sve-* token with it.",
+	"sideEffects": [
+		"**/*.css"
+	],
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -78,7 +82,7 @@
 	},
 	"scripts": {
 		"build": "vite build && pnpm package",
-		"package": "svelte-kit sync && svelte-package && node scripts/check-dts.mjs && publint",
+		"package": "svelte-kit sync && svelte-package && node scripts/check-dts.mjs && node scripts/check-treeshake.mjs && publint",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run",
 		"lint": "eslint ."
