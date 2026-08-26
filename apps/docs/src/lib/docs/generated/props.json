@@ -459,6 +459,24 @@
 				"default": "'md'"
 			},
 			{
+				"prop": "href",
+				"type": "string",
+				"required": false,
+				"description": "Render an anchor instead of a button. Pass this whenever activating the control takes the user somewhere. A `<button>` that navigates in its `onclick` cannot be opened in a new tab or middle-clicked, shows no URL on hover, is announced as a button rather than a link, and does nothing at all until JavaScript has run."
+			},
+			{
+				"prop": "target",
+				"type": "HTMLAnchorAttributes['target']",
+				"required": false,
+				"description": "Anchor target. Only meaningful with `href`."
+			},
+			{
+				"prop": "rel",
+				"type": "string",
+				"required": false,
+				"description": "Anchor rel. Set automatically for `target=\"_blank\"` unless you pass it."
+			},
+			{
 				"prop": "class",
 				"type": "string",
 				"required": false

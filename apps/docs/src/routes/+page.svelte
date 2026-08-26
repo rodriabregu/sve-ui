@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { readyComponents } from '$lib/docs/registry';
 	import {
 		Button,
 		Badge,
@@ -139,12 +140,7 @@
 			</p>
 
 			<div class="mt-7 flex flex-wrap items-center gap-3">
-				<Button
-					variant="solid"
-					color="primary"
-					size="lg"
-					onclick={() => (window.location.href = '/components')}
-				>
+				<Button variant="solid" color="primary" size="lg" href="/components">
 					Explore Components
 					<svg
 						width="16"
@@ -158,12 +154,7 @@
 						aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg
 					>
 				</Button>
-				<Button
-					variant="outline"
-					color="default"
-					size="lg"
-					onclick={() => window.open(REPO, '_blank')}
-				>
+				<Button variant="outline" color="default" size="lg" href={REPO} target="_blank">
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
 						><path
 							d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7 0-.7 0-.7 1.2 0 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C18 4.6 19 4.9 19 4.9c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"
@@ -347,7 +338,7 @@
 <!-- ===================== COMPONENT SHOWCASE ===================== -->
 <section id="components" class="mx-auto max-w-[1180px] px-7 py-8">
 	<div class="mx-auto mb-11 max-w-[620px] text-center">
-		<span class="doc-eyebrow">13 components</span>
+		<span class="doc-eyebrow">{readyComponents} components</span>
 		<h2
 			class="mb-3 mt-3"
 			style="font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; color: var(--doc-fg);"
@@ -1011,16 +1002,12 @@
 		</h2>
 		<div class="mx-auto mb-7 max-w-[480px]">
 			<Text size="lg" align="center" style="color: var(--doc-fg-muted); line-height: 1.55;"
-				>13 components, full theming, accessible by default — and not a line of Tailwind in sight.</Text
+				>{readyComponents} components, full theming, accessible by default — and not a line of Tailwind
+				in sight.</Text
 			>
 		</div>
 		<div class="mb-9 flex flex-wrap items-center justify-center gap-3">
-			<Button
-				variant="solid"
-				color="primary"
-				size="lg"
-				onclick={() => (window.location.href = '/components')}
-			>
+			<Button variant="solid" color="primary" size="lg" href="/components">
 				View all components
 				<svg
 					width="17"
@@ -1034,7 +1021,7 @@
 					aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg
 				>
 			</Button>
-			<Button variant="outline" color="default" size="lg" onclick={() => window.open(NPM, '_blank')}
+			<Button variant="outline" color="default" size="lg" href={NPM} target="_blank"
 				>View on npm</Button
 			>
 		</div>

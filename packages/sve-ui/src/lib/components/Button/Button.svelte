@@ -40,13 +40,26 @@
 </script>
 
 <script lang="ts">
-	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 	import type { Snippet } from 'svelte';
 
 	interface Props extends Omit<HTMLButtonAttributes, 'class'> {
 		variant?: Variant;
 		color?: Color;
 		size?: Size;
+		/**
+		 * Render an anchor instead of a button.
+		 *
+		 * Pass this whenever activating the control takes the user somewhere. A
+		 * `<button>` that navigates in its `onclick` cannot be opened in a new tab
+		 * or middle-clicked, shows no URL on hover, is announced as a button rather
+		 * than a link, and does nothing at all until JavaScript has run.
+		 */
+		href?: string;
+		/** Anchor target. Only meaningful with `href`. */
+		target?: HTMLAnchorAttributes['target'];
+		/** Anchor rel. Set automatically for `target="_blank"` unless you pass it. */
+		rel?: string;
 		class?: string;
 		children?: Snippet;
 	}
@@ -56,6 +69,10 @@
 		color,
 		size,
 		disabled = false,
+		href,
+		target,
+		rel,
+		type,
 		class: cls,
 		onclick,
 		children,
@@ -63,11 +80,53 @@
 	}: Props = $props();
 
 	const className = $derived(buttonVariants({ variant, color, size, class: cls }));
+
+	/*
+		Three elements, not two. A disabled link is not a link: `<a>` has no
+		`disabled` attribute, and an `<a aria-disabled="true">` still takes a tab
+		stop and is still announced as a link, so the user is invited to follow
+		something that goes nowhere. A `<span>` is neither focusable nor a link,
+		which is the honest rendering. Same call as `Sidebar.Item`.
+	*/
+	const element = $derived(href === undefined ? 'button' : disabled ? 'span' : 'a');
+
+	const attrs: Record<string, unknown> = $derived.by(() => {
+		if (element === 'button') {
+			// `type` belongs to <button> alone; forwarding it to an anchor would emit
+			// an attribute that means nothing there.
+			return { type, disabled, onclick: disabled ? undefined : onclick };
+		}
+
+		if (element === 'span') {
+			return { 'aria-disabled': 'true' };
+		}
+
+		return {
+			href,
+			target,
+			/*
+				Without this, the page opened in the new tab can reach back through
+				`window.opener` and navigate the one the user came from. An explicit
+				`rel` always wins, so a caller who needs `opener` can still have it.
+			*/
+			rel: rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined),
+			onclick
+		};
+	});
 </script>
 
-<button class={className} {disabled} onclick={disabled ? undefined : onclick} {...rest}>
+<!--
+  Renders a `<button>` by default, an `<a>` when given an `href`, and a `<span>`
+  when asked to be a disabled link.
+
+  The `href` form exists because the alternative people reach for is
+  `onclick={() => (window.location.href = '/somewhere')}`, and that is not a
+  link: no new tab, no middle-click, no URL on hover, announced as a button, and
+  completely dead until JavaScript has run.
+-->
+<svelte:element this={element} class={className} {...attrs} {...rest}>
 	{@render children?.()}
-</button>
+</svelte:element>
 
 <style>
 	.sve-button {
@@ -96,8 +155,13 @@
 	}
 
 	/* Disabled state */
+	/*
+		`:disabled` only matches form elements, so the disabled-link `<span>` needs
+		the attribute selector or it would render as a live-looking control.
+	*/
 	.sve-button:disabled,
-	.sve-button[disabled] {
+	.sve-button[disabled],
+	.sve-button[aria-disabled='true'] {
 		cursor: not-allowed;
 		opacity: 0.5;
 		pointer-events: none;

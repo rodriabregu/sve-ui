@@ -15,11 +15,15 @@
 		{ id: 'colors', label: 'Colors' },
 		{ id: 'sizes', label: 'Sizes' },
 		{ id: 'states', label: 'States' },
+		{ id: 'links', label: 'As a link' },
 		{ id: 'props', label: 'Props' }
 	];
 
 	const props: PropRow[] = [
 		{ prop: 'variant', type: `'solid' | 'outline' | 'ghost' | 'flat'`, default: `'solid'` },
+		{ prop: 'href', type: 'string', default: '—' },
+		{ prop: 'target', type: 'string', default: '—' },
+		{ prop: 'rel', type: 'string', default: `'noopener noreferrer' for target="_blank"` },
 		{
 			prop: 'color',
 			type: `'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'default'`,
@@ -52,6 +56,15 @@
 	const sizesCode = `<Button size="sm">Small</Button>
 <Button size="md">Medium</Button>
 <Button size="lg">Large</Button>`;
+
+	const linkCode = `<Button color="primary" href="/components">Browse components</Button>
+
+<Button variant="outline" href="https://svelte.dev" target="_blank">
+  Svelte docs
+</Button>
+
+<!-- Renders <span aria-disabled="true">, not a dead anchor -->
+<Button color="primary" href="/components" disabled>Disabled link</Button>`;
 
 	const statesCode = `<Button color="primary">Default</Button>
 <Button color="primary" disabled>Disabled</Button>
@@ -130,6 +143,43 @@
 		</Preview>
 	</section>
 
+	<section id="links" class="sec">
+		<h2 class="sec__h">As a link</h2>
+		<p class="sec__p">
+			Pass <code class="ic">href</code> and it renders an <code class="ic">&lt;a&gt;</code> instead
+			of a
+			<code class="ic">&lt;button&gt;</code>, with the same variants and sizes.
+		</p>
+		<p class="warn">
+			Use it whenever activating the control takes the user somewhere. Do <strong>not</strong> reach
+			for
+			<code class="ic">onclick=&#123;() =&gt; (window.location.href = '/x')&#125;</code> — that is not
+			a link. It cannot be middle-clicked or opened in a new tab, shows no URL on hover, is announced
+			as a button rather than a link, and does nothing at all until JavaScript has run.
+		</p>
+		<Preview code={linkCode} align="start">
+			<Button color="primary" href="/components">Browse components</Button>
+			<Button variant="outline" color="default" href="https://svelte.dev" target="_blank">
+				Svelte docs
+			</Button>
+			<Button color="primary" href="/components" disabled>Disabled link</Button>
+		</Preview>
+		<p class="sec__p" style="margin-top:16px">
+			<code class="ic">target="_blank"</code> gets <code class="ic">rel="noopener noreferrer"</code>
+			automatically. Without it, the opened page can reach back through
+			<code class="ic">window.opener</code> and navigate the tab the user came from. Passing your
+			own
+			<code class="ic">rel</code> always wins.
+		</p>
+		<p class="sec__p">
+			<code class="ic">href</code> together with <code class="ic">disabled</code> renders a
+			<code class="ic">&lt;span aria-disabled="true"&gt;</code>, not an anchor.
+			<code class="ic">&lt;a&gt;</code> has no <code class="ic">disabled</code> attribute, and an
+			<code class="ic">&lt;a aria-disabled&gt;</code> still takes a tab stop and is still announced as
+			a link — so it invites the user to follow something that goes nowhere.
+		</p>
+	</section>
+
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p">
@@ -157,6 +207,17 @@
 		line-height: 1.55;
 		color: var(--doc-fg-muted);
 	}
+	.warn {
+		margin: 0 0 16px;
+		padding: 12px 14px;
+		border-left: 3px solid var(--doc-primary-text);
+		background: var(--doc-surface-2);
+		border-radius: 0 8px 8px 0;
+		font-size: 14px;
+		line-height: 1.55;
+		color: var(--doc-fg-muted);
+	}
+
 	.ic {
 		font-family: var(--doc-mono);
 		font-size: 0.85em;

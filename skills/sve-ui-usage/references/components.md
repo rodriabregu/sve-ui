@@ -320,6 +320,29 @@ import {(Button, Input, Badge, Slider)} from 'sve-ui'; import {(Dialog, Select, 
 <Meter value={70} max={100} aria-label="Disk usage" />
 ```
 
+### Button as a link
+
+```svelte
+<!-- href renders an <a> with the same variants and sizes. Use it whenever
+     activating the control takes the user somewhere. -->
+<Button color="primary" href="/components">Browse components</Button>
+
+<!-- rel="noopener noreferrer" is added automatically for _blank: without it the
+     opened page can reach window.opener and navigate the tab behind it. An
+     explicit rel always wins. -->
+<Button variant="outline" href="https://svelte.dev" target="_blank">Svelte docs</Button>
+
+<!-- href + disabled renders <span aria-disabled="true">, NOT an anchor: <a> has
+     no disabled attribute, and <a aria-disabled> still takes a tab stop and is
+     still announced as a link that goes nowhere. -->
+<Button href="/components" disabled>Not available yet</Button>
+```
+
+NEVER navigate from a Button's `onclick`. `onclick={() => (window.location.href =
+'/x')}` is not a link: no middle-click, no open-in-new-tab, no URL on hover,
+announced as a button rather than a link, and completely dead until JavaScript
+has run.
+
 ### Toast
 
 The only imperative API in the library. A toast reports an EVENT, not state, and
