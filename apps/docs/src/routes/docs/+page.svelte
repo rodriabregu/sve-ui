@@ -53,16 +53,8 @@
 		<h2 class="sec__h">Next steps</h2>
 		<p class="sec__p">Install the package, then browse the components.</p>
 		<div class="sec__cta">
-			<Button color="primary" onclick={() => (window.location.href = '/docs/installation')}>
-				Installation
-			</Button>
-			<Button
-				variant="outline"
-				color="default"
-				onclick={() => (window.location.href = '/components')}
-			>
-				Browse components
-			</Button>
+			<Button color="primary" href="/docs/installation">Installation</Button>
+			<Button variant="outline" color="default" href="/components">Browse components</Button>
 		</div>
 		<Text size="sm" class="mt-3" style="color: var(--doc-fg-subtle);">
 			Building with an AI agent? See the <a class="lnk" href="/docs/ai-agents">AI &amp; Agents</a> guide.
