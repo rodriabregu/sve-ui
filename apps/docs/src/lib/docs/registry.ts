@@ -50,6 +50,13 @@ export const componentGroups: ComponentGroup[] = [
 			},
 			{ slug: 'input', name: 'Input', blurb: 'Single-line text field with states.', ready: true },
 			{
+				slug: 'field',
+				name: 'Field',
+				blurb: 'Label, help text and validation, wired to one control.',
+				status: 'new',
+				ready: true
+			},
+			{
 				slug: 'checkbox',
 				name: 'Checkbox',
 				blurb: 'Boolean choice, accessible by default.',

@@ -48,6 +48,10 @@
 	import * as Sidebar from '$lib/components/Sidebar/index.js';
 	import * as Table from '$lib/components/Table/index.js';
 	import * as Toast from '$lib/components/Toast/index.js';
+	import Field from '$lib/components/Field/Field.svelte';
+
+	let a11yFieldEmail = $state('');
+	let a11yFieldAge = $state('');
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
 	import * as Alert from '$lib/components/Alert/index.js';
@@ -451,6 +455,21 @@
 
 <!-- Utilities -->
 <section aria-label="Code"><Code code="const answer = 42;" /></section>
+
+<section aria-label="Field">
+	<!-- Both states: a valid field with help text, and an invalid one, so axe sees
+	     an aria-describedby naming two ids at once. -->
+	<Field label="Email" description="We never share it." required>
+		{#snippet control(props)}
+			<Input {...props} type="email" bind:value={a11yFieldEmail} />
+		{/snippet}
+	</Field>
+	<Field label="Age" description="Used for age-restricted content." error="Enter a whole number.">
+		{#snippet control(props)}
+			<Input {...props} bind:value={a11yFieldAge} />
+		{/snippet}
+	</Field>
+</section>
 
 <section aria-label="Table">
 	<Table.Root scrollLabel="Quarterly revenue, scrollable" zebra stickyHeader>

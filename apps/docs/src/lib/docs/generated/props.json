@@ -1663,6 +1663,48 @@
 		],
 		"spreads": "Omit<BitsContentProps, 'class'>"
 	},
+	"Field": {
+		"props": [
+			{
+				"prop": "label",
+				"type": "string | Snippet",
+				"required": true,
+				"description": "The control's accessible name. Rendered as a `<label for>`."
+			},
+			{
+				"prop": "description",
+				"type": "string | Snippet",
+				"required": false,
+				"description": "Standing help text. Read out with the control, so keep it short — it is announced every time the control takes focus."
+			},
+			{
+				"prop": "error",
+				"type": "string | Snippet",
+				"required": false,
+				"description": "The validation message. Its presence is what makes the field invalid: there is no separate `invalid` prop, so the styling and `aria-invalid` cannot disagree with what the user is reading. Pass `undefined` (not an empty string) when the field is valid."
+			},
+			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control required and shows the marker on the label."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the wrapper."
+			},
+			{
+				"prop": "control",
+				"type": "Snippet<[FieldControlProps]>",
+				"required": true,
+				"description": "The control. Spread the props it is given, or nothing is wired."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
 	"Flex": {
 		"props": [
 			{

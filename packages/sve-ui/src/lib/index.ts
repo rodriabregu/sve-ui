@@ -29,6 +29,8 @@ export { default as Code } from './components/Code/Code.svelte';
 export { default as Slider } from './components/Slider/Slider.svelte';
 export { default as Textarea } from './components/Textarea/Textarea.svelte';
 export { default as Label } from './components/Label/Label.svelte';
+// Ties a control to its label, description and error with matching ids.
+export { default as Field } from './components/Field/Field.svelte';
 export { default as Skeleton } from './components/Skeleton/Skeleton.svelte';
 export { default as Separator } from './components/Separator/Separator.svelte';
 export { default as Toggle } from './components/Toggle/Toggle.svelte';
