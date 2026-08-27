@@ -14,6 +14,10 @@ node_modules
 # Generated from the component sources by `pnpm gen:props` — formatting it would
 # fight the generator and break the drift guard.
 apps/docs/src/lib/docs/generated/
+
+# Written by `pnpm check:render:update`, for the same reason: prettier and the
+# script would rewrite each other on every baseline update.
+apps/docs/render-baseline.json
 .env
 .env.*
 !.env.example
