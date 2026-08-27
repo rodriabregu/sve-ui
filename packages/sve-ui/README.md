@@ -108,11 +108,12 @@ per-subtree token overrides via its `theme` prop.
 
 ## Package exports
 
-| Import             | What                                                               |
-| ------------------ | ------------------------------------------------------------------ |
-| `sve-ui`           | All components, `ThemeProvider`, variant helpers and types         |
-| `sve-ui/theme`     | Token maps and theming utilities (`lightTokens`, `themeToVars`, …) |
-| `sve-ui/theme.css` | The stylesheet that registers all `--sve-*` variables              |
+| Import                        | What                                                               |
+| ----------------------------- | ------------------------------------------------------------------ |
+| `sve-ui`                      | All components, `ThemeProvider`, variant helpers and types         |
+| `sve-ui/theme`                | Token maps and theming utilities (`lightTokens`, `themeToVars`, …) |
+| `sve-ui/theme.css`            | The stylesheet that registers all `--sve-*` variables              |
+| `sve-ui/skills/sve-ui-usage/` | An agent skill, shipped in the package — see below                 |
 
 ## Requirements
 
@@ -126,3 +127,19 @@ per-subtree token overrides via its `theme` prop.
 ## License
 
 [MIT](https://github.com/rodriabregu/sve-ui/blob/main/LICENSE) © Rodrigo Abregu
+
+## Building with an AI agent
+
+The package ships an agent skill so your assistant writes real `sve-ui` code
+instead of guessing prop names:
+
+```bash
+mkdir -p .claude/skills
+cp -r node_modules/sve-ui/skills/sve-ui-usage .claude/skills/
+```
+
+It encodes the parts an LLM gets wrong on its own: importing `sve-ui/theme.css`
+once, single versus namespace imports, the Bits `child` snippet for overlay
+triggers, mirroring the theme class onto `<body>` for portalled overlays, that
+`Button` takes `href` rather than navigating from `onclick`, and that `Field` is
+the only thing here that wires `aria-describedby`.

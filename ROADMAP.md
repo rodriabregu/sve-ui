@@ -29,59 +29,74 @@ outside use, not towards more components.
 
 ## Now — known broken or missing, with evidence
 
-### 1. The agent skill is not in the published package
+### 1. The agent skill is not in the published package — DONE
 
-`packages/sve-ui/package.json` declares `"files": ["dist"]`, and the published
-tarball contains **zero** skill files. `skills/sve-ui-usage/` exists, is
-maintained, is referenced from the docs site — and no one who runs
-`pnpm add sve-ui` ever receives it.
+`files` was `["dist"]` and the tarball had **zero** skill files, while the docs
+site described the skill as something the package ships and told people to
+`cp -r sve-ui/skills/...` — a path an installed copy never had.
 
-The skill's whole purpose is that a consumer's agent generates correct `sve-ui`
-code. Right now it only helps agents working _inside this repo_.
+- [x] `skills/` moved into the package and added to `files`; it documents the
+      package, so it belongs with it
+- [x] `scripts/check-package-files.mjs` asks `npm pack --dry-run --json` for the
+      real file list and fails if a promised path is not packed. Proven to fail.
+- [x] The package README now mentions it — it never did — and the install
+      command points at `node_modules/sve-ui/skills/sve-ui-usage`
 
-- [ ] Add `skills` to `files`, or publish it as a separate entry point
-- [ ] Reference it from the package README, which currently does not mention it
-- [ ] Verify against the published tarball, not the repo
+### 2. The prop generator cannot see forwarded Bits props — CORRECTED
 
-### 2. Twenty-seven docs pages still hand-write their prop tables
+This item used to read "27 docs pages still hand-write their prop tables", as if
+those pages were behind. **They are not, and porting them would have deleted most
+of each component's documented API.** Measured coverage of the hand-written rows
+against what the generator produces:
 
-The generator (`apps/docs/scripts/gen-props.mjs`) reads real `interface Props`
-via the TypeScript AST, and 43 pages consume it through `<PropsTable component>`.
-**27 pages still declare their own `PropRow[]` arrays.**
+| Page                                                                           | Generated coverage | Props the generator cannot see                                              |
+| ------------------------------------------------------------------------------ | ------------------ | --------------------------------------------------------------------------- |
+| `menubar`, `pagination`, `pin-input`, `rating-group`, `toolbar`, `radio-group` | **0%**             | `count`, `perPage`, `onComplete`, `loop`, `orientation`, `onValueChange`, … |
+| `command`                                                                      | 12%                | `label`, `shouldFilter`, `filter`, `onSelect`, …                            |
+| `tabs`                                                                         | 14%                | `value`, `onValueChange`, `activationMode`, …                               |
+| `checkbox`, `switch`                                                           | 50–66%             | `checked`, `indeterminate`                                                  |
+| `alert-dialog`, `combobox`, `context-menu`, `link-preview`, `select`           | no entry at all    | the whole surface                                                           |
+| `card`                                                                         | 100%               | —                                                                           |
 
-The CI drift guard checks that `props.json` matches the components. It does
-**not** check that pages use `props.json`. So those 27 can document props that no
-longer exist, indefinitely, with CI green — which is precisely the drift risk the
-old roadmap flagged and only half closed.
+The cause is structural, not sloppiness. Those wrappers declare
+`interface Props extends Omit<ComponentProps<typeof Bits.Root>, …>` and almost
+nothing of their own, and the generator reads literally-declared members. Every
+real prop is **inherited from Bits and forwarded through the spread**, so the
+generator is blind to it. Namespace pages lose specific props the same way:
+`DialogTitle.level`, `PopoverContent.side`, `TooltipContent.sideOffset`.
 
-- [ ] Port the remaining 27 pages
-- [ ] Fail CI when any page under `routes/components` declares `PropRow[]`
+So the drift risk is real but the fix is not a port. Two options, and this needs
+a decision before any work:
 
-### 3. No visual regression coverage
+- **Teach the generator to expand inherited Bits types** via the TypeScript
+  checker. The actual fix, and it makes every page portable. The hard part is not
+  reading the type, it is subtracting the HTML attribute surface —
+  `ComponentProps<typeof Popover.Content>` includes every `div` attribute, and a
+  naive expansion produces useless 200-row tables.
+- **Keep hand-written rows for what is forwarded**, using `PropsTable`'s existing
+  `extra`, and guard only that the generated half is used where it exists.
+  Cheaper, leaves a seam.
 
-59 components, most styling in `:global` blocks, and nothing that would notice a
-layout change.
+- [ ] Decide between the two
+- [ ] Only then: port, and forbid bare `PropRow[]` in CI
 
-The evidence this is needed is concrete: the Prettier sweep touched 291
-`.svelte` files, and to gain any confidence I had to **hand-roll a prerendered
-HTML differ** — normalise scope hashes, strip the bootstrap script, collapse
-whitespace runs without deleting them. Having to improvise that _is_ the finding.
-My first version of it was even wrong in a way that would have hidden a real
-spacing change.
+### 3. No visual regression coverage — PARTLY DONE
 
-- [ ] Screenshot diffing over the 64 prerendered pages (Playwright)
-- [ ] Keep the HTML-level differ too: it is cheap, deterministic, and catches
-      structural changes screenshots blur over
-
-### 4. Coverage is not measured at all
-
-No `coverage` config anywhere. 561 tests and no idea which lines they never
-reach. The old roadmap wants a coverage badge; you cannot badge what you do not
-measure.
-
-- [ ] Turn on Vitest coverage, publish the number
-- [ ] Look at what is uncovered before setting any threshold — a threshold picked
-      before reading the report just codifies today's blind spots
+- [x] `apps/docs/scripts/check-render.mjs` — a structural render guard over all
+      **65** prerendered pages, wired into CI after `build`. It compares a digest
+      (ordered element skeleton plus attribute names, values and text dropped)
+      against a committed baseline, so copy edits are free while a changed tag,
+      lost attribute or reordered element fails. Normalises the things that churn
+      every build: Svelte scope hashes derived from source text, chunk names,
+      Bits ids, the SvelteKit token. **Both halves proven**: a copy-only edit
+      passes; injecting one element reports `~ components/badge.html (+2 elements)`.
+      Its first version used a flat `readdir`, covered 3 of 65 pages and reported
+      success, so it now walks recursively and refuses to run on fewer than 20.
+- [ ] **Screenshot diffing is deliberately still open.** It needs its own change
+      because of one concrete problem: baselines generated on macOS do not match
+      Linux CI font rendering, so they have to be produced in the CI image or a
+      pinned container. That is infrastructure plus a binary-baseline review
+      workflow, and bolting it on here would have meant doing it badly.
 
 ---
 

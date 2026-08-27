@@ -50,8 +50,10 @@
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"//files": "`skills` ships on purpose: the agent skill teaches a CONSUMER's agent the real API, so it is useless if it only exists in this repo. Guarded by scripts/check-package-files.mjs, which inspects the actual tarball.",
 	"files": [
-		"dist"
+		"dist",
+		"skills"
 	],
 	"peerDependencies": {
 		"@internationalized/date": "^3.8.1",
@@ -82,7 +84,7 @@
 	},
 	"scripts": {
 		"build": "vite build && pnpm package",
-		"package": "svelte-kit sync && svelte-package && node scripts/check-dts.mjs && node scripts/check-treeshake.mjs && publint",
+		"package": "svelte-kit sync && svelte-package && node scripts/check-dts.mjs && node scripts/check-treeshake.mjs && node scripts/check-package-files.mjs && publint",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run",
 		"lint": "eslint ."

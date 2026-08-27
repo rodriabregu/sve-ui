@@ -53,7 +53,8 @@ ${components}
 
 ## Optional
 
-- [GitHub repository](https://github.com/rodriabregu/sve-ui): source, issues, and the sve-ui-usage agent skill at \`skills/sve-ui-usage/\`.
+- The sve-ui-usage agent skill ships inside the package: \`node_modules/sve-ui/skills/sve-ui-usage/SKILL.md\` after installing, no separate download.
+- [GitHub repository](https://github.com/rodriabregu/sve-ui): source and issues.
 - [npm package](https://www.npmjs.com/package/sve-ui)
 - Coming soon: ${soon}.
 `;
