@@ -60,5 +60,7 @@ export { default as Item } from './CommandItem.svelte';
 export { default as Group } from './CommandGroup.svelte';
 export { default as GroupHeading } from './CommandGroupHeading.svelte';
 export { default as Empty } from './CommandEmpty.svelte';
+// A polite live region reporting the result count; Bits announces nothing.
+export { default as Status } from './CommandStatus.svelte';
 export { default as Separator } from './CommandSeparator.svelte';
 export { default as Loading } from './CommandLoading.svelte';

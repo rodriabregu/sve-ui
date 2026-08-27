@@ -445,6 +445,7 @@
 <section aria-label="Command palette">
 	<Command.Root label="Command palette" bind:value={commandValue}>
 		<Command.Input bind:value={commandSearch} placeholder="Type a command" />
+		<Command.Status />
 		<Command.List aria-label="Commands">
 			<Command.Viewport>
 				<Command.Empty>No results found.</Command.Empty>

@@ -244,9 +244,26 @@ Closed since:
 
 Still open:
 
-- [ ] `aria-busy` appears in one component. Anything that loads content
-      asynchronously — `Command` filtering results, `Combobox` — has no story for
-      announcing "8 results" or "loading".
+- [x] **Result announcements — DONE.** Bits filters the Command list and
+      announced nothing, so a screen reader user typed and the list shrank in
+      silence. `Command.Status` is a polite, atomic, visually hidden region fed by
+      intercepting Bits' `onStateChange` (the caller's handler still runs, first).
+
+      The `delay` is the design, not a detail: without it, typing "button" fires
+      six announcements and the user hears a torrent instead of an answer. Each
+      keystroke restarts the wait. It stays silent until the search is non-empty,
+      because the count of an unfiltered list is not news.
+
+      `label` takes a function of the count, because the default is English and a
+      count needs the app's language and plural rules.
+
+      **`Combobox` deliberately gets no component**: Bits does not filter there,
+      the consumer does, so they already know the count. Documented as a pattern
+      rather than wrapped in API that adds nothing.
+
+- [ ] `aria-busy` beyond `Button` and `Skeleton`: nothing that loads content from
+      a network can say it is loading. Needs a real async case to design against,
+      not a guess.
 - [ ] Run the sweep again after every batch of components, not once.
 
 ### 7b. A styling regression I shipped, and the guard for it — DONE
