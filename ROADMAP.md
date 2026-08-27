@@ -126,17 +126,55 @@ hand-written, in two distinct groups:
 do the correct thing, so consumers did the incorrect thing, and it came back
 looking like their fault.** These are the remaining candidates of that shape.
 
-### 5. `Button` has no loading state
+### 4. Coverage is not measured at all — DONE
 
-Not a single mention of `loading` in the component. Every consumer therefore
-hand-rolls it: a `Spinner` inside, `disabled` while pending, and almost certainly
-no `aria-busy` and no announcement — so a screen reader user presses submit and
-is told nothing happened.
+Worth noting how this item was nearly lost: it vanished from this file in the
+skill-publishing change, because that edit replaced a text range that happened to
+contain it. Nothing caught it — a document has no tests — and it surfaced only
+when the headings were listed and jumped from 3 to 5.
 
-- [ ] `loading` on `Button`: swaps in the spinner, sets `aria-busy`, keeps the
-      button focusable, and keeps its width so the layout does not jump
-- [ ] Decide whether it implies `disabled` (it should block activation, but a
-      `disabled` button loses focus, which strands the keyboard user)
+- [x] Vitest v8 coverage: `pnpm --filter sve-ui test:coverage`. Scoped to
+      `src/lib/**`, so fixtures and tests cannot inflate the number.
+- [x] **No threshold set, deliberately.** One picked before reading the report
+      just codifies today's blind spots as the target.
+
+First reading, and what it bought: statements 94.6%, **branches 84.4%**. The
+worst-covered files were the form controls — and closing the invalid-state gap
+below lifted branches to **89.8%**, because the files with the least coverage
+were exactly the ones missing the feature. That is the whole argument for
+measuring: it pointed at the same place the ARIA audit did, from a different
+direction.
+
+### 5. `Button` has no loading state — DONE
+
+- [x] `loading` shows a spinner, sets `aria-busy`, and blocks activation
+- [x] It stays **focusable**. `disabled` was the obvious choice and the wrong
+      one: a disabled element loses focus, so a keyboard user who just pressed
+      Enter is dropped to the top of the document with no idea anything happened
+- [x] Children stay on screen so the button keeps its width; the spinner is
+      `aria-hidden` and a clipped `loadingLabel` is what gets announced; motion
+      respects `prefers-reduced-motion`
+
+### 5b. The invalid state was a promise nothing could keep — DONE
+
+`Field` sets `aria-invalid` on whatever control it is given, and only `Input` and
+`Textarea` could show it. **Ten controls announced themselves invalid while
+looking exactly like a correct one**, so a sighted user read an error message with
+no indication of which control it was about.
+
+Found by running the audit item 7 asks for — `rg` across the components for each
+ARIA state — the same method that found the `aria-describedby` gap.
+
+- [x] `invalid` on all ten, always applying the styling
+- [x] `aria-invalid` only where the rendered role supports it, and the roles were
+      **read off the built pages** rather than assumed: `Select.Trigger` and
+      `Toggle` render plain `<button>`s
+
+One correction worth keeping: I wrote in five JSDoc comments that axe rejects
+`aria-invalid` on a button. **It does not.** I injected it and the suite still
+passed. The decision stands on the spec, but nothing enforces it except the test
+that now asserts it, and the comments say so instead of claiming a tool has our
+back.
 
 ### 6. Nothing helps with the guidance `Field` itself gives
 

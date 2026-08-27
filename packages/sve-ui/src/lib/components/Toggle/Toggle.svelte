@@ -26,10 +26,27 @@
 		/** @default 'outline' */
 		variant?: Variant;
 		/** Extra classes merged onto the root. */
+		/**
+		 * Marks the control as failing validation.
+		 *
+		 * Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `button`, and ARIA does not
+		 * support the attribute there, so assistive technology is free to ignore it.
+		 * axe does NOT flag it either way — verified by injecting it and watching the
+		 * suite still pass — so this is a decision taken from the spec, not one a
+		 * tool enforces. The accessible signal comes
+		 * from `Field` wiring the error message through `aria-describedby`.
+		 *
+		 * Prefer letting `Field` drive this: passing `Field` an `error` is what makes
+		 * a field invalid, so the message the user reads and the state of the control
+		 * cannot disagree.
+		 * @default false
+		 */
+		invalid?: boolean;
 		class?: string;
 	}
 
 	let {
+		invalid = false,
 		pressed = $bindable(false),
 		disabled = false,
 		size = 'md',
@@ -39,7 +56,15 @@
 	}: Props = $props();
 
 	const className = $derived(
-		['sve-toggle', `sve-toggle--${variant}`, `sve-toggle--${size}`, cls].filter(Boolean).join(' ')
+		[
+			'sve-toggle',
+			invalid && 'sve-toggle--invalid',
+			`sve-toggle--${variant}`,
+			`sve-toggle--${size}`,
+			cls
+		]
+			.filter(Boolean)
+			.join(' ')
 	);
 </script>
 
@@ -125,5 +150,15 @@
 		:global(.sve-toggle) {
 			transition: none;
 		}
+	}
+
+	/*
+		A ring rather than a border: these controls have no border to recolour, and
+		colour alone is not a sufficient signal anyway — `Field` supplies the text.
+	*/
+	:global(.sve-toggle--invalid) {
+		outline: 2px solid var(--sve-color-danger);
+		outline-offset: 2px;
+		border-radius: var(--sve-radius-sm);
 	}
 </style>

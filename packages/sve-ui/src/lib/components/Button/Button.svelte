@@ -60,6 +60,24 @@
 		target?: HTMLAnchorAttributes['target'];
 		/** Anchor rel. Set automatically for `target="_blank"` unless you pass it. */
 		rel?: string;
+		/**
+		 * Shows a spinner and marks the button busy while an action is in flight.
+		 *
+		 * It stays FOCUSABLE on purpose. `disabled` would be the obvious choice and
+		 * it is the wrong one: a disabled element loses focus, so a keyboard user who
+		 * just pressed Enter is dropped back to the top of the document with no idea
+		 * anything happened. Activation is blocked instead, and `aria-busy` tells
+		 * assistive technology the control is working.
+		 *
+		 * Only meaningful on a button; a link navigates rather than performing work.
+		 * @default false
+		 */
+		loading?: boolean;
+		/**
+		 * Announced while `loading`. Say what is happening, not that something is.
+		 * @default 'Loading'
+		 */
+		loadingLabel?: string;
 		class?: string;
 		children?: Snippet;
 	}
@@ -69,6 +87,8 @@
 		color,
 		size,
 		disabled = false,
+		loading = false,
+		loadingLabel = 'Loading',
 		href,
 		target,
 		rel,
@@ -79,7 +99,11 @@
 		...rest
 	}: Props = $props();
 
-	const className = $derived(buttonVariants({ variant, color, size, class: cls }));
+	const className = $derived(
+		[buttonVariants({ variant, color, size, class: cls }), loading && 'sve-button--loading']
+			.filter(Boolean)
+			.join(' ')
+	);
 
 	/*
 		Three elements, not two. A disabled link is not a link: `<a>` has no
@@ -94,7 +118,13 @@
 		if (element === 'button') {
 			// `type` belongs to <button> alone; forwarding it to an anchor would emit
 			// an attribute that means nothing there.
-			return { type, disabled, onclick: disabled ? undefined : onclick };
+			return {
+				type,
+				disabled,
+				'aria-busy': loading ? true : undefined,
+				// Blocked while loading, but WITHOUT `disabled`, so focus stays put.
+				onclick: disabled || loading ? undefined : onclick
+			};
 		}
 
 		if (element === 'span') {
@@ -125,6 +155,15 @@
   completely dead until JavaScript has run.
 -->
 <svelte:element this={element} class={className} {...attrs} {...rest}>
+	{#if loading}
+		<!--
+			The spinner is decorative: `aria-busy` already carries the state, and the
+			clipped label is what gets announced. The original children stay on screen
+			so the button does not change width mid-action and shift its neighbours.
+		-->
+		<span class="sve-button__spinner" aria-hidden="true"></span>
+		<span class="sve-button__loading-label">{loadingLabel}</span>
+	{/if}
 	{@render children?.()}
 </svelte:element>
 
@@ -360,5 +399,51 @@
 	.sve-button--flat.sve-c-default {
 		background-color: var(--sve-color-default-surface);
 		color: var(--sve-color-default-foreground);
+	}
+
+	.sve-button--loading {
+		/* Blocked, but still focusable — see the `loading` prop. */
+		cursor: progress;
+	}
+
+	.sve-button__spinner {
+		width: 1em;
+		height: 1em;
+		flex: none;
+		border: 2px solid currentColor;
+		border-top-color: transparent;
+		border-radius: var(--sve-radius-full);
+		animation: sve-button-spin 700ms linear infinite;
+	}
+
+	/*
+		Motion that cannot be turned off is a barrier for people who get motion
+		sickness from it. The spinner still reads as a state, it just stops moving.
+	*/
+	@media (prefers-reduced-motion: reduce) {
+		.sve-button__spinner {
+			animation: none;
+			border-top-color: currentColor;
+			opacity: 0.5;
+		}
+	}
+
+	@keyframes sve-button-spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	/* Clipped, not removed: this text is what announces what is happening. */
+	.sve-button__loading-label {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border: 0;
 	}
 </style>

@@ -6,10 +6,22 @@
 
 	interface Props extends Omit<BitsProps, 'class'> {
 		/** Extra classes merged onto the trigger. */
+		/**
+		 * Marks the control as failing validation. Applies the invalid styling only.
+		 *
+		 * No `aria-invalid`: this renders as a `button`, and ARIA does not support the
+		 * attribute on that role, so assistive technology is free to ignore it.
+		 * axe does NOT flag it either way — verified by injecting it and watching the
+		 * suite still pass — so this is a decision taken from the spec, not one a
+		 * tool enforces. The accessible signal comes from
+		 * `Field` wiring the error message through `aria-describedby`.
+		 * @default false
+		 */
+		invalid?: boolean;
 		class?: string;
 	}
 
-	let { class: cls, children, ...rest }: Props = $props();
+	let { invalid = false, class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -20,7 +32,9 @@
   It is usually an icon-only button, so give it an `aria-label`.
 -->
 <DatePicker.Trigger
-	class={['sve-picker__trigger', cls].filter(Boolean).join(' ')}
+	class={['sve-picker__trigger', invalid && 'sve-picker__trigger--invalid', cls]
+		.filter(Boolean)
+		.join(' ')}
 	data-slot="date-picker-trigger"
 	{children}
 	{...rest}
@@ -57,5 +71,14 @@
 		:global(.sve-picker__trigger) {
 			transition: none;
 		}
+	}
+
+	/* Colour is never the only signal: `Field` supplies the message that says why. */
+	:global(.sve-picker__trigger--invalid) {
+		border-color: var(--sve-color-danger);
+	}
+
+	:global(.sve-picker__trigger--invalid:focus-visible) {
+		outline-color: var(--sve-color-danger);
 	}
 </style>

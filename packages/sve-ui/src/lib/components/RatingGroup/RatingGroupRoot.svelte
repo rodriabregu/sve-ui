@@ -17,15 +17,35 @@
 		/** @default 'md' */
 		size?: Size;
 		/** Extra classes merged onto the root. */
+		/**
+		 * Marks the control as failing validation.
+		 *
+		 * Always applies the invalid styling. Also sets `aria-invalid`, which this element's `slider` role supports.
+		 *
+		 * Prefer letting `Field` drive this: passing `Field` an `error` is what makes
+		 * a field invalid, so the message the user reads and the state of the control
+		 * cannot disagree.
+		 * @default false
+		 */
+		invalid?: boolean;
 		class?: string;
 	}
 
 	// `value` must be destructured and passed as `bind:value`. Forwarding it in
 	// the spread makes it one-way, so clicking a star would not reach the caller.
-	let { value = $bindable(0), size = 'md', class: cls, children, ...rest }: Props = $props();
+	let {
+		invalid = false,
+		value = $bindable(0),
+		size = 'md',
+		class: cls,
+		children,
+		...rest
+	}: Props = $props();
 
 	const className = $derived(
-		['sve-rating-group', `sve-rating-group--${size}`, cls].filter(Boolean).join(' ')
+		['sve-rating-group', invalid && 'sve-rating-group--invalid', `sve-rating-group--${size}`, cls]
+			.filter(Boolean)
+			.join(' ')
 	);
 </script>
 
@@ -42,7 +62,14 @@
   Root hands you an `items` array through a snippet, each with an `index` and a
   `state` of active / partial / inactive, so you render the icons.
 -->
-<RatingGroup.Root bind:value class={className} data-slot="rating-group" {children} {...rest} />
+<RatingGroup.Root
+	bind:value
+	class={className}
+	aria-invalid={invalid ? true : undefined}
+	data-slot="rating-group"
+	{children}
+	{...rest}
+/>
 
 <style>
 	:global(.sve-rating-group) {
@@ -75,5 +102,15 @@
 	}
 	:global(.sve-rating-group--lg) {
 		font-size: 1.75rem;
+	}
+
+	/*
+		A ring rather than a border: these controls have no border to recolour, and
+		colour alone is not a sufficient signal anyway — `Field` supplies the text.
+	*/
+	:global(.sve-rating-group--invalid) {
+		outline: 2px solid var(--sve-color-danger);
+		outline-offset: 2px;
+		border-radius: var(--sve-radius-sm);
 	}
 </style>

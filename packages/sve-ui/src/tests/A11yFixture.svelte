@@ -51,6 +51,12 @@
 	import Field from '$lib/components/Field/Field.svelte';
 
 	let a11yFieldEmail = $state('');
+	let invRadio = $state('x');
+	let invSelect = $state('');
+	let invCombo = $state('');
+	let invChecked = $state(false);
+	let invSwitch = $state(false);
+	let invPressed = $state(false);
 	let a11yFieldAge = $state('');
 	import * as Avatar from '$lib/components/Avatar/index.js';
 	import * as Card from '$lib/components/Card/index.js';
@@ -455,6 +461,32 @@
 
 <!-- Utilities -->
 <section aria-label="Code"><Code code="const answer = 42;" /></section>
+
+<!--
+  Every control that can be invalid, IN its invalid state, so axe adjudicates
+  where `aria-invalid` is allowed rather than my memory of the spec. If it is set
+  on a role that does not support it, `aria-allowed-attr` fails here.
+-->
+<section aria-label="Invalid states">
+	<Checkbox.Root aria-label="Accept terms (invalid)" bind:checked={invChecked} invalid />
+	<Switch.Root aria-label="Notifications (invalid)" bind:checked={invSwitch} invalid />
+	<RadioGroup.Root aria-label="Density (invalid)" bind:value={invRadio} invalid>
+		<RadioGroup.Item value="x" aria-label="Comfortable (invalid)" />
+	</RadioGroup.Root>
+	<Select.Root type="single" bind:value={invSelect}>
+		<Select.Trigger aria-label="Pick a fruit (invalid)" invalid>Pick</Select.Trigger>
+	</Select.Root>
+	<Combobox.Root type="single" bind:value={invCombo}>
+		<Combobox.Input aria-label="Search (invalid)" invalid />
+	</Combobox.Root>
+	<Slider value={40} max={100} thumbLabel="Volume (invalid)" invalid />
+	<Toggle aria-label="Bold (invalid)" bind:pressed={invPressed} invalid>B</Toggle>
+</section>
+
+<!-- Button's loading state: aria-busy plus a clipped label, spinner hidden. -->
+<section aria-label="Button loading">
+	<Button loading loadingLabel="Saving your changes">Save</Button>
+</section>
 
 <section aria-label="Field">
 	<!-- Both states: a valid field with help text, and an invalid one, so axe sees

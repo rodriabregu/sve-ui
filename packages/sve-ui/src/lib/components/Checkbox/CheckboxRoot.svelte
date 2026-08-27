@@ -10,10 +10,22 @@
 
 	interface Props extends Omit<BitsRootProps, 'class' | 'children'> {
 		size?: Size;
+		/**
+		 * Marks the control as failing validation.
+		 *
+		 * Always applies the invalid styling. Also sets `aria-invalid`, which this element's `checkbox` role supports.
+		 *
+		 * Prefer letting `Field` drive this: passing `Field` an `error` is what makes
+		 * a field invalid, so the message the user reads and the state of the control
+		 * cannot disagree.
+		 * @default false
+		 */
+		invalid?: boolean;
 		class?: string;
 	}
 
 	let {
+		invalid = false,
 		size = 'md',
 		checked = $bindable(false),
 		indeterminate = $bindable(false),
@@ -22,11 +34,20 @@
 	}: Props = $props();
 
 	const className = $derived(
-		['sve-checkbox', `sve-checkbox--${size}`, cls].filter(Boolean).join(' ')
+		['sve-checkbox', invalid && 'sve-checkbox--invalid', `sve-checkbox--${size}`, cls]
+			.filter(Boolean)
+			.join(' ')
 	);
 </script>
 
-<Checkbox.Root bind:checked bind:indeterminate class={className} data-slot="checkbox" {...rest}>
+<Checkbox.Root
+	bind:checked
+	bind:indeterminate
+	class={className}
+	aria-invalid={invalid ? true : undefined}
+	data-slot="checkbox"
+	{...rest}
+>
 	{#snippet children({ checked, indeterminate })}
 		{#if indeterminate}
 			<svg
@@ -113,5 +134,15 @@
 		:global(.sve-checkbox) {
 			transition: none;
 		}
+	}
+
+	/*
+		A ring rather than a border: these controls have no border to recolour, and
+		colour alone is not a sufficient signal anyway — `Field` supplies the text.
+	*/
+	:global(.sve-checkbox--invalid) {
+		outline: 2px solid var(--sve-color-danger);
+		outline-offset: 2px;
+		border-radius: var(--sve-radius-sm);
 	}
 </style>

@@ -5,15 +5,35 @@
 	type BitsInputProps = ComponentProps<typeof Combobox.Input>;
 
 	interface Props extends Omit<BitsInputProps, 'class'> {
+		/**
+		 * Marks the control as failing validation.
+		 *
+		 * Always applies the invalid styling. Also sets `aria-invalid`, which this element's `combobox` role supports.
+		 *
+		 * Prefer letting `Field` drive this: passing `Field` an `error` is what makes
+		 * a field invalid, so the message the user reads and the state of the control
+		 * cannot disagree.
+		 * @default false
+		 */
+		invalid?: boolean;
 		class?: string;
 	}
 
-	let { class: cls, ...rest }: Props = $props();
+	let { invalid = false, class: cls, ...rest }: Props = $props();
 
-	const className = $derived(['sve-combobox__input', cls].filter(Boolean).join(' '));
+	const className = $derived(
+		['sve-combobox__input', invalid && 'sve-combobox__input--invalid', cls]
+			.filter(Boolean)
+			.join(' ')
+	);
 </script>
 
-<Combobox.Input class={className} data-slot="combobox-input" {...rest} />
+<Combobox.Input
+	class={className}
+	aria-invalid={invalid ? true : undefined}
+	data-slot="combobox-input"
+	{...rest}
+/>
 
 <style>
 	:global(.sve-combobox__input) {
@@ -38,5 +58,14 @@
 	:global(.sve-combobox__input:disabled) {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+
+	/* Colour is never the only signal: `Field` supplies the message that says why. */
+	:global(.sve-combobox__input--invalid) {
+		border-color: var(--sve-color-danger);
+	}
+
+	:global(.sve-combobox__input--invalid:focus-visible) {
+		outline-color: var(--sve-color-danger);
 	}
 </style>

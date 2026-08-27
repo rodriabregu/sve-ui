@@ -32,17 +32,35 @@
 		 */
 		thumbLabel?: string;
 		/** Extra classes merged onto the root. */
+		/**
+		 * Marks the control as failing validation.
+		 *
+		 * Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `container; the thumb is the slider`, and ARIA does not
+		 * support the attribute there, so assistive technology is free to ignore it.
+		 * axe does NOT flag it either way — verified by injecting it and watching the
+		 * suite still pass — so this is a decision taken from the spec, not one a
+		 * tool enforces. The accessible signal comes
+		 * from `Field` wiring the error message through `aria-describedby`.
+		 *
+		 * Prefer letting `Field` drive this: passing `Field` an `error` is what makes
+		 * a field invalid, so the message the user reads and the state of the control
+		 * cannot disagree.
+		 * @default false
+		 */
+		invalid?: boolean;
 		class?: string;
 	}
 
-	let { type = 'single', thumbLabel, class: cls, ...rest }: Props = $props();
+	let { invalid = false, type = 'single', thumbLabel, class: cls, ...rest }: Props = $props();
 
 	function thumbName(index: number): string | undefined {
 		if (!thumbLabel) return undefined;
 		return type === 'multiple' ? `${thumbLabel} ${index + 1}` : thumbLabel;
 	}
 
-	const className = $derived(['sve-slider', cls].filter(Boolean).join(' '));
+	const className = $derived(
+		['sve-slider', invalid && 'sve-slider--invalid', cls].filter(Boolean).join(' ')
+	);
 
 	const Root = Slider.Root as unknown as Component<Record<string, unknown>>;
 </script>
@@ -108,5 +126,15 @@
 	:global(.sve-slider[data-disabled]) {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+
+	/*
+		A ring rather than a border: these controls have no border to recolour, and
+		colour alone is not a sufficient signal anyway — `Field` supplies the text.
+	*/
+	:global(.sve-slider--invalid) {
+		outline: 2px solid var(--sve-color-danger);
+		outline-offset: 2px;
+		border-radius: var(--sve-radius-sm);
 	}
 </style>
