@@ -3613,6 +3613,13 @@
 				"description": "Marks the control as failing validation. Applies the invalid styling only. No `aria-invalid`: this renders as a `button`, and ARIA does not support the attribute on that role, so assistive technology is free to ignore it. axe does NOT flag it either way — verified by injecting it and watching the suite still pass — so this is a decision taken from the spec, not one a tool enforces. The accessible signal comes from `Field` wiring the error message through `aria-describedby`."
 			},
 			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Accepted and deliberately NOT forwarded. This renders as a `<button>`. A native `required` attribute is inert there, and `aria-required` is worse — axe reports it as an `aria-allowed-attr` violation, verified rather than assumed. (Note `aria-invalid` differs: axe accepts that one on a button. The two rules are not the same.) So it is swallowed here rather than emitted as dead markup. When wrapped by `Field`, the required signal a user gets is the marker on the visible label plus the error on submit — which is what `Field` is for."
+			},
+			{
 				"prop": "class",
 				"type": "string",
 				"required": false
@@ -7416,6 +7423,13 @@
 				"description": "Marks the control as failing validation. Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `button`, and ARIA does not support the attribute there, so assistive technology is free to ignore it. axe does NOT flag it either way — verified by injecting it and watching the suite still pass — so this is a decision taken from the spec, not one a tool enforces. The accessible signal comes from `Field` wiring the error message through `aria-describedby`. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
 			},
 			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Accepted and deliberately NOT forwarded. This renders as a `<button>`. A native `required` attribute is inert there, and `aria-required` is worse — axe reports it as an `aria-allowed-attr` violation, verified rather than assumed. (Note `aria-invalid` differs: axe accepts that one on a button. The two rules are not the same.) So it is swallowed here rather than emitted as dead markup. When wrapped by `Field`, the required signal a user gets is the marker on the visible label plus the error on submit — which is what `Field` is for."
+			},
+			{
 				"prop": "class",
 				"type": "string",
 				"required": false
@@ -8069,6 +8083,13 @@
 				"required": false,
 				"default": "false",
 				"description": "Marks the control as failing validation. Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `container; the thumb is the slider`, and ARIA does not support the attribute there, so assistive technology is free to ignore it. axe does NOT flag it either way — verified by injecting it and watching the suite still pass — so this is a decision taken from the spec, not one a tool enforces. The accessible signal comes from `Field` wiring the error message through `aria-describedby`. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
+			},
+			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as required. Lands on the thumb, which is the `role=\"slider\"` element — the container this component renders is not the slider, so the attribute would be inert there. A native `required` attribute is inert on both."
 			},
 			{
 				"prop": "class",
@@ -9234,6 +9255,13 @@
 				"required": false,
 				"default": "false",
 				"description": "Marks the control as failing validation. Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `button`, and ARIA does not support the attribute there, so assistive technology is free to ignore it. axe does NOT flag it either way — verified by injecting it and watching the suite still pass — so this is a decision taken from the spec, not one a tool enforces. The accessible signal comes from `Field` wiring the error message through `aria-describedby`. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
+			},
+			{
+				"prop": "required",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Accepted and deliberately NOT forwarded. This renders as a `<button>`. A native `required` attribute is inert there, and `aria-required` is worse — axe reports it as an `aria-allowed-attr` violation, verified rather than assumed. (Note `aria-invalid` differs: axe accepts that one on a button. The two rules are not the same.) So it is swallowed here rather than emitted as dead markup. When wrapped by `Field`, the required signal a user gets is the marker on the visible label plus the error on submit — which is what `Field` is for."
 			},
 			{
 				"prop": "class",

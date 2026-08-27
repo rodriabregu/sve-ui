@@ -18,10 +18,35 @@
 		 * @default false
 		 */
 		invalid?: boolean;
+		/**
+		 * Accepted and deliberately NOT forwarded.
+		 *
+		 * This renders as a `<button>`. A native `required` attribute is inert there,
+		 * and `aria-required` is worse — axe reports it as an `aria-allowed-attr`
+		 * violation, verified rather than assumed. (Note `aria-invalid` differs: axe
+		 * accepts that one on a button. The two rules are not the same.)
+		 *
+		 * So it is swallowed here rather than emitted as dead markup. When wrapped by
+		 * `Field`, the required signal a user gets is the marker on the visible label
+		 * plus the error on submit — which is what `Field` is for.
+		 * @default false
+		 */
+		required?: boolean;
 		class?: string;
 	}
 
-	let { invalid = false, class: cls, children, ...rest }: Props = $props();
+	let {
+		/*
+			Declared only so it never reaches `{...rest}` as dead markup. There is
+			nothing to do with it here — see the prop's own comment above.
+		*/
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		required: _required = false,
+		invalid = false,
+		class: cls,
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <!--

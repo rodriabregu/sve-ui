@@ -92,8 +92,8 @@
     "hash": "3b6e0447582dc741"
   },
   "components/field.html": {
-    "elements": 367,
-    "hash": "82ab27dc7fc00f89"
+    "elements": 420,
+    "hash": "471058cfb9b4f9b9"
   },
   "components/flex.html": {
     "elements": 322,
@@ -180,8 +180,8 @@
     "hash": "553aa6f45b13b435"
   },
   "components/slider.html": {
-    "elements": 321,
-    "hash": "d2f844f14667b5db"
+    "elements": 329,
+    "hash": "1f9c0f066b693557"
   },
   "components/spinner.html": {
     "elements": 295,
@@ -228,8 +228,8 @@
     "hash": "45cce2e12b4b4ad5"
   },
   "components/toggle.html": {
-    "elements": 347,
-    "hash": "f2b585b79b8b2ae4"
+    "elements": 355,
+    "hash": "a0e92e4e952dc51e"
   },
   "components/toolbar.html": {
     "elements": 390,
