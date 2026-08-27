@@ -230,17 +230,54 @@ it did nothing:
       rest on a comment.
 - [x] The `Field` page documents which controls can be announced as required
 
-Still open, and now specific rather than vague:
+Closed since:
 
-- [ ] `DateField` / `TimeField` and their range variants swallow `required` and
-      emit **nothing**. Their segments are `role="spinbutton"`, which axe accepts
-      `aria-required` on, so this is fixable — but the segments are rendered by
-      Bits inside `Field.Input`, so it needs context plumbing from Root down.
-      Bounded, not free.
-- [ ] `aria-busy` still appears in one component. Anything that loads content
+- [x] **`DateField` / `TimeField` and their range variants** now announce
+      `required`. It reaches the segments through context and becomes
+      `aria-required` on each editable one — `role="spinbutton"` supports it,
+      unlike the button roles elsewhere. Literal separators are left alone.
+- [x] **`DatePicker` / `DateRangePicker` style their disabled trigger.** Bits sets
+      `data-disabled` and nothing styled it, so a disabled picker looked enabled.
+      Found by extending the audit to `disabled` — where **7 of the 8 components
+      it flagged were false positives**, because they style `data-disabled` and my
+      first pattern only looked for `:disabled`. Worth checking before claiming.
+
+Still open:
+
+- [ ] `aria-busy` appears in one component. Anything that loads content
       asynchronously — `Command` filtering results, `Combobox` — has no story for
       announcing "8 results" or "loading".
 - [ ] Run the sweep again after every batch of components, not once.
+
+### 7b. A styling regression I shipped, and the guard for it — DONE
+
+Extending the audit to CSS found a bug **I introduced in 0.6.1** and that shipped
+for four versions.
+
+Svelte compiles styles per component, so a rule written in
+`DatePickerTrigger.svelte` lives only there — and `DateRangePicker.Trigger`
+reuses the same class. A consumer importing only `DateRangePicker` got a
+completely **unstyled trigger**. `RangeCalendar` lost its cell and day styles the
+same way. Five classes across three namespaces.
+
+It was invisible until `sideEffects` was declared and tree-shaking started
+actually working. **The fix for one problem uncovered another that had been
+hiding behind it** — before, all the CSS came along, so nothing was ever missing.
+
+- [x] Shared rules moved into plain `.css` files that every component using them
+      imports. That survives tree-shaking precisely because `sideEffects` is
+      `["**/*.css"]` and not `false` — the same decision paying off twice.
+- [x] `check-css-coverage` enforces it: a component referencing `sve-foo` must
+      declare it in its own `<style>`, import a `.css` that declares it, or find
+      it elsewhere in its own namespace (which is safe, since namespaces are
+      imported wholesale). Proven to fail by removing the shared import.
+- [x] Deliberate hook classes with no rules anywhere are allowlisted in the
+      script with a reason, so the guard stays actionable.
+
+**Both audits were needed.** The empirical one (bundle each namespace, diff used
+classes against emitted CSS) found the cross-namespace cases. The static one
+found five more, all intra-namespace — which turned out to be safe, and taught me
+the actual invariant the guard should encode. Neither alone would have got there.
 
 ### 8. Build something real with it
 

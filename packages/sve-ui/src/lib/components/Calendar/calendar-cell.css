@@ -1,0 +1,16 @@
+/*
+ * Shared stylesheet, not a duplicated <style> block.
+ *
+ * Svelte compiles styles per component, so these rules lived in exactly one file
+ * and a consumer importing only a namespace that REUSES the class got unstyled
+ * markup. That was invisible until `sideEffects` was declared and tree-shaking
+ * started actually working, so it shipped for four versions.
+ *
+ * A CSS import survives tree-shaking because `sideEffects` is ["**\/*.css"],
+ * which is the other half of why that value is an array and not `false`.
+ */
+
+:global(.sve-calendar__cell) {
+	padding: 0;
+	text-align: center;
+}

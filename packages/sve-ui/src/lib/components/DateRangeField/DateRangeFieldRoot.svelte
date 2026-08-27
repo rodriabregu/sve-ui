@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { setSegmentedRequired } from '$lib/internal/segmented-required';
 	import { DateRangeField } from 'bits-ui';
 	import type { Component, Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -39,7 +40,20 @@
 		locale?: string;
 		/** Name for form submission; Bits renders a hidden input. */
 		name?: string;
-		/** @default false */
+		/**
+		 * Marks the field as required.
+		 *
+		 * There is no single element to mark: the Root is a wrapper, and what a
+		 * screen reader lands on are the segments. So this reaches them through
+		 * context and becomes `aria-required` on each editable one, whose
+		 * `role="spinbutton"` supports it (checked against axe, not assumed).
+		 *
+		 * Bits emits nothing for `required` on this component, so before it was
+		 * wired up a `<Field required>` around a date field announced nothing at all.
+		 * It is still forwarded to Bits, which uses it on the hidden input for form
+		 * submission.
+		 * @default false
+		 */
 		required?: boolean;
 		/** @default false */
 		disabled?: boolean;
@@ -58,12 +72,16 @@
 	// `value` and `placeholder` must be destructured and passed as bindings.
 	// Forwarding them in the spread makes them one-way.
 	let {
+		required = false,
 		value = $bindable(),
 		placeholder = $bindable(),
 		class: cls,
 		children,
 		...rest
 	}: Props = $props();
+
+	// A getter, so a Root whose `required` changes updates rendered segments.
+	setSegmentedRequired(() => required);
 
 	const Root = DateRangeField.Root as unknown as Component<
 		Record<string, unknown>,
@@ -101,6 +119,7 @@
 	bind:placeholder
 	class={['sve-field', cls].filter(Boolean).join(' ')}
 	data-slot="date-range-field"
+	{required}
 	{children}
 	{...rest}
 />

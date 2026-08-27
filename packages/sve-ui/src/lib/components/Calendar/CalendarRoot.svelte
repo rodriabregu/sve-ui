@@ -1,4 +1,5 @@
 <script lang="ts">
+	import './calendar-root.css';
 	import { Calendar } from 'bits-ui';
 	import type { Component, Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -121,21 +122,4 @@
 />
 
 <style>
-	:global(.sve-calendar) {
-		display: flex;
-		flex-direction: column;
-		gap: var(--sve-space-4);
-		padding: var(--sve-space-4);
-		border: 1px solid var(--sve-color-default-border);
-		border-radius: var(--sve-radius-lg);
-		background-color: var(--sve-color-default-surface);
-		font-family: var(--sve-font-family-sans);
-		color: var(--sve-color-default-foreground);
-		width: max-content;
-	}
-
-	:global(.sve-calendar[data-disabled]) {
-		opacity: 0.5;
-		pointer-events: none;
-	}
 </style>
