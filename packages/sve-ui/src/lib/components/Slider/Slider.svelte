@@ -48,10 +48,26 @@
 		 * @default false
 		 */
 		invalid?: boolean;
+		/**
+		 * Marks the control as required.
+		 *
+		 * Lands on the thumb, which is the `role="slider"` element — the container
+		 * this component renders is not the slider, so the attribute would be inert
+		 * there. A native `required` attribute is inert on both.
+		 * @default false
+		 */
+		required?: boolean;
 		class?: string;
 	}
 
-	let { invalid = false, type = 'single', thumbLabel, class: cls, ...rest }: Props = $props();
+	let {
+		required = false,
+		invalid = false,
+		type = 'single',
+		thumbLabel,
+		class: cls,
+		...rest
+	}: Props = $props();
 
 	function thumbName(index: number): string | undefined {
 		if (!thumbLabel) return undefined;
@@ -75,6 +91,7 @@
 				index={thumb.index}
 				class="sve-slider__thumb"
 				aria-label={thumbName(thumb.index)}
+				aria-required={required ? true : undefined}
 			/>
 		{/each}
 	{/snippet}

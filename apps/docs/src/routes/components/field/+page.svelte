@@ -13,6 +13,7 @@
 		{ id: 'why', label: 'Why it exists' },
 		{ id: 'snippet', label: 'Why a snippet' },
 		{ id: 'error', label: 'Error implies invalid' },
+		{ id: 'required', label: 'What required can announce' },
 		{ id: 'submit', label: 'Errors after submit' },
 		{ id: 'any-control', label: 'Any control' },
 		{ id: 'props', label: 'Props' }
@@ -156,6 +157,69 @@ async function submit() {
 		</p>
 	</section>
 
+	<section id="required" class="sec">
+		<h2 class="sec__h">What <code class="ic">required</code> can announce</h2>
+		<p class="sec__p">
+			<code class="ic">required</code> always marks the visible label. Whether the
+			<em>control</em> is announced as required depends on what it renders, and the answer is not the
+			same for all of them.
+		</p>
+		<div class="tablewrap">
+			<table class="t">
+				<thead>
+					<tr><th>Control</th><th>How</th></tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td
+							><code class="ic">Input</code>, <code class="ic">Textarea</code>,
+							<code class="ic">Combobox.Input</code>, <code class="ic">PinInput</code></td
+						>
+						<td>the native <code class="ic">required</code> attribute, on a real input</td>
+					</tr>
+					<tr>
+						<td
+							><code class="ic">Checkbox</code>, <code class="ic">Switch</code>,
+							<code class="ic">RadioGroup</code>, <code class="ic">RatingGroup</code></td
+						>
+						<td><code class="ic">aria-required</code>, which Bits UI sets for you</td>
+					</tr>
+					<tr>
+						<td><code class="ic">Slider</code></td>
+						<td
+							><code class="ic">aria-required</code> on the thumb — the container is not the slider</td
+						>
+					</tr>
+					<tr>
+						<td
+							><code class="ic">Select</code>, <code class="ic">Toggle</code>,
+							<code class="ic">DatePicker</code></td
+						>
+						<td><strong>cannot be</strong> — see below</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p class="sec__p">
+			Those last three render a <code class="ic">&lt;button&gt;</code>. A native
+			<code class="ic">required</code> attribute does nothing there, and
+			<code class="ic">aria-required</code> is worse — axe reports it as an
+			<code class="ic">aria-allowed-attr</code> violation. So the components swallow it rather than emit
+			dead markup, and there is a test asserting that axe still rejects it.
+		</p>
+		<p class="warn">
+			<code class="ic">aria-invalid</code> behaves differently: axe <em>accepts</em> that one on a button.
+			The two rules are not symmetric, which is why each was checked separately rather than generalised
+			from the other.
+		</p>
+		<p class="sec__p">
+			For those controls the signal a user gets is the required marker on the visible label plus the
+			error on submit — which is what <code class="ic">Field</code> is for. Do not rely on
+			<code class="ic">required</code> alone to communicate it on any control: validate, and say what
+			is wrong.
+		</p>
+	</section>
+
 	<section id="submit" class="sec">
 		<h2 class="sec__h">Errors that appear after submit</h2>
 		<p class="warn">
@@ -265,5 +329,30 @@ async function submit() {
 		margin: 12px 0 0;
 		font-size: 12.5px;
 		color: var(--doc-fg-subtle);
+	}
+
+	.tablewrap {
+		overflow-x: auto;
+		margin: 0 0 16px;
+	}
+
+	.t {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 14px;
+	}
+
+	.t th,
+	.t td {
+		padding: 8px 10px;
+		text-align: left;
+		border-bottom: 1px solid var(--doc-border);
+		color: var(--doc-fg-muted);
+		vertical-align: top;
+	}
+
+	.t th {
+		color: var(--doc-fg);
+		font-weight: 600;
 	}
 </style>

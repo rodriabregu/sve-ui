@@ -206,20 +206,41 @@ That is twice in two days I nearly shipped a confident false justification (the
 other was "axe rejects `aria-invalid` on a button"). Probing the claim took one
 throwaway test each time.
 
-### 7. Ask the same question of the rest of the catalog
+### 7. Ask the same question of the rest of the catalog — RUN ONCE, KEEP RUNNING
 
-`rg aria-describedby` finding nothing is the cheapest audit in this project's
-history and it found the largest gap. Run that class of check deliberately
-instead of waiting for the next issue.
+The audit is `rg` across the components for each ARIA state, then a probe for
+anything it flags. It has now found three gaps for the cost of a few commands:
+`aria-describedby` in zero components, the invalid state ten controls could not
+show, and this.
 
-- [ ] Sweep for controls that cannot be labelled, described, marked busy or
-      marked invalid
-- [ ] Write each finding down even when not fixing it, so the next report has
-      somewhere to land
+**`required` was landing as dead markup.** `Field` puts it in the props you
+spread, and where that reaches a real input the browser handles it, while Bits
+translates it on checkbox, switch, radiogroup and rating group. Everywhere else
+it did nothing:
 
----
+| Control                                          | was                                       | now                          |
+| ------------------------------------------------ | ----------------------------------------- | ---------------------------- |
+| `Slider`                                         | on the container, which is not the slider | `aria-required` on the thumb |
+| `Select.Trigger`, `Toggle`, `DatePicker.Trigger` | a dead native attribute on a `<button>`   | swallowed                    |
 
-## Later — adoption, where the remaining unknowns are
+- [x] `required` audited and fixed
+- [x] **axe's rules are not symmetric between attributes** — it rejects
+      `aria-required` on a button and _accepts_ `aria-invalid`. Probed separately
+      rather than generalised, and asserted in a test so the decision does not
+      rest on a comment.
+- [x] The `Field` page documents which controls can be announced as required
+
+Still open, and now specific rather than vague:
+
+- [ ] `DateField` / `TimeField` and their range variants swallow `required` and
+      emit **nothing**. Their segments are `role="spinbutton"`, which axe accepts
+      `aria-required` on, so this is fixable — but the segments are rendered by
+      Bits inside `Field.Input`, so it needs context plumbing from Root down.
+      Bounded, not free.
+- [ ] `aria-busy` still appears in one component. Anything that loads content
+      asynchronously — `Command` filtering results, `Combobox` — has no story for
+      announcing "8 results" or "loading".
+- [ ] Run the sweep again after every batch of components, not once.
 
 ### 8. Build something real with it
 
