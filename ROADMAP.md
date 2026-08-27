@@ -42,43 +42,63 @@ site described the skill as something the package ships and told people to
 - [x] The package README now mentions it — it never did — and the install
       command points at `node_modules/sve-ui/skills/sve-ui-usage`
 
-### 2. The prop generator cannot see forwarded Bits props — CORRECTED
+### 2. The prop generator cannot see forwarded Bits props — DONE
 
-This item used to read "27 docs pages still hand-write their prop tables", as if
-those pages were behind. **They are not, and porting them would have deleted most
-of each component's documented API.** Measured coverage of the hand-written rows
-against what the generator produces:
+`gen-props.mjs` read the AST only, so it saw literally-declared interface members
+and nothing else. Most components here are thin Bits wrappers declaring almost
+nothing of their own, which is why six pages had **0%** generated coverage and
+their tables stayed hand-written.
 
-| Page                                                                           | Generated coverage | Props the generator cannot see                                              |
-| ------------------------------------------------------------------------------ | ------------------ | --------------------------------------------------------------------------- |
-| `menubar`, `pagination`, `pin-input`, `rating-group`, `toolbar`, `radio-group` | **0%**             | `count`, `perPage`, `onComplete`, `loop`, `orientation`, `onValueChange`, … |
-| `command`                                                                      | 12%                | `label`, `shouldFilter`, `filter`, `onSelect`, …                            |
-| `tabs`                                                                         | 14%                | `value`, `onValueChange`, `activationMode`, …                               |
-| `checkbox`, `switch`                                                           | 50–66%             | `checked`, `indeterminate`                                                  |
-| `alert-dialog`, `combobox`, `context-menu`, `link-preview`, `select`           | no entry at all    | the whole surface                                                           |
-| `card`                                                                         | 100%               | —                                                                           |
+It now resolves the heritage clause with the real TypeScript checker: one
+`ts.Program` over virtual `.ts` files placed next to each component, so both
+relative imports and the `bits-ui` lookup resolve exactly as they do for the real
+file. **485 own + 896 inherited props**, in 0.7s.
 
-The cause is structural, not sloppiness. Those wrappers declare
-`interface Props extends Omit<ComponentProps<typeof Bits.Root>, …>` and almost
-nothing of their own, and the generator reads literally-declared members. Every
-real prop is **inherited from Bits and forwarded through the spread**, so the
-generator is blind to it. Namespace pages lose specific props the same way:
-`DialogTitle.level`, `PopoverContent.side`, `TooltipContent.sideOffset`.
+The hard part was never reading the type, it was subtracting the HTML attribute
+surface — `ComponentProps<typeof Popover.Content>` includes every `div`
+attribute. The filter is by **declaration file**: a property is kept only when it
+is declared inside `bits-ui`, so everything from `svelte/elements` and `lib.dom`
+is dropped without a name list to maintain. Only `style` needed an explicit
+exception, because Bits redeclares it.
 
-So the drift risk is real but the fix is not a port. Two options, and this needs
-a decision before any work:
+- [x] Resolve inherited props through the checker
+- [x] Descriptions come from Bits' own JSDoc, so the generated rows read better
+      than several of the hand-written ones they replace
+- [x] `from: 'bits-ui'` on inherited rows, rendered as a provenance badge — a
+      reader should know whose contract they are reading
+- [x] The five pages whose `extra` arrays became redundant are cleaned. Two kept
+      their hand-written prose via `extra` + `omit`, because it explains gotchas
+      Bits' JSDoc does not (`type` deciding the shape of `value`)
 
-- **Teach the generator to expand inherited Bits types** via the TypeScript
-  checker. The actual fix, and it makes every page portable. The hard part is not
-  reading the type, it is subtracting the HTML attribute surface —
-  `ComponentProps<typeof Popover.Content>` includes every `div` attribute, and a
-  naive expansion produces useless 200-row tables.
-- **Keep hand-written rows for what is forwarded**, using `PropsTable`'s existing
-  `extra`, and guard only that the generated half is used where it exists.
-  Cheaper, leaves a seam.
+Coverage after, on the pages that had none:
 
-- [ ] Decide between the two
-- [ ] Only then: port, and forbid bare `PropRow[]` in CI
+| Page           | Prop rows now | Labelled `bits-ui` |
+| -------------- | ------------- | ------------------ |
+| `context-menu` | 49            | 43                 |
+| `menubar`      | 50            | 43                 |
+| `rating-group` | 25            | 21                 |
+| `pin-input`    | 20            | 17                 |
+| `pagination`   | 18            | 15                 |
+| `toolbar`      | 16            | 10                 |
+
+**Still open, and now precisely bounded.** Sixteen pages remain fully
+hand-written, in two distinct groups:
+
+- **Six re-export Bits' `Root` directly** (`dialog`, `dropdown-menu`, `popover`,
+  `tooltip`, `select`, `combobox`). There is no `SelectRoot.svelte` to read —
+  `index.ts` does `export const Root = Select.Root`, because Root renders nothing
+  visual. Generating these means resolving re-exports out of `index.ts`, which is
+  a different mechanism from the heritage clause.
+- **Five need a handful of HTML attributes that are the component's whole point**
+  (`Input.value`, `Label.for`, `Button.disabled`, `Avatar.src`, `Textarea.rows`).
+  The declaration-file filter drops these correctly in general and wrongly here.
+  `extra` covers it; the alternative is a per-component allow-list.
+- Five (`alert`, `checkbox`, `radio-group`, `switch`, `tabs`) are portable as-is
+  and just need the mechanical edit.
+
+- [ ] Port the five that are ready
+- [ ] Decide re-export resolution vs `extra` for the six pass-through Roots
+- [ ] Only then: forbid bare `PropRow[]` in CI
 
 ### 3. No visual regression coverage — PARTLY DONE
 
