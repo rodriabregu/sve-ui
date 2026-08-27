@@ -13,13 +13,14 @@
 		{ id: 'status', label: 'Status & MCP' }
 	];
 
-	const pathCode = `skills/sve-ui-usage/
+	const pathCode = `node_modules/sve-ui/skills/sve-ui-usage/
 ├── SKILL.md              # runtime instruction contract
 └── references/
     └── components.md     # full catalog + per-component snippets`;
 
-	const useCode = `# Claude Code: copy the skill into your project (or user) skills dir
-cp -r sve-ui/skills/sve-ui-usage .claude/skills/
+	const useCode = `# It ships inside the package, so copy it straight out of node_modules
+mkdir -p .claude/skills
+cp -r node_modules/sve-ui/skills/sve-ui-usage .claude/skills/
 
 # Then just ask your agent to build UI with sve-ui — it will
 # follow the real API instead of guessing props.`;
@@ -45,8 +46,11 @@ cp -r sve-ui/skills/sve-ui-usage .claude/skills/
 
 	<section id="install" class="sec">
 		<h2 class="sec__h">Add the skill</h2>
-		<p class="sec__p">The skill lives in the repo:</p>
-		<Code code={pathCode} label="skills/" />
+		<p class="sec__p">
+			It ships <strong>inside the npm package</strong>, so installing
+			<code class="ic">sve-ui</code> is all it takes to have it locally:
+		</p>
+		<Code code={pathCode} label="After installing sve-ui" />
 		<p class="sec__p" style="margin-top: 16px;">Drop it into your agent's skills directory:</p>
 		<Code code={useCode} label="Terminal" />
 	</section>

@@ -37,6 +37,11 @@ jobs:
       - name: Formatting
         run: pnpm run format:check
 
+      # The rendered structure must match the committed baseline. Runs after
+      # build, since it inspects the prerendered output rather than the source.
+      - name: Rendered structure unchanged
+        run: pnpm --filter docs run check:render
+
       # The committed prop metadata must match the components it documents.
       - name: Prop tables up to date
         run: pnpm --filter docs run gen:props:check
