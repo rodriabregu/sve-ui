@@ -8,12 +8,28 @@
 		/** The entered code. Bindable. */
 		value?: string;
 		/** Extra classes merged onto the root. */
+		/**
+		 * Marks the control as failing validation.
+		 *
+		 * Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `container; Bits owns the inputs`, and ARIA does not
+		 * support the attribute there, so assistive technology is free to ignore it.
+		 * axe does NOT flag it either way — verified by injecting it and watching the
+		 * suite still pass — so this is a decision taken from the spec, not one a
+		 * tool enforces. The accessible signal comes
+		 * from `Field` wiring the error message through `aria-describedby`.
+		 *
+		 * Prefer letting `Field` drive this: passing `Field` an `error` is what makes
+		 * a field invalid, so the message the user reads and the state of the control
+		 * cannot disagree.
+		 * @default false
+		 */
+		invalid?: boolean;
 		class?: string;
 	}
 
 	// `value` must be destructured and passed as `bind:value`. Forwarding it in
 	// the spread makes it one-way, so typed digits would not reach the caller.
-	let { value = $bindable(''), class: cls, children, ...rest }: Props = $props();
+	let { invalid = false, value = $bindable(''), class: cls, children, ...rest }: Props = $props();
 </script>
 
 <!--
@@ -46,7 +62,7 @@
 -->
 <PinInput.Root
 	bind:value
-	class={['sve-pin-input', cls].filter(Boolean).join(' ')}
+	class={['sve-pin-input', invalid && 'sve-pin-input--invalid', cls].filter(Boolean).join(' ')}
 	data-slot="pin-input"
 	{children}
 	{...rest}
@@ -62,5 +78,14 @@
 
 	:global(.sve-pin-input[data-disabled]) {
 		opacity: 0.5;
+	}
+
+	/* Colour is never the only signal: `Field` supplies the message that says why. */
+	:global(.sve-pin-input--invalid) {
+		border-color: var(--sve-color-danger);
+	}
+
+	:global(.sve-pin-input--invalid:focus-visible) {
+		outline-color: var(--sve-color-danger);
 	}
 </style>

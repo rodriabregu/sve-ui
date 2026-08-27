@@ -961,6 +961,20 @@
 				"description": "Anchor rel. Set automatically for `target=\"_blank\"` unless you pass it."
 			},
 			{
+				"prop": "loading",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Shows a spinner and marks the button busy while an action is in flight. It stays FOCUSABLE on purpose. `disabled` would be the obvious choice and it is the wrong one: a disabled element loses focus, so a keyboard user who just pressed Enter is dropped back to the top of the document with no idea anything happened. Activation is blocked instead, and `aria-busy` tells assistive technology the control is working. Only meaningful on a button; a link navigates rather than performing work."
+			},
+			{
+				"prop": "loadingLabel",
+				"type": "string",
+				"required": false,
+				"default": "'Loading'",
+				"description": "Announced while `loading`. Say what is happening, not that something is."
+			},
+			{
 				"prop": "class",
 				"type": "string",
 				"required": false
@@ -1661,6 +1675,13 @@
 				"default": "'md'"
 			},
 			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as failing validation. Always applies the invalid styling. Also sets `aria-invalid`, which this element's `checkbox` role supports. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
+			},
+			{
 				"prop": "class",
 				"type": "string",
 				"required": false
@@ -2137,6 +2158,13 @@
 	},
 	"ComboboxInput": {
 		"props": [
+			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as failing validation. Always applies the invalid styling. Also sets `aria-invalid`, which this element's `combobox` role supports. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
+			},
 			{
 				"prop": "class",
 				"type": "string",
@@ -3578,10 +3606,16 @@
 	"DatePickerTrigger": {
 		"props": [
 			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as failing validation. Applies the invalid styling only. No `aria-invalid`: this renders as a `button`, and ARIA does not support the attribute on that role, so assistive technology is free to ignore it. axe does NOT flag it either way — verified by injecting it and watching the suite still pass — so this is a decision taken from the spec, not one a tool enforces. The accessible signal comes from `Field` wiring the error message through `aria-describedby`."
+			},
+			{
 				"prop": "class",
 				"type": "string",
-				"required": false,
-				"description": "Extra classes merged onto the trigger."
+				"required": false
 			},
 			{
 				"prop": "child",
@@ -6021,10 +6055,16 @@
 				"description": "The entered code. Bindable."
 			},
 			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as failing validation. Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `container; Bits owns the inputs`, and ARIA does not support the attribute there, so assistive technology is free to ignore it. axe does NOT flag it either way — verified by injecting it and watching the suite still pass — so this is a decision taken from the spec, not one a tool enforces. The accessible signal comes from `Field` wiring the error message through `aria-describedby`. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
+			},
+			{
 				"prop": "class",
 				"type": "string",
-				"required": false,
-				"description": "Extra classes merged onto the root."
+				"required": false
 			},
 			{
 				"prop": "children",
@@ -6438,6 +6478,13 @@
 	"RadioGroupRoot": {
 		"props": [
 			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as failing validation. Always applies the invalid styling. Also sets `aria-invalid`, which this element's `radiogroup` role supports. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
+			},
+			{
 				"prop": "class",
 				"type": "string",
 				"required": false
@@ -6787,10 +6834,16 @@
 				"default": "'md'"
 			},
 			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as failing validation. Always applies the invalid styling. Also sets `aria-invalid`, which this element's `slider` role supports. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
+			},
+			{
 				"prop": "class",
 				"type": "string",
-				"required": false,
-				"description": "Extra classes merged onto the root."
+				"required": false
 			},
 			{
 				"prop": "allowHalf",
@@ -7355,6 +7408,13 @@
 	},
 	"SelectTrigger": {
 		"props": [
+			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as failing validation. Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `button`, and ARIA does not support the attribute there, so assistive technology is free to ignore it. axe does NOT flag it either way — verified by injecting it and watching the suite still pass — so this is a decision taken from the spec, not one a tool enforces. The accessible signal comes from `Field` wiring the error message through `aria-describedby`. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
+			},
 			{
 				"prop": "class",
 				"type": "string",
@@ -8004,10 +8064,16 @@
 				"description": "Accessible name for the thumb(s). The `role=\"slider\"` element needs a name; in `multiple` mode each thumb gets the label suffixed with its position."
 			},
 			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as failing validation. Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `container; the thumb is the slider`, and ARIA does not support the attribute there, so assistive technology is free to ignore it. axe does NOT flag it either way — verified by injecting it and watching the suite still pass — so this is a decision taken from the spec, not one a tool enforces. The accessible signal comes from `Field` wiring the error message through `aria-describedby`. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
+			},
+			{
 				"prop": "class",
 				"type": "string",
-				"required": false,
-				"description": "Extra classes merged onto the root."
+				"required": false
 			}
 		],
 		"spreads": "Omit<HTMLAttributes<HTMLSpanElement>, 'class'>"
@@ -8086,6 +8152,13 @@
 				"type": "'sm' | 'md' | 'lg'",
 				"required": false,
 				"default": "'md'"
+			},
+			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as failing validation. Always applies the invalid styling. Also sets `aria-invalid`, which this element's `switch` role supports. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
 			},
 			{
 				"prop": "class",
@@ -9156,10 +9229,16 @@
 				"default": "'outline'"
 			},
 			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Marks the control as failing validation. Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `button`, and ARIA does not support the attribute there, so assistive technology is free to ignore it. axe does NOT flag it either way — verified by injecting it and watching the suite still pass — so this is a decision taken from the spec, not one a tool enforces. The accessible signal comes from `Field` wiring the error message through `aria-describedby`. Prefer letting `Field` drive this: passing `Field` an `error` is what makes a field invalid, so the message the user reads and the state of the control cannot disagree."
+			},
+			{
 				"prop": "class",
 				"type": "string",
-				"required": false,
-				"description": "Extra classes merged onto the root."
+				"required": false
 			},
 			{
 				"prop": "child",

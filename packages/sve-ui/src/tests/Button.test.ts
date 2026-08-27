@@ -185,4 +185,65 @@ describe('Button', () => {
 			expect(onclick).toHaveBeenCalledOnce();
 		});
 	});
+
+	/*
+		`aria-busy` appeared in exactly ONE component before this, and Button had no
+		loading state at all — so every consumer hand-rolled one, almost certainly
+		without announcing it.
+	*/
+	describe('loading', () => {
+		it('marks the button busy', () => {
+			const { getByRole } = render(Button, { props: { loading: true } });
+			expect(getByRole('button').getAttribute('aria-busy')).toBe('true');
+		});
+
+		it('stays FOCUSABLE and undisabled while loading', () => {
+			const { getByRole } = render(Button, { props: { loading: true } });
+			const button = getByRole('button') as HTMLButtonElement;
+
+			// `disabled` is the obvious choice and the wrong one: a disabled element
+			// loses focus, dropping a keyboard user who just pressed Enter back to the
+			// top of the document with no idea anything happened.
+			expect(button.disabled).toBe(false);
+			button.focus();
+			expect(document.activeElement).toBe(button);
+		});
+
+		it('blocks activation while loading', async () => {
+			const onclick = vi.fn();
+			const { getByRole } = render(Button, { props: { loading: true, onclick } });
+			await fireEvent.click(getByRole('button'));
+			// Focusable but not activatable — the double-submit is the whole point.
+			expect(onclick).not.toHaveBeenCalled();
+		});
+
+		it('activates normally when not loading', async () => {
+			const onclick = vi.fn();
+			const { getByRole } = render(Button, { props: { loading: false, onclick } });
+			await fireEvent.click(getByRole('button'));
+			expect(onclick).toHaveBeenCalledOnce();
+		});
+
+		it('hides the spinner from assistive technology and announces text instead', () => {
+			const { container } = render(Button, { props: { loading: true } });
+			const spinner = container.querySelector('.sve-button__spinner')!;
+			// aria-busy already carries the state; a spinning glyph announces nothing.
+			expect(spinner.getAttribute('aria-hidden')).toBe('true');
+			expect(container.querySelector('.sve-button__loading-label')!.textContent).toBe('Loading');
+		});
+
+		it('takes a translated loading label', () => {
+			const { container } = render(Button, {
+				props: { loading: true, loadingLabel: 'Guardando' }
+			});
+			expect(container.querySelector('.sve-button__loading-label')!.textContent).toBe('Guardando');
+		});
+
+		it('adds nothing when not loading', () => {
+			const { container, getByRole } = render(Button, {});
+			expect(getByRole('button').hasAttribute('aria-busy')).toBe(false);
+			expect(container.querySelector('.sve-button__spinner')).toBeNull();
+			expect(container.querySelector('.sve-button--loading')).toBeNull();
+		});
+	});
 });

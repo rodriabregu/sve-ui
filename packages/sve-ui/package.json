@@ -70,6 +70,7 @@
 		"@sveltejs/package": "catalog:",
 		"@sveltejs/vite-plugin-svelte": "catalog:",
 		"@testing-library/svelte": "catalog:",
+		"@vitest/coverage-v8": "^4.1.11",
 		"eslint": "catalog:",
 		"eslint-plugin-svelte": "catalog:",
 		"jsdom": "^26.0.0",
@@ -87,6 +88,7 @@
 		"package": "svelte-kit sync && svelte-package && node scripts/check-dts.mjs && node scripts/check-treeshake.mjs && node scripts/check-package-files.mjs && publint",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"test:coverage": "vitest run --coverage"
 	}
 }

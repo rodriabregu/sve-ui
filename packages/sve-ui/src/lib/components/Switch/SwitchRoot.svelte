@@ -10,15 +10,42 @@
 
 	interface Props extends Omit<BitsRootProps, 'class'> {
 		size?: Size;
+		/**
+		 * Marks the control as failing validation.
+		 *
+		 * Always applies the invalid styling. Also sets `aria-invalid`, which this element's `switch` role supports.
+		 *
+		 * Prefer letting `Field` drive this: passing `Field` an `error` is what makes
+		 * a field invalid, so the message the user reads and the state of the control
+		 * cannot disagree.
+		 * @default false
+		 */
+		invalid?: boolean;
 		class?: string;
 	}
 
-	let { size = 'md', checked = $bindable(false), class: cls, ...rest }: Props = $props();
+	let {
+		invalid = false,
+		size = 'md',
+		checked = $bindable(false),
+		class: cls,
+		...rest
+	}: Props = $props();
 
-	const className = $derived(['sve-switch', `sve-switch--${size}`, cls].filter(Boolean).join(' '));
+	const className = $derived(
+		['sve-switch', invalid && 'sve-switch--invalid', `sve-switch--${size}`, cls]
+			.filter(Boolean)
+			.join(' ')
+	);
 </script>
 
-<Switch.Root bind:checked class={className} data-slot="switch" {...rest}>
+<Switch.Root
+	bind:checked
+	class={className}
+	aria-invalid={invalid ? true : undefined}
+	data-slot="switch"
+	{...rest}
+>
 	<Switch.Thumb class="sve-switch__thumb" data-slot="switch-thumb" />
 </Switch.Root>
 
@@ -100,5 +127,15 @@
 		:global(.sve-switch__thumb) {
 			transition: none;
 		}
+	}
+
+	/*
+		A ring rather than a border: these controls have no border to recolour, and
+		colour alone is not a sufficient signal anyway — `Field` supplies the text.
+	*/
+	:global(.sve-switch--invalid) {
+		outline: 2px solid var(--sve-color-danger);
+		outline-offset: 2px;
+		border-radius: var(--sve-radius-sm);
 	}
 </style>

@@ -5,15 +5,34 @@
 	type BitsRootProps = ComponentProps<typeof RadioGroup.Root>;
 
 	interface Props extends Omit<BitsRootProps, 'class'> {
+		/**
+		 * Marks the control as failing validation.
+		 *
+		 * Always applies the invalid styling. Also sets `aria-invalid`, which this element's `radiogroup` role supports.
+		 *
+		 * Prefer letting `Field` drive this: passing `Field` an `error` is what makes
+		 * a field invalid, so the message the user reads and the state of the control
+		 * cannot disagree.
+		 * @default false
+		 */
+		invalid?: boolean;
 		class?: string;
 	}
 
-	let { value = $bindable(), class: cls, ...rest }: Props = $props();
+	let { invalid = false, value = $bindable(), class: cls, ...rest }: Props = $props();
 
-	const className = $derived(['sve-radio-group', cls].filter(Boolean).join(' '));
+	const className = $derived(
+		['sve-radio-group', invalid && 'sve-radio-group--invalid', cls].filter(Boolean).join(' ')
+	);
 </script>
 
-<RadioGroup.Root bind:value class={className} data-slot="radio-group" {...rest} />
+<RadioGroup.Root
+	bind:value
+	class={className}
+	aria-invalid={invalid ? true : undefined}
+	data-slot="radio-group"
+	{...rest}
+/>
 
 <style>
 	:global(.sve-radio-group) {
@@ -24,5 +43,15 @@
 
 	:global(.sve-radio-group[data-orientation='horizontal']) {
 		flex-direction: row;
+	}
+
+	/*
+		A ring rather than a border: these controls have no border to recolour, and
+		colour alone is not a sufficient signal anyway — `Field` supplies the text.
+	*/
+	:global(.sve-radio-group--invalid) {
+		outline: 2px solid var(--sve-color-danger);
+		outline-offset: 2px;
+		border-radius: var(--sve-radius-sm);
 	}
 </style>

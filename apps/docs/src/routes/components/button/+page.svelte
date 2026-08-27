@@ -16,12 +16,15 @@
 		{ id: 'sizes', label: 'Sizes' },
 		{ id: 'states', label: 'States' },
 		{ id: 'links', label: 'As a link' },
+		{ id: 'loading', label: 'Loading' },
 		{ id: 'props', label: 'Props' }
 	];
 
 	const props: PropRow[] = [
 		{ prop: 'variant', type: `'solid' | 'outline' | 'ghost' | 'flat'`, default: `'solid'` },
 		{ prop: 'href', type: 'string', default: '—' },
+		{ prop: 'loading', type: 'boolean', default: 'false' },
+		{ prop: 'loadingLabel', type: 'string', default: `'Loading'` },
 		{ prop: 'target', type: 'string', default: '—' },
 		{ prop: 'rel', type: 'string', default: `'noopener noreferrer' for target="_blank"` },
 		{
@@ -177,6 +180,28 @@
 			<code class="ic">&lt;a&gt;</code> has no <code class="ic">disabled</code> attribute, and an
 			<code class="ic">&lt;a aria-disabled&gt;</code> still takes a tab stop and is still announced as
 			a link — so it invites the user to follow something that goes nowhere.
+		</p>
+	</section>
+
+	<section id="loading" class="sec">
+		<h2 class="sec__h">Loading</h2>
+		<p class="sec__p">
+			<code class="ic">loading</code> shows a spinner and sets
+			<code class="ic">aria-busy</code> while an action is in flight. Activation is blocked, so a double
+			submit is not possible.
+		</p>
+		<p class="warn">
+			It stays <strong>focusable</strong>. <code class="ic">disabled</code> is the obvious choice and
+			the wrong one: a disabled element loses focus, so a keyboard user who just pressed Enter is dropped
+			back to the top of the document with no idea anything happened.
+		</p>
+		<p class="sec__p">
+			The children stay on screen, so the button keeps its width and nothing around it shifts. The
+			spinner is <code class="ic">aria-hidden</code> — <code class="ic">aria-busy</code> already
+			carries the state — and a visually hidden <code class="ic">loadingLabel</code> is what gets
+			announced. Say what is happening: <code class="ic">"Saving your changes"</code> beats
+			<code class="ic">"Loading"</code>. It respects
+			<code class="ic">prefers-reduced-motion</code>.
 		</p>
 	</section>
 

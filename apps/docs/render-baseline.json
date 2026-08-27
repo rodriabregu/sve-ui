@@ -32,8 +32,8 @@
     "hash": "a34d2f766263794e"
   },
   "components/button.html": {
-    "elements": 393,
-    "hash": "8fe22139e762f5d0"
+    "elements": 423,
+    "hash": "308fd89f0d663f9a"
   },
   "components/calendar.html": {
     "elements": 498,
@@ -132,8 +132,8 @@
     "hash": "f7baaaeea5c2a373"
   },
   "components/pin-input.html": {
-    "elements": 439,
-    "hash": "39282cf4f3c238d8"
+    "elements": 446,
+    "hash": "3afa929ff312e6a0"
   },
   "components/popover.html": {
     "elements": 298,
@@ -152,8 +152,8 @@
     "hash": "22164e533b32924f"
   },
   "components/rating-group.html": {
-    "elements": 482,
-    "hash": "2bff46a2cb9d8062"
+    "elements": 489,
+    "hash": "f5cacb5ee2f3d88e"
   },
   "components/scroll-area.html": {
     "elements": 401,
@@ -180,8 +180,8 @@
     "hash": "553aa6f45b13b435"
   },
   "components/slider.html": {
-    "elements": 314,
-    "hash": "9cb316967df99210"
+    "elements": 321,
+    "hash": "d2f844f14667b5db"
   },
   "components/spinner.html": {
     "elements": 295,
@@ -228,8 +228,8 @@
     "hash": "45cce2e12b4b4ad5"
   },
   "components/toggle.html": {
-    "elements": 340,
-    "hash": "5ce5f144205561bf"
+    "elements": 347,
+    "hash": "f2b585b79b8b2ae4"
   },
   "components/toolbar.html": {
     "elements": 390,

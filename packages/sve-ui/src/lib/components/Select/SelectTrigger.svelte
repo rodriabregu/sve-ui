@@ -5,13 +5,33 @@
 	type BitsTriggerProps = ComponentProps<typeof Select.Trigger>;
 
 	interface Props extends Omit<BitsTriggerProps, 'class' | 'children'> {
+		/**
+		 * Marks the control as failing validation.
+		 *
+		 * Always applies the invalid styling. Does NOT set `aria-invalid`: this renders as `button`, and ARIA does not
+		 * support the attribute there, so assistive technology is free to ignore it.
+		 * axe does NOT flag it either way — verified by injecting it and watching the
+		 * suite still pass — so this is a decision taken from the spec, not one a
+		 * tool enforces. The accessible signal comes
+		 * from `Field` wiring the error message through `aria-describedby`.
+		 *
+		 * Prefer letting `Field` drive this: passing `Field` an `error` is what makes
+		 * a field invalid, so the message the user reads and the state of the control
+		 * cannot disagree.
+		 * @default false
+		 */
+		invalid?: boolean;
 		class?: string;
 		children?: Snippet;
 	}
 
-	let { class: cls, children, ...rest }: Props = $props();
+	let { invalid = false, class: cls, children, ...rest }: Props = $props();
 
-	const className = $derived(['sve-select__trigger', cls].filter(Boolean).join(' '));
+	const className = $derived(
+		['sve-select__trigger', invalid && 'sve-select__trigger--invalid', cls]
+			.filter(Boolean)
+			.join(' ')
+	);
 </script>
 
 <Select.Trigger class={className} data-slot="select-trigger" {...rest}>
@@ -71,5 +91,14 @@
 		height: 1.1rem;
 		flex-shrink: 0;
 		opacity: 0.6;
+	}
+
+	/* Colour is never the only signal: `Field` supplies the message that says why. */
+	:global(.sve-select__trigger--invalid) {
+		border-color: var(--sve-color-danger);
+	}
+
+	:global(.sve-select__trigger--invalid:focus-visible) {
+		outline-color: var(--sve-color-danger);
 	}
 </style>

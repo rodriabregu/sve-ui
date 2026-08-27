@@ -1,0 +1,1137 @@
+{
+	"total": {
+		"lines": { "total": 1049, "covered": 995, "skipped": 0, "pct": 94.85 },
+		"statements": { "total": 1435, "covered": 1359, "skipped": 0, "pct": 94.7 },
+		"functions": { "total": 670, "covered": 634, "skipped": 0, "pct": 94.62 },
+		"branches": { "total": 521, "covered": 468, "skipped": 0, "pct": 89.82 },
+		"branchesTrue": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/ThemeProvider.svelte": {
+		"lines": { "total": 5, "covered": 4, "skipped": 0, "pct": 80 },
+		"functions": { "total": 3, "covered": 2, "skipped": 0, "pct": 66.66 },
+		"statements": { "total": 9, "covered": 8, "skipped": 0, "pct": 88.88 },
+		"branches": { "total": 4, "covered": 3, "skipped": 0, "pct": 75 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/context.ts": {
+		"lines": { "total": 3, "covered": 2, "skipped": 0, "pct": 66.66 },
+		"functions": { "total": 2, "covered": 1, "skipped": 0, "pct": 50 },
+		"statements": { "total": 3, "covered": 2, "skipped": 0, "pct": 66.66 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Accordion/AccordionContent.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Accordion/AccordionHeader.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Accordion/AccordionItem.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Accordion/AccordionRoot.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"statements": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 },
+		"branches": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Accordion/AccordionTrigger.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Alert/AlertDescription.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Alert/AlertRoot.svelte": {
+		"lines": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"functions": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"statements": { "total": 13, "covered": 13, "skipped": 0, "pct": 100 },
+		"branches": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Alert/AlertTitle.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/AlertDialog/AlertDialogAction.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 0, "skipped": 0, "pct": 0 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/AlertDialog/AlertDialogCancel.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/AlertDialog/AlertDialogContent.svelte": {
+		"lines": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/AlertDialog/AlertDialogDescription.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/AlertDialog/AlertDialogOverlay.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/AlertDialog/AlertDialogTitle.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/AspectRatio/AspectRatio.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Avatar/AvatarFallback.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Avatar/AvatarImage.svelte": {
+		"lines": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Avatar/AvatarRoot.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Badge/Badge.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 10, "covered": 10, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Breadcrumb/BreadcrumbItem.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Breadcrumb/BreadcrumbLink.svelte": {
+		"lines": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 14, "covered": 14, "skipped": 0, "pct": 100 },
+		"branches": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Breadcrumb/BreadcrumbList.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Breadcrumb/BreadcrumbRoot.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Breadcrumb/BreadcrumbSeparator.svelte": {
+		"lines": { "total": 6, "covered": 5, "skipped": 0, "pct": 83.33 },
+		"functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 6, "skipped": 0, "pct": 85.71 },
+		"branches": { "total": 1, "covered": 0, "skipped": 0, "pct": 0 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Button/Button.svelte": {
+		"lines": { "total": 17, "covered": 17, "skipped": 0, "pct": 100 },
+		"functions": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"statements": { "total": 26, "covered": 26, "skipped": 0, "pct": 100 },
+		"branches": { "total": 32, "covered": 32, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarCell.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarDay.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarGrid.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarGridBody.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarGridHead.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarGridRow.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarHeadCell.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarHeader.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarHeading.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarMonthSelect.svelte": {
+		"lines": { "total": 4, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"statements": { "total": 4, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarNextButton.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarPrevButton.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarRoot.svelte": {
+		"lines": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"functions": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Calendar/CalendarYearSelect.svelte": {
+		"lines": { "total": 4, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"statements": { "total": 4, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Card/CardContent.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Card/CardFooter.svelte": {
+		"lines": { "total": 4, "covered": 3, "skipped": 0, "pct": 75 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 6, "skipped": 0, "pct": 75 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Card/CardHeader.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Card/CardRoot.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 10, "covered": 10, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Checkbox/CheckboxRoot.svelte": {
+		"lines": { "total": 15, "covered": 15, "skipped": 0, "pct": 100 },
+		"functions": { "total": 10, "covered": 10, "skipped": 0, "pct": 100 },
+		"statements": { "total": 22, "covered": 22, "skipped": 0, "pct": 100 },
+		"branches": { "total": 15, "covered": 13, "skipped": 0, "pct": 86.66 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Code/Code.svelte": {
+		"lines": { "total": 21, "covered": 21, "skipped": 0, "pct": 100 },
+		"functions": { "total": 8, "covered": 6, "skipped": 0, "pct": 75 },
+		"statements": { "total": 47, "covered": 44, "skipped": 0, "pct": 93.61 },
+		"branches": { "total": 22, "covered": 19, "skipped": 0, "pct": 86.36 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Collapsible/CollapsibleContent.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Collapsible/CollapsibleRoot.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Collapsible/CollapsibleTrigger.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Combobox/ComboboxContent.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Combobox/ComboboxInput.svelte": {
+		"lines": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Combobox/ComboboxItem.svelte": {
+		"lines": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"statements": { "total": 6, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Command/CommandEmpty.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Command/CommandGroup.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Command/CommandGroupHeading.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Command/CommandInput.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Command/CommandItem.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Command/CommandList.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Command/CommandLoading.svelte": {
+		"lines": { "total": 4, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"statements": { "total": 4, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Command/CommandRoot.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Command/CommandSeparator.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/ContextMenu/ContextMenuContent.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/ContextMenu/ContextMenuTrigger.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DateField/DateFieldInput.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DateField/DateFieldLabel.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DateField/DateFieldRoot.svelte": {
+		"lines": { "total": 7, "covered": 6, "skipped": 0, "pct": 85.71 },
+		"functions": { "total": 6, "covered": 5, "skipped": 0, "pct": 83.33 },
+		"statements": { "total": 7, "covered": 6, "skipped": 0, "pct": 85.71 },
+		"branches": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DateField/DateFieldSegment.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DatePicker/DatePickerCalendar.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DatePicker/DatePickerContent.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DatePicker/DatePickerRoot.svelte": {
+		"lines": { "total": 8, "covered": 7, "skipped": 0, "pct": 87.5 },
+		"functions": { "total": 7, "covered": 6, "skipped": 0, "pct": 85.71 },
+		"statements": { "total": 8, "covered": 7, "skipped": 0, "pct": 87.5 },
+		"branches": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DatePicker/DatePickerTrigger.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 5, "covered": 3, "skipped": 0, "pct": 60 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DateRangeField/DateRangeFieldInput.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DateRangeField/DateRangeFieldLabel.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DateRangeField/DateRangeFieldRoot.svelte": {
+		"lines": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"functions": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DateRangePicker/DateRangePickerCalendar.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DateRangePicker/DateRangePickerRoot.svelte": {
+		"lines": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"functions": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DateRangePicker/DateRangePickerTrigger.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Dialog/DialogContent.svelte": {
+		"lines": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Dialog/DialogDescription.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Dialog/DialogOverlay.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Dialog/DialogTitle.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/DropdownMenu/DropdownMenuContent.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Field/Field.svelte": {
+		"lines": { "total": 23, "covered": 23, "skipped": 0, "pct": 100 },
+		"functions": { "total": 14, "covered": 14, "skipped": 0, "pct": 100 },
+		"statements": { "total": 55, "covered": 52, "skipped": 0, "pct": 94.54 },
+		"branches": { "total": 28, "covered": 25, "skipped": 0, "pct": 89.28 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Flex/Flex.svelte": {
+		"lines": { "total": 10, "covered": 10, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 12, "covered": 12, "skipped": 0, "pct": 100 },
+		"branches": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Heading/Heading.svelte": {
+		"lines": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"functions": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"statements": { "total": 11, "covered": 11, "skipped": 0, "pct": 100 },
+		"branches": { "total": 15, "covered": 12, "skipped": 0, "pct": 80 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Input/Input.svelte": {
+		"lines": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Label/Label.svelte": {
+		"lines": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 12, "covered": 12, "skipped": 0, "pct": 100 },
+		"branches": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/LinkPreview/LinkPreviewContent.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Menu/MenuGroup.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Menu/MenuItem.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Menu/MenuLabel.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Menu/MenuSeparator.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Menubar/MenubarContent.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Menubar/MenubarRoot.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Menubar/MenubarTrigger.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Meter/Meter.svelte": {
+		"lines": { "total": 10, "covered": 10, "skipped": 0, "pct": 100 },
+		"functions": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"statements": { "total": 19, "covered": 19, "skipped": 0, "pct": 100 },
+		"branches": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/NavigationMenu/NavigationMenuContent.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/NavigationMenu/NavigationMenuLink.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/NavigationMenu/NavigationMenuList.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/NavigationMenu/NavigationMenuRoot.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/NavigationMenu/NavigationMenuTrigger.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/NavigationMenu/NavigationMenuViewport.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Pagination/PaginationNextButton.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Pagination/PaginationPage.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Pagination/PaginationPrevButton.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Pagination/PaginationRoot.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/PinInput/PinInputCell.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/PinInput/PinInputRoot.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Popover/PopoverContent.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Progress/Progress.svelte": {
+		"lines": { "total": 18, "covered": 18, "skipped": 0, "pct": 100 },
+		"functions": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"statements": { "total": 23, "covered": 23, "skipped": 0, "pct": 100 },
+		"branches": { "total": 11, "covered": 10, "skipped": 0, "pct": 90.9 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/RadioGroup/RadioGroupItem.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"statements": { "total": 13, "covered": 13, "skipped": 0, "pct": 100 },
+		"branches": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/RadioGroup/RadioGroupRoot.svelte": {
+		"lines": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"functions": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"statements": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 },
+		"branches": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/RangeCalendar/RangeCalendarCell.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/RangeCalendar/RangeCalendarDay.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/RangeCalendar/RangeCalendarRoot.svelte": {
+		"lines": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"functions": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/RatingGroup/RatingGroupItem.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/RatingGroup/RatingGroupRoot.svelte": {
+		"lines": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 },
+		"functions": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"statements": { "total": 10, "covered": 10, "skipped": 0, "pct": 100 },
+		"branches": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/ScrollArea/ScrollAreaRoot.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/ScrollArea/ScrollAreaScrollbar.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/ScrollArea/ScrollAreaThumb.svelte": {
+		"lines": { "total": 4, "covered": 3, "skipped": 0, "pct": 75 },
+		"functions": { "total": 3, "covered": 2, "skipped": 0, "pct": 66.66 },
+		"statements": { "total": 4, "covered": 3, "skipped": 0, "pct": 75 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/ScrollArea/ScrollAreaViewport.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Select/SelectContent.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 6, "skipped": 0, "pct": 85.71 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Select/SelectItem.svelte": {
+		"lines": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"statements": { "total": 6, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Select/SelectTrigger.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 },
+		"branches": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Separator/Separator.svelte": {
+		"lines": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 },
+		"branches": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sheet/SheetContent.svelte": {
+		"lines": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 2, "covered": 0, "skipped": 0, "pct": 0 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sheet/SheetDescription.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sheet/SheetOverlay.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sheet/SheetTitle.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/SidebarContent.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/SidebarFooter.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/SidebarGroup.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/SidebarGroupLabel.svelte": {
+		"lines": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/SidebarHeader.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/SidebarItem.svelte": {
+		"lines": { "total": 11, "covered": 11, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 19, "covered": 19, "skipped": 0, "pct": 100 },
+		"branches": { "total": 29, "covered": 23, "skipped": 0, "pct": 79.31 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/SidebarMenu.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/SidebarProvider.svelte": {
+		"lines": { "total": 15, "covered": 15, "skipped": 0, "pct": 100 },
+		"functions": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"statements": { "total": 15, "covered": 15, "skipped": 0, "pct": 100 },
+		"branches": { "total": 9, "covered": 7, "skipped": 0, "pct": 77.77 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/SidebarRoot.svelte": {
+		"lines": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 9, "covered": 7, "skipped": 0, "pct": 77.77 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/SidebarTrigger.svelte": {
+		"lines": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 3, "covered": 2, "skipped": 0, "pct": 66.66 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Sidebar/context.ts": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"statements": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Skeleton/Skeleton.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Slider/Slider.svelte": {
+		"lines": { "total": 13, "covered": 13, "skipped": 0, "pct": 100 },
+		"functions": { "total": 12, "covered": 12, "skipped": 0, "pct": 100 },
+		"statements": { "total": 25, "covered": 25, "skipped": 0, "pct": 100 },
+		"branches": { "total": 11, "covered": 9, "skipped": 0, "pct": 81.81 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Spinner/Spinner.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Stack/Stack.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 },
+		"branches": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Switch/SwitchRoot.svelte": {
+		"lines": { "total": 10, "covered": 10, "skipped": 0, "pct": 100 },
+		"functions": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"statements": { "total": 11, "covered": 11, "skipped": 0, "pct": 100 },
+		"branches": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Table/TableBody.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Table/TableCaption.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Table/TableCell.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Table/TableFooter.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Table/TableHead.svelte": {
+		"lines": { "total": 13, "covered": 13, "skipped": 0, "pct": 100 },
+		"functions": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"statements": { "total": 25, "covered": 25, "skipped": 0, "pct": 100 },
+		"branches": { "total": 30, "covered": 30, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Table/TableHeader.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Table/TableRoot.svelte": {
+		"lines": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 14, "covered": 14, "skipped": 0, "pct": 100 },
+		"branches": { "total": 19, "covered": 19, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Table/TableRow.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Table/TableRowHeader.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Tabs/TabsContent.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Tabs/TabsList.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Tabs/TabsRoot.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Tabs/TabsTrigger.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 6, "covered": 6, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Text/Text.svelte": {
+		"lines": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 11, "covered": 11, "skipped": 0, "pct": 100 },
+		"branches": { "total": 23, "covered": 19, "skipped": 0, "pct": 82.6 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Textarea/Textarea.svelte": {
+		"lines": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 },
+		"branches": { "total": 10, "covered": 10, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/TimeField/TimeFieldInput.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/TimeField/TimeFieldLabel.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/TimeField/TimeFieldRoot.svelte": {
+		"lines": { "total": 7, "covered": 6, "skipped": 0, "pct": 85.71 },
+		"functions": { "total": 6, "covered": 5, "skipped": 0, "pct": 83.33 },
+		"statements": { "total": 7, "covered": 6, "skipped": 0, "pct": 85.71 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/TimeField/TimeFieldSegment.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/TimeRangeField/TimeRangeFieldInput.svelte": {
+		"lines": { "total": 4, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"statements": { "total": 4, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/TimeRangeField/TimeRangeFieldLabel.svelte": {
+		"lines": { "total": 4, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"statements": { "total": 4, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/TimeRangeField/TimeRangeFieldRoot.svelte": {
+		"lines": { "total": 7, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 6, "covered": 0, "skipped": 0, "pct": 0 },
+		"statements": { "total": 7, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Toast/ToastItem.svelte": {
+		"lines": { "total": 15, "covered": 14, "skipped": 0, "pct": 93.33 },
+		"functions": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"statements": { "total": 37, "covered": 29, "skipped": 0, "pct": 78.37 },
+		"branches": { "total": 15, "covered": 9, "skipped": 0, "pct": 60 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Toast/ToastViewport.svelte": {
+		"lines": { "total": 15, "covered": 15, "skipped": 0, "pct": 100 },
+		"functions": { "total": 12, "covered": 12, "skipped": 0, "pct": 100 },
+		"statements": { "total": 31, "covered": 31, "skipped": 0, "pct": 100 },
+		"branches": { "total": 14, "covered": 10, "skipped": 0, "pct": 71.42 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Toast/store.svelte.ts": {
+		"lines": { "total": 48, "covered": 45, "skipped": 0, "pct": 93.75 },
+		"functions": { "total": 18, "covered": 17, "skipped": 0, "pct": 94.44 },
+		"statements": { "total": 59, "covered": 55, "skipped": 0, "pct": 93.22 },
+		"branches": { "total": 21, "covered": 18, "skipped": 0, "pct": 85.71 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Toggle/Toggle.svelte": {
+		"lines": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 11, "covered": 11, "skipped": 0, "pct": 100 },
+		"branches": { "total": 9, "covered": 9, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/ToggleGroup/ToggleGroupItem.svelte": {
+		"lines": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/ToggleGroup/ToggleGroupRoot.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"statements": { "total": 8, "covered": 8, "skipped": 0, "pct": 100 },
+		"branches": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Toolbar/ToolbarButton.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Toolbar/ToolbarGroup.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 1, "covered": 1, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Toolbar/ToolbarGroupItem.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Toolbar/ToolbarLink.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Toolbar/ToolbarRoot.svelte": {
+		"lines": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 4, "covered": 4, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/components/Tooltip/TooltipContent.svelte": {
+		"lines": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 5, "covered": 5, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/internal/variants.ts": {
+		"lines": { "total": 14, "covered": 14, "skipped": 0, "pct": 100 },
+		"functions": { "total": 2, "covered": 2, "skipped": 0, "pct": 100 },
+		"statements": { "total": 14, "covered": 14, "skipped": 0, "pct": 100 },
+		"branches": { "total": 10, "covered": 8, "skipped": 0, "pct": 80 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/theme/breakpoints.ts": {
+		"lines": { "total": 1, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 },
+		"statements": { "total": 1, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/theme/palette.ts": {
+		"lines": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"functions": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 },
+		"statements": { "total": 7, "covered": 7, "skipped": 0, "pct": 100 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/theme/radius.ts": {
+		"lines": { "total": 1, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 },
+		"statements": { "total": 1, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/theme/sizes.ts": {
+		"lines": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 },
+		"statements": { "total": 3, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/theme/spacing.ts": {
+		"lines": { "total": 1, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 },
+		"statements": { "total": 1, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/theme/tokens.ts": {
+		"lines": { "total": 39, "covered": 37, "skipped": 0, "pct": 94.87 },
+		"functions": { "total": 3, "covered": 3, "skipped": 0, "pct": 100 },
+		"statements": { "total": 40, "covered": 38, "skipped": 0, "pct": 95 },
+		"branches": { "total": 22, "covered": 20, "skipped": 0, "pct": 90.9 }
+	},
+	"/Users/ralcino/Desktop/dev/sve-ui/packages/sve-ui/src/lib/theme/typography.ts": {
+		"lines": { "total": 1, "covered": 0, "skipped": 0, "pct": 0 },
+		"functions": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 },
+		"statements": { "total": 1, "covered": 0, "skipped": 0, "pct": 0 },
+		"branches": { "total": 0, "covered": 0, "skipped": 0, "pct": 100 }
+	}
+}
