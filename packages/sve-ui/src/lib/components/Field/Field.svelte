@@ -110,7 +110,12 @@
   It also means this works with any control, including a plain `<input>` — the
   library never has to know about yours.
 -->
-<div class={['sve-field-group', cls].filter(Boolean).join(' ')} {...rest}>
+<div
+	class={['sve-field-group', cls].filter(Boolean).join(' ')}
+	{...rest}
+	data-sve-field-invalid={hasError ? '' : undefined}
+	data-sve-field-control={controlId}
+>
 	<Label for={controlId} {required}>
 		{#if typeof label === 'string'}{label}{:else}{@render label()}{/if}
 	</Label>

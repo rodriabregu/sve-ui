@@ -30,6 +30,23 @@
   {/snippet}
 </Field>`;
 
+	const submitCode = `import { focusFirstInvalidField } from 'sve-ui';
+
+let formEl;
+let errors = $state({});
+
+async function submit() {
+  errors = await validate(values);
+
+  if (Object.keys(errors).length > 0) {
+    // Awaits tick() itself, so the errors are in the DOM before it looks.
+    await focusFirstInvalidField({ root: formEl });
+    return;
+  }
+
+  await save(values);
+}`;
+
 	const nativeCode = `<!-- Nothing here is sve-ui specific. Any control works. -->
 <Field label="Colour" description="Pick anything.">
   {#snippet control(props)}
@@ -147,14 +164,29 @@
 		</p>
 		<p class="sec__p">
 			That is on purpose. An error that is both a live region and referenced by
-			<code class="ic">aria-describedby</code> gets announced twice on the common path, once when it appears
-			and again when focus reaches the control.
+			<code class="ic">aria-describedby</code> gets announced twice on the common path: once when it appears,
+			again when focus reaches the control.
 		</p>
 		<p class="sec__p">
-			So do what the WCAG technique for this actually says: <strong
-				>move focus to the first invalid control</strong
-			> when a submit fails. Focusing it reads the label, the error and the description in one go, and
-			it puts the user where the work is.
+			So do what the WCAG technique actually says — move focus to the first invalid control — and
+			use
+			<code class="ic">focusFirstInvalidField</code> to do it. Focusing reads the label, the error and
+			the description in one announcement, and it puts the user where the work is.
+		</p>
+		<Code code={submitCode} label="A failed submit" />
+		<p class="sec__p" style="margin-top:16px">
+			It awaits Svelte's <code class="ic">tick()</code> internally, because you call it right after the
+			state change that produced the errors and the DOM would not carry them yet. That is the one thing
+			easiest to get wrong here, so it is handled rather than documented.
+		</p>
+		<p class="sec__p">
+			It returns <code class="ic">false</code> when nothing was focused, so you can fall back when a submit
+			failed for a reason no single field owns. If it finds an invalid field whose control was never wired,
+			or one that cannot take focus, it says so in the console rather than doing nothing quietly.
+		</p>
+		<p class="sec__p">
+			Pass <code class="ic">root</code> to scope it to one form. Without it, the whole document is searched,
+			which is wrong on a page with two forms.
 		</p>
 	</section>
 

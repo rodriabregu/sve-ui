@@ -345,6 +345,24 @@ The only accessible way to attach help text or a validation message to a control
 </Field>
 ```
 
+On a failed submit, move focus to the first invalid control — that is the WCAG
+technique, and it is why the error is not a live region:
+
+```ts
+import { focusFirstInvalidField } from 'sve-ui';
+
+async function submit() {
+	errors = await validate(values);
+	if (Object.keys(errors).length > 0) {
+		// Awaits tick() internally, so the errors are in the DOM before it looks.
+		// Returns false when nothing was focused. Pass `root` to scope it to a form.
+		await focusFirstInvalidField({ root: formEl });
+		return;
+	}
+	await save(values);
+}
+```
+
 Works with any control, including a plain `<input>` — the snippet just hands you
 `id`, `aria-describedby`, `aria-invalid` and `required`.
 
