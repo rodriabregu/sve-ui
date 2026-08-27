@@ -1,4 +1,6 @@
 <script lang="ts">
+	// Shared rules, so they travel with this namespace too.
+	import '../DateField/field-root.css';
 	import { DatePicker } from 'bits-ui';
 	import type { Component, Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';

@@ -1,0 +1,58 @@
+/*
+ * Shared stylesheet, not a duplicated <style> block.
+ *
+ * Svelte compiles styles per component, so these rules lived in exactly one file
+ * and a consumer importing only a namespace that REUSES the class got unstyled
+ * markup. That was invisible until `sideEffects` was declared and tree-shaking
+ * started actually working, so it shipped for four versions.
+ *
+ * A CSS import survives tree-shaking because `sideEffects` is ["**\/*.css"],
+ * which is the other half of why that value is an array and not `false`.
+ */
+
+:global(.sve-calendar__day) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	border: 1px solid transparent;
+	border-radius: var(--sve-radius-md);
+	background-color: transparent;
+	font-family: inherit;
+	font-size: var(--sve-font-size-sm);
+	color: var(--sve-color-default-foreground);
+	cursor: pointer;
+	transition:
+		background-color 0.15s ease,
+		color 0.15s ease;
+}
+:global(.sve-calendar__day:hover:not([data-disabled]):not([data-unavailable])) {
+	background-color: var(--sve-color-default);
+}
+:global(.sve-calendar__day[data-today]) {
+	border-color: var(--sve-color-primary-border);
+	font-weight: var(--sve-font-weight-bold);
+}
+:global(.sve-calendar__day[data-selected]) {
+	background-color: var(--sve-color-primary);
+	border-color: var(--sve-color-primary);
+	color: var(--sve-color-primary-foreground);
+}
+:global(.sve-calendar__day[data-focused]),
+:global(.sve-calendar__day:focus-visible) {
+	outline: 2px solid var(--sve-color-primary);
+	outline-offset: 2px;
+}
+:global(.sve-calendar__day[data-disabled]) {
+	opacity: 0.35;
+	cursor: not-allowed;
+}
+:global(.sve-calendar__day[data-unavailable]) {
+	color: var(--sve-color-danger);
+	text-decoration: line-through;
+	cursor: not-allowed;
+}
+:global(.sve-calendar__day[data-outside-month]) {
+	opacity: 0.4;
+}

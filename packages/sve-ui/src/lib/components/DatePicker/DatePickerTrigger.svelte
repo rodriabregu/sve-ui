@@ -1,4 +1,5 @@
 <script lang="ts">
+	import './picker-trigger.css';
 	import { DatePicker } from 'bits-ui';
 	import type { ComponentProps } from 'svelte';
 
@@ -66,32 +67,6 @@
 />
 
 <style>
-	:global(.sve-picker__trigger) {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 1.75rem;
-		height: 1.75rem;
-		margin-left: auto;
-		border: none;
-		border-radius: var(--sve-radius-sm);
-		background-color: transparent;
-		font-family: inherit;
-		font-size: var(--sve-font-size-sm);
-		color: var(--sve-color-default-foreground);
-		cursor: pointer;
-		transition: background-color 0.15s ease;
-	}
-
-	:global(.sve-picker__trigger:hover) {
-		background-color: var(--sve-color-default);
-	}
-
-	:global(.sve-picker__trigger:focus-visible) {
-		outline: 2px solid var(--sve-color-primary);
-		outline-offset: 1px;
-	}
-
 	@media (prefers-reduced-motion: reduce) {
 		:global(.sve-picker__trigger) {
 			transition: none;
@@ -99,11 +74,10 @@
 	}
 
 	/* Colour is never the only signal: `Field` supplies the message that says why. */
-	:global(.sve-picker__trigger--invalid) {
-		border-color: var(--sve-color-danger);
-	}
 
-	:global(.sve-picker__trigger--invalid:focus-visible) {
-		outline-color: var(--sve-color-danger);
-	}
+	/*
+		Bits sets `data-disabled` here and nothing styled it, so a disabled picker
+		looked exactly like an enabled one. `:disabled` does not help: this is a
+		button Bits renders with the attribute, not the native property.
+	*/
 </style>

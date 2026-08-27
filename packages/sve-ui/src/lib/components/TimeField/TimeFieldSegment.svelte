@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { useSegmentedRequired } from '$lib/internal/segmented-required';
 	import { TimeField } from 'bits-ui';
 	import type { ComponentProps } from 'svelte';
 
@@ -10,6 +11,15 @@
 	}
 
 	let { class: cls, children, ...rest }: Props = $props();
+
+	const isRequired = useSegmentedRequired();
+
+	/*
+		Only the editable segments. The literals — the slashes and colons — are not
+		focusable and carry no role, so marking them required would be noise on
+		elements a user never reaches.
+	*/
+	const required = $derived(isRequired() && rest.part !== 'literal');
 </script>
 
 <!--
@@ -25,6 +35,7 @@
 <TimeField.Segment
 	class={['sve-segment', cls].filter(Boolean).join(' ')}
 	data-slot="time-field-segment"
+	aria-required={required ? true : undefined}
 	{children}
 	{...rest}
 />

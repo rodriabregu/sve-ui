@@ -1,4 +1,6 @@
 <script lang="ts">
+	// Shared rules, so they travel with this namespace too.
+	import '../Calendar/calendar-day.css';
 	import { RangeCalendar } from 'bits-ui';
 	import type { ComponentProps } from 'svelte';
 

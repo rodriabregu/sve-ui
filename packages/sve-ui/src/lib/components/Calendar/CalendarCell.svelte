@@ -1,4 +1,5 @@
 <script lang="ts">
+	import './calendar-cell.css';
 	import { Calendar } from 'bits-ui';
 	import type { ComponentProps } from 'svelte';
 
@@ -21,8 +22,4 @@
 />
 
 <style>
-	:global(.sve-calendar__cell) {
-		padding: 0;
-		text-align: center;
-	}
 </style>

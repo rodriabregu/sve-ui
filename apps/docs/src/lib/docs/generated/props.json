@@ -3154,7 +3154,8 @@
 				"prop": "required",
 				"type": "boolean",
 				"required": false,
-				"default": "false"
+				"default": "false",
+				"description": "Marks the field as required. There is no single element to mark: the Root is a wrapper, and what a screen reader lands on are the segments. So this reaches them through context and becomes `aria-required` on each editable one, whose `role=\"spinbutton\"` supports it (checked against axe, not assumed). Bits emits nothing for `required` on this component, so before it was wired up a `<Field required>` around a date field announced nothing at all. It is still forwarded to Bits, which uses it on the hidden input for form submission."
 			},
 			{
 				"prop": "disabled",
@@ -3815,7 +3816,8 @@
 				"prop": "required",
 				"type": "boolean",
 				"required": false,
-				"default": "false"
+				"default": "false",
+				"description": "Marks the field as required. There is no single element to mark: the Root is a wrapper, and what a screen reader lands on are the segments. So this reaches them through context and becomes `aria-required` on each editable one, whose `role=\"spinbutton\"` supports it (checked against axe, not assumed). Bits emits nothing for `required` on this component, so before it was wired up a `<Field required>` around a date field announced nothing at all. It is still forwarded to Bits, which uses it on the hidden input for form submission."
 			},
 			{
 				"prop": "disabled",
@@ -8913,7 +8915,8 @@
 				"prop": "required",
 				"type": "boolean",
 				"required": false,
-				"default": "false"
+				"default": "false",
+				"description": "Marks the field as required. There is no single element to mark: the Root is a wrapper, and what a screen reader lands on are the segments. So this reaches them through context and becomes `aria-required` on each editable one, whose `role=\"spinbutton\"` supports it (checked against axe, not assumed). Bits emits nothing for `required` on this component, so before it was wired up a `<Field required>` around a date field announced nothing at all. It is still forwarded to Bits, which uses it on the hidden input for form submission."
 			},
 			{
 				"prop": "disabled",
@@ -9134,7 +9137,8 @@
 				"prop": "required",
 				"type": "boolean",
 				"required": false,
-				"default": "false"
+				"default": "false",
+				"description": "Marks the field as required. There is no single element to mark: the Root is a wrapper, and what a screen reader lands on are the segments. So this reaches them through context and becomes `aria-required` on each editable one, whose `role=\"spinbutton\"` supports it (checked against axe, not assumed). Bits emits nothing for `required` on this component, so before it was wired up a `<Field required>` around a date field announced nothing at all. It is still forwarded to Bits, which uses it on the hidden input for form submission."
 			},
 			{
 				"prop": "disabled",

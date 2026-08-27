@@ -1,4 +1,6 @@
 <script lang="ts">
+	// The rules live in a shared .css file so they travel with EITHER trigger.
+	import '../DatePicker/picker-trigger.css';
 	import { DateRangePicker } from 'bits-ui';
 	import type { ComponentProps } from 'svelte';
 

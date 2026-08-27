@@ -1,0 +1,46 @@
+/*
+ * Shared by DatePicker.Trigger and DateRangePicker.Trigger.
+ *
+ * A plain .css file rather than a duplicated <style> block, because Svelte
+ * compiles styles per component: the rules lived only in DatePickerTrigger, so a
+ * consumer importing ONLY DateRangePicker got an unstyled trigger. Invisible
+ * until `sideEffects` was declared and tree-shaking started actually working.
+ *
+ * It survives that tree-shaking precisely because `sideEffects` is
+ * ["**\/*.css"] — a CSS import is never dropped.
+ */
+
+:global(.sve-picker__trigger) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.75rem;
+	height: 1.75rem;
+	margin-left: auto;
+	border: none;
+	border-radius: var(--sve-radius-sm);
+	background-color: transparent;
+	font-family: inherit;
+	font-size: var(--sve-font-size-sm);
+	color: var(--sve-color-default-foreground);
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+}
+:global(.sve-picker__trigger:hover) {
+	background-color: var(--sve-color-default);
+}
+:global(.sve-picker__trigger:focus-visible) {
+	outline: 2px solid var(--sve-color-primary);
+	outline-offset: 1px;
+}
+:global(.sve-picker__trigger--invalid) {
+	border-color: var(--sve-color-danger);
+}
+:global(.sve-picker__trigger--invalid:focus-visible) {
+	outline-color: var(--sve-color-danger);
+}
+:global(.sve-picker__trigger[data-disabled]) {
+	cursor: not-allowed;
+	opacity: 0.5;
+	pointer-events: none;
+}

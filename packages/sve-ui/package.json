@@ -85,7 +85,7 @@
 	},
 	"scripts": {
 		"build": "vite build && pnpm package",
-		"package": "svelte-kit sync && svelte-package && node scripts/check-dts.mjs && node scripts/check-treeshake.mjs && node scripts/check-package-files.mjs && publint",
+		"package": "svelte-kit sync && svelte-package && node scripts/check-dts.mjs && node scripts/check-treeshake.mjs && node scripts/check-package-files.mjs && node scripts/check-css-coverage.mjs && publint",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"test": "vitest run",
 		"lint": "eslint .",
