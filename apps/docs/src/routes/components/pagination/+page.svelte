@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.pagination;
@@ -17,43 +16,6 @@
 	];
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
-	const rootForwarded: PropRow[] = [
-		{
-			prop: 'count',
-			type: 'number',
-			required: true,
-			description: 'Total number of items to paginate.'
-		},
-		{
-			prop: 'perPage',
-			type: 'number',
-			default: '1',
-			description: 'Items per page. count / perPage gives the page count.'
-		},
-		{
-			prop: 'siblingCount',
-			type: 'number',
-			default: '1',
-			description: 'Visible page buttons either side of the current page.'
-		},
-		{
-			prop: 'onPageChange',
-			type: '(page: number) => void',
-			description: 'Called when the page changes.'
-		},
-		{
-			prop: 'loop',
-			type: 'boolean',
-			default: 'false',
-			description: 'Keyboard navigation wraps at either end.'
-		},
-		{
-			prop: 'orientation',
-			type: `'horizontal' | 'vertical'`,
-			default: `'horizontal'`,
-			description: 'Axis the arrow keys navigate along.'
-		}
-	];
 
 	const usageCode = `<script>
   import { Pagination } from 'sve-ui';
@@ -139,7 +101,7 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p"><code class="ic">Pagination.Root</code></p>
-		<PropsTable component="PaginationRoot" extra={rootForwarded} />
+		<PropsTable component="PaginationRoot" />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">Page</code> takes the <code class="ic">page</code> object from the snippet.
 			<code class="ic">PrevButton</code> and <code class="ic">NextButton</code> take

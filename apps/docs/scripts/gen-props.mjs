@@ -17,6 +17,21 @@
  * First hit wins. A prop with no default in any of the three is reported with
  * none, which is the honest answer.
  *
+ * INHERITED PROPS. Most components here are thin Bits UI wrappers whose Props
+ * read `extends Omit<ComponentProps<typeof Bits.Root>, …>` and declare almost
+ * nothing of their own — every real prop (`count`, `perPage`, `onComplete`,
+ * `loop`, …) is inherited and forwarded through the spread. Reading the AST alone
+ * saw none of them, so six pages had ZERO generated coverage and five had no
+ * entry at all, which is why their tables stayed hand-written.
+ *
+ * So this resolves the heritage clause with the real TypeScript checker. The hard
+ * part is not reading the type, it is subtracting the HTML attribute surface:
+ * `ComponentProps<typeof Popover.Content>` includes every `div` attribute, and a
+ * naive expansion produces useless 200-row tables. The filter is by DECLARATION
+ * FILE — a property is kept only when it is declared inside `bits-ui` — so
+ * anything from `svelte/elements` or `lib.dom` is dropped without a hardcoded
+ * name list to maintain.
+ *
  * Output is COMMITTED and guarded by `pnpm gen:props:check`, so a stale file
  * fails CI instead of silently shipping wrong docs.
  *
@@ -45,10 +60,6 @@ function extractScripts(source) {
 	let m;
 	while ((m = re.exec(source)) !== null) blocks.push(m[1]);
 	return blocks.join('\n');
-}
-
-function parse(code, fileName) {
-	return ts.createSourceFile(fileName, code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
 }
 
 // ---------------------------------------------------------------------------
@@ -169,12 +180,139 @@ function collectSpreadSource(propsInterface, sourceFile) {
 }
 
 // ---------------------------------------------------------------------------
+// One TypeScript Program over every component, for inherited props
+// ---------------------------------------------------------------------------
+
+/**
+ * Virtual `<Component>.svelte.ts` files, each sitting NEXT TO its real component
+ * so both relative imports and the `bits-ui` lookup resolve exactly as they do
+ * for the real file.
+ */
+function buildVirtualFiles(files) {
+	const virtual = new Map();
+	for (const file of files) {
+		virtual.set(file + '.ts', extractScripts(readFileSync(file, 'utf8')));
+	}
+	return virtual;
+}
+
+function createProgram(virtual) {
+	const options = {
+		target: ts.ScriptTarget.Latest,
+		module: ts.ModuleKind.ESNext,
+		moduleResolution: ts.ModuleResolutionKind.Bundler,
+		skipLibCheck: true,
+		strict: true,
+		noEmit: true,
+		// Nothing here needs ambient @types, and loading them slows the Program
+		// down for no gain.
+		types: []
+	};
+
+	const host = ts.createCompilerHost(options, true);
+	const readFile = host.readFile.bind(host);
+	const fileExists = host.fileExists.bind(host);
+	const getSourceFile = host.getSourceFile.bind(host);
+
+	host.readFile = (name) => (virtual.has(name) ? virtual.get(name) : readFile(name));
+	host.fileExists = (name) => virtual.has(name) || fileExists(name);
+	host.getSourceFile = (name, ...args) =>
+		virtual.has(name)
+			? ts.createSourceFile(name, virtual.get(name), ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
+			: getSourceFile(name, ...args);
+
+	return ts.createProgram([...virtual.keys()], options, host);
+}
+
+/**
+ * Where a property is DECLARED decides whether it is API or noise.
+ *
+ * Filtering by declaration file rather than by name means the HTML attribute
+ * surface is excluded structurally: `class`, `id`, every `on*`, every `aria-*`
+ * and `data-*` all come from `svelte/elements` or `lib.dom`, and nothing has to
+ * be listed by hand or kept in sync as those grow.
+ */
+/**
+ * Bits REDECLARES a few plain HTML attributes on its own prop types, so the
+ * declaration-file filter keeps them. They are pass-throughs with nothing to
+ * say, and at 120 occurrences each they would be the most common rows in the
+ * whole catalog.
+ *
+ * Only `style`. `id` is real API here — this library's own guidance is to wire
+ * ids by hand (`aria-labelledby` on a Sidebar group, `Field`'s control id). And
+ * `dir` changes which arrow key moves forward in a Bits menu, so it is
+ * behaviour, not presentation; filtering it out was a mistake.
+ */
+const PASSTHROUGH = new Set(['style']);
+
+function isBitsDeclaration(symbol) {
+	const declarations = symbol.getDeclarations() ?? [];
+	return declarations.some((d) => /[\\/]bits-ui[\\/]/.test(d.getSourceFile().fileName));
+}
+
+/** Bits' resolved types can be enormous; a table row has to stay readable. */
+function truncateType(text) {
+	const flat = text.replace(/\s+/g, ' ').trim();
+	if (flat.length <= 90) return flat;
+	// Cut at a union boundary when there is one, so the result is still valid to read.
+	const cut = flat.lastIndexOf(' | ', 90);
+	return (cut > 40 ? flat.slice(0, cut) : flat.slice(0, 90)) + ' | …';
+}
+
+/**
+ * Props the component inherits from Bits and forwards, minus anything declared
+ * locally (the local declaration is the documented one, with real defaults) and
+ * minus the HTML attribute surface.
+ */
+function inheritedProps(checker, propsInterface, localNames) {
+	if (!propsInterface.heritageClauses?.length) return [];
+
+	const symbol = checker.getSymbolAtLocation(propsInterface.name);
+	if (!symbol) return [];
+
+	const type = checker.getDeclaredTypeOfSymbol(symbol);
+	const out = [];
+
+	for (const prop of checker.getPropertiesOfType(type)) {
+		const name = prop.getName();
+		if (localNames.has(name)) continue;
+		if (!isBitsDeclaration(prop)) continue;
+		if (PASSTHROUGH.has(name)) continue;
+
+		const declaration = prop.getDeclarations()?.[0];
+		if (!declaration) continue;
+
+		const docs = ts.displayPartsToString(prop.getDocumentationComment(checker));
+		const tags = prop.getJsDocTags(checker);
+		const defaultTag = tags.find((t) => t.name === 'default' || t.name === 'defaultValue');
+
+		out.push({
+			prop: name,
+			type: truncateType(
+				checker.typeToString(checker.getTypeOfSymbolAtLocation(prop, declaration))
+			),
+			required: (prop.flags & ts.SymbolFlags.Optional) === 0,
+			default: defaultTag
+				? ts.displayPartsToString(defaultTag.text ?? []).trim() || undefined
+				: undefined,
+			description: docs.replace(/\s+/g, ' ').trim() || undefined,
+			// Rendered as provenance: these are Bits' props, forwarded through the
+			// spread, and the consumer should read Bits' docs for the deep ones.
+			from: 'bits-ui'
+		});
+	}
+
+	return out.sort((a, b) => a.prop.localeCompare(b.prop));
+}
+
+// ---------------------------------------------------------------------------
 // Per-component extraction
 // ---------------------------------------------------------------------------
 
-function extractComponent(file) {
-	const raw = readFileSync(file, 'utf8');
-	const sourceFile = parse(extractScripts(raw), basename(file) + '.ts');
+function extractComponent(file, program) {
+	const checker = program.getTypeChecker();
+	const sourceFile = program.getSourceFile(file + '.ts');
+	if (!sourceFile) return undefined;
 
 	const propsInterface = findPropsInterface(sourceFile);
 	if (!propsInterface) return undefined;
@@ -220,8 +358,13 @@ function extractComponent(file) {
 		];
 	});
 
+	const localNames = new Set(props.map((pr) => pr.prop));
+	const inherited = inheritedProps(checker, propsInterface, localNames);
+
 	return {
-		props,
+		// Own props first: they are the ones this library chose, documented and
+		// defaulted. Inherited ones follow, labelled.
+		props: [...props, ...inherited],
 		spreads: collectSpreadSource(propsInterface, sourceFile)
 	};
 }
@@ -241,12 +384,14 @@ const files = walk(COMPONENTS)
 	.filter((f) => f.endsWith('.svelte'))
 	.sort();
 
+const program = createProgram(buildVirtualFiles(files));
+
 const generated = {};
 const skipped = [];
 
 for (const file of files) {
 	const name = basename(file, '.svelte');
-	const result = extractComponent(file);
+	const result = extractComponent(file, program);
 	if (!result) {
 		skipped.push(relative(COMPONENTS, file));
 		continue;
@@ -257,9 +402,16 @@ for (const file of files) {
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, JSON.stringify(generated, null, '\t') + '\n');
 
-const propCount = Object.values(generated).reduce((n, c) => n + c.props.length, 0);
+const own = Object.values(generated).reduce(
+	(n, c) => n + c.props.filter((pr) => !pr.from).length,
+	0
+);
+const inheritedCount = Object.values(generated).reduce(
+	(n, c) => n + c.props.filter((pr) => pr.from).length,
+	0
+);
 console.log(
-	`gen-props: ${Object.keys(generated).length} components, ${propCount} props → ${relative(process.cwd(), OUT)}`
+	`gen-props: ${Object.keys(generated).length} components, ${own} own + ${inheritedCount} inherited props → ${relative(process.cwd(), OUT)}`
 );
 if (skipped.length > 0) {
 	console.warn(`gen-props: ${skipped.length} file(s) had no \`interface Props\` and were skipped:`);

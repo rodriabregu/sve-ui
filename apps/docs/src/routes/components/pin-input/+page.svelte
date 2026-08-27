@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug['pin-input'];
@@ -17,27 +16,6 @@
 	];
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
-	const rootForwarded: PropRow[] = [
-		{
-			prop: 'maxlength',
-			type: 'number',
-			required: true,
-			description: 'Number of cells, and the max length of the real input.'
-		},
-		{
-			prop: 'onComplete',
-			type: '(value: string) => void',
-			description: 'Fires once every cell is filled. Submit from here.'
-		},
-		{ prop: 'onValueChange', type: '(value: string) => void' },
-		{
-			prop: 'pasteTransformer',
-			type: '(text: string) => string',
-			description: 'Sanitise pasted text — strip hyphens and spaces before they reach the cells.'
-		},
-		{ prop: 'textalign', type: `'left' | 'center' | 'right'`, default: `'left'` },
-		{ prop: 'disabled', type: 'boolean', default: 'false' }
-	];
 
 	const usageCode = `<script>
   import { PinInput } from 'sve-ui';
@@ -136,7 +114,7 @@
 		<p class="sec__p">
 			<code class="ic">PinInput.Root</code> — <code class="ic">value</code> is bindable.
 		</p>
-		<PropsTable component="PinInputRoot" extra={rootForwarded} />
+		<PropsTable component="PinInputRoot" />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">PinInput.Cell</code> takes the <code class="ic">cell</code> object from the
 			snippet plus <code class="ic">class</code>.

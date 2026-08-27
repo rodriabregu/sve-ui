@@ -3,8 +3,8 @@
 	import DocPage from '$lib/docs/DocPage.svelte';
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
-	import type { TocEntry } from '$lib/docs/DocPage.svelte';
 	import type { PropRow } from '$lib/docs/PropsTable.svelte';
+	import type { TocEntry } from '$lib/docs/DocPage.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.command;
@@ -19,31 +19,6 @@
 	];
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
-	const rootForwarded: PropRow[] = [
-		{
-			prop: 'label',
-			type: 'string',
-			description:
-				'Screen-reader-only name for the SEARCH FIELD (renders a hidden label the Input references).'
-		},
-		{
-			prop: 'shouldFilter',
-			type: 'boolean',
-			default: 'true',
-			description:
-				'Set false when filtering server-side; then render only the items you want shown.'
-		},
-		{
-			prop: 'filter',
-			type: '(value, search, keywords?) => number',
-			description: 'Custom scoring, 0 to 1. Defaults to computeCommandScore.'
-		},
-		{
-			prop: 'onStateChange',
-			type: '(state) => void',
-			description: 'Called when the search, value or filtered set changes.'
-		}
-	];
 
 	const itemForwarded: PropRow[] = [
 		{
@@ -213,9 +188,13 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p"><code class="ic">Command.Root</code></p>
-		<PropsTable component="CommandRoot" extra={rootForwarded} />
+		<PropsTable component="CommandRoot" />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">Command.Item</code></p>
-		<PropsTable component="CommandItem" extra={itemForwarded} />
+		<PropsTable
+			component="CommandItem"
+			extra={itemForwarded}
+			omit={['disabled', 'keywords', 'onSelect', 'value']}
+		/>
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">Input</code>, <code class="ic">List</code>,
 			<code class="ic">Group</code>, <code class="ic">GroupHeading</code>,

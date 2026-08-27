@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug['rating-group'];
@@ -17,24 +16,6 @@
 	];
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
-	const rootForwarded: PropRow[] = [
-		{ prop: 'max', type: 'number', description: 'How many items. Also the aria-valuemax.' },
-		{
-			prop: 'aria-valuetext',
-			type: 'string | ((value, max) => string)',
-			description:
-				'Spoken value. Pass the function form so the scale is announced, not just a number.'
-		},
-		{ prop: 'onValueChange', type: '(value: number) => void' },
-		{
-			prop: 'name',
-			type: 'string',
-			description: 'Include it in a form submission; Bits renders a hidden input.'
-		},
-		{ prop: 'orientation', type: `'horizontal' | 'vertical'`, default: `'horizontal'` },
-		{ prop: 'disabled', type: 'boolean', default: 'false' },
-		{ prop: 'required', type: 'boolean', default: 'false' }
-	];
 
 	const usageCode = `<script>
   import { RatingGroup } from 'sve-ui';
@@ -136,7 +117,7 @@
 		<p class="sec__p">
 			<code class="ic">RatingGroup.Root</code> — <code class="ic">value</code> is bindable.
 		</p>
-		<PropsTable component="RatingGroupRoot" extra={rootForwarded} />
+		<PropsTable component="RatingGroupRoot" />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">RatingGroup.Item</code> takes <code class="ic">index</code> from the snippet
 			plus <code class="ic">class</code>.

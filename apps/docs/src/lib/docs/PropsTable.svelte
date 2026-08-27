@@ -8,6 +8,12 @@
 		description?: string;
 		/** Marks a prop the consumer must pass. Rendered as a `required` tag. */
 		required?: boolean;
+		/**
+		 * Set by the generator on props this component INHERITS and forwards rather
+		 * than declaring. Shown so a reader knows whose contract they are reading —
+		 * the deep behaviour of a Bits prop is documented by Bits.
+		 */
+		from?: string;
 	}
 
 	interface Props {
@@ -71,6 +77,12 @@
 						<code class="props__name doc-mono">{row.prop}</code>
 						{#if row.required}
 							<span class="props__req">required</span>
+						{/if}
+						{#if row.from}
+							<span
+								class="props__from"
+								title="Forwarded to {row.from}, which documents its behaviour">{row.from}</span
+							>
 						{/if}
 						{#if row.description}
 							<span class="props__desc">{row.description}</span>
@@ -147,6 +159,17 @@
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
 		color: var(--doc-primary-text);
+		vertical-align: middle;
+	}
+
+	.props__from {
+		margin-left: 6px;
+		padding: 1px 6px;
+		border-radius: 999px;
+		border: 1px solid var(--doc-border-2);
+		font-size: 10.5px;
+		font-weight: 600;
+		color: var(--doc-fg-subtle);
 		vertical-align: middle;
 	}
 	.props__type {
