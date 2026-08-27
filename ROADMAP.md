@@ -176,14 +176,35 @@ passed. The decision stands on the spec, but nothing enforces it except the test
 that now asserts it, and the comments say so instead of claiming a tool has our
 back.
 
-### 6. Nothing helps with the guidance `Field` itself gives
+### 6. Nothing helps with the guidance `Field` itself gives — DONE
 
-`Field`'s docs say: on a failed submit, move focus to the first invalid control.
-That is the correct WCAG technique, and the library ships **nothing** to help do
-it. I wrote the instruction and left the work to the consumer.
+`Field`'s docs said "on a failed submit, move focus to the first invalid
+control", and the library shipped nothing to do it. The second time a
+recommendation was written down and the work left to the consumer; the first was
+`Button` not being able to be a link.
 
-- [ ] A small documented helper, or an error-summary pattern with a worked
-      example — a form-level component only if the example proves one is needed
+- [x] `focusFirstInvalidField({ root, scroll })`, exported from `sve-ui`
+- [x] Awaits `tick()` internally — it is called right after the state change that
+      produced the errors, so without that the DOM does not carry them yet. The
+      easiest thing to get wrong, so it is handled rather than documented.
+- [x] Returns `false` when nothing was focused, so a caller can fall back when a
+      submit failed for a reason no field owns
+- [x] Reports to the console when it finds an invalid field whose control was
+      never wired, or one that cannot take focus. Focus silently going nowhere
+      leaves a form looking broken with no clue why.
+- [x] The docs section that used to give the advice now gives the code
+
+**A correction worth keeping.** I justified matching on the `Field` wrapper by
+claiming an `[aria-invalid="true"]` query would miss a `Select.Trigger`, since
+its own `invalid` prop omits the attribute. **That is false** — I probed it, and
+the query matched the button, because `Field` puts `aria-invalid` into the props
+you spread. The marker is still right, for reasons I had to actually work out: it
+focuses the _labelled_ control rather than whatever inner element matched, and it
+only ever moves focus into a field this library wired. Both are now asserted.
+
+That is twice in two days I nearly shipped a confident false justification (the
+other was "axe rejects `aria-invalid` on a button"). Probing the claim took one
+throwaway test each time.
 
 ### 7. Ask the same question of the rest of the catalog
 
