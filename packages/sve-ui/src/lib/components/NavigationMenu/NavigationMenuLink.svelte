@@ -19,14 +19,14 @@
   where you are".
 -->
 <NavigationMenu.Link
-	class={['sve-nav-menu__link', cls].filter(Boolean).join(' ')}
+	class={['sve-navigation-menu__link', cls].filter(Boolean).join(' ')}
 	data-slot="navigation-menu-link"
 	{children}
 	{...rest}
 />
 
 <style>
-	:global(.sve-nav-menu__link) {
+	:global(.sve-navigation-menu__link) {
 		display: block;
 		padding: var(--sve-space-2);
 		border-radius: var(--sve-radius-sm);
@@ -35,22 +35,22 @@
 		transition: background-color 0.15s ease;
 	}
 
-	:global(.sve-nav-menu__link:hover) {
+	:global(.sve-navigation-menu__link:hover) {
 		background-color: var(--sve-color-default-surface);
 	}
 
-	:global(.sve-nav-menu__link[data-active]) {
+	:global(.sve-navigation-menu__link[data-active]) {
 		color: var(--sve-color-primary);
 		font-weight: var(--sve-font-weight-medium);
 	}
 
-	:global(.sve-nav-menu__link:focus-visible) {
+	:global(.sve-navigation-menu__link:focus-visible) {
 		outline: 2px solid var(--sve-color-primary);
 		outline-offset: 2px;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		:global(.sve-nav-menu__link) {
+		:global(.sve-navigation-menu__link) {
 			transition: none;
 		}
 	}

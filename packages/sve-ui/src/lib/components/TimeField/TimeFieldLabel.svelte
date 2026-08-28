@@ -18,14 +18,14 @@
   `for` attribute. Verified in the rendered DOM.
 -->
 <TimeField.Label
-	class={['sve-field-label', cls].filter(Boolean).join(' ')}
+	class={['sve-segmented-field__label', cls].filter(Boolean).join(' ')}
 	data-slot="time-field-label"
 	{children}
 	{...rest}
 />
 
 <style>
-	:global(.sve-field-label) {
+	:global(.sve-segmented-field__label) {
 		display: block;
 		margin-bottom: var(--sve-space-1);
 		font-family: var(--sve-font-family-sans);

@@ -45,3 +45,37 @@ jobs:
       # The committed prop metadata must match the components it documents.
       - name: Prop tables up to date
         run: pnpm --filter docs run gen:props:check
+
+      # Pixels, not structure. `check:render` compares an element skeleton, so it
+      # is blind to the regression that prompted this: in 0.6.1 the
+      # DateRangePicker trigger rendered correct markup with no CSS reaching it.
+      #
+      # Skipped, not failed, when no baselines exist yet — so the suite can land
+      # before the first Linux baseline run without blocking every PR.
+      - name: Screenshot baselines present
+        id: baselines
+        run: |
+          if [ -d apps/docs/tests/__screenshots__ ] && \
+             [ "$(find apps/docs/tests/__screenshots__ -name '*.png' | wc -l)" -gt 0 ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No screenshot baselines committed yet. Generate them with the visual-baselines workflow."
+          fi
+
+      - name: Install Chromium
+        if: steps.baselines.outputs.present == 'true'
+        run: pnpm --filter docs exec playwright install --with-deps chromium
+
+      - name: Visual regression
+        if: steps.baselines.outputs.present == 'true'
+        run: pnpm --filter docs run test:visual
+
+      - uses: actions/upload-artifact@v4
+        if: failure() && steps.baselines.outputs.present == 'true'
+        with:
+          name: visual-diff
+          path: |
+            apps/docs/playwright-report
+            apps/docs/test-results
+          retention-days: 7

@@ -111,7 +111,7 @@
   library never has to know about yours.
 -->
 <div
-	class={['sve-field-group', cls].filter(Boolean).join(' ')}
+	class={['sve-field', cls].filter(Boolean).join(' ')}
 	{...rest}
 	data-sve-field-invalid={hasError ? '' : undefined}
 	data-sve-field-control={controlId}
@@ -123,39 +123,39 @@
 	{@render control(controlProps)}
 
 	{#if hasDescription}
-		<p class="sve-field-group__description" id={descriptionId}>
+		<p class="sve-field__description" id={descriptionId}>
 			{#if typeof description === 'string'}{description}{:else}{@render description!()}{/if}
 		</p>
 	{/if}
 
 	{#if hasError}
-		<p class="sve-field-group__error" id={errorId}>
+		<p class="sve-field__error" id={errorId}>
 			{#if typeof error === 'string'}{error}{:else}{@render error!()}{/if}
 		</p>
 	{/if}
 </div>
 
 <style>
-	.sve-field-group {
+	.sve-field {
 		display: flex;
 		flex-direction: column;
 		gap: var(--sve-space-1);
 		font-family: var(--sve-font-family-sans);
 	}
 
-	.sve-field-group__description,
-	.sve-field-group__error {
+	.sve-field__description,
+	.sve-field__error {
 		margin: 0;
 		font-size: var(--sve-font-size-sm);
 		line-height: var(--sve-line-height-normal);
 	}
 
-	.sve-field-group__description {
+	.sve-field__description {
 		color: var(--sve-color-default-foreground);
 		opacity: 0.75;
 	}
 
-	.sve-field-group__error {
+	.sve-field__error {
 		color: var(--sve-color-danger);
 	}
 </style>

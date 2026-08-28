@@ -96,7 +96,7 @@
 	bind:value
 	bind:placeholder
 	bind:open
-	class={['sve-field', cls].filter(Boolean).join(' ')}
+	class={['sve-segmented-field', cls].filter(Boolean).join(' ')}
 	data-slot="date-range-picker"
 	{children}
 	{...rest}

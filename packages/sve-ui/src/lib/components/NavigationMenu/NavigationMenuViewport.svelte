@@ -18,13 +18,13 @@
   publishes the measured size as --bits-navigation-menu-viewport-width/height.
 -->
 <NavigationMenu.Viewport
-	class={['sve-nav-menu__viewport', cls].filter(Boolean).join(' ')}
+	class={['sve-navigation-menu__viewport', cls].filter(Boolean).join(' ')}
 	data-slot="navigation-menu-viewport"
 	{...rest}
 />
 
 <style>
-	:global(.sve-nav-menu__viewport) {
+	:global(.sve-navigation-menu__viewport) {
 		position: relative;
 		overflow: hidden;
 		width: var(--bits-navigation-menu-viewport-width);
@@ -40,7 +40,7 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		:global(.sve-nav-menu__viewport) {
+		:global(.sve-navigation-menu__viewport) {
 			transition: none;
 		}
 	}

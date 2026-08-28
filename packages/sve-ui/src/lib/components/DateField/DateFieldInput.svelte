@@ -18,14 +18,14 @@
   `:focus-within`.
 -->
 <DateField.Input
-	class={['sve-field-input', cls].filter(Boolean).join(' ')}
+	class={['sve-segmented-field__input', cls].filter(Boolean).join(' ')}
 	data-slot="date-field-input"
 	{children}
 	{...rest}
 />
 
 <style>
-	:global(.sve-field-input) {
+	:global(.sve-segmented-field__input) {
 		display: inline-flex;
 		align-items: center;
 		gap: 1px;
@@ -44,16 +44,16 @@
 	/* The ring goes on the WRAPPER, because focus lives on an individual segment
      inside it — without this the field looks unfocused while a segment is being
      edited. */
-	:global(.sve-field-input:focus-within) {
+	:global(.sve-segmented-field__input:focus-within) {
 		border-color: var(--sve-color-primary-border);
 		box-shadow: 0 0 0 3px var(--sve-color-primary-surface);
 	}
 
-	:global(.sve-field-input[data-invalid]) {
+	:global(.sve-segmented-field__input[data-invalid]) {
 		border-color: var(--sve-color-danger-border);
 	}
 
-	:global(.sve-field-input[data-disabled]) {
+	:global(.sve-segmented-field__input[data-disabled]) {
 		opacity: 0.5;
 	}
 </style>

@@ -10,3 +10,9 @@ node_modules
 .output
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Playwright run output. Baselines live in tests/__screenshots__ and ARE tracked.
+/test-results
+/playwright-report
+/blob-report
+/.playwright
