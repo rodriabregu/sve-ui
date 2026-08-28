@@ -302,6 +302,69 @@ downloads. Nothing here is trying to. That job belongs to `check-package-files`,
 `check-treeshake` and `check-css-coverage`, each written after a packaging bug
 shipped, and none of which an example app would have caught.
 
+### 8b. The example was covering 10 components out of 62 — DONE
+
+Item 8 declared success too early. The example was real, it had latency, it
+found `Busy` — and then it missed **two consecutive user-reported bugs**:
+`PinInput` displayed nothing you typed, and the date pickers opened a
+transparent panel. Both components were exported, documented, unit-tested, and
+**never once rendered by the example**.
+
+Measured coverage: **10 of 62 exports**. Building something real was not the
+lesson. _Using every part of it_ was.
+
+- [x] `/browse` added — Menubar, Toolbar, NavigationMenu, Combobox, Command in a
+      Sheet, ContextMenu, Popover, LinkPreview, Accordion, Collapsible,
+      ScrollArea, Pagination, Skeleton, AspectRatio, Textarea, Stack, Flex
+- [x] The bare date fields added to `/booking` — `DateField`, `DateRangeField`,
+      `TimeRangeField`, `RangeCalendar`. Typed entry and calendar entry are
+      different components with different failure modes
+- [x] `ThemeProvider` now actually used, with a `theme` override, instead of the
+      example hand-writing CSS vars
+- [x] Coverage is **62 of 62**, and `check-example-coverage` keeps it there:
+      every new export lands uncovered by default, so the sweep is the build.
+      Both of its failure paths were proven by breaking them on purpose
+
+**What it found immediately:**
+
+1. **`/browse` was never prerendered.** `prerender = true` lived in one
+   `+page.ts` per route, so the new route compiled, produced no HTML, and the
+   SPA fallback hid it. Seventeen components had their SSR path silently
+   skipped. Fixed at the cause: prerender now sits on `+layout.ts`, so a new
+   route is server-rendered by default rather than by remembering.
+2. Five API misuses in my own code, caught by `svelte-check` in minutes:
+   `Heading size="xl"` and `Text color="muted"` do not exist,
+   `DateRangePicker.Input` needs `type` and needs two of them, and `Card` has no
+   `Title` part.
+
+On that last one: `Card.Header` exists and `Card.Title` does not, which is
+**correct** — `Title` is the part that supplies an accessible name via
+`aria-labelledby`, and only the labelled regions have it (`Alert`,
+`AlertDialog`, `Dialog`, `Sheet`). `Header` is a structural slot. The instinct
+to write `Card.Title` comes from shadcn, not from this library's logic. Worth a
+line in the Card docs, not an API change.
+
+### 8c. Two naming findings, deliberately not acted on
+
+Measured across the catalog: nine components use a base class that does not
+match their name. **Seven are deliberate sharing** — the whole date family
+(`DateField`, `DatePicker`, `DateRangeField`, `DateRangePicker`, `TimeField`,
+`TimeRangeField`) shares `sve-field` because they are the same segmented input,
+and `RangeCalendar` shares `sve-calendar`. That is the shared-stylesheet
+design working.
+
+Two are not:
+
+- **`NavigationMenu` renders `sve-nav-menu`** — the only pure abbreviation in
+  the catalog. A consumer targeting `.sve-navigation-menu` finds nothing.
+- **`Field` renders `sve-field-group`** because the date family had already
+  taken `sve-field`. The component with the most obvious claim to the name lost
+  it to a collision.
+
+Both are renames of a **public class name**, which for a styled library is a
+breaking change. Pre-1.0 is the moment to do it if it is done at all, but it is
+a decision, not a defect, so it is recorded here rather than quietly applied.
+
 ### 7c. `aria-busy` beyond two components — DONE
 
 Writing the example's loading branch, there was **no way to express "this region
@@ -417,5 +480,18 @@ drifting is invisible.
 - **Verify against the published tarball, not the repo.** `declare const X: any`
   shipped in `0.4.0`; the skill is missing from the package today. The repo
   being right is not evidence.
+- **An exported component the example never renders has not been used by
+  anyone.** Two shipped bugs sat in components with passing unit tests, a
+  generated docs page, and zero real renders. Coverage of the public API is the
+  thing to measure, not the existence of a demo app.
+- **A route that is not prerendered is a route whose SSR path never runs.** It
+  compiles, it type-checks, the SPA fallback serves it, and nothing tells you.
+  Put the prerender flag where new routes inherit it.
+- **Audit findings need the same allowlist the guard has.** An ad-hoc sweep of
+  the built HTML reported five unstyled classes and one missing component. All
+  six were false positives — documented styling hooks, a scope marker whose
+  tokens live on `:root`, and a class named `sve-nav-menu` rather than
+  `sve-navigation-menu`. The guard was right every time. Check the guard before
+  believing the sweep.
 - **Turbo caches `lint`.** A cache hit hid a real failure. Use
   `npx turbo run … --force` when the result matters.

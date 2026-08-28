@@ -58,3 +58,38 @@ export async function createProject(input: {
 	DB.push(project);
 	return { ok: true, project };
 }
+
+export interface Asset {
+	id: string;
+	title: string;
+	owner: string;
+	kind: 'doc' | 'sheet' | 'image';
+	updated: string;
+}
+
+const OWNERS = ['Ana', 'Bruno', 'Carla', 'Diego'];
+
+const ASSETS: Asset[] = Array.from({ length: 34 }, (_, i) => ({
+	id: `a${i + 1}`,
+	title: `${['Brief', 'Report', 'Mockup', 'Contract', 'Budget'][i % 5]} ${i + 1}`,
+	owner: OWNERS[i % OWNERS.length],
+	kind: (['doc', 'sheet', 'image'] as const)[i % 3],
+	updated: `2026-0${(i % 8) + 1}-1${i % 9}`
+}));
+
+export const assetOwners = OWNERS;
+
+/** Server-side pagination and filtering — the client never holds the full set. */
+export async function listAssets(options: {
+	page: number;
+	perPage: number;
+	owner?: string;
+}): Promise<{ rows: Asset[]; total: number }> {
+	await sleep(800);
+	const filtered = options.owner ? ASSETS.filter((a) => a.owner === options.owner) : ASSETS;
+	const start = (options.page - 1) * options.perPage;
+	return {
+		rows: structuredClone(filtered.slice(start, start + options.perPage)),
+		total: filtered.length
+	};
+}
