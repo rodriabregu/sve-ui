@@ -28,6 +28,7 @@ Load when building or editing a Svelte 5 app that consumes `sve-ui` — importin
 - `Stack`/`Flex`: `gap` is a spacing token key, and there is NO margin/padding/width prop by design. Reach for CSS instead of asking for more props. `Flex` defaults `align` to `center`, `Stack` to `stretch`.
 - `PinInput`: `<label for>` does NOT work — the real input's id is Bits-internal and unpredictable. Name it with `aria-label` or `aria-labelledby` on Root. `maxlength` is required.
 - `RatingGroup` needs BOTH `aria-label` and `aria-valuetext` (pass the function form, so the scale is announced and not a bare number).
+- Add `Command.Status` once inside `Command.Root`: Bits filters the list and announces NOTHING, so a screen reader user types and the list shrinks in silence. Pass `label` in the app's language (the default is English) and leave `delay` alone unless you have a reason — without it, typing fires one announcement per keystroke. `Combobox` needs the same but gets no component, because YOU filter there and already know the count.
 - `Command.Viewport` is REQUIRED and goes inside `Command.List` — Bits takes the Input's `aria-controls` from it, so omitting it is invalid ARIA. `label` on Root names the INPUT; `aria-label` on List names the LIST (Bits defaults it to "Suggestions...").
 - `NavigationMenu` is the choice for SITE navigation (opens on hover AND click/Enter). `active` on a Link gives `aria-current="page"`.
 - `Menubar` is desktop-application chrome, not website navigation — it assumes hover and a wide screen. Use `NavigationMenu` for site nav.

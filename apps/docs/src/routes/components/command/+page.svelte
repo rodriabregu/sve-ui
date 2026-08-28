@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Command } from 'sve-ui';
+	import { Code, Command } from 'sve-ui';
 	import DocPage from '$lib/docs/DocPage.svelte';
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
@@ -15,6 +15,7 @@
 		{ id: 'naming', label: 'Naming the field and the list' },
 		{ id: 'keywords', label: 'Keywords and filtering' },
 		{ id: 'async', label: 'Async results' },
+		{ id: 'announce', label: 'Announcing results' },
 		{ id: 'props', label: 'Props' }
 	];
 
@@ -35,6 +36,17 @@
 		{ prop: 'onSelect', type: '() => void', description: 'Called when the item is chosen.' },
 		{ prop: 'disabled', type: 'boolean', default: 'false' }
 	];
+
+	const statusCode = `<Command.Root label="Command palette">
+  <Command.Input bind:value={search} />
+
+  <!-- Once, anywhere inside Root. Pass a label in your language. -->
+  <Command.Status label={(n) => (n === 1 ? '1 resultado' : \`\${n} resultados\`)} />
+
+  <Command.List aria-label="Commands">
+    <Command.Viewport>…</Command.Viewport>
+  </Command.List>
+</Command.Root>`;
 
 	const usageCode = `<script>
   import { Command } from 'sve-ui';
@@ -183,6 +195,40 @@
 				Always render one or the other — a palette that goes silently blank reads as broken.
 			</p>
 		</Preview>
+	</section>
+
+	<section id="announce" class="sec">
+		<h2 class="sec__h">Announcing results</h2>
+		<p class="warn">
+			Bits filters the list and announces nothing. Without
+			<code class="ic">Command.Status</code>, a screen reader user types and the list shrinks in
+			silence — they never learn whether they have forty matches or none.
+		</p>
+		<Code code={statusCode} label="Add it once, inside Root" />
+		<p class="sec__p" style="margin-top:16px">
+			It is a visually hidden <code class="ic">role="status"</code> region. Hidden because the count is
+			already on screen — the results are right there — so duplicating it visibly would be noise for everyone
+			else.
+		</p>
+		<p class="sec__p">
+			<strong>Pass <code class="ic">label</code>.</strong> The default is English, and a count is exactly
+			the kind of string that needs your language and plural rules.
+		</p>
+		<p class="sec__p">
+			<code class="ic">delay</code> is not a performance tweak. Without it, typing "button" fires six
+			announcements — "48 results", "12 results", "4 results" — and the user hears a torrent instead of
+			an answer. Each keystroke restarts the wait, so they get one answer once they stop typing. The default
+			is 500ms.
+		</p>
+		<p class="sec__p">
+			It stays silent until the search is non-empty: the count of an unfiltered list is not news
+			when a palette opens, and it falls silent again if the search is cleared.
+		</p>
+		<p class="sec__p">
+			<strong><code class="ic">Combobox</code> needs the same thing and gets no component</strong>,
+			deliberately — Bits does not filter there, <em>you</em> do, so you already know the count. Render
+			your own region with it. There is nothing this library can add that you do not already have.
+		</p>
 	</section>
 
 	<section id="props" class="sec">

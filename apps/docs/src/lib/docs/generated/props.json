@@ -2755,6 +2755,31 @@
 		],
 		"spreads": "Omit<BitsSeparatorProps, 'class'>"
 	},
+	"CommandStatus": {
+		"props": [
+			{
+				"prop": "label",
+				"type": "(count: number) => string",
+				"required": false,
+				"default": "(count: number) =>\n\t\t\tcount === 0 ? 'No results' : count === 1 ? '1 result' : `${count} results`",
+				"description": "Builds the announced text from the result count. Pass your own. The default is English, and a count is exactly the kind of string that needs the app's language and plural rules — `1 result` versus `1 resultado` versus languages with more than two plural forms."
+			},
+			{
+				"prop": "delay",
+				"type": "number",
+				"required": false,
+				"default": "500",
+				"description": "Milliseconds to wait after the last keystroke before announcing. Not a performance tweak. Without it, typing \"button\" fires six announcements — \"48 results\", \"12 results\", \"4 results\" — and a screen reader user hears a torrent instead of an answer. Long enough to let typing settle, short enough to arrive while the search is still the subject."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the region."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'children'>"
+	},
 	"ContextMenuContent": {
 		"props": [
 			{
