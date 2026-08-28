@@ -1,5 +1,12 @@
 # example
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies [b69299d]
+  - sve-ui@0.13.1
+
 ## 0.0.4
 
 ### Patch Changes
