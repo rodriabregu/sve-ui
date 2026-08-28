@@ -19,7 +19,13 @@
 		class?: string;
 	}
 
-	let { invalid = false, value = $bindable(), class: cls, ...rest }: Props = $props();
+	/*
+		The `''` default matches Bits and is load-bearing. With a bare `$bindable()`
+		a consumer who renders this without a value binds `undefined` into a child
+		prop that HAS a fallback, and Svelte throws `props_invalid_value` — which
+		takes down the whole page, not just the control.
+	*/
+	let { invalid = false, value = $bindable(''), class: cls, ...rest }: Props = $props();
 
 	const className = $derived(
 		['sve-radio-group', invalid && 'sve-radio-group--invalid', cls].filter(Boolean).join(' ')

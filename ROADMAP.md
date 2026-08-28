@@ -117,6 +117,25 @@ exported symbol, which handles both the bare and the explicitly-annotated form.
       never match, and my refusal only covered the `--update-snapshots` flag.
       Fixed with `updateSnapshots: 'none'` — a missing baseline is now a hard
       failure — and proven in both directions.
+- [x] **Its first run found a live production bug**, which is the whole argument
+      for it. `/components/radio-group` threw `props_invalid_value` on hydration
+      and rendered **zero** previews — a blank page on sveui.org. Invisible to
+      everything else: the markup was right so `check:render` passed, the types
+      were right so `svelte-check` passed, and every existing test passed a
+      `value`. 59 of 60 pages green, one hard failure, real.
+
+      Cause: `RadioGroup.Root` and `Tabs.Root` declared `value = $bindable()`
+      with no fallback and forwarded it with `bind:value` to a Bits primitive
+      whose `value` **has** one. Binding `undefined` into a prop with a fallback
+      throws, and it takes the page down, not just the control.
+
+      A sweep found 15 components with that exact shape. Only two are fatal,
+      because whether it throws depends on the child: Bits gives `radio-group`
+      and `tabs` a `''` default and gives the date family and `toggle-group`
+      none. So it is a test, not a lint rule —
+      `src/tests/bindable-defaults.test.ts` renders all fourteen root components
+      with no props and fails if any throws. Proven by reverting one fix.
+
 - [ ] **Its coverage is capped by what the docs demo, and that is a real limit.**
       Found while verifying the rename: `sve-field__error` appears on zero built
       pages, because no `Field` preview renders an error — arguably its most
