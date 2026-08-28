@@ -40,7 +40,11 @@ const HOOKS = new Set([
 	'sve-calendar__grid-row',
 	'sve-table__header',
 	'sve-table__body',
-	'sve-table__row'
+	'sve-table__row',
+	// A <tfoot> hook: the rules target its cells (`.sve-table__footer td`), which
+	// the tightened selector-subject check correctly stopped counting as a
+	// declaration of the class itself.
+	'sve-table__footer'
 ]);
 
 function walk(dir) {
@@ -53,9 +57,72 @@ function walk(dir) {
 const files = walk(COMPONENTS);
 const svelte = files.filter((f) => f.endsWith('.svelte'));
 
-/** class names declared by a stylesheet or a <style> block */
+/**
+ * Class names a stylesheet DECLARES, as opposed to merely styling in context.
+ *
+ * Only a SELF-CONTAINED selector declares. A selector containing a combinator is
+ * contextual: it applies only inside something else and supplies none of the
+ * class's own rules.
+ *
+ *   :global(.sve-calendar)                        declares  .sve-calendar
+ *   :global(.sve-button:focus-visible)            declares  .sve-button
+ *   :global(.sve-picker__content .sve-calendar)   declares  NOTHING
+ *   :global(.sve-table__footer td)                declares  NOTHING
+ *
+ * Both of those last two mattered. The picker one is how a transparent
+ * date-picker popover shipped: `DatePickerCalendar` referenced `.sve-calendar`,
+ * overrode two of its properties in context, and never imported the file with its
+ * background — and an earlier version of this check counted the override.
+ *
+ * My first attempt at the fix took the selector's rightmost compound, which for
+ * `.sve-picker__content .sve-calendar` is still `.sve-calendar`. It fixed the
+ * `td` case and left the one that actually shipped a bug.
+ */
 function declaredIn(text) {
-	return new Set([...text.matchAll(/\.(sve-[a-z0-9_-]+)/g)].map((m) => m[1]));
+	const out = new Set();
+	// Comments first: a `/* … */` above a rule lands in the same chunk as its
+	// selector, and the spaces inside made every commented rule look contextual.
+	const css = text.replace(/\/\*[\s\S]*?\*\//g, '');
+
+	/*
+		Brace-aware rather than regex-stripped. `text.replace(/\{[^}]*\}/g, …)`
+		cannot see nested blocks: one `@media (prefers-reduced-motion) { … }` ends at
+		the inner `}` and every selector after it is misread. That mistake reported
+		three components as unstyled when their rules were right there.
+	*/
+	let buffer = '';
+	for (const ch of css) {
+		if (ch === '{') {
+			const prelude = buffer.trim();
+			buffer = '';
+			// An at-rule prelude (`@media …`, `@keyframes …`) is not a selector; its
+			// contents still are, so keep scanning.
+			if (prelude.startsWith('@')) continue;
+
+			for (const raw of prelude.split(',')) {
+				// `:global(…)` is a wrapper, not a combinator.
+				const selector = raw
+					.trim()
+					.replace(/:global\(([^)]*)\)/g, '$1')
+					.trim();
+				if (!selector) continue;
+				// A combinator anywhere means the rule only applies in context, so it
+				// declares nothing.
+				if (/[\s>+~]/.test(selector)) continue;
+				// A keyframe step (`50%`, `from`, `to`) reaches here harmlessly: it
+				// contains no class.
+				for (const m of selector.matchAll(/\.(sve-[a-z0-9_-]+)/g)) out.add(m[1]);
+			}
+			continue;
+		}
+		if (ch === '}') {
+			buffer = '';
+			continue;
+		}
+		buffer += ch;
+	}
+
+	return out;
 }
 
 const cssCache = new Map();
@@ -91,6 +158,27 @@ function namespaceDeclares(file) {
 }
 
 const problems = [];
+
+/*
+	`:global(…)` in a plain stylesheet is an invalid selector and the browser drops
+	the whole rule, silently.
+
+	This is not hypothetical. Six shared `.css` files were extracted from Svelte
+	`<style>` blocks with the wrapper left on, so every rule in all six was inert —
+	the unstyled-trigger bug they were written to fix was still on the site, and
+	this very check passed, because it only asked whether the class name appeared.
+
+	A guard that reads a name and not a meaning is how that got through.
+*/
+for (const file of files.filter((f) => f.endsWith('.css'))) {
+	const body = readFileSync(file, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+	if (body.includes(':global(')) {
+		problems.push(
+			`${file.slice(COMPONENTS.length + 1)} uses :global() — that is Svelte ` +
+				'<style> syntax, and in a plain stylesheet the browser drops the rule'
+		);
+	}
+}
 
 for (const file of svelte) {
 	const src = readFileSync(file, 'utf8');
@@ -129,8 +217,15 @@ for (const file of svelte) {
 
 if (problems.length > 0) {
 	console.error('check-css-coverage: FAILED\n');
+	// Two shapes on purpose: an unreachable class carries its file and class, and
+	// the `:global` check carries its own sentence. Printing one shape as the other
+	// is how this reported `undefined renders .undefined` the first time.
 	for (const p of problems) {
-		console.error(`  - ${p.file} renders .${p.cls} but its CSS is not reachable from there`);
+		console.error(
+			typeof p === 'string'
+				? `  - ${p}`
+				: `  - ${p.file} renders .${p.cls} but its CSS is not reachable from there`
+		);
 	}
 	console.error(
 		'\nSvelte compiles styles per component, so a rule written in one file does not\n' +

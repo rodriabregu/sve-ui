@@ -30,6 +30,18 @@
 		/* z-index convention: Dialog overlay=50/content=51, Dropdown/Popover=60,
        Tooltip=70. A picker is a popover. */
 		z-index: 60;
+		/*
+			The panel supplies its own surface. It used to have only a radius and a
+			shadow and leant on the calendar inside for the background — while
+			telling that calendar to drop its frame, on the stated grounds that "the
+			panel already provides the border and shadow". It did not. The result was
+			a transparent popover with the page showing through the dates.
+
+			A floating panel cannot depend on its content for a background: the
+			content is whatever the caller puts there.
+		*/
+		background-color: var(--sve-color-default-surface);
+		border: 1px solid var(--sve-color-default-border);
 		border-radius: var(--sve-radius-lg);
 		box-shadow: var(--sve-shadow-md);
 	}

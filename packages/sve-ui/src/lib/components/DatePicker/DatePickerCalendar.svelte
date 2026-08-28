@@ -1,4 +1,8 @@
 <script lang="ts">
+	// This renders `.sve-calendar`, so it needs that class's rules to travel
+	// with it. Route-level code splitting means the page loads only what its own
+	// modules import.
+	import '../Calendar/calendar-root.css';
 	import { DatePicker } from 'bits-ui';
 	import type { ComponentProps } from 'svelte';
 
