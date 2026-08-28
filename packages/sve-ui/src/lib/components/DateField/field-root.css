@@ -8,9 +8,15 @@
  *
  * A CSS import survives tree-shaking because `sideEffects` is ["**\/*.css"],
  * which is the other half of why that value is an array and not `false`.
+ *
+ * NOTE: no `:global(…)` here. That wrapper is Svelte `<style>` syntax; in a plain
+ * stylesheet it is an invalid selector and the browser drops the rule silently.
+ * The first version of this file kept it, so every rule in it was inert — the bug
+ * it was written to fix was still there, and the guard passed because it only
+ * checked that the class name appeared somewhere.
  */
 
-:global(.sve-field) {
+.sve-field {
 	display: flex;
 	flex-direction: column;
 	font-family: var(--sve-font-family-sans);

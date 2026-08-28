@@ -8,9 +8,15 @@
  *
  * A CSS import survives tree-shaking because `sideEffects` is ["**\/*.css"],
  * which is the other half of why that value is an array and not `false`.
+ *
+ * NOTE: no `:global(…)` here. That wrapper is Svelte `<style>` syntax; in a plain
+ * stylesheet it is an invalid selector and the browser drops the rule silently.
+ * The first version of this file kept it, so every rule in it was inert — the bug
+ * it was written to fix was still there, and the guard passed because it only
+ * checked that the class name appeared somewhere.
  */
 
-:global(.sve-calendar__day) {
+.sve-calendar__day {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -27,32 +33,32 @@
 		background-color 0.15s ease,
 		color 0.15s ease;
 }
-:global(.sve-calendar__day:hover:not([data-disabled]):not([data-unavailable])) {
+.sve-calendar__day:hover:not([data-disabled]:not([data-unavailable])) {
 	background-color: var(--sve-color-default);
 }
-:global(.sve-calendar__day[data-today]) {
+.sve-calendar__day[data-today] {
 	border-color: var(--sve-color-primary-border);
 	font-weight: var(--sve-font-weight-bold);
 }
-:global(.sve-calendar__day[data-selected]) {
+.sve-calendar__day[data-selected] {
 	background-color: var(--sve-color-primary);
 	border-color: var(--sve-color-primary);
 	color: var(--sve-color-primary-foreground);
 }
-:global(.sve-calendar__day[data-focused]),
-:global(.sve-calendar__day:focus-visible) {
+.sve-calendar__day[data-focused],
+.sve-calendar__day:focus-visible {
 	outline: 2px solid var(--sve-color-primary);
 	outline-offset: 2px;
 }
-:global(.sve-calendar__day[data-disabled]) {
+.sve-calendar__day[data-disabled] {
 	opacity: 0.35;
 	cursor: not-allowed;
 }
-:global(.sve-calendar__day[data-unavailable]) {
+.sve-calendar__day[data-unavailable] {
 	color: var(--sve-color-danger);
 	text-decoration: line-through;
 	cursor: not-allowed;
 }
-:global(.sve-calendar__day[data-outside-month]) {
+.sve-calendar__day[data-outside-month] {
 	opacity: 0.4;
 }

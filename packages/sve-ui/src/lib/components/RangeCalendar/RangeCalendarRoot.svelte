@@ -1,4 +1,5 @@
 <script lang="ts">
+	import './range-calendar-root.css';
 	// Shared rules, so they travel with this namespace too.
 	import '../Calendar/calendar-root.css';
 	import { RangeCalendar } from 'bits-ui';
@@ -112,21 +113,4 @@
 <style>
 	/* Reuses the base .sve-calendar shell from CalendarRoot; only the
      range-specific day states are added here. */
-	:global(.sve-range-calendar) {
-		display: flex;
-		flex-direction: column;
-		gap: var(--sve-space-4);
-		padding: var(--sve-space-4);
-		border: 1px solid var(--sve-color-default-border);
-		border-radius: var(--sve-radius-lg);
-		background-color: var(--sve-color-default-surface);
-		font-family: var(--sve-font-family-sans);
-		color: var(--sve-color-default-foreground);
-		width: max-content;
-	}
-
-	:global(.sve-range-calendar[data-disabled]) {
-		opacity: 0.5;
-		pointer-events: none;
-	}
 </style>

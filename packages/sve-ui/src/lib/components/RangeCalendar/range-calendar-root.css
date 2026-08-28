@@ -1,13 +1,10 @@
 /*
- * Shared stylesheet, not a duplicated <style> block.
+ * Shared by RangeCalendar.Root and DateRangePicker.Calendar.
  *
- * Svelte compiles styles per component, so these rules lived in exactly one file
- * and a consumer importing only a namespace that REUSES the class got unstyled
- * markup. That was invisible until `sideEffects` was declared and tree-shaking
- * started actually working, so it shipped for four versions.
- *
- * A CSS import survives tree-shaking because `sideEffects` is ["**\/*.css"],
- * which is the other half of why that value is an array and not `false`.
+ * DateRangePicker re-exports only Cell and Day from RangeCalendar, so these
+ * rules never reached it: its calendar rendered `.sve-range-calendar` with none
+ * of that class's styling. Same shape as the unstyled picker trigger, found by
+ * the same guard once it stopped counting contextual overrides as declarations.
  *
  * NOTE: no `:global(…)` here. That wrapper is Svelte `<style>` syntax; in a plain
  * stylesheet it is an invalid selector and the browser drops the rule silently.
@@ -16,7 +13,7 @@
  * checked that the class name appeared somewhere.
  */
 
-.sve-calendar {
+.sve-range-calendar {
 	display: flex;
 	flex-direction: column;
 	gap: var(--sve-space-4);
@@ -28,7 +25,7 @@
 	color: var(--sve-color-default-foreground);
 	width: max-content;
 }
-.sve-calendar[data-disabled] {
+.sve-range-calendar[data-disabled] {
 	opacity: 0.5;
 	pointer-events: none;
 }
