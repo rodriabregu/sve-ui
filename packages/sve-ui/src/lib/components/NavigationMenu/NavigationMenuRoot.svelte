@@ -26,14 +26,14 @@
 -->
 <NavigationMenu.Root
 	bind:value
-	class={['sve-nav-menu', cls].filter(Boolean).join(' ')}
+	class={['sve-navigation-menu', cls].filter(Boolean).join(' ')}
 	data-slot="navigation-menu"
 	{children}
 	{...rest}
 />
 
 <style>
-	:global(.sve-nav-menu) {
+	:global(.sve-navigation-menu) {
 		position: relative;
 		display: flex;
 		flex-direction: column;

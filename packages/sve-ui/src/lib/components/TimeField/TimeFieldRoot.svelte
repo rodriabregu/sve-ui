@@ -118,7 +118,7 @@
 <Root
 	bind:value
 	bind:placeholder
-	class={['sve-field', cls].filter(Boolean).join(' ')}
+	class={['sve-segmented-field', cls].filter(Boolean).join(' ')}
 	data-slot="time-field"
 	{required}
 	{children}
@@ -126,7 +126,7 @@
 />
 
 <style>
-	:global(.sve-field) {
+	:global(.sve-segmented-field) {
 		display: flex;
 		flex-direction: column;
 		font-family: var(--sve-font-family-sans);

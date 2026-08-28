@@ -18,14 +18,14 @@
   place, positioned relative to its trigger.
 -->
 <NavigationMenu.Content
-	class={['sve-nav-menu__content', cls].filter(Boolean).join(' ')}
+	class={['sve-navigation-menu__content', cls].filter(Boolean).join(' ')}
 	data-slot="navigation-menu-content"
 	{children}
 	{...rest}
 />
 
 <style>
-	:global(.sve-nav-menu__content) {
+	:global(.sve-navigation-menu__content) {
 		padding: var(--sve-space-4);
 		font-family: var(--sve-font-family-sans);
 		font-size: var(--sve-font-size-sm);

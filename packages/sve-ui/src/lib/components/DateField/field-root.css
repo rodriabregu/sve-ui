@@ -16,7 +16,7 @@
  * checked that the class name appeared somewhere.
  */
 
-.sve-field {
+.sve-segmented-field {
 	display: flex;
 	flex-direction: column;
 	font-family: var(--sve-font-family-sans);

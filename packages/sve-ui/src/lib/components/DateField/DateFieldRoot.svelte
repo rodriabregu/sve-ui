@@ -108,7 +108,7 @@
 <Root
 	bind:value
 	bind:placeholder
-	class={['sve-field', cls].filter(Boolean).join(' ')}
+	class={['sve-segmented-field', cls].filter(Boolean).join(' ')}
 	data-slot="date-field"
 	{required}
 	{children}

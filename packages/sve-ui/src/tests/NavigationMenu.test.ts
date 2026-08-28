@@ -15,7 +15,7 @@ describe('NavigationMenu', () => {
 
 	it('renders the items as a real list', () => {
 		const { container } = render(NavigationMenuFixture, { props: {} });
-		expect(container.querySelector('ul.sve-nav-menu__list')).not.toBeNull();
+		expect(container.querySelector('ul.sve-navigation-menu__list')).not.toBeNull();
 		expect(container.querySelectorAll('li').length).toBeGreaterThan(0);
 	});
 
@@ -28,7 +28,7 @@ describe('NavigationMenu', () => {
 
 	it('keeps the panel closed until the trigger is used', () => {
 		const { container } = render(NavigationMenuFixture, { props: {} });
-		expect(container.querySelector('.sve-nav-menu__content')).toBeNull();
+		expect(container.querySelector('.sve-navigation-menu__content')).toBeNull();
 	});
 
 	it('opens on click — no pointer hover required', async () => {
@@ -36,7 +36,7 @@ describe('NavigationMenu', () => {
 		await fireEvent.click(getByRole('button', { name: 'Products' }));
 
 		await waitFor(() => {
-			expect(container.querySelector('.sve-nav-menu__content')).not.toBeNull();
+			expect(container.querySelector('.sve-navigation-menu__content')).not.toBeNull();
 			expect(getByRole('button', { name: 'Products' }).getAttribute('data-state')).toBe('open');
 			expect(getByTestId('value').textContent).toBe('products');
 		});
@@ -76,10 +76,14 @@ describe('NavigationMenu', () => {
 	it('closes on Escape', async () => {
 		const { getByRole, container } = render(NavigationMenuFixture, { props: {} });
 		await fireEvent.click(getByRole('button', { name: 'Products' }));
-		await waitFor(() => expect(container.querySelector('.sve-nav-menu__content')).not.toBeNull());
+		await waitFor(() =>
+			expect(container.querySelector('.sve-navigation-menu__content')).not.toBeNull()
+		);
 
 		await fireEvent.keyDown(document.activeElement ?? document.body, { key: 'Escape' });
-		await waitFor(() => expect(container.querySelector('.sve-nav-menu__content')).toBeNull());
+		await waitFor(() =>
+			expect(container.querySelector('.sve-navigation-menu__content')).toBeNull()
+		);
 	});
 
 	it.todo(

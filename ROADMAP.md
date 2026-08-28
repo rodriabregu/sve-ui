@@ -96,11 +96,38 @@ exported symbol, which handles both the bare and the explicitly-annotated form.
       passes; injecting one element reports `~ components/badge.html (+2 elements)`.
       Its first version used a flat `readdir`, covered 3 of 65 pages and reported
       success, so it now walks recursively and refuses to run on fewer than 20.
-- [ ] **Screenshot diffing is deliberately still open.** It needs its own change
-      because of one concrete problem: baselines generated on macOS do not match
-      Linux CI font rendering, so they have to be produced in the CI image or a
-      pinned container. That is infrastructure plus a binary-baseline review
-      workflow, and bolting it on here would have meant doing it badly.
+- [x] **Screenshot diffing — DONE.** Playwright over the prerendered docs,
+      screenshotting `.preview__canvas` (the region where a live component is
+      rendered) rather than whole pages: the previews are what regress, they stay
+      small enough to keep in git, and page-chrome edits do not churn them. Each
+      of the 60 component pages is captured in **both themes**, toggled through
+      the real theme button rather than by forcing a class the app would fight.
+      Verified end to end on one page: 4 previews, 8 captures, dark and light
+      byte-different in all four.
+- [x] The macOS/Linux problem is handled by refusing rather than by hoping. The
+      suite throws if it is asked to write baselines off Linux, and
+      `.github/workflows/visual-baselines.yml` — manual dispatch, on ubuntu — is
+      the only sanctioned path. It writes the baselines, then **runs the
+      comparison again against what it just wrote**, so captures that do not
+      reproduce on the very same runner never get committed.
+- [x] **The first version of this guard passed while measuring nothing**, which is
+      now three for three on new guards in this repo. Playwright's default is
+      `updateSnapshots: 'missing'`: an ordinary run _writes_ an absent baseline
+      and reports a pass. On macOS it silently produced eight baselines CI could
+      never match, and my refusal only covered the `--update-snapshots` flag.
+      Fixed with `updateSnapshots: 'none'` — a missing baseline is now a hard
+      failure — and proven in both directions.
+- [ ] **Its coverage is capped by what the docs demo, and that is a real limit.**
+      Found while verifying the rename: `sve-field__error` appears on zero built
+      pages, because no `Field` preview renders an error — arguably its most
+      important state. The screenshot suite can only see states the docs put on
+      screen, so a preview gap is a coverage gap. Worth a pass over the pages
+      whose components have states no preview enters.
+- [ ] Determinism across runs is **not yet proven**, and deliberately cannot be
+      proven locally: with `updateSnapshots: 'none'` and no baseline the suite
+      fails before capturing anything, and a macOS capture would not answer the
+      question anyway. The proof is two consecutive green CI runs on one commit
+      after the first Linux baseline generation. **First run needs review.**
 
 ---
 
@@ -249,6 +276,19 @@ Still open:
       a network can say it is loading. Needs a real async case to design against,
       not a guess.
 - [ ] Run the sweep again after every batch of components, not once.
+
+#### Run six — zero real gaps, one false positive
+
+Re-run after the naming change. Nothing new: every state prop that declares
+itself reaches the markup. The one flag was `Field` declaring `required` without
+`aria-required` anywhere in the file — and that is **correct**, because `Field`
+hands the control the native `required` attribute, which carries the semantics
+on a real form control and which axe rejects the ARIA version of on a `<button>`.
+
+Worth stating plainly: across six runs this audit found four real gaps, and its
+last two runs found none. It has reached diminishing returns as a sweep. Keep
+running it after a batch of new components — that is when it pays — and stop
+expecting it to find something in the existing catalog.
 
 ### 7b. A styling regression I shipped, and the guard for it — DONE
 
