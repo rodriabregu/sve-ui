@@ -296,17 +296,49 @@ classes against emitted CSS) found the cross-namespace cases. The static one
 found five more, all intra-namespace — which turned out to be safe, and taught me
 the actual invariant the guard should encode. Neither alone would have got there.
 
-### 8. Build something real with it
+### 8. Build something real with it — DONE, and it paid immediately
 
-Internal dogfooding has already proved insufficient. The docs site was written
-by the same person as the library and **still** shipped six JS-only navigation
-buttons and a hardcoded "13 components" while the registry held 58.
+`apps/example`. Not a showcase: a small app with **latency** — a stub API with
+700–900ms responses and server-side validation returning field-keyed errors.
 
-An outside consumer found more in one issue than months of internal use.
+That difference is the whole point. The docs site renders everything
+synchronously from a static registry, which is why it never surfaced anything
+about loading states.
 
-- [ ] A small real app — auth, a form with server validation, a data table, a
-      dark-mode toggle
-- [ ] Every workaround it forces becomes an issue here
+- [x] It exercises what only a real form has: errors arriving from a server
+      rather than a keystroke, `focusFirstInvalidField` on a failed submit,
+      `Button loading` in flight, `Table` with sorting the app applies via
+      `Intl.Collator`, `Toast` on success, the theme class on `<body>`
+- [x] It is in the CI pipeline, so a broken public API breaks the build
+- [x] **It found `Busy` within an hour** — see below
+
+On `workspace:*`: the example type-checks against the code as it is and
+demonstrates current practice, so it does **not** verify what a consumer
+downloads. Nothing here is trying to. That job belongs to `check-package-files`,
+`check-treeshake` and `check-css-coverage`, each written after a packaging bug
+shipped, and none of which an example app would have caught.
+
+### 7c. `aria-busy` beyond two components — DONE
+
+Writing the example's loading branch, there was **no way to express "this region
+is loading"**. `Spinner` is decorative and announces nothing; `aria-busy` existed
+on two components out of sixty. A screen reader user got a second of silence and
+then a table appearing, with no warning either way.
+
+`Busy` sets `aria-busy` — so a screen reader can hold off reading a half-built
+region — and pairs it with a polite live region, because `aria-busy` announces
+nothing on its own.
+
+- [x] `doneLabel` names the **result**, not the event: "3 projects loaded" beats
+      "Done", which says the wait is over and nothing about what arrived
+- [x] Omitting it is documented as the wrong choice — the user is told it is
+      loading and never told it finished — but left as the caller's
+- [x] The loading message waits 400ms first. A response that arrives in 80ms does
+      not need narrating. If the wait beats the delay, **only the completion is
+      announced**, which is the right outcome.
+
+This is the first component in the library found by _use_ rather than by auditing
+or by planning, which is the argument for item 8 in one sentence.
 
 ### 9. A playground people can reach
 

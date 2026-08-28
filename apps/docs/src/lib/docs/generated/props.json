@@ -922,6 +922,47 @@
 		],
 		"spreads": "Omit<HTMLLiAttributes, 'class'>"
 	},
+	"Busy": {
+		"props": [
+			{
+				"prop": "busy",
+				"type": "boolean",
+				"required": true,
+				"description": "Whether the content is being loaded or replaced."
+			},
+			{
+				"prop": "label",
+				"type": "string",
+				"required": true,
+				"description": "Announced if the wait is long enough to notice. Say what is loading: \"Loading projects\" beats \"Loading\"."
+			},
+			{
+				"prop": "doneLabel",
+				"type": "string",
+				"required": false,
+				"description": "Announced when the wait ends. Say what arrived — \"3 projects\" — because \"done\" tells the user the wait is over and nothing about the result. Omitting it means the user is told the content is loading and never told it finished, which is worse than saying nothing at all. Pass it."
+			},
+			{
+				"prop": "delay",
+				"type": "number",
+				"required": false,
+				"default": "400",
+				"description": "Milliseconds before the loading message is announced. A response that arrives in 80ms does not need narrating; announcing it just talks over the user for no reason. If the wait beats this, only the completion is announced."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the region."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'children'>"
+	},
 	"Button": {
 		"props": [
 			{

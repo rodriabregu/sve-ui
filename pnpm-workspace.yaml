@@ -30,3 +30,6 @@ catalog:
 allowBuilds:
   esbuild: true
   svelte-preprocess: true
+
+minimumReleaseAgeExclude:
+  - sve-ui@0.10.0
