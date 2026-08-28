@@ -493,5 +493,14 @@ drifting is invisible.
   tokens live on `:root`, and a class named `sve-nav-menu` rather than
   `sve-navigation-menu`. The guard was right every time. Check the guard before
   believing the sweep.
+- **`turbo run lint check test build` is NOT what CI runs.** CI adds
+  `format:check`, `check:render` and `gen:props:check` on top. A green turbo run
+  is not a green CI run, and this exact gap let a docs edit reach CI and fail
+  there. Validate with the workflow's step list.
+- **A baseline updater that reads build output can bless a stale build.**
+  `check:render:update` reported "baseline updated for 67 pages" and changed
+  nothing, because the build predated the edit; the next CI run failed on the
+  same page. It now refuses when any source is newer than the oldest built page,
+  and that refusal was proven by touching a file.
 - **Turbo caches `lint`.** A cache hit hid a real failure. Use
   `npx turbo run … --force` when the result matters.
