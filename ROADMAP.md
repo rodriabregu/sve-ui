@@ -156,11 +156,19 @@ exported symbol, which handles both the bare and the explicitly-annotated form.
       important state. The screenshot suite can only see states the docs put on
       screen, so a preview gap is a coverage gap. Worth a pass over the pages
       whose components have states no preview enters.
-- [ ] Determinism across runs is **not yet proven**, and deliberately cannot be
-      proven locally: with `updateSnapshots: 'none'` and no baseline the suite
-      fails before capturing anything, and a macOS capture would not answer the
-      question anyway. The proof is two consecutive green CI runs on one commit
-      after the first Linux baseline generation. **First run needs review.**
+- [x] **Determinism is proven, on the platform that matters and across two
+      separate runners.** It could not be proven locally — with
+      `updateSnapshots: 'none'` and no baseline the suite fails before capturing
+      anything, and a macOS capture would not have answered the question. So the
+      proof was left open rather than faked, and then obtained: the generation
+      workflow's own re-comparison pass returned `60 passed` on its runner, and
+      CI on the baselines PR returned `60 passed` on a different one.
+
+      Worth recording that the first attempt at proving this locally was a
+      **false pass of my own making**: a shell loop hashed `test-results/*.png`
+      twice and reported "byte-identical" while comparing two empty files,
+      because the failing suite had written no PNGs at all. Same failure mode as
+      the guards — a check that measures nothing reports success.
 
 ---
 
