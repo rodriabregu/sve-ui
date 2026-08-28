@@ -533,6 +533,35 @@ no history.
 </nav>
 ```
 
+### Busy
+
+```svelte
+<script>
+	import { Busy, Spinner } from 'sve-ui';
+	let loading = $state(true);
+	let projects = $state([]);
+</script>
+
+<!-- Nothing else in the library can say a region is loading. Spinner is
+     decorative and announces nothing; aria-busy announces nothing on its own,
+     so Busy pairs it with a polite live region.
+
+     ALWAYS pass doneLabel, and make it name the RESULT: "3 projects loaded"
+     beats "Done", which says the wait is over and nothing about what arrived.
+     Omitting it tells the user it is loading and never that it finished.
+
+     The loading message waits `delay` (400ms) first: a response that arrives in
+     80ms does not need narrating. If the wait beats the delay, only the
+     completion is announced. -->
+<Busy busy={loading} label="Loading projects" doneLabel={`${projects.length} projects loaded`}>
+	{#if loading}
+		<Spinner />
+	{:else}
+		<Table.Root>…</Table.Root>
+	{/if}
+</Busy>
+```
+
 ### Sidebar
 
 ```svelte

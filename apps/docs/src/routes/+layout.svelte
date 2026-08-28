@@ -71,6 +71,11 @@
 						style="color: var(--doc-fg-muted); font-size: 14.5px; font-weight: 500;">Components</a
 					>
 					<a
+						href="/playground"
+						class="hidden no-underline transition-opacity hover:opacity-70 sm:inline"
+						style="color: var(--doc-fg-muted); font-size: 14.5px; font-weight: 500;">Playground</a
+					>
+					<a
 						href="/#theming"
 						class="hidden no-underline transition-opacity hover:opacity-70 sm:inline"
 						style="color: var(--doc-fg-muted); font-size: 14.5px; font-weight: 500;">Theming</a
