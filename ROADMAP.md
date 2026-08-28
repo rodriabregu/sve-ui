@@ -136,17 +136,39 @@ exported symbol, which handles both the bare and the explicitly-annotated form.
       `src/tests/bindable-defaults.test.ts` renders all fourteen root components
       with no props and fails if any throws. Proven by reverting one fix.
 
+- [x] **Known property of every baseline, chased down rather than left as a
+      mystery.** A 1px sliver of colour sits at the top-left of every capture.
+      It is not an overlay — verified by capturing with the sticky header
+      neutralised and getting a byte-identical image. It is
+      `.preview__tab.is-active::after`, the active-tab underline, which is
+      `height: 2px` at `bottom: -1px`, so one pixel of it falls inside the
+      canvas's box. Deterministic and identical on every page, so it is benign.
+
+      One consequence worth knowing: that underline is painted with
+      `var(--sve-color-primary)` — the **library's** token, not a `--doc-*` one.
+      Changing the primary colour will therefore diff all 274 baselines at once.
+      It also quietly contradicts the rule that docs chrome uses `--doc-*` hex
+      values precisely so it does not move when the showcased theme changes.
+
 - [ ] **Its coverage is capped by what the docs demo, and that is a real limit.**
       Found while verifying the rename: `sve-field__error` appears on zero built
       pages, because no `Field` preview renders an error — arguably its most
       important state. The screenshot suite can only see states the docs put on
       screen, so a preview gap is a coverage gap. Worth a pass over the pages
       whose components have states no preview enters.
-- [ ] Determinism across runs is **not yet proven**, and deliberately cannot be
-      proven locally: with `updateSnapshots: 'none'` and no baseline the suite
-      fails before capturing anything, and a macOS capture would not answer the
-      question anyway. The proof is two consecutive green CI runs on one commit
-      after the first Linux baseline generation. **First run needs review.**
+- [x] **Determinism is proven, on the platform that matters and across two
+      separate runners.** It could not be proven locally — with
+      `updateSnapshots: 'none'` and no baseline the suite fails before capturing
+      anything, and a macOS capture would not have answered the question. So the
+      proof was left open rather than faked, and then obtained: the generation
+      workflow's own re-comparison pass returned `60 passed` on its runner, and
+      CI on the baselines PR returned `60 passed` on a different one.
+
+      Worth recording that the first attempt at proving this locally was a
+      **false pass of my own making**: a shell loop hashed `test-results/*.png`
+      twice and reported "byte-identical" while comparing two empty files,
+      because the failing suite had written no PNGs at all. Same failure mode as
+      the guards — a check that measures nothing reports success.
 
 ---
 
