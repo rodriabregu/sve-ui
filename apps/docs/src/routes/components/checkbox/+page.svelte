@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.checkbox;
@@ -14,18 +13,6 @@
 		{ id: 'sizes', label: 'Sizes' },
 		{ id: 'states', label: 'States' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{ prop: 'size', type: `'sm' | 'md' | 'lg'`, default: `'md'` },
-		{ prop: 'checked', type: 'boolean', default: 'false', description: 'Bindable checked state.' },
-		{
-			prop: 'indeterminate',
-			type: 'boolean',
-			default: 'false',
-			description: 'Shows the mixed/indeterminate visual.'
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' }
 	];
 
 	let checkboxOn = $state(true);
@@ -125,10 +112,10 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<PropsTable component="CheckboxRoot" />
 		<p class="sec__p">
 			Plus all Bits <code class="ic">Checkbox.Root</code> props via prop spreading.
 		</p>
-		<PropsTable rows={props} />
 	</section>
 </DocPage>
 

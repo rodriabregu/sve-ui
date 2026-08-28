@@ -42,63 +42,47 @@ site described the skill as something the package ships and told people to
 - [x] The package README now mentions it — it never did — and the install
       command points at `node_modules/sve-ui/skills/sve-ui-usage`
 
-### 2. The prop generator cannot see forwarded Bits props — DONE
+### 2. The prop generator — DONE, and every page is now generated
 
-`gen-props.mjs` read the AST only, so it saw literally-declared interface members
-and nothing else. Most components here are thin Bits wrappers declaring almost
-nothing of their own, which is why six pages had **0%** generated coverage and
-their tables stayed hand-written.
+Three rounds, each of which had to measure before it could act.
 
-It now resolves the heritage clause with the real TypeScript checker: one
-`ts.Program` over virtual `.ts` files placed next to each component, so both
-relative imports and the `bits-ui` lookup resolve exactly as they do for the real
-file. **485 own + 896 inherited props**, in 0.7s.
+**Round one: inherited Bits props.** The generator read the AST only, so it saw
+literally-declared members and nothing else. Most components are thin Bits
+wrappers declaring almost nothing of their own, which is why six pages had **0%**
+coverage. Now resolved with the real TypeScript checker: one `ts.Program` over
+virtual `.ts` files placed beside each component, so relative imports and the
+`bits-ui` lookup resolve exactly as for the real file.
 
 The hard part was never reading the type, it was subtracting the HTML attribute
 surface — `ComponentProps<typeof Popover.Content>` includes every `div`
-attribute. The filter is by **declaration file**: a property is kept only when it
-is declared inside `bits-ui`, so everything from `svelte/elements` and `lib.dom`
-is dropped without a name list to maintain. Only `style` needed an explicit
-exception, because Bits redeclares it.
+attribute. The filter is by **declaration file**: kept only when declared inside
+`bits-ui`. Only `style` needed an exception. `dir` was in that exception briefly
+and should not have been — it decides which arrow key moves forward in a Bits
+menu, so it is behaviour.
 
-- [x] Resolve inherited props through the checker
-- [x] Descriptions come from Bits' own JSDoc, so the generated rows read better
-      than several of the hand-written ones they replace
-- [x] `from: 'bits-ui'` on inherited rows, rendered as a provenance badge — a
-      reader should know whose contract they are reading
-- [x] The five pages whose `extra` arrays became redundant are cleaned. Two kept
-      their hand-written prose via `extra` + `omit`, because it explains gotchas
-      Bits' JSDoc does not (`type` deciding the shape of `value`)
+**Round two: the five HTML attributes that ARE the point.** An `Input` without
+`value` in its table, or a `Label` without `for`, documents everything except the
+reason the component exists. `HTML_PROPS_WORTH_KEEPING` is keyed by component so
+it stays a handful of exceptions rather than a globally resurrected attribute set.
+Those rows are labelled `html`, not `bits-ui` — saying otherwise would send a
+reader to the wrong docs.
 
-Coverage after, on the pages that had none:
+**Round three: the sixty re-exported parts with no `.svelte` file.**
+`Dialog.Root`, `Tooltip.Provider`, `Select.Root` and fifty-seven others exist only
+as `export const Root = BitsDialog.Root`, because Root renders nothing visual.
+Reading `.svelte` files documented nothing for them. The generator now includes
+every namespace `index.ts` as a Program root and resolves the props type off the
+exported symbol, which handles both the bare and the explicitly-annotated form.
 
-| Page           | Prop rows now | Labelled `bits-ui` |
-| -------------- | ------------- | ------------------ |
-| `context-menu` | 49            | 43                 |
-| `menubar`      | 50            | 43                 |
-| `rating-group` | 25            | 21                 |
-| `pin-input`    | 20            | 17                 |
-| `pagination`   | 18            | 15                 |
-| `toolbar`      | 16            | 10                 |
-
-**Still open, and now precisely bounded.** Sixteen pages remain fully
-hand-written, in two distinct groups:
-
-- **Six re-export Bits' `Root` directly** (`dialog`, `dropdown-menu`, `popover`,
-  `tooltip`, `select`, `combobox`). There is no `SelectRoot.svelte` to read —
-  `index.ts` does `export const Root = Select.Root`, because Root renders nothing
-  visual. Generating these means resolving re-exports out of `index.ts`, which is
-  a different mechanism from the heritage clause.
-- **Five need a handful of HTML attributes that are the component's whole point**
-  (`Input.value`, `Label.for`, `Button.disabled`, `Avatar.src`, `Textarea.rows`).
-  The declaration-file filter drops these correctly in general and wrongly here.
-  `extra` covers it; the alternative is a per-component allow-list.
-- Five (`alert`, `checkbox`, `radio-group`, `switch`, `tabs`) are portable as-is
-  and just need the mechanical edit.
-
-- [ ] Port the five that are ready
-- [ ] Decide re-export resolution vs `extra` for the six pass-through Roots
-- [ ] Only then: forbid bare `PropRow[]` in CI
+- [x] **All 70 pages generated. Zero hand-written `PropRow[]` left** — down from
+      27, and each of the three rounds was needed to get there.
+- [x] **1,181 prop rows across the docs**, 743 labelled `bits-ui`, 11 `html`, and
+      no page with a Props heading and no rows.
+- [x] `check-docs-coverage` now **forbids** a hand-written table. That check could
+      not be enabled before: it would have failed on pages with no correct
+      alternative, and _a guard that forces you to do the wrong thing is worse
+      than no guard_. `extra` and `omit` stay available for prose the generator
+      cannot produce.
 
 ### 3. No visual regression coverage — PARTLY DONE
 

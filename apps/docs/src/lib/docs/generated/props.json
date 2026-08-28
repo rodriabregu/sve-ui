@@ -717,6 +717,12 @@
 				"type": "HTMLElement | null | undefined",
 				"required": false,
 				"from": "bits-ui"
+			},
+			{
+				"prop": "src",
+				"type": "string | null | undefined",
+				"required": false,
+				"from": "html"
 			}
 		],
 		"spreads": "Omit<BitsImageProps, 'class' | 'alt'>"
@@ -1024,6 +1030,18 @@
 				"prop": "children",
 				"type": "Snippet",
 				"required": false
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | null | undefined",
+				"required": false,
+				"from": "html"
+			},
+			{
+				"prop": "onclick",
+				"type": "MouseEventHandler<HTMLButtonElement> | null | undefined",
+				"required": false,
+				"from": "html"
 			}
 		],
 		"spreads": "Omit<HTMLButtonAttributes, 'class'>"
@@ -2243,6 +2261,18 @@
 				"type": "string | undefined",
 				"required": false,
 				"from": "bits-ui"
+			},
+			{
+				"prop": "oninput",
+				"type": "FormEventHandler<HTMLInputElement> | null | undefined",
+				"required": false,
+				"from": "html"
+			},
+			{
+				"prop": "placeholder",
+				"type": "string | null | undefined",
+				"required": false,
+				"from": "html"
 			},
 			{
 				"prop": "ref",
@@ -4772,6 +4802,12 @@
 				"prop": "class",
 				"type": "string",
 				"required": false
+			},
+			{
+				"prop": "value",
+				"type": "any",
+				"required": false,
+				"from": "html"
 			}
 		],
 		"spreads": "Omit<HTMLInputAttributes, 'class' | 'size'>"
@@ -4806,6 +4842,12 @@
 				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
 				"required": false,
 				"from": "bits-ui"
+			},
+			{
+				"prop": "for",
+				"type": "string | null | undefined",
+				"required": false,
+				"from": "html"
 			},
 			{
 				"prop": "id",
@@ -5655,6 +5697,12 @@
 				"type": "Snippet<[]> | undefined",
 				"required": false,
 				"from": "bits-ui"
+			},
+			{
+				"prop": "href",
+				"type": "string | null | undefined",
+				"required": false,
+				"from": "html"
 			},
 			{
 				"prop": "id",
@@ -8185,8 +8233,7 @@
 				"prop": "label",
 				"type": "string",
 				"required": false,
-				"default": "'Loading'",
-				"description": "Accessible label, exposed as `aria-label` on the status span."
+				"description": "Names the spinner and makes it announce itself. **Leave it unset unless the spinner is the only thing on screen.** Without it the spinner is `aria-hidden` — decoration — which is what you want in almost every case, because something beside it already says what is happening: visible text, a `Button loading`, or a `Busy` region. It used to default to `'Loading'`, which made every spinner a live region. `<Busy label=\"Loading projects\"><Spinner /></Busy>` then produced TWO announcements for one event — the spinner's on insertion, and `Busy`'s 400ms later — and the first defeated the debounce that exists to stop exactly that. Verified by counting `role=\"status\"` elements in the subtree. `'Loading'` said nothing useful anyway: loading *what*?"
 			},
 			{
 				"prop": "class",
@@ -8838,6 +8885,18 @@
 				"prop": "class",
 				"type": "string",
 				"required": false
+			},
+			{
+				"prop": "rows",
+				"type": "number | null | undefined",
+				"required": false,
+				"from": "html"
+			},
+			{
+				"prop": "value",
+				"type": "string | number | string[] | null | undefined",
+				"required": false,
+				"from": "html"
 			}
 		],
 		"spreads": "Omit<HTMLTextareaAttributes, 'class'>"
@@ -9896,5 +9955,3266 @@
 			}
 		],
 		"spreads": "Omit<BitsContentProps, 'class'>"
+	},
+	"AlertDialogRoot": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the popover's open state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback called when the dialog finishes opening/closing animations.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "The open state of the dialog.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"AlertDialogTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ComboboxRoot": {
+		"props": [
+			{
+				"prop": "allowDeselect",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "Whether to allow the user to deselect an item by clicking on an already selected item. This is only applicable to `type=\"single\"` selects/comboboxes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`false`",
+				"description": "Whether the combobox is disabled.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "inputValue",
+				"type": "string | undefined",
+				"required": false,
+				"description": "A read-only value that can be used to programmatically update the input value. This is useful for updating the displayed label/input when the value changes outside of Bits UI.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "items",
+				"type": "{ value: string; label: string; disabled?: boolean | undefined; }[] | undefined",
+				"required": false,
+				"description": "Optionally provide an array of `value` and `label` pairs that will be used to match and trigger selection when the trigger is focused and a key is pressed while the content is closed. It's also used to handle form autofill. By providing this value, you enable selecting a value when the trigger is focused and a key is pressed without the content being open, similar to how a native `<select>` works. For this to work, you must The label is what the user will potentially search for via typeahead, and the value is what is set as the selected value when a typeahead match is found. We can't rely on the individual `Item` components to do this because they may not ever be mounted to do the DOM if using a conditional block with a Svelte transition or certain animation libraries. IMPORTANT: This functionality is only available for single-select listboxes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "loop",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`false`",
+				"description": "Whether or not the combobox menu should loop through the items when navigating with the keyboard.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "name",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The name to apply to the hidden input element for form submission. If not provided, a hidden input will not be rendered and the combobox will not be part of a form.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback function called when the open state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback function called when the open state changes and the animation is complete.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onValueChange",
+				"type": "OnChangeFn<string> | OnChangeFn<string[]> | undefined",
+				"required": false,
+				"description": "A callback function called when the value changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`false`",
+				"description": "Whether the combobox popover is open.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "required",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`false`",
+				"description": "Whether the combobox is required (for form submission).",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "scrollAlignment",
+				"type": "\"center\" | \"nearest\" | undefined",
+				"required": false,
+				"default": "`\"nearest\"`",
+				"description": "How to scroll the combobox items into view when navigating with the keyboard.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "type",
+				"type": "\"multiple\" | \"single\"",
+				"required": true,
+				"description": "The type of combobox.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | string[] | undefined",
+				"required": false,
+				"description": "The value of the selected combobox item.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ComboboxTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ComboboxGroup": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ComboboxGroupHeading": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"CommandViewport": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"CommandGroupItems": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"CommandLinkItem": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether the item is disabled.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "forceMount",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "Whether to always mount the item regardless of filtering logic.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "keywords",
+				"type": "string[] | undefined",
+				"required": false,
+				"description": "A list of keywords that will be used to filter the item.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onSelect",
+				"type": "(() => void) | undefined",
+				"required": false,
+				"description": "A callback that is fired when the item is selected, either via click or keyboard selection.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | undefined",
+				"required": false,
+				"description": "A unique value for this item that will be used when filtering and ranking the items. If not provided, an attempt will be made to use the `textContent` of the item. If the `textContent` is dynamic, you will need to provide a stable unique value for the item.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ContextMenuRoot": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "dir",
+				"type": "Direction | undefined",
+				"required": false,
+				"default": "\"ltr\"",
+				"description": "The direction of the site.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "The open state of the menu.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ContextMenuSub": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu finishes opening/closing animations.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "The open state of the menu.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ContextMenuSubTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the user will not be able to interact with the menu item.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onSelect",
+				"type": "((event: Event) => void) | undefined",
+				"required": false,
+				"description": "A callback fired when the menu item is selected. Prevent default behavior of selection with `event.preventDefault()`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "openDelay",
+				"type": "number | undefined",
+				"required": false,
+				"default": "100",
+				"description": "The amount of time in ms from when the mouse enters the subtrigger until the submenu opens. This is useful for preventing the submenu from opening as a user is moving their mouse through the menu without a true intention to open that submenu. To disable the behavior, set it to `0`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "textValue",
+				"type": "string | undefined",
+				"required": false,
+				"default": "undefined",
+				"description": "Optional text to use for typeahead filtering. By default, typeahead will use the `.textContent` of the menu item. When the content is more complex, you can provide a string here instead.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ContextMenuSubContent": {
+		"props": [
+			{
+				"prop": "align",
+				"type": "\"start\" | \"center\" | \"end\" | undefined",
+				"required": false,
+				"description": "The preferred alignment of the anchor to render against when open. This may change when collisions occur.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "alignOffset",
+				"type": "number | undefined",
+				"required": false,
+				"description": "An offset in pixels from the \"start\" or \"end\" alignment options.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "arrowPadding",
+				"type": "number | undefined",
+				"required": false,
+				"description": "This describes the padding between the arrow and the edges of the floating element. If your floating element has border-radius, this will prevent it from overflowing the corners.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "avoidCollisions",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "true",
+				"description": "When `true`, overrides the `side` and `align` options to prevent collisions with the boundary edges.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "child",
+				"type": "Snippet<[FloatingContentSnippetProps & { props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "collisionBoundary",
+				"type": "Arrayable<Boundary> | undefined",
+				"required": false,
+				"description": "A boundary element or array of elements to check for collisions against.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "collisionPadding",
+				"type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>> | undefined",
+				"required": false,
+				"default": "8",
+				"description": "The amount in pixels of virtual padding around the viewport edges to check for overflow which will cause a collision.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "customAnchor",
+				"type": "string | HTMLElement | Measurable | null | undefined",
+				"required": false,
+				"description": "Use an element other than the trigger to anchor the content to. If provided, the content will be anchored to the provided element instead of the trigger. You can pass a selector string or an HTMLElement.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "dir",
+				"type": "Direction | undefined",
+				"required": false,
+				"description": "The text direction of the content.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "escapeKeydownBehavior",
+				"type": "EscapeBehaviorType | undefined",
+				"required": false,
+				"default": "`close`",
+				"description": "Escape behavior type. `close`: Closes the element immediately. `defer-otherwise-close`: Delegates the action to its parent component that has an escape keydown handler. If no parent is found, it closes the element. `defer-otherwise-ignore`: Delegates the action to the parent element. If no parent is found, nothing is done. `ignore`: Prevents the element from closing and also blocks the parent element from closing in response to an escape key press.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "forceMount",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "Whether to force mount the component.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "hideWhenDetached",
+				"type": "boolean | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "interactOutsideBehavior",
+				"type": "InteractOutsideBehaviorType | undefined",
+				"required": false,
+				"default": "`close`",
+				"description": "Interact outside behavior type. `close`: Closes the element immediately. `defer-otherwise-close`: Delegates the action to the parent element. If no parent is found, it closes the element. `defer-otherwise-ignore`: Delegates the action to the parent element. If no parent is found, nothing is done. `ignore`: Prevents the element from closing and also blocks the parent element from closing in response to an outside interaction.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "loop",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the menu will loop through items when navigating with the keyboard.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onCloseAutoFocus",
+				"type": "EventCallback | undefined",
+				"required": false,
+				"description": "Event handler called when auto-focusing on close. Can be prevented.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onEscapeKeydown",
+				"type": "((e: KeyboardEvent) => void) | undefined",
+				"required": false,
+				"description": "Callback fired when escape is pressed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onFocusOutside",
+				"type": "((event: FocusEvent) => void) | undefined",
+				"required": false,
+				"description": "Callback fired when focus leaves the dismissible layer.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onInteractOutside",
+				"type": "InteractOutsideEventHandler | undefined",
+				"required": false,
+				"description": "Callback fired when an outside interaction event completes, which is either a `pointerup`, `mouseup`, or `touchend` event, depending on the user's input device.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenAutoFocus",
+				"type": "EventCallback | undefined",
+				"required": false,
+				"description": "Event handler called when auto-focusing on open. Can be prevented.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "preventOverflowTextSelection",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`true`",
+				"description": "Passing `true` will prevent the overflow of text selection outside the element, provided the element is the top layer.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "side",
+				"type": "\"top\" | \"right\" | \"bottom\" | \"left\" | undefined",
+				"required": false,
+				"description": "The preferred side of the anchor to render against when open. Will be reversed when collisions occur.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "sideOffset",
+				"type": "number | undefined",
+				"required": false,
+				"description": "The distance in pixels from the anchor to the floating element.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "sticky",
+				"type": "\"partial\" | \"always\" | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "strategy",
+				"type": "\"absolute\" | \"fixed\" | undefined",
+				"required": false,
+				"description": "The positioning strategy to use for the floating element.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "trapFocus",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether focus is trapped within the focus scope.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "updatePositionStrategy",
+				"type": "\"always\" | \"optimized\" | undefined",
+				"required": false,
+				"default": "\"optimized\"",
+				"description": "\"optimized\" will only update the position when necessary, while \"always\" will update the position on each animation frame, which is useful if the floating content is following something like a mouse cursor.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ContextMenuCheckboxItem": {
+		"props": [
+			{
+				"prop": "checked",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "The checked state of the checkbox. It can be one of: - `true` for checked - `false` for unchecked",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "child",
+				"type": "Snippet<[MenuCheckboxItemSnippetProps & { props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[MenuCheckboxItemSnippetProps]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "closeOnSelect",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "true",
+				"description": "Whether or not the menu item should close when selected.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the user will not be able to interact with the menu item.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "indeterminate",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether the checkbox is in an indeterminate state or not.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onCheckedChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is fired when the checked state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onIndeterminateChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback function called when the indeterminate state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onSelect",
+				"type": "((event: Event) => void) | undefined",
+				"required": false,
+				"description": "A callback fired when the menu item is selected. Prevent default behavior of selection with `event.preventDefault()`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "textValue",
+				"type": "string | undefined",
+				"required": false,
+				"default": "undefined",
+				"description": "Optional text to use for typeahead filtering. By default, typeahead will use the `.textContent` of the menu item. When the content is more complex, you can provide a string here instead.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The value of the checkbox item when used in a checkbox group.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ContextMenuRadioItem": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[MenuRadioItemSnippetProps & { props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[MenuRadioItemSnippetProps]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "closeOnSelect",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "true",
+				"description": "Whether or not the menu item should close when selected.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the user will not be able to interact with the menu item.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onSelect",
+				"type": "((event: Event) => void) | undefined",
+				"required": false,
+				"description": "A callback fired when the menu item is selected. Prevent default behavior of selection with `event.preventDefault()`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "textValue",
+				"type": "string | undefined",
+				"required": false,
+				"default": "undefined",
+				"description": "Optional text to use for typeahead filtering. By default, typeahead will use the `.textContent` of the menu item. When the content is more complex, you can provide a string here instead.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string",
+				"required": true,
+				"description": "The value of the radio item.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ContextMenuRadioGroup": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onValueChange",
+				"type": "OnChangeFn<string> | undefined",
+				"required": false,
+				"description": "A callback that is fired when the selected radio item changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The value of the selected radio item. Supports two-way binding with `bind:value`.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"ContextMenuArrow": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "height",
+				"type": "number | undefined",
+				"required": false,
+				"default": "5",
+				"description": "The height of the arrow in pixels.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "width",
+				"type": "number | undefined",
+				"required": false,
+				"default": "10",
+				"description": "The width of the arrow in pixels.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DatePickerArrow": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "height",
+				"type": "number | undefined",
+				"required": false,
+				"default": "5",
+				"description": "The height of the arrow in pixels.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "width",
+				"type": "number | undefined",
+				"required": false,
+				"default": "10",
+				"description": "The width of the arrow in pixels.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DatePickerClose": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DialogRoot": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the popover's open state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback called when the dialog finishes opening/closing animations.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "The open state of the dialog.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DialogTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DialogClose": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DropdownMenuRoot": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "dir",
+				"type": "Direction | undefined",
+				"required": false,
+				"default": "\"ltr\"",
+				"description": "The direction of the site.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "The open state of the menu.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DropdownMenuTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | null | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether the trigger is disabled.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DropdownMenuSub": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu finishes opening/closing animations.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "The open state of the menu.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DropdownMenuSubTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the user will not be able to interact with the menu item.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onSelect",
+				"type": "((event: Event) => void) | undefined",
+				"required": false,
+				"description": "A callback fired when the menu item is selected. Prevent default behavior of selection with `event.preventDefault()`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "openDelay",
+				"type": "number | undefined",
+				"required": false,
+				"default": "100",
+				"description": "The amount of time in ms from when the mouse enters the subtrigger until the submenu opens. This is useful for preventing the submenu from opening as a user is moving their mouse through the menu without a true intention to open that submenu. To disable the behavior, set it to `0`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "textValue",
+				"type": "string | undefined",
+				"required": false,
+				"default": "undefined",
+				"description": "Optional text to use for typeahead filtering. By default, typeahead will use the `.textContent` of the menu item. When the content is more complex, you can provide a string here instead.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DropdownMenuSubContent": {
+		"props": [
+			{
+				"prop": "align",
+				"type": "\"start\" | \"center\" | \"end\" | undefined",
+				"required": false,
+				"description": "The preferred alignment of the anchor to render against when open. This may change when collisions occur.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "alignOffset",
+				"type": "number | undefined",
+				"required": false,
+				"description": "An offset in pixels from the \"start\" or \"end\" alignment options.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "arrowPadding",
+				"type": "number | undefined",
+				"required": false,
+				"description": "This describes the padding between the arrow and the edges of the floating element. If your floating element has border-radius, this will prevent it from overflowing the corners.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "avoidCollisions",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "true",
+				"description": "When `true`, overrides the `side` and `align` options to prevent collisions with the boundary edges.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "child",
+				"type": "Snippet<[FloatingContentSnippetProps & { props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "collisionBoundary",
+				"type": "Arrayable<Boundary> | undefined",
+				"required": false,
+				"description": "A boundary element or array of elements to check for collisions against.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "collisionPadding",
+				"type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>> | undefined",
+				"required": false,
+				"default": "8",
+				"description": "The amount in pixels of virtual padding around the viewport edges to check for overflow which will cause a collision.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "customAnchor",
+				"type": "string | HTMLElement | Measurable | null | undefined",
+				"required": false,
+				"description": "Use an element other than the trigger to anchor the content to. If provided, the content will be anchored to the provided element instead of the trigger. You can pass a selector string or an HTMLElement.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "dir",
+				"type": "Direction | undefined",
+				"required": false,
+				"description": "The text direction of the content.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "escapeKeydownBehavior",
+				"type": "EscapeBehaviorType | undefined",
+				"required": false,
+				"default": "`close`",
+				"description": "Escape behavior type. `close`: Closes the element immediately. `defer-otherwise-close`: Delegates the action to its parent component that has an escape keydown handler. If no parent is found, it closes the element. `defer-otherwise-ignore`: Delegates the action to the parent element. If no parent is found, nothing is done. `ignore`: Prevents the element from closing and also blocks the parent element from closing in response to an escape key press.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "forceMount",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "Whether to force mount the component.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "hideWhenDetached",
+				"type": "boolean | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "interactOutsideBehavior",
+				"type": "InteractOutsideBehaviorType | undefined",
+				"required": false,
+				"default": "`close`",
+				"description": "Interact outside behavior type. `close`: Closes the element immediately. `defer-otherwise-close`: Delegates the action to the parent element. If no parent is found, it closes the element. `defer-otherwise-ignore`: Delegates the action to the parent element. If no parent is found, nothing is done. `ignore`: Prevents the element from closing and also blocks the parent element from closing in response to an outside interaction.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "loop",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the menu will loop through items when navigating with the keyboard.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onCloseAutoFocus",
+				"type": "EventCallback | undefined",
+				"required": false,
+				"description": "Event handler called when auto-focusing on close. Can be prevented.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onEscapeKeydown",
+				"type": "((e: KeyboardEvent) => void) | undefined",
+				"required": false,
+				"description": "Callback fired when escape is pressed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onFocusOutside",
+				"type": "((event: FocusEvent) => void) | undefined",
+				"required": false,
+				"description": "Callback fired when focus leaves the dismissible layer.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onInteractOutside",
+				"type": "InteractOutsideEventHandler | undefined",
+				"required": false,
+				"description": "Callback fired when an outside interaction event completes, which is either a `pointerup`, `mouseup`, or `touchend` event, depending on the user's input device.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenAutoFocus",
+				"type": "EventCallback | undefined",
+				"required": false,
+				"description": "Event handler called when auto-focusing on open. Can be prevented.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "preventOverflowTextSelection",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`true`",
+				"description": "Passing `true` will prevent the overflow of text selection outside the element, provided the element is the top layer.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "side",
+				"type": "\"top\" | \"right\" | \"bottom\" | \"left\" | undefined",
+				"required": false,
+				"description": "The preferred side of the anchor to render against when open. Will be reversed when collisions occur.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "sideOffset",
+				"type": "number | undefined",
+				"required": false,
+				"description": "The distance in pixels from the anchor to the floating element.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "sticky",
+				"type": "\"partial\" | \"always\" | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "strategy",
+				"type": "\"absolute\" | \"fixed\" | undefined",
+				"required": false,
+				"description": "The positioning strategy to use for the floating element.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "trapFocus",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether focus is trapped within the focus scope.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "updatePositionStrategy",
+				"type": "\"always\" | \"optimized\" | undefined",
+				"required": false,
+				"default": "\"optimized\"",
+				"description": "\"optimized\" will only update the position when necessary, while \"always\" will update the position on each animation frame, which is useful if the floating content is following something like a mouse cursor.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DropdownMenuCheckboxItem": {
+		"props": [
+			{
+				"prop": "checked",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "The checked state of the checkbox. It can be one of: - `true` for checked - `false` for unchecked",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "child",
+				"type": "Snippet<[MenuCheckboxItemSnippetProps & { props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[MenuCheckboxItemSnippetProps]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "closeOnSelect",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "true",
+				"description": "Whether or not the menu item should close when selected.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the user will not be able to interact with the menu item.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "indeterminate",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether the checkbox is in an indeterminate state or not.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onCheckedChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is fired when the checked state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onIndeterminateChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback function called when the indeterminate state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onSelect",
+				"type": "((event: Event) => void) | undefined",
+				"required": false,
+				"description": "A callback fired when the menu item is selected. Prevent default behavior of selection with `event.preventDefault()`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "textValue",
+				"type": "string | undefined",
+				"required": false,
+				"default": "undefined",
+				"description": "Optional text to use for typeahead filtering. By default, typeahead will use the `.textContent` of the menu item. When the content is more complex, you can provide a string here instead.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The value of the checkbox item when used in a checkbox group.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DropdownMenuRadioItem": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[MenuRadioItemSnippetProps & { props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[MenuRadioItemSnippetProps]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "closeOnSelect",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "true",
+				"description": "Whether or not the menu item should close when selected.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the user will not be able to interact with the menu item.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onSelect",
+				"type": "((event: Event) => void) | undefined",
+				"required": false,
+				"description": "A callback fired when the menu item is selected. Prevent default behavior of selection with `event.preventDefault()`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "textValue",
+				"type": "string | undefined",
+				"required": false,
+				"default": "undefined",
+				"description": "Optional text to use for typeahead filtering. By default, typeahead will use the `.textContent` of the menu item. When the content is more complex, you can provide a string here instead.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string",
+				"required": true,
+				"description": "The value of the radio item.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DropdownMenuRadioGroup": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onValueChange",
+				"type": "OnChangeFn<string> | undefined",
+				"required": false,
+				"description": "A callback that is fired when the selected radio item changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The value of the selected radio item. Supports two-way binding with `bind:value`.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"DropdownMenuArrow": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "height",
+				"type": "number | undefined",
+				"required": false,
+				"default": "5",
+				"description": "The height of the arrow in pixels.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "width",
+				"type": "number | undefined",
+				"required": false,
+				"default": "10",
+				"description": "The width of the arrow in pixels.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"LinkPreviewRoot": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "closeDelay",
+				"type": "number | undefined",
+				"required": false,
+				"default": "300",
+				"description": "The delay in milliseconds before the preview closes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the preview will be disabled and will not open.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ignoreNonKeyboardFocus",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Prevent the preview from opening if the focus did not come using the keyboard.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that will be called when the link preview is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that will be called when the link preview finishes opening/closing animations.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "The open state of the link preview.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "openDelay",
+				"type": "number | undefined",
+				"required": false,
+				"default": "700",
+				"description": "The delay in milliseconds before the preview opens.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"LinkPreviewTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "href",
+				"type": "string | null | undefined",
+				"required": false,
+				"from": "html"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"LinkPreviewArrow": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "height",
+				"type": "number | undefined",
+				"required": false,
+				"default": "5",
+				"description": "The height of the arrow in pixels.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "width",
+				"type": "number | undefined",
+				"required": false,
+				"default": "10",
+				"description": "The width of the arrow in pixels.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"MenubarMenu": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The `value` assigned to the menu. Used to programmatically control the menu's open state within the menubar.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"MenubarSub": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the menu finishes opening/closing animations.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "The open state of the menu.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"MenubarSubTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the user will not be able to interact with the menu item.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onSelect",
+				"type": "((event: Event) => void) | undefined",
+				"required": false,
+				"description": "A callback fired when the menu item is selected. Prevent default behavior of selection with `event.preventDefault()`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "openDelay",
+				"type": "number | undefined",
+				"required": false,
+				"default": "100",
+				"description": "The amount of time in ms from when the mouse enters the subtrigger until the submenu opens. This is useful for preventing the submenu from opening as a user is moving their mouse through the menu without a true intention to open that submenu. To disable the behavior, set it to `0`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "textValue",
+				"type": "string | undefined",
+				"required": false,
+				"default": "undefined",
+				"description": "Optional text to use for typeahead filtering. By default, typeahead will use the `.textContent` of the menu item. When the content is more complex, you can provide a string here instead.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"MenubarSubContent": {
+		"props": [
+			{
+				"prop": "align",
+				"type": "\"start\" | \"center\" | \"end\" | undefined",
+				"required": false,
+				"description": "The preferred alignment of the anchor to render against when open. This may change when collisions occur.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "alignOffset",
+				"type": "number | undefined",
+				"required": false,
+				"description": "An offset in pixels from the \"start\" or \"end\" alignment options.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "arrowPadding",
+				"type": "number | undefined",
+				"required": false,
+				"description": "This describes the padding between the arrow and the edges of the floating element. If your floating element has border-radius, this will prevent it from overflowing the corners.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "avoidCollisions",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "true",
+				"description": "When `true`, overrides the `side` and `align` options to prevent collisions with the boundary edges.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "child",
+				"type": "Snippet<[FloatingContentSnippetProps & { props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "collisionBoundary",
+				"type": "Arrayable<Boundary> | undefined",
+				"required": false,
+				"description": "A boundary element or array of elements to check for collisions against.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "collisionPadding",
+				"type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>> | undefined",
+				"required": false,
+				"default": "8",
+				"description": "The amount in pixels of virtual padding around the viewport edges to check for overflow which will cause a collision.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "customAnchor",
+				"type": "string | HTMLElement | Measurable | null | undefined",
+				"required": false,
+				"description": "Use an element other than the trigger to anchor the content to. If provided, the content will be anchored to the provided element instead of the trigger. You can pass a selector string or an HTMLElement.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "dir",
+				"type": "Direction | undefined",
+				"required": false,
+				"description": "The text direction of the content.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "escapeKeydownBehavior",
+				"type": "EscapeBehaviorType | undefined",
+				"required": false,
+				"default": "`close`",
+				"description": "Escape behavior type. `close`: Closes the element immediately. `defer-otherwise-close`: Delegates the action to its parent component that has an escape keydown handler. If no parent is found, it closes the element. `defer-otherwise-ignore`: Delegates the action to the parent element. If no parent is found, nothing is done. `ignore`: Prevents the element from closing and also blocks the parent element from closing in response to an escape key press.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "forceMount",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "Whether to force mount the component.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "hideWhenDetached",
+				"type": "boolean | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "interactOutsideBehavior",
+				"type": "InteractOutsideBehaviorType | undefined",
+				"required": false,
+				"default": "`close`",
+				"description": "Interact outside behavior type. `close`: Closes the element immediately. `defer-otherwise-close`: Delegates the action to the parent element. If no parent is found, it closes the element. `defer-otherwise-ignore`: Delegates the action to the parent element. If no parent is found, nothing is done. `ignore`: Prevents the element from closing and also blocks the parent element from closing in response to an outside interaction.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "loop",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the menu will loop through items when navigating with the keyboard.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onCloseAutoFocus",
+				"type": "EventCallback | undefined",
+				"required": false,
+				"description": "Event handler called when auto-focusing on close. Can be prevented.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onEscapeKeydown",
+				"type": "((e: KeyboardEvent) => void) | undefined",
+				"required": false,
+				"description": "Callback fired when escape is pressed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onFocusOutside",
+				"type": "((event: FocusEvent) => void) | undefined",
+				"required": false,
+				"description": "Callback fired when focus leaves the dismissible layer.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onInteractOutside",
+				"type": "InteractOutsideEventHandler | undefined",
+				"required": false,
+				"description": "Callback fired when an outside interaction event completes, which is either a `pointerup`, `mouseup`, or `touchend` event, depending on the user's input device.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenAutoFocus",
+				"type": "EventCallback | undefined",
+				"required": false,
+				"description": "Event handler called when auto-focusing on open. Can be prevented.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "preventOverflowTextSelection",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`true`",
+				"description": "Passing `true` will prevent the overflow of text selection outside the element, provided the element is the top layer.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "side",
+				"type": "\"top\" | \"right\" | \"bottom\" | \"left\" | undefined",
+				"required": false,
+				"description": "The preferred side of the anchor to render against when open. Will be reversed when collisions occur.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "sideOffset",
+				"type": "number | undefined",
+				"required": false,
+				"description": "The distance in pixels from the anchor to the floating element.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "sticky",
+				"type": "\"partial\" | \"always\" | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "strategy",
+				"type": "\"absolute\" | \"fixed\" | undefined",
+				"required": false,
+				"description": "The positioning strategy to use for the floating element.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "trapFocus",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether focus is trapped within the focus scope.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "updatePositionStrategy",
+				"type": "\"always\" | \"optimized\" | undefined",
+				"required": false,
+				"default": "\"optimized\"",
+				"description": "\"optimized\" will only update the position when necessary, while \"always\" will update the position on each animation frame, which is useful if the floating content is following something like a mouse cursor.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"MenubarCheckboxItem": {
+		"props": [
+			{
+				"prop": "checked",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "The checked state of the checkbox. It can be one of: - `true` for checked - `false` for unchecked",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "child",
+				"type": "Snippet<[MenuCheckboxItemSnippetProps & { props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[MenuCheckboxItemSnippetProps]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "closeOnSelect",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "true",
+				"description": "Whether or not the menu item should close when selected.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the user will not be able to interact with the menu item.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "indeterminate",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether the checkbox is in an indeterminate state or not.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onCheckedChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is fired when the checked state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onIndeterminateChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback function called when the indeterminate state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onSelect",
+				"type": "((event: Event) => void) | undefined",
+				"required": false,
+				"description": "A callback fired when the menu item is selected. Prevent default behavior of selection with `event.preventDefault()`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "textValue",
+				"type": "string | undefined",
+				"required": false,
+				"default": "undefined",
+				"description": "Optional text to use for typeahead filtering. By default, typeahead will use the `.textContent` of the menu item. When the content is more complex, you can provide a string here instead.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The value of the checkbox item when used in a checkbox group.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"MenubarRadioItem": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[MenuRadioItemSnippetProps & { props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[MenuRadioItemSnippetProps]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "closeOnSelect",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "true",
+				"description": "Whether or not the menu item should close when selected.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the user will not be able to interact with the menu item.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onSelect",
+				"type": "((event: Event) => void) | undefined",
+				"required": false,
+				"description": "A callback fired when the menu item is selected. Prevent default behavior of selection with `event.preventDefault()`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "textValue",
+				"type": "string | undefined",
+				"required": false,
+				"default": "undefined",
+				"description": "Optional text to use for typeahead filtering. By default, typeahead will use the `.textContent` of the menu item. When the content is more complex, you can provide a string here instead.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string",
+				"required": true,
+				"description": "The value of the radio item.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"MenubarRadioGroup": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onValueChange",
+				"type": "OnChangeFn<string> | undefined",
+				"required": false,
+				"description": "A callback that is fired when the selected radio item changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The value of the selected radio item. Supports two-way binding with `bind:value`.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"MenubarArrow": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "height",
+				"type": "number | undefined",
+				"required": false,
+				"default": "5",
+				"description": "The height of the arrow in pixels.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "width",
+				"type": "number | undefined",
+				"required": false,
+				"default": "10",
+				"description": "The width of the arrow in pixels.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"NavigationMenuItem": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "openOnHover",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "true",
+				"description": "Whether to open the menu associated with the item when the item's trigger is hovered.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The value of the menu item.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"NavigationMenuSub": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onValueChange",
+				"type": "OnChangeFn<string> | undefined",
+				"required": false,
+				"description": "A callback fired when the active menu item changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "orientation",
+				"type": "Orientation | undefined",
+				"required": false,
+				"description": "The orientation of the menu.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The value of the currently open menu item within the menu.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"NavigationMenuIndicator": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "forceMount",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether to forcefully mount the content, regardless of the open state. This is useful when wanting to use more custom transition and animation libraries.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"PopoverRoot": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the popover's open state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the popover's open state changes and the animation is complete.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "The open state of the popover.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"PopoverTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "closeDelay",
+				"type": "number | undefined",
+				"required": false,
+				"default": "300",
+				"description": "How long to wait before closing the popover after hover ends (ms). Only applies when `openOnHover` is `true`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "openDelay",
+				"type": "number | undefined",
+				"required": false,
+				"default": "700",
+				"description": "How long to wait before opening the popover on hover (ms). Only applies when `openOnHover` is `true`.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "openOnHover",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether the popover should open when the trigger is hovered.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"PopoverClose": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"PopoverArrow": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "height",
+				"type": "number | undefined",
+				"required": false,
+				"default": "5",
+				"description": "The height of the arrow in pixels.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "width",
+				"type": "number | undefined",
+				"required": false,
+				"default": "10",
+				"description": "The width of the arrow in pixels.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"SelectRoot": {
+		"props": [
+			{
+				"prop": "allowDeselect",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "Whether to allow the user to deselect an item by clicking on an already selected item. This is only applicable to `type=\"single\"` selects/comboboxes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "autocomplete",
+				"type": "FullAutoFill | null | undefined",
+				"required": false,
+				"description": "The autocomplete attribute to forward to the hidden input element.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`false`",
+				"description": "Whether the combobox is disabled.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "items",
+				"type": "{ value: string; label: string; disabled?: boolean | undefined; }[] | undefined",
+				"required": false,
+				"description": "Optionally provide an array of `value` and `label` pairs that will be used to match and trigger selection when the trigger is focused and a key is pressed while the content is closed. It's also used to handle form autofill. By providing this value, you enable selecting a value when the trigger is focused and a key is pressed without the content being open, similar to how a native `<select>` works. For this to work, you must The label is what the user will potentially search for via typeahead, and the value is what is set as the selected value when a typeahead match is found. We can't rely on the individual `Item` components to do this because they may not ever be mounted to do the DOM if using a conditional block with a Svelte transition or certain animation libraries. IMPORTANT: This functionality is only available for single-select listboxes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "loop",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`false`",
+				"description": "Whether or not the combobox menu should loop through the items when navigating with the keyboard.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "name",
+				"type": "string | undefined",
+				"required": false,
+				"description": "The name to apply to the hidden input element for form submission. If not provided, a hidden input will not be rendered and the combobox will not be part of a form.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback function called when the open state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback function called when the open state changes and the animation is complete.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onValueChange",
+				"type": "OnChangeFn<string> | OnChangeFn<string[]> | undefined",
+				"required": false,
+				"description": "A callback function called when the value changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`false`",
+				"description": "Whether the combobox popover is open.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "required",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "`false`",
+				"description": "Whether the combobox is required (for form submission).",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "scrollAlignment",
+				"type": "\"center\" | \"nearest\" | undefined",
+				"required": false,
+				"default": "`\"nearest\"`",
+				"description": "How to scroll the combobox items into view when navigating with the keyboard.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "type",
+				"type": "\"multiple\" | \"single\"",
+				"required": true,
+				"description": "The type of combobox.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "value",
+				"type": "string | string[] | undefined",
+				"required": false,
+				"description": "The value of the selected combobox item.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"SelectValue": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[SelectValueSnippetProps & { props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[SelectValueSnippetProps]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"SelectGroup": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"SelectGroupHeading": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"SheetRoot": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that is called when the popover's open state changes.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback called when the dialog finishes opening/closing animations.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"description": "The open state of the dialog.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"SheetTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"SheetClose": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			}
+		]
+	},
+	"TooltipProvider": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "delayDuration",
+				"type": "number | undefined",
+				"required": false,
+				"default": "700",
+				"description": "The delay in milliseconds before the tooltip opens.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disableCloseOnTriggerClick",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the tooltip will not close when you click on the trigger.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the tooltip will be disabled and will not open.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disableHoverableContent",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Prevents tooltip from remaining open when hovering over the content.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ignoreNonKeyboardFocus",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Prevent the tooltip from opening if the focus did not come using the keyboard.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "skipDelayDuration",
+				"type": "number | undefined",
+				"required": false,
+				"default": "300",
+				"description": "How much time a user has to enter another trigger without incurring a delay again.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"TooltipRoot": {
+		"props": [
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | Snippet<[TooltipRootSnippetProps<never>]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "delayDuration",
+				"type": "number | undefined",
+				"required": false,
+				"default": "700",
+				"description": "The delay in milliseconds before the tooltip opens.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disableCloseOnTriggerClick",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the tooltip will not close when you click on the trigger.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "When `true`, the tooltip will be disabled and will not open.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disableHoverableContent",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Prevents tooltip from remaining open when hovering over the content.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ignoreNonKeyboardFocus",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Prevent the tooltip from opening if the focus did not come using the keyboard.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChange",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that will be called when the tooltip is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "onOpenChangeComplete",
+				"type": "OnChangeFn<boolean> | undefined",
+				"required": false,
+				"description": "A callback that will be called when the tooltip is opened or closed.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "open",
+				"type": "boolean | undefined",
+				"required": false,
+				"default": "false",
+				"description": "The open state of the tooltip.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "tether",
+				"type": "TooltipTether<never> | undefined",
+				"required": false,
+				"description": "Shared tether used to connect detached triggers and infer payload types.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "triggerId",
+				"type": "string | null | undefined",
+				"required": false,
+				"description": "The active trigger id for controlled single tooltip mode.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"TooltipTrigger": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "disabled",
+				"type": "boolean | null | undefined",
+				"required": false,
+				"default": "false",
+				"description": "Whether the tooltip trigger is disabled or not.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "payload",
+				"type": "unknown",
+				"required": false,
+				"description": "Payload for the trigger used by singleton tooltip root snippets.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "tether",
+				"type": "TooltipTether<never> | undefined",
+				"required": false,
+				"description": "Shared tether used to connect detached triggers and infer payload types.",
+				"from": "bits-ui"
+			}
+		]
+	},
+	"TooltipArrow": {
+		"props": [
+			{
+				"prop": "child",
+				"type": "Snippet<[{ props: Record<string, unknown>; }]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "children",
+				"type": "Snippet<[]> | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "height",
+				"type": "number | undefined",
+				"required": false,
+				"default": "5",
+				"description": "The height of the arrow in pixels.",
+				"from": "bits-ui"
+			},
+			{
+				"prop": "id",
+				"type": "string | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "ref",
+				"type": "HTMLElement | null | undefined",
+				"required": false,
+				"from": "bits-ui"
+			},
+			{
+				"prop": "width",
+				"type": "number | undefined",
+				"required": false,
+				"default": "10",
+				"description": "The width of the arrow in pixels.",
+				"from": "bits-ui"
+			}
+		]
 	}
 }

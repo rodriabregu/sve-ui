@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.alert;
@@ -14,41 +13,6 @@
 		{ id: 'colors', label: 'Colors' },
 		{ id: 'variants', label: 'Variants' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const rootProps: PropRow[] = [
-		{
-			prop: 'color',
-			type: `'default' | 'primary' | 'success' | 'warning' | 'danger'`,
-			default: `'default'`
-		},
-		{
-			prop: 'variant',
-			type: `'subtle' | 'solid' | 'outline'`,
-			default: `'subtle'`
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root element.' },
-		{ prop: 'children', type: 'Snippet', description: 'Alert content (Title + Description).' }
-	];
-
-	const titleProps: PropRow[] = [
-		{
-			prop: 'as',
-			type: 'string',
-			default: `'p'`,
-			description: 'HTML element to render as.'
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the title element.' },
-		{ prop: 'children', type: 'Snippet', description: 'Title text.' }
-	];
-
-	const descriptionProps: PropRow[] = [
-		{
-			prop: 'class',
-			type: 'string',
-			description: 'Extra classes merged onto the description element.'
-		},
-		{ prop: 'children', type: 'Snippet', description: 'Description text.' }
 	];
 
 	const usageCode = `<script>
@@ -154,21 +118,24 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">Alert.Root</code></p>
+		<PropsTable component="AlertRoot" />
+		<p class="sec__p"><code class="ic">Alert.Title</code></p>
+		<PropsTable component="AlertTitle" />
+		<p class="sec__p"><code class="ic">Alert.Description</code></p>
+		<PropsTable component="AlertDescription" />
 		<p class="sec__p">
 			<code class="ic">Alert.Root</code> — plus every native <code class="ic">&lt;div&gt;</code> attribute
 			via prop spreading.
 		</p>
-		<PropsTable rows={rootProps} />
 
 		<p class="sec__p" style="margin-top: 24px;">
 			<code class="ic">Alert.Title</code>
 		</p>
-		<PropsTable rows={titleProps} />
 
 		<p class="sec__p" style="margin-top: 24px;">
 			<code class="ic">Alert.Description</code>
 		</p>
-		<PropsTable rows={descriptionProps} />
 	</section>
 </DocPage>
 

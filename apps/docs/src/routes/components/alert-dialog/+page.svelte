@@ -4,18 +4,9 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
-	const rootProps: PropRow[] = [
-		{ prop: 'open', type: 'boolean', default: 'false', description: 'Bindable open state.' },
-		{
-			prop: 'onOpenChange',
-			type: '(open: boolean) => void',
-			description: 'Called when the dialog opens or closes.'
-		}
-	];
 
 	const meta = componentBySlug['alert-dialog'];
 
@@ -157,16 +148,24 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">AlertDialog.Root</code></p>
+		<PropsTable component="AlertDialogRoot" />
+		<p class="sec__p"><code class="ic">AlertDialog.Content</code></p>
+		<PropsTable component="AlertDialogContent" />
+		<p class="sec__p"><code class="ic">AlertDialog.Title</code></p>
+		<PropsTable component="AlertDialogTitle" />
+		<p class="sec__p"><code class="ic">AlertDialog.Description</code></p>
+		<PropsTable component="AlertDialogDescription" />
+		<p class="sec__p"><code class="ic">AlertDialog.Action</code></p>
+		<PropsTable component="AlertDialogAction" />
+		<p class="sec__p"><code class="ic">AlertDialog.Cancel</code></p>
+		<PropsTable component="AlertDialogCancel" />
 		<p class="sec__p">
 			<code class="ic">AlertDialog.Root</code> and <code class="ic">Trigger</code> are re-exported from
 			Bits unchanged, so their props are forwarded rather than redeclared.
 		</p>
-		<p class="sec__p"><code class="ic">AlertDialog.Root</code></p>
-		<PropsTable rows={rootProps} />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">AlertDialog.Content</code></p>
-		<PropsTable component="AlertDialogContent" />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">AlertDialog.Action</code></p>
-		<PropsTable component="AlertDialogAction" />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">Title</code>, <code class="ic">Description</code>,
 			<code class="ic">Cancel</code> and <code class="ic">Overlay</code> each take

@@ -3,31 +3,10 @@
 	import DocPage from '$lib/docs/DocPage.svelte';
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	// Forwarded to Bits, so not declared on our own Props.
-
-	const groupForwarded: PropRow[] = [
-		{
-			prop: 'type',
-			type: `'single' | 'multiple'`,
-			required: true,
-			description: 'Required. Sets the shape of value: single gives a string, multiple a string[].'
-		},
-		{
-			prop: 'onValueChange',
-			type: '(value: string & string[]) => void',
-			description: 'Called when the active item(s) change.'
-		},
-		{
-			prop: 'disabled',
-			type: 'boolean',
-			default: 'false',
-			description: 'Disables every item in the group.'
-		}
-	];
 
 	const meta = componentBySlug.toolbar;
 
@@ -111,19 +90,21 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">Toolbar.Root</code></p>
+		<PropsTable component="ToolbarRoot" />
+		<p class="sec__p"><code class="ic">Toolbar.Group</code></p>
+		<PropsTable component="ToolbarGroup" />
+		<p class="sec__p"><code class="ic">Toolbar.Button</code></p>
+		<PropsTable component="ToolbarButton" />
+		<p class="sec__p"><code class="ic">Toolbar.Link</code></p>
+		<PropsTable component="ToolbarLink" />
 		<p class="sec__p">
 			<code class="ic">Toolbar.Root</code> — plus <code class="ic">orientation</code> and
 			<code class="ic">loop</code> forwarded to Bits.
 		</p>
-		<PropsTable component="ToolbarRoot" />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">Toolbar.Group</code> — <code class="ic">value</code> is bindable.
 		</p>
-		<PropsTable
-			component="ToolbarGroup"
-			extra={groupForwarded}
-			omit={['disabled', 'onValueChange', 'type']}
-		/>
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">Button</code>, <code class="ic">Link</code> and
 			<code class="ic">GroupItem</code> each take <code class="ic">class</code> plus their native attributes.

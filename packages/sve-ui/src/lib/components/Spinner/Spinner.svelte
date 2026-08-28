@@ -7,22 +7,49 @@
 	interface Props extends Omit<HTMLAttributes<HTMLSpanElement>, 'class' | 'role'> {
 		size?: Size;
 		color?: Color;
-		/** Accessible label, exposed as `aria-label` on the status span. */
+		/**
+		 * Names the spinner and makes it announce itself.
+		 *
+		 * **Leave it unset unless the spinner is the only thing on screen.** Without
+		 * it the spinner is `aria-hidden` — decoration — which is what you want in
+		 * almost every case, because something beside it already says what is
+		 * happening: visible text, a `Button loading`, or a `Busy` region.
+		 *
+		 * It used to default to `'Loading'`, which made every spinner a live region.
+		 * `<Busy label="Loading projects"><Spinner /></Busy>` then produced TWO
+		 * announcements for one event — the spinner's on insertion, and `Busy`'s
+		 * 400ms later — and the first defeated the debounce that exists to stop
+		 * exactly that. Verified by counting `role="status"` elements in the subtree.
+		 *
+		 * `'Loading'` said nothing useful anyway: loading *what*?
+		 */
 		label?: string;
 		/** Extra classes merged onto the root element. */
 		class?: string;
 	}
 
-	let { size = 'md', color = 'default', label = 'Loading', class: cls, ...rest }: Props = $props();
+	let { size = 'md', color = 'default', label, class: cls, ...rest }: Props = $props();
 
 	const className = $derived(
 		['sve-spinner', `sve-spinner--${size}`, `sve-c-${color}`, cls ?? ''].filter(Boolean).join(' ')
 	);
 </script>
 
-<span role="status" class={className} aria-label={label} {...rest}>
-	<span class="sve-spinner__track" aria-hidden="true"></span>
-</span>
+<!--
+  Decoration unless named. A spinner almost never travels alone: there is visible
+  text beside it, or a `Button loading`, or a `Busy` region — and each of those
+  already announces. A second live region for the same event is not redundancy,
+  it is two things talking at once.
+-->
+{#if label}
+	<span role="status" class={className} aria-label={label} {...rest}>
+		<span class="sve-spinner__track" aria-hidden="true"></span>
+	</span>
+{:else}
+	<span class={className} aria-hidden="true" {...rest}>
+		<span class="sve-spinner__track" aria-hidden="true"></span>
+	</span>
+{/if}
 
 <style>
 	.sve-spinner {

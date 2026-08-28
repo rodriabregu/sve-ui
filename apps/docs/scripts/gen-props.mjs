@@ -37,7 +37,7 @@
  *
  * Run: pnpm gen:props
  */
-import { readdirSync, readFileSync, writeFileSync, statSync, mkdirSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, statSync, mkdirSync, existsSync } from 'node:fs';
 import { join, basename, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
@@ -196,7 +196,21 @@ function buildVirtualFiles(files) {
 	return virtual;
 }
 
-function createProgram(virtual) {
+/**
+ * Namespace `index.ts` files, so re-exported Bits parts can be resolved.
+ *
+ * Eleven components — `Dialog.Root`, `Tooltip.Provider`, `Select.Root` and the
+ * rest — have no `.svelte` file at all: the index does
+ * `export const Root = BitsDialog.Root`, because Root renders nothing visual.
+ * Reading only the `.svelte` files therefore documented nothing for them, which
+ * is why their pages stayed hand-written.
+ */
+function namespaceIndexes(files) {
+	const dirs = new Set(files.map((f) => dirname(f)));
+	return [...dirs].map((d) => join(d, 'index.ts')).filter((f) => existsSync(f));
+}
+
+function createProgram(virtual, extraRoots = []) {
 	const options = {
 		target: ts.ScriptTarget.Latest,
 		module: ts.ModuleKind.ESNext,
@@ -221,7 +235,7 @@ function createProgram(virtual) {
 			? ts.createSourceFile(name, virtual.get(name), ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
 			: getSourceFile(name, ...args);
 
-	return ts.createProgram([...virtual.keys()], options, host);
+	return ts.createProgram([...virtual.keys(), ...extraRoots], options, host);
 }
 
 /**
@@ -245,6 +259,30 @@ function createProgram(virtual) {
  */
 const PASSTHROUGH = new Set(['style']);
 
+/**
+ * The handful of HTML attributes that ARE the point of their component.
+ *
+ * The declaration-file filter drops everything from `svelte/elements`, which is
+ * right for the 200 attributes nobody documents and wrong for these five: an
+ * `Input` without `value` in its table, or a `Label` without `for`, documents
+ * everything except the reason the component exists.
+ *
+ * Keyed by component so it stays five exceptions rather than five globally
+ * resurrected attributes.
+ */
+const HTML_PROPS_WORTH_KEEPING = new Map([
+	['Input', new Set(['value'])],
+	['Textarea', new Set(['value', 'rows'])],
+	['Label', new Set(['for'])],
+	['Button', new Set(['disabled', 'onclick'])],
+	['AvatarImage', new Set(['src', 'alt'])],
+	['ComboboxInput', new Set(['value', 'placeholder', 'oninput'])],
+	// A link component whose `href` is undocumented documents everything but the
+	// destination.
+	['LinkPreviewTrigger', new Set(['href'])],
+	['NavigationMenuLink', new Set(['href'])]
+]);
+
 function isBitsDeclaration(symbol) {
 	const declarations = symbol.getDeclarations() ?? [];
 	return declarations.some((d) => /[\\/]bits-ui[\\/]/.test(d.getSourceFile().fileName));
@@ -264,7 +302,7 @@ function truncateType(text) {
  * locally (the local declaration is the documented one, with real defaults) and
  * minus the HTML attribute surface.
  */
-function inheritedProps(checker, propsInterface, localNames) {
+function inheritedProps(checker, propsInterface, localNames, componentName) {
 	if (!propsInterface.heritageClauses?.length) return [];
 
 	const symbol = checker.getSymbolAtLocation(propsInterface.name);
@@ -276,8 +314,11 @@ function inheritedProps(checker, propsInterface, localNames) {
 	for (const prop of checker.getPropertiesOfType(type)) {
 		const name = prop.getName();
 		if (localNames.has(name)) continue;
-		if (!isBitsDeclaration(prop)) continue;
 		if (PASSTHROUGH.has(name)) continue;
+
+		const kept = HTML_PROPS_WORTH_KEEPING.get(componentName);
+		const isWorthKeeping = kept?.has(name) === true;
+		if (!isBitsDeclaration(prop) && !isWorthKeeping) continue;
 
 		const declaration = prop.getDeclarations()?.[0];
 		if (!declaration) continue;
@@ -296,13 +337,86 @@ function inheritedProps(checker, propsInterface, localNames) {
 				? ts.displayPartsToString(defaultTag.text ?? []).trim() || undefined
 				: undefined,
 			description: docs.replace(/\s+/g, ' ').trim() || undefined,
-			// Rendered as provenance: these are Bits' props, forwarded through the
-			// spread, and the consumer should read Bits' docs for the deep ones.
-			from: 'bits-ui'
+			// Provenance, so a reader knows whose contract they are reading. An HTML
+			// attribute is not Bits', and saying so would send them to the wrong docs.
+			from: isBitsDeclaration(prop) ? 'bits-ui' : 'html'
 		});
 	}
 
 	return out.sort((a, b) => a.prop.localeCompare(b.prop));
+}
+
+/**
+ * Props of a component that exists only as a re-export.
+ *
+ * Both shapes in this codebase resolve the same way — `export const Root =
+ * BitsDialog.Root` and `export const Root: Component<TooltipRootProps> = ...` —
+ * because the checker is asked for the type of the exported symbol rather than
+ * for the text of the assignment.
+ */
+function reExportedProps(checker, sourceFile, namespace) {
+	const results = {};
+
+	for (const stmt of sourceFile.statements) {
+		if (!ts.isVariableStatement(stmt)) continue;
+		const exported = stmt.modifiers?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword);
+		if (!exported) continue;
+
+		for (const decl of stmt.declarationList.declarations) {
+			if (!ts.isIdentifier(decl.name)) continue;
+			const partName = decl.name.text;
+
+			const type = checker.getTypeAtLocation(decl.name);
+			// A Svelte 5 component is `Component<Props, …>`; the props are the first
+			// type argument. Falling back to the aliased arguments covers the form
+			// that annotates the constant explicitly.
+			const args = checker.getTypeArguments(type) ?? [];
+			const propsType = args[0] ?? type.aliasTypeArguments?.[0];
+			if (!propsType) continue;
+
+			const props = [];
+			for (const prop of checker.getPropertiesOfType(propsType)) {
+				const name = prop.getName();
+				if (PASSTHROUGH.has(name)) continue;
+				/*
+					The allowlist applies here too. `LinkPreview.Trigger` is a re-export,
+					and its `href` — the destination, the whole point of the component —
+					is declared in `svelte/elements`, so the Bits-only filter dropped it.
+				*/
+				const keptHere = HTML_PROPS_WORTH_KEEPING.get(namespace + partName);
+				if (!isBitsDeclaration(prop) && keptHere?.has(name) !== true) continue;
+
+				const d = prop.getDeclarations()?.[0];
+				if (!d) continue;
+
+				const tags = prop.getJsDocTags(checker);
+				const def = tags.find((t) => t.name === 'default' || t.name === 'defaultValue');
+				props.push({
+					prop: name,
+					type: truncateType(checker.typeToString(checker.getTypeOfSymbolAtLocation(prop, d))),
+					required: (prop.flags & ts.SymbolFlags.Optional) === 0,
+					default: def ? ts.displayPartsToString(def.text ?? []).trim() || undefined : undefined,
+					description:
+						ts
+							.displayPartsToString(prop.getDocumentationComment(checker))
+							.replace(/\s+/g, ' ')
+							.trim() || undefined,
+					from: isBitsDeclaration(prop) ? 'bits-ui' : 'html'
+				});
+			}
+
+			if (props.length === 0) continue;
+			props.sort((a, b) => a.prop.localeCompare(b.prop));
+			results[namespace + partName] = {
+				props,
+				// No wrapper of ours means nothing of ours to forward: every prop here
+				// belongs to Bits.
+				spreads: undefined
+			};
+		}
+	}
+
+	return results;
 }
 
 // ---------------------------------------------------------------------------
@@ -359,7 +473,7 @@ function extractComponent(file, program) {
 	});
 
 	const localNames = new Set(props.map((pr) => pr.prop));
-	const inherited = inheritedProps(checker, propsInterface, localNames);
+	const inherited = inheritedProps(checker, propsInterface, localNames, basename(file, '.svelte'));
 
 	return {
 		// Own props first: they are the ones this library chose, documented and
@@ -384,7 +498,8 @@ const files = walk(COMPONENTS)
 	.filter((f) => f.endsWith('.svelte'))
 	.sort();
 
-const program = createProgram(buildVirtualFiles(files));
+const indexes = namespaceIndexes(files);
+const program = createProgram(buildVirtualFiles(files), indexes);
 
 const generated = {};
 const skipped = [];
@@ -399,6 +514,22 @@ for (const file of files) {
 	generated[name] = result;
 }
 
+// Re-exported parts, keyed `<Namespace><Part>` to match how the docs ask for
+// them. Anything already produced from a real `.svelte` file wins: our wrapper
+// documents its own props and their defaults, which a Bits type cannot.
+const checker = program.getTypeChecker();
+let reExported = 0;
+for (const indexPath of indexes) {
+	const sourceFile = program.getSourceFile(indexPath);
+	if (!sourceFile) continue;
+	const namespace = basename(dirname(indexPath));
+	for (const [key, entry] of Object.entries(reExportedProps(checker, sourceFile, namespace))) {
+		if (generated[key]) continue;
+		generated[key] = entry;
+		reExported += 1;
+	}
+}
+
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, JSON.stringify(generated, null, '\t') + '\n');
 
@@ -411,7 +542,9 @@ const inheritedCount = Object.values(generated).reduce(
 	0
 );
 console.log(
-	`gen-props: ${Object.keys(generated).length} components, ${own} own + ${inheritedCount} inherited props → ${relative(process.cwd(), OUT)}`
+	`gen-props: ${Object.keys(generated).length} components ` +
+		`(${reExported} of them re-exported Bits parts with no .svelte file), ` +
+		`${own} own + ${inheritedCount} inherited props → ${relative(process.cwd(), OUT)}`
 );
 if (skipped.length > 0) {
 	console.warn(`gen-props: ${skipped.length} file(s) had no \`interface Props\` and were skipped:`);

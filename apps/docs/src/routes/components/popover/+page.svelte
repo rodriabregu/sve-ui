@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.popover;
@@ -13,57 +12,6 @@
 		{ id: 'usage', label: 'Usage' },
 		{ id: 'placement', label: 'Placement' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		// Root
-		{
-			prop: 'Popover.Root — open',
-			type: 'boolean',
-			default: 'false',
-			description: 'Controlled open state.'
-		},
-		{
-			prop: 'Popover.Root — onOpenChange',
-			type: '(open: boolean) => void',
-			description: 'Callback fired when open state changes.'
-		},
-		// Trigger
-		{
-			prop: 'Popover.Trigger — child',
-			type: 'Snippet<[{ props: object }]>',
-			description: 'Render prop that spreads trigger props onto a real element.'
-		},
-		// Content
-		{
-			prop: 'Popover.Content — class',
-			type: 'string',
-			description: 'Extra classes merged onto the content panel.'
-		},
-		{
-			prop: 'Popover.Content — side',
-			type: `'top' | 'right' | 'bottom' | 'left'`,
-			default: `'bottom'`,
-			description: 'Preferred side to render the popover.'
-		},
-		{
-			prop: 'Popover.Content — sideOffset',
-			type: 'number',
-			default: '4',
-			description: 'Gap in px between trigger and content.'
-		},
-		{
-			prop: 'Popover.Content — align',
-			type: `'start' | 'center' | 'end'`,
-			default: `'start'`,
-			description: 'Alignment of the content relative to the trigger.'
-		},
-		// Close
-		{
-			prop: 'Popover.Close — child',
-			type: 'Snippet<[{ props: object }]>',
-			description: 'Render prop that spreads close props onto a real element.'
-		}
 	];
 
 	const usageCode = `<script>
@@ -206,10 +154,17 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">Popover.Root</code></p>
+		<PropsTable component="PopoverRoot" />
+		<p class="sec__p"><code class="ic">Popover.Trigger</code></p>
+		<PropsTable component="PopoverTrigger" />
+		<p class="sec__p"><code class="ic">Popover.Content</code></p>
+		<PropsTable component="PopoverContent" />
+		<p class="sec__p"><code class="ic">Popover.Close</code></p>
+		<PropsTable component="PopoverClose" />
 		<p class="sec__p">
 			Built on <code class="ic">bits-ui</code> — all underlying Bits UI Popover props are forwarded transparently.
 		</p>
-		<PropsTable rows={props} />
 	</section>
 </DocPage>
 

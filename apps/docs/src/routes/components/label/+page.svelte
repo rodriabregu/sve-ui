@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.label;
@@ -15,23 +14,6 @@
 		{ id: 'required', label: 'Required marker' },
 		{ id: 'nesting', label: 'Nesting the control' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{ prop: 'size', type: `'sm' | 'md' | 'lg'`, default: `'md'` },
-		{
-			prop: 'required',
-			type: 'boolean',
-			default: 'false',
-			description:
-				'Renders a decorative asterisk (aria-hidden). The control itself must still carry required or aria-required.'
-		},
-		{
-			prop: 'for',
-			type: 'string',
-			description: 'Native attribute — must match the id of the control it names.'
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the label.' }
 	];
 
 	const usageCode = `<script>
@@ -122,13 +104,13 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<PropsTable component="Label" />
 		<p class="sec__p">
 			Plus every native <code class="ic">&lt;label&gt;</code> attribute via prop spreading. The
 			<code class="ic">Textarea</code>, <code class="ic">Input</code>,
 			<code class="ic">Select</code> and <code class="ic">Slider</code> components all pair with it the
 			same way.
 		</p>
-		<PropsTable rows={props} />
 	</section>
 </DocPage>
 

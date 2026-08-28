@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug['navigation-menu'];
@@ -18,42 +17,6 @@
 	];
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
-	const rootForwarded: PropRow[] = [
-		{
-			prop: 'onValueChange',
-			type: '(value: string) => void',
-			description: 'Called when the open menu changes.'
-		},
-		{
-			prop: 'delayDuration',
-			type: 'number',
-			default: '200',
-			description: 'Milliseconds of hover before a menu opens.'
-		},
-		{
-			prop: 'skipDelayDuration',
-			type: 'number',
-			default: '300',
-			description: 'Grace period in which moving to another trigger skips the delay.'
-		},
-		{
-			prop: 'orientation',
-			type: `'horizontal' | 'vertical'`,
-			default: `'horizontal'`,
-			description: 'Layout and arrow-key axis.'
-		},
-		{ prop: 'dir', type: `'ltr' | 'rtl'`, default: `'ltr'`, description: 'Reading direction.' }
-	];
-
-	const linkForwarded: PropRow[] = [
-		{ prop: 'href', type: 'string', description: 'Destination. Rendered as a real anchor.' },
-		{
-			prop: 'active',
-			type: 'boolean',
-			default: 'false',
-			description: 'Marks the current page. Bits then reports aria-current="page".'
-		}
-	];
 
 	const usageCode = `<script>
   import { NavigationMenu } from 'sve-ui';
@@ -153,9 +116,14 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p"><code class="ic">NavigationMenu.Root</code></p>
-		<PropsTable component="NavigationMenuRoot" extra={rootForwarded} />
+		<PropsTable component="NavigationMenuRoot" />
+		<p class="sec__p"><code class="ic">NavigationMenu.List</code></p>
+		<PropsTable component="NavigationMenuList" />
+		<p class="sec__p"><code class="ic">NavigationMenu.Trigger</code></p>
+		<PropsTable component="NavigationMenuTrigger" />
+		<p class="sec__p"><code class="ic">NavigationMenu.Link</code></p>
+		<PropsTable component="NavigationMenuLink" />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">NavigationMenu.Link</code></p>
-		<PropsTable component="NavigationMenuLink" extra={linkForwarded} />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">List</code>, <code class="ic">Trigger</code>,
 			<code class="ic">Content</code> and <code class="ic">Viewport</code> take

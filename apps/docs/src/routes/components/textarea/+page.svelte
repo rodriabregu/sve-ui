@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.textarea;
@@ -17,26 +16,6 @@
 		{ id: 'invalid', label: 'Invalid state' },
 		{ id: 'binding', label: 'Binding' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{ prop: 'size', type: `'sm' | 'md' | 'lg'`, default: `'md'` },
-		{ prop: 'variant', type: `'outline' | 'filled'`, default: `'outline'` },
-		{
-			prop: 'invalid',
-			type: 'boolean',
-			default: 'false',
-			description: 'Applies the danger styling and sets aria-invalid on the textarea.'
-		},
-		{
-			prop: 'resize',
-			type: `'none' | 'vertical' | 'horizontal' | 'both'`,
-			default: `'vertical'`,
-			description: 'Which axes the user may drag to resize. Maps to the CSS resize property.'
-		},
-		{ prop: 'rows', type: 'number', default: '3', description: 'Initial visible line count.' },
-		{ prop: 'value', type: 'string', description: 'Bindable via bind:value.' },
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the textarea.' }
 	];
 
 	const usageCode = `<script>
@@ -166,12 +145,12 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<PropsTable component="Textarea" />
 		<p class="sec__p">
 			Plus every native <code class="ic">&lt;textarea&gt;</code> attribute via prop spreading —
 			<code class="ic">id</code>, <code class="ic">name</code>, <code class="ic">maxlength</code>,
 			<code class="ic">required</code>, <code class="ic">readonly</code>, and the event handlers.
 		</p>
-		<PropsTable rows={props} />
 	</section>
 </DocPage>
 
