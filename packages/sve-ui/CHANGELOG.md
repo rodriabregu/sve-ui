@@ -1,5 +1,84 @@
 # sve-ui
 
+## 0.12.0
+
+### Minor Changes
+
+- 4974dc8: `Spinner` is now decoration unless you give it a `label`.
+
+  **This changes behaviour.** `label` used to default to `'Loading'`, so every
+  spinner was a live region that announced itself the moment it appeared. If you
+  relied on that announcement, pass `label` explicitly.
+
+  It changed because it had started talking over other components. Once `Busy` and
+  `Button loading` existed, this:
+
+  ```svelte
+  <Busy label="Loading projects"><Spinner /></Busy>
+  ```
+
+  produced **two announcements for one event** — the spinner's immediately, and
+  `Busy`'s 400ms later — and the immediate one defeated the debounce that exists to
+  prevent exactly that. Counting `role="status"` elements in the subtree gave two.
+
+  Without a `label` the spinner is now `aria-hidden`, which is what you want in
+  almost every case: there is visible text beside it, or a `Button loading`, or a
+  `Busy` region, and each of those already announces. `'Loading'` said nothing
+  useful anyway — loading what?
+
+### Patch Changes
+
+- c316d4e: Docs: every prop table is now generated from the types.
+
+  Twenty-seven pages hand-wrote their rows, which drifts the moment a prop changes.
+  Closing that needed three things the generator could not do:
+
+  - **Inherited Bits props**, resolved through the TypeScript checker rather than
+    the AST. Six components had zero generated coverage because they declare almost
+    nothing of their own and forward everything.
+  - **The handful of HTML attributes that are a component's whole point** —
+    `Input.value`, `Label.for`, `Button.disabled`, `LinkPreview.Trigger.href`. The
+    declaration-file filter drops the other two hundred correctly and these
+    wrongly. They are labelled `html` rather than `bits-ui`, so a reader is not sent
+    to the wrong documentation.
+  - **The sixty re-exported parts with no `.svelte` file.** `Dialog.Root`,
+    `Tooltip.Provider`, `Select.Root` and the rest exist only as
+    `export const Root = BitsDialog.Root`, because Root renders nothing visual.
+
+  Result: 1,181 documented props, none hand-written, and `check-docs-coverage` now
+  fails the build if a page starts writing its own again.
+
+  No library code changed.
+
+- f4cfcbb: Fix two visible bugs, both reported by using the components.
+
+  **`PinInput` never showed what you typed.** Bits' `Cell` renders
+  `<div {...props}>{@render children?.()}</div>` and nothing else — the character
+  is the consumer's to draw — and our wrapper was self-closing. The value updated
+  correctly and every box stayed blank, in every published version. Cells now render
+  their character, plus a caret placeholder for the cell the cursor is in, since the
+  real input is visually hidden and cannot show its own.
+
+  **The date pickers opened a transparent panel.** `.sve-picker__content` had only a
+  radius and a shadow and leant on the calendar inside for its background — while
+  telling that calendar to drop its frame, on the stated grounds that "the panel
+  already provides the border and shadow". It did not. On top of that, the picker's
+  calendar referenced `.sve-calendar` without importing that class's rules, so
+  route-level code splitting left the page without them. The result was dates
+  floating over the page behind them.
+
+  A floating panel now supplies its own surface: it cannot depend on its content for
+  one, because the content is whatever the caller puts there.
+
+  **Six shared stylesheets were inert.** The `.css` files extracted in `0.9.2` kept
+  their `:global(…)` wrapper. That is Svelte `<style>` syntax; in a plain stylesheet
+  it is an invalid selector and the browser drops the rule. So the unstyled-trigger
+  fix those files were written for had not actually taken effect.
+
+  `check-css-coverage` now catches all three shapes: it no longer counts a
+  contextual override as a declaration, and it rejects `:global()` in a plain
+  stylesheet.
+
 ## 0.11.1
 
 ### Patch Changes
