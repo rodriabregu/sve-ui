@@ -196,6 +196,13 @@ export const componentGroups: ComponentGroup[] = [
 		label: 'Feedback',
 		items: [
 			{ slug: 'alert', name: 'Alert', blurb: 'Inline status and messaging.', ready: true },
+			{
+				slug: 'busy',
+				name: 'Busy',
+				blurb: 'Marks a region as loading, and says so.',
+				status: 'new',
+				ready: true
+			},
 			{ slug: 'spinner', name: 'Spinner', blurb: 'Indeterminate loading indicator.', ready: true },
 			{
 				slug: 'toast',

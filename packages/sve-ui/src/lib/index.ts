@@ -24,6 +24,8 @@ export { default as Text } from './components/Text/Text.svelte';
 export { default as Heading } from './components/Heading/Heading.svelte';
 export { default as Badge } from './components/Badge/Badge.svelte';
 export { default as Spinner } from './components/Spinner/Spinner.svelte';
+// Marks a region as loading and announces it; found missing by the example app.
+export { default as Busy } from './components/Busy/Busy.svelte';
 export { default as Input } from './components/Input/Input.svelte';
 export { default as Code } from './components/Code/Code.svelte';
 export { default as Slider } from './components/Slider/Slider.svelte';
