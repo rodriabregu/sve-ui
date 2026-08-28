@@ -68,6 +68,15 @@
 			<code class="ic">Card.Content</code>, and <code class="ic">Card.Footer</code>. Use only the
 			sections you need.
 		</p>
+		<p class="sec__p">
+			There is no <code class="ic">Card.Title</code>. Put your own heading inside
+			<code class="ic">Card.Header</code>, at whatever level the surrounding document needs. In this
+			library <code class="ic">Title</code> is the part that supplies a region's accessible name
+			through <code class="ic">aria-labelledby</code>, so only the labelled overlays have one
+			&mdash; <code class="ic">Dialog</code>, <code class="ic">AlertDialog</code>,
+			<code class="ic">Sheet</code> and <code class="ic">Alert</code>. A card is not a labelled
+			region, and a component that hardcoded its heading level would fight the page it sits in.
+		</p>
 		<Preview code={usageCode} align="start">
 			<Card.Root>
 				<Card.Header>
