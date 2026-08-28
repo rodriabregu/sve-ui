@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.card;
@@ -14,11 +13,6 @@
 		{ id: 'variants', label: 'Variants' },
 		{ id: 'composition', label: 'Composition' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const subProps: PropRow[] = [
-		{ prop: 'class', type: 'string', description: 'Extra classes.' },
-		{ prop: 'children', type: 'Snippet', description: 'Section content.' }
 	];
 
 	const usageCode = `<script>
@@ -138,11 +132,16 @@
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p"><code class="ic">Card.Root</code></p>
 		<PropsTable component="CardRoot" />
+		<p class="sec__p"><code class="ic">Card.Header</code></p>
+		<PropsTable component="CardHeader" />
+		<p class="sec__p"><code class="ic">Card.Content</code></p>
+		<PropsTable component="CardContent" />
+		<p class="sec__p"><code class="ic">Card.Footer</code></p>
+		<PropsTable component="CardFooter" />
 		<p class="sec__p" style="margin-top: 24px;">
 			<code class="ic">Card.Header</code> · <code class="ic">Card.Content</code> ·
 			<code class="ic">Card.Footer</code>
 		</p>
-		<PropsTable rows={subProps} />
 	</section>
 </DocPage>
 

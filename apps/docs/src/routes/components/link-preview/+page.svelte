@@ -4,45 +4,10 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	// Forwarded straight to the Bits primitive, so they are not declared on our
 	// own Props and cannot be generated. Curated here instead of omitted.
-	const rootProps: PropRow[] = [
-		{
-			prop: 'open',
-			type: 'boolean',
-			default: 'false',
-			description: 'Bindable open state of the card.'
-		},
-		{
-			prop: 'onOpenChange',
-			type: '(open: boolean) => void',
-			description: 'Called when the card opens or closes.'
-		},
-		{
-			prop: 'openDelay',
-			type: 'number',
-			default: '700',
-			description: 'Milliseconds of hover before the card opens.'
-		},
-		{
-			prop: 'closeDelay',
-			type: 'number',
-			default: '300',
-			description: 'Milliseconds after the pointer leaves before it closes.'
-		}
-	];
-
-	const triggerProps: PropRow[] = [
-		{
-			prop: 'href',
-			type: 'string',
-			description: 'Destination. Kept as a real anchor href so the link works without the card.'
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the trigger.' }
-	];
 
 	const meta = componentBySlug['link-preview'];
 
@@ -120,23 +85,25 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">LinkPreview.Root</code></p>
+		<PropsTable component="LinkPreviewRoot" />
+		<p class="sec__p"><code class="ic">LinkPreview.Trigger</code></p>
+		<PropsTable component="LinkPreviewTrigger" />
+		<p class="sec__p"><code class="ic">LinkPreview.Content</code></p>
+		<PropsTable component="LinkPreviewContent" />
 		<p class="sec__p">
 			<code class="ic">Root</code>, <code class="ic">Trigger</code> and
 			<code class="ic">Arrow</code> are re-exported from Bits unchanged, so their props are forwarded
 			rather than redeclared.
 		</p>
-		<p class="sec__p"><code class="ic">LinkPreview.Root</code></p>
-		<PropsTable rows={rootProps} />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">LinkPreview.Trigger</code> — plus the native anchor attributes.
 		</p>
-		<PropsTable rows={triggerProps} />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">LinkPreview.Content</code> — plus the Bits floating-position props (<code
 				class="ic">side</code
 			>, <code class="ic">align</code>, <code class="ic">sideOffset</code>).
 		</p>
-		<PropsTable component="LinkPreviewContent" />
 	</section>
 </DocPage>
 

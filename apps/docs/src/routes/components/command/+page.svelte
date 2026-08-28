@@ -3,7 +3,6 @@
 	import DocPage from '$lib/docs/DocPage.svelte';
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
@@ -20,22 +19,6 @@
 	];
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
-
-	const itemForwarded: PropRow[] = [
-		{
-			prop: 'value',
-			type: 'string',
-			required: true,
-			description: 'What the query is matched against, and what Root reports as the selected value.'
-		},
-		{
-			prop: 'keywords',
-			type: 'string[]',
-			description: 'Extra terms that should match this item but are not in its label.'
-		},
-		{ prop: 'onSelect', type: '() => void', description: 'Called when the item is chosen.' },
-		{ prop: 'disabled', type: 'boolean', default: 'false' }
-	];
 
 	const statusCode = `<Command.Root label="Command palette">
   <Command.Input bind:value={search} />
@@ -235,12 +218,15 @@
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p"><code class="ic">Command.Root</code></p>
 		<PropsTable component="CommandRoot" />
+		<p class="sec__p"><code class="ic">Command.Input</code></p>
+		<PropsTable component="CommandInput" />
+		<p class="sec__p"><code class="ic">Command.List</code></p>
+		<PropsTable component="CommandList" />
+		<p class="sec__p"><code class="ic">Command.Item</code></p>
+		<PropsTable component="CommandItem" />
+		<p class="sec__p"><code class="ic">Command.Status</code></p>
+		<PropsTable component="CommandStatus" />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">Command.Item</code></p>
-		<PropsTable
-			component="CommandItem"
-			extra={itemForwarded}
-			omit={['disabled', 'keywords', 'onSelect', 'value']}
-		/>
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">Input</code>, <code class="ic">List</code>,
 			<code class="ic">Group</code>, <code class="ic">GroupHeading</code>,

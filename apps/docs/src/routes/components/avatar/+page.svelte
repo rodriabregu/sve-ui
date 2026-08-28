@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.avatar;
@@ -15,28 +14,6 @@
 		{ id: 'shapes', label: 'Shapes' },
 		{ id: 'fallback', label: 'Fallback' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const rootProps: PropRow[] = [
-		{ prop: 'size', type: `'sm' | 'md' | 'lg'`, default: `'md'` },
-		{ prop: 'shape', type: `'circle' | 'square'`, default: `'circle'` },
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' },
-		{ prop: 'children', type: 'Snippet', description: 'Avatar.Image and/or Avatar.Fallback.' }
-	];
-
-	const imageProps: PropRow[] = [
-		{ prop: 'src', type: 'string', description: 'Image URL.' },
-		{
-			prop: 'alt',
-			type: 'string',
-			description: 'Required. Describes the image for screen readers.'
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes.' }
-	];
-
-	const fallbackProps: PropRow[] = [
-		{ prop: 'class', type: 'string', description: 'Extra classes.' },
-		{ prop: 'children', type: 'Snippet', description: 'Fallback content, typically initials.' }
 	];
 
 	const usageCode = `<script>
@@ -158,11 +135,13 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p"><code class="ic">Avatar.Root</code></p>
-		<PropsTable rows={rootProps} />
+		<PropsTable component="AvatarRoot" />
+		<p class="sec__p"><code class="ic">Avatar.Image</code></p>
+		<PropsTable component="AvatarImage" />
+		<p class="sec__p"><code class="ic">Avatar.Fallback</code></p>
+		<PropsTable component="AvatarFallback" />
 		<p class="sec__p" style="margin-top: 24px;"><code class="ic">Avatar.Image</code></p>
-		<PropsTable rows={imageProps} />
 		<p class="sec__p" style="margin-top: 24px;"><code class="ic">Avatar.Fallback</code></p>
-		<PropsTable rows={fallbackProps} />
 	</section>
 </DocPage>
 

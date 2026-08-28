@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.menubar;
@@ -18,30 +17,6 @@
 	];
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
-	const rootForwarded: PropRow[] = [
-		{
-			prop: 'value',
-			type: 'string',
-			description: 'Which menu is open, by its Menu value. Bindable.'
-		},
-		{
-			prop: 'onValueChange',
-			type: '(value: string) => void',
-			description: 'Called when the open menu changes.'
-		},
-		{
-			prop: 'loop',
-			type: 'boolean',
-			default: 'true',
-			description: 'Arrow-key focus wraps at either end.'
-		},
-		{
-			prop: 'dir',
-			type: `'ltr' | 'rtl'`,
-			default: `'ltr'`,
-			description: 'Reading direction, which flips submenu placement.'
-		}
-	];
 
 	const usageCode = `<script>
   import { Menubar } from 'sve-ui';
@@ -164,11 +139,17 @@
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
 		<p class="sec__p"><code class="ic">Menubar.Root</code></p>
-		<PropsTable component="MenubarRoot" extra={rootForwarded} />
-		<p class="sec__p" style="margin-top:16px"><code class="ic">Menubar.Trigger</code></p>
+		<PropsTable component="MenubarRoot" />
+		<p class="sec__p"><code class="ic">Menubar.Menu</code></p>
+		<PropsTable component="MenubarMenu" />
+		<p class="sec__p"><code class="ic">Menubar.Trigger</code></p>
 		<PropsTable component="MenubarTrigger" />
-		<p class="sec__p" style="margin-top:16px"><code class="ic">Menubar.Content</code></p>
+		<p class="sec__p"><code class="ic">Menubar.Content</code></p>
 		<PropsTable component="MenubarContent" />
+		<p class="sec__p"><code class="ic">Menubar.Item (shared)</code></p>
+		<PropsTable component="MenuItem" />
+		<p class="sec__p" style="margin-top:16px"><code class="ic">Menubar.Trigger</code></p>
+		<p class="sec__p" style="margin-top:16px"><code class="ic">Menubar.Content</code></p>
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">Menu</code>, <code class="ic">Sub</code>,
 			<code class="ic">SubTrigger</code>, <code class="ic">SubContent</code>,

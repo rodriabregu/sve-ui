@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug['dropdown-menu'];
@@ -13,68 +12,6 @@
 		{ id: 'usage', label: 'Usage' },
 		{ id: 'groups', label: 'Groups & Labels' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		// Root
-		{
-			prop: 'DropdownMenu.Root — open',
-			type: 'boolean',
-			default: 'false',
-			description: 'Controlled open state.'
-		},
-		{
-			prop: 'DropdownMenu.Root — onOpenChange',
-			type: '(open: boolean) => void',
-			description: 'Callback fired when open state changes.'
-		},
-		// Trigger
-		{
-			prop: 'DropdownMenu.Trigger — child',
-			type: 'Snippet<[{ props: object }]>',
-			description: 'Render prop that spreads trigger props onto a real element.'
-		},
-		// Content
-		{
-			prop: 'DropdownMenu.Content — class',
-			type: 'string',
-			description: 'Extra classes merged onto the menu panel.'
-		},
-		{
-			prop: 'DropdownMenu.Content — sideOffset',
-			type: 'number',
-			default: '4',
-			description: 'Gap in px between trigger and menu.'
-		},
-		{
-			prop: 'DropdownMenu.Content — align',
-			type: `'start' | 'center' | 'end'`,
-			default: `'start'`,
-			description: 'Horizontal alignment relative to the trigger.'
-		},
-		// Item
-		{
-			prop: 'DropdownMenu.Item — disabled',
-			type: 'boolean',
-			default: 'false',
-			description: 'Prevents selection and applies muted styling.'
-		},
-		{
-			prop: 'DropdownMenu.Item — onSelect',
-			type: '() => void',
-			description: 'Callback fired when the item is selected.'
-		},
-		{
-			prop: 'DropdownMenu.Item — class',
-			type: 'string',
-			description: 'Extra classes merged onto the item.'
-		},
-		// Separator
-		{
-			prop: 'DropdownMenu.Separator — class',
-			type: 'string',
-			description: 'Extra classes merged onto the separator.'
-		}
 	];
 
 	const usageCode = `<script>
@@ -173,11 +110,18 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">DropdownMenu.Root</code></p>
+		<PropsTable component="DropdownMenuRoot" />
+		<p class="sec__p"><code class="ic">DropdownMenu.Trigger</code></p>
+		<PropsTable component="DropdownMenuTrigger" />
+		<p class="sec__p"><code class="ic">DropdownMenu.Content</code></p>
+		<PropsTable component="DropdownMenuContent" />
+		<p class="sec__p"><code class="ic">DropdownMenu.Item (shared)</code></p>
+		<PropsTable component="MenuItem" />
 		<p class="sec__p">
 			Built on <code class="ic">bits-ui</code> — all underlying Bits UI DropdownMenu props are forwarded
 			transparently.
 		</p>
-		<PropsTable rows={props} />
 	</section>
 </DocPage>
 

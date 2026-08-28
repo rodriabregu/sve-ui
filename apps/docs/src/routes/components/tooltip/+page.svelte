@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.tooltip;
@@ -13,53 +12,6 @@
 		{ id: 'usage', label: 'Usage' },
 		{ id: 'placement', label: 'Placement' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		// Provider
-		{
-			prop: 'Tooltip.Provider — delayDuration',
-			type: 'number',
-			default: '700',
-			description: 'Delay in ms before the tooltip opens on hover.'
-		},
-		{
-			prop: 'Tooltip.Provider — skipDelayDuration',
-			type: 'number',
-			default: '300',
-			description: 'Delay in ms before a second tooltip opens without the full delay.'
-		},
-		// Root
-		{ prop: 'Tooltip.Root — open', type: 'boolean', description: 'Controlled open state.' },
-		{
-			prop: 'Tooltip.Root — onOpenChange',
-			type: '(open: boolean) => void',
-			description: 'Callback fired when open state changes.'
-		},
-		// Trigger
-		{
-			prop: 'Tooltip.Trigger — child',
-			type: 'Snippet<[{ props: object }]>',
-			description: 'Render prop that spreads trigger props onto a real element.'
-		},
-		// Content
-		{
-			prop: 'Tooltip.Content — side',
-			type: `'top' | 'right' | 'bottom' | 'left'`,
-			default: `'top'`,
-			description: 'Preferred side for the tooltip.'
-		},
-		{
-			prop: 'Tooltip.Content — sideOffset',
-			type: 'number',
-			default: '4',
-			description: 'Gap in px between trigger and tooltip.'
-		},
-		{
-			prop: 'Tooltip.Content — class',
-			type: 'string',
-			description: 'Extra classes merged onto the tooltip panel.'
-		}
 	];
 
 	const usageCode = `<script>
@@ -195,10 +147,17 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">Tooltip.Provider</code></p>
+		<PropsTable component="TooltipProvider" />
+		<p class="sec__p"><code class="ic">Tooltip.Root</code></p>
+		<PropsTable component="TooltipRoot" />
+		<p class="sec__p"><code class="ic">Tooltip.Trigger</code></p>
+		<PropsTable component="TooltipTrigger" />
+		<p class="sec__p"><code class="ic">Tooltip.Content</code></p>
+		<PropsTable component="TooltipContent" />
 		<p class="sec__p">
 			Built on <code class="ic">bits-ui</code> — all underlying Bits UI Tooltip props are forwarded transparently.
 		</p>
-		<PropsTable rows={props} />
 	</section>
 </DocPage>
 

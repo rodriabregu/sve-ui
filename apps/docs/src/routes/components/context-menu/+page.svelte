@@ -4,24 +4,9 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	// Forwarded to the Bits primitive, so not declared on our own Props.
-	const rootProps: PropRow[] = [
-		{ prop: 'open', type: 'boolean', default: 'false', description: 'Bindable open state.' },
-		{
-			prop: 'onOpenChange',
-			type: '(open: boolean) => void',
-			description: 'Called when the menu opens or closes.'
-		},
-		{
-			prop: 'dir',
-			type: `'ltr' | 'rtl'`,
-			default: `'ltr'`,
-			description: 'Reading direction, which flips submenu placement.'
-		}
-	];
 
 	const meta = componentBySlug['context-menu'];
 
@@ -110,22 +95,25 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">ContextMenu.Root</code></p>
+		<PropsTable component="ContextMenuRoot" />
+		<p class="sec__p"><code class="ic">ContextMenu.Trigger</code></p>
+		<PropsTable component="ContextMenuTrigger" />
+		<p class="sec__p"><code class="ic">ContextMenu.Content</code></p>
+		<PropsTable component="ContextMenuContent" />
+		<p class="sec__p"><code class="ic">ContextMenu.Item (shared)</code></p>
+		<PropsTable component="MenuItem" />
 		<p class="sec__p">
 			<code class="ic">Root</code>, <code class="ic">Sub</code>,
 			<code class="ic">SubTrigger</code>, <code class="ic">SubContent</code>,
 			<code class="ic">CheckboxItem</code>, <code class="ic">RadioItem</code>,
 			<code class="ic">RadioGroup</code> and <code class="ic">Arrow</code> are re-exported from Bits unchanged.
 		</p>
-		<p class="sec__p"><code class="ic">ContextMenu.Root</code></p>
-		<PropsTable rows={rootProps} />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">ContextMenu.Trigger</code></p>
-		<PropsTable component="ContextMenuTrigger" />
 		<p class="sec__p" style="margin-top:16px"><code class="ic">ContextMenu.Content</code></p>
-		<PropsTable component="ContextMenuContent" />
 		<p class="sec__p" style="margin-top:16px">
 			<code class="ic">ContextMenu.Item</code> — shared with Dropdown Menu.
 		</p>
-		<PropsTable component="MenuItem" />
 	</section>
 </DocPage>
 

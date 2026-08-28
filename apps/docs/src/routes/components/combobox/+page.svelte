@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.combobox;
@@ -13,37 +12,6 @@
 		{ id: 'usage', label: 'Usage' },
 		{ id: 'filtering', label: 'Filtering' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{
-			prop: 'Combobox.Root · type',
-			type: `'single' | 'multiple'`,
-			description: 'Selection mode.'
-		},
-		{ prop: 'Combobox.Root · value', type: 'string', description: 'Bindable selected value.' },
-		{
-			prop: 'Combobox.Input · placeholder',
-			type: 'string',
-			description: 'Placeholder text for the search field.'
-		},
-		{
-			prop: 'Combobox.Input · oninput',
-			type: '(e: InputEvent) => void',
-			description: 'Handler to update filter query.'
-		},
-		{ prop: 'Combobox.Input · class', type: 'string', description: 'Extra classes on the input.' },
-		{
-			prop: 'Combobox.Item · value',
-			type: 'string',
-			description: 'Required. The value this item represents.'
-		},
-		{
-			prop: 'Combobox.Item · label',
-			type: 'string',
-			description: 'Required. Accessible label text for the item.'
-		},
-		{ prop: 'Combobox.Item · class', type: 'string', description: 'Extra classes on the item.' }
 	];
 
 	let comboValue = $state('');
@@ -134,11 +102,18 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">Combobox.Root</code></p>
+		<PropsTable component="ComboboxRoot" />
+		<p class="sec__p"><code class="ic">Combobox.Input</code></p>
+		<PropsTable component="ComboboxInput" />
+		<p class="sec__p"><code class="ic">Combobox.Content</code></p>
+		<PropsTable component="ComboboxContent" />
+		<p class="sec__p"><code class="ic">Combobox.Item</code></p>
+		<PropsTable component="ComboboxItem" />
 		<p class="sec__p">
 			All subcomponents forward their corresponding Bits props and native HTML attributes via
 			spreading.
 		</p>
-		<PropsTable rows={props} />
 	</section>
 </DocPage>
 

@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug['radio-group'];
@@ -14,21 +13,6 @@
 		{ id: 'orientation', label: 'Orientation' },
 		{ id: 'states', label: 'States' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{
-			prop: 'RadioGroup.Root · value',
-			type: 'string',
-			description: 'Bindable selected value.'
-		},
-		{ prop: 'RadioGroup.Root · class', type: 'string', description: 'Extra classes on the root.' },
-		{
-			prop: 'RadioGroup.Item · value',
-			type: 'string',
-			description: 'Required. The value this item represents.'
-		},
-		{ prop: 'RadioGroup.Item · class', type: 'string', description: 'Extra classes on the item.' }
 	];
 
 	let radioValue = $state('comfortable');
@@ -126,10 +110,13 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">RadioGroup.Root</code></p>
+		<PropsTable component="RadioGroupRoot" />
+		<p class="sec__p"><code class="ic">RadioGroup.Item</code></p>
+		<PropsTable component="RadioGroupItem" />
 		<p class="sec__p">
 			Both subcomponents also forward all Bits <code class="ic">RadioGroup</code> props via spreading.
 		</p>
-		<PropsTable rows={props} />
 	</section>
 </DocPage>
 

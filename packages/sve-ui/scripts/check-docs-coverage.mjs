@@ -93,6 +93,31 @@ for (const entry of entries) {
 	}
 }
 
+/*
+	No page may hand-write its prop rows any more.
+
+	This check could not be turned on until now: every component is finally
+	documentable from its types, including the sixty re-exported Bits parts that
+	have no `.svelte` file and the handful of HTML attributes that ARE a
+	component's point. Enabling it earlier would have failed on pages that had no
+	correct alternative — a guard that forces you to do the wrong thing is worse
+	than no guard.
+
+	`extra` and `omit` stay available for prose the generator cannot produce; what
+	is banned is a table built from scratch, which is what drifts.
+*/
+for (const dir of readdirSync(PAGES, { withFileTypes: true })) {
+	if (!dir.isDirectory()) continue;
+	const page = join(PAGES, dir.name, '+page.svelte');
+	if (!existsSync(page)) continue;
+	if (readFileSync(page, 'utf8').includes('PropRow[]')) {
+		problems.push(
+			`components/${dir.name} declares a hand-written PropRow[] — use ` +
+				'<PropsTable component="…" /> so the table cannot disagree with the code'
+		);
+	}
+}
+
 if (problems.length > 0) {
 	console.error('check-docs-coverage: FAILED\n');
 	for (const p of problems) console.error(`  - ${p}`);

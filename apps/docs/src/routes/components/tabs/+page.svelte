@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.tabs;
@@ -14,29 +13,6 @@
 	const toc: TocEntry[] = [
 		{ id: 'usage', label: 'Usage' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{
-			prop: 'value',
-			type: 'string',
-			description: 'The active tab value. Use bind:value for two-way binding.'
-		},
-		{
-			prop: 'onValueChange',
-			type: '(value: string) => void',
-			description: 'Called when the active tab changes.'
-		},
-		{ prop: 'orientation', type: `'horizontal' | 'vertical'`, default: `'horizontal'` },
-		{ prop: 'activationMode', type: `'automatic' | 'manual'`, default: `'automatic'` },
-		{
-			prop: 'loop',
-			type: 'boolean',
-			default: 'true',
-			description: 'Keyboard focus loops from last trigger back to first.'
-		},
-		{ prop: 'class', type: 'string', description: 'Extra classes merged onto the root.' },
-		{ prop: 'children', type: 'Snippet', description: 'Compose Tabs.List and Tabs.Content inside.' }
 	];
 
 	const usageCode = `<script>
@@ -84,12 +60,19 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">Tabs.Root</code></p>
+		<PropsTable component="TabsRoot" />
+		<p class="sec__p"><code class="ic">Tabs.List</code></p>
+		<PropsTable component="TabsList" />
+		<p class="sec__p"><code class="ic">Tabs.Trigger</code></p>
+		<PropsTable component="TabsTrigger" />
+		<p class="sec__p"><code class="ic">Tabs.Content</code></p>
+		<PropsTable component="TabsContent" />
 		<p class="sec__p">
 			Props for <code class="ic">Tabs.Root</code>. <code class="ic">Tabs.Trigger</code> and
 			<code class="ic">Tabs.Content</code> require a matching <code class="ic">value</code> string.
 			All parts accept <code class="ic">class</code> for custom overrides.
 		</p>
-		<PropsTable rows={props} />
 	</section>
 </DocPage>
 

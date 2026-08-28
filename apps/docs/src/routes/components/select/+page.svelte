@@ -4,7 +4,6 @@
 	import Preview from '$lib/docs/Preview.svelte';
 	import PropsTable from '$lib/docs/PropsTable.svelte';
 	import type { TocEntry } from '$lib/docs/DocPage.svelte';
-	import type { PropRow } from '$lib/docs/PropsTable.svelte';
 	import { componentBySlug } from '$lib/docs/registry';
 
 	const meta = componentBySlug.select;
@@ -13,31 +12,6 @@
 		{ id: 'usage', label: 'Usage' },
 		{ id: 'states', label: 'States' },
 		{ id: 'props', label: 'Props' }
-	];
-
-	const props: PropRow[] = [
-		{
-			prop: 'Select.Root · type',
-			type: `'single' | 'multiple'`,
-			description: 'Required. Selection mode.'
-		},
-		{ prop: 'Select.Root · value', type: 'string', description: 'Bindable selected value.' },
-		{
-			prop: 'Select.Trigger · class',
-			type: 'string',
-			description: 'Extra classes on the trigger.'
-		},
-		{
-			prop: 'Select.Item · value',
-			type: 'string',
-			description: 'Required. The value this item represents.'
-		},
-		{
-			prop: 'Select.Item · label',
-			type: 'string',
-			description: 'Required. Accessible label text for the item.'
-		},
-		{ prop: 'Select.Item · class', type: 'string', description: 'Extra classes on the item.' }
 	];
 
 	let selectValue = $state('');
@@ -107,10 +81,17 @@
 
 	<section id="props" class="sec">
 		<h2 class="sec__h">Props</h2>
+		<p class="sec__p"><code class="ic">Select.Root</code></p>
+		<PropsTable component="SelectRoot" />
+		<p class="sec__p"><code class="ic">Select.Trigger</code></p>
+		<PropsTable component="SelectTrigger" />
+		<p class="sec__p"><code class="ic">Select.Content</code></p>
+		<PropsTable component="SelectContent" />
+		<p class="sec__p"><code class="ic">Select.Item</code></p>
+		<PropsTable component="SelectItem" />
 		<p class="sec__p">
 			All subcomponents also forward their corresponding Bits props via spreading.
 		</p>
-		<PropsTable rows={props} />
 	</section>
 </DocPage>
 
