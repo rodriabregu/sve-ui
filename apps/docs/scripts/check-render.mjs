@@ -22,7 +22,7 @@
  *   node scripts/check-render.mjs --update   # accept the current output
  */
 
-import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -113,9 +113,62 @@ async function currentDigests() {
 	return out;
 }
 
+/**
+ * `--update` writes whatever the build directory currently holds, so a stale
+ * build blesses a stale baseline. That is not theoretical: updating after a
+ * docs edit reported "baseline updated for 67 pages" and changed nothing,
+ * because the build predated the edit. The next CI run failed on the same page.
+ *
+ * So refuse to bless output older than the sources it came from.
+ */
+async function newestSourceTime() {
+	const roots = [join(DOCS_ROOT, 'src'), join(DOCS_ROOT, '../../packages/sve-ui/src')];
+	let newest = 0;
+	async function walk(dir) {
+		let entries;
+		try {
+			entries = await readdir(dir, { withFileTypes: true });
+		} catch {
+			return;
+		}
+		for (const e of entries) {
+			const full = join(dir, e.name);
+			if (e.isDirectory()) await walk(full);
+			else if (/\.(svelte|ts|js|css|md)$/.test(e.name)) {
+				const { mtimeMs } = await stat(full);
+				if (mtimeMs > newest) newest = mtimeMs;
+			}
+		}
+	}
+	for (const r of roots) await walk(r);
+	return newest;
+}
+
+async function oldestBuildTime() {
+	const files = await htmlFiles(BUILD_DIR);
+	let oldest = Infinity;
+	for (const f of files) {
+		const { mtimeMs } = await stat(join(BUILD_DIR, f));
+		if (mtimeMs < oldest) oldest = mtimeMs;
+	}
+	return oldest;
+}
+
 const current = await currentDigests();
 
 if (process.argv.includes('--update')) {
+	const src = await newestSourceTime();
+	const build = await oldestBuildTime();
+	if (src > build) {
+		console.error(
+			'check-render: refusing to update — the build output is older than the sources.\n' +
+				`  newest source: ${new Date(src).toISOString()}\n` +
+				`  oldest page:   ${new Date(build).toISOString()}\n\n` +
+				'Run `pnpm --filter docs run build` first. Updating now would write a baseline\n' +
+				'for code that is no longer there, and CI would fail on the same page again.'
+		);
+		process.exit(1);
+	}
 	await writeFile(BASELINE, JSON.stringify(current, null, 2) + '\n');
 	console.log(`check-render: baseline updated for ${Object.keys(current).length} pages.`);
 	process.exit(0);
