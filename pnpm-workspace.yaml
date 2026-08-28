@@ -33,3 +33,4 @@ allowBuilds:
 
 minimumReleaseAgeExclude:
   - sve-ui@0.10.0
+  - sve-ui@0.11.0

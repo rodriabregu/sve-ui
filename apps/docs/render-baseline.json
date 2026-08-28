@@ -1,266 +1,270 @@
 {
   "components.html": {
-    "elements": 668,
-    "hash": "ca93b855fb435117"
+    "elements": 669,
+    "hash": "d4b822744025e28c"
   },
   "components/accordion.html": {
-    "elements": 332,
-    "hash": "741404da93c533d0"
+    "elements": 333,
+    "hash": "fcdd18fa35c1d45c"
   },
   "components/alert-dialog.html": {
-    "elements": 492,
-    "hash": "146990f6e22fc385"
+    "elements": 493,
+    "hash": "0bf06012b5484716"
   },
   "components/alert.html": {
-    "elements": 360,
-    "hash": "ea562a73e5b918f9"
+    "elements": 361,
+    "hash": "31a60f8345bf61fd"
   },
   "components/aspect-ratio.html": {
-    "elements": 298,
-    "hash": "7c26ee5857db23fa"
+    "elements": 299,
+    "hash": "11ba1bd63d13d9e6"
   },
   "components/avatar.html": {
-    "elements": 373,
-    "hash": "15f3a32fe594fe9e"
+    "elements": 374,
+    "hash": "d81ba6595194011d"
   },
   "components/badge.html": {
-    "elements": 308,
-    "hash": "3f9a2695a4cc0692"
+    "elements": 309,
+    "hash": "9b88c68ddd4c9f4a"
   },
   "components/breadcrumb.html": {
-    "elements": 333,
-    "hash": "710404e0dbf18dbe"
+    "elements": 334,
+    "hash": "ebe22388d2b06799"
   },
   "components/busy.html": {
-    "elements": 292,
-    "hash": "7fdbaba4d3901290"
+    "elements": 293,
+    "hash": "9c53cc7561f1d1b9"
   },
   "components/button.html": {
-    "elements": 425,
-    "hash": "41d82473dbc30181"
+    "elements": 426,
+    "hash": "8ce14354de771e10"
   },
   "components/calendar.html": {
-    "elements": 500,
-    "hash": "c0f4926c53654db4"
+    "elements": 501,
+    "hash": "fb77ba1017f23c39"
   },
   "components/card.html": {
-    "elements": 326,
-    "hash": "4946605dbc23b814"
+    "elements": 327,
+    "hash": "f228c6df6914d51f"
   },
   "components/checkbox.html": {
-    "elements": 302,
-    "hash": "e3fb88293969e4b6"
+    "elements": 303,
+    "hash": "e6d017ca9411b722"
   },
   "components/code.html": {
-    "elements": 294,
-    "hash": "7eeb5f49e897d6f6"
+    "elements": 295,
+    "hash": "11cb51344677963a"
   },
   "components/collapsible.html": {
-    "elements": 438,
-    "hash": "8377cd5ff5fd7307"
+    "elements": 439,
+    "hash": "258204fb8fc687c8"
   },
   "components/combobox.html": {
-    "elements": 297,
-    "hash": "1fcc64d0b44fbe49"
+    "elements": 298,
+    "hash": "7389a4f8dc59ced6"
   },
   "components/command.html": {
-    "elements": 560,
-    "hash": "23f6385d452b20ee"
+    "elements": 561,
+    "hash": "73d02ac6f3486625"
   },
   "components/context-menu.html": {
-    "elements": 697,
-    "hash": "d0c3502831898303"
+    "elements": 698,
+    "hash": "9b617ab16bd60e70"
   },
   "components/date-field.html": {
-    "elements": 376,
-    "hash": "f5e72b064457b8d6"
+    "elements": 377,
+    "hash": "522624c11991bb3b"
   },
   "components/date-picker.html": {
-    "elements": 407,
-    "hash": "9d39e83c0ca6c50b"
+    "elements": 408,
+    "hash": "59b0f3c81e8f6cc4"
   },
   "components/date-range-field.html": {
-    "elements": 374,
-    "hash": "6560a9f881eb3db7"
+    "elements": 375,
+    "hash": "d83483383e46f8f2"
   },
   "components/date-range-picker.html": {
-    "elements": 434,
-    "hash": "5431a885b6c686be"
+    "elements": 435,
+    "hash": "82590ebd3bec213a"
   },
   "components/dialog.html": {
-    "elements": 289,
-    "hash": "c9bbae5d6a0f0ff6"
+    "elements": 290,
+    "hash": "198bfacf07ae6ebf"
   },
   "components/dropdown-menu.html": {
-    "elements": 312,
-    "hash": "e31234c870699bcc"
+    "elements": 313,
+    "hash": "0d0cc77ba3be6979"
   },
   "components/field.html": {
-    "elements": 422,
-    "hash": "c0605bd259a0a1a8"
+    "elements": 423,
+    "hash": "1b2f49af72db6bbf"
   },
   "components/flex.html": {
-    "elements": 324,
-    "hash": "4a826edac2b2ed2c"
+    "elements": 325,
+    "hash": "5c6b3a3b86cb1a42"
   },
   "components/heading.html": {
-    "elements": 321,
-    "hash": "ea8283c19c57e953"
+    "elements": 322,
+    "hash": "4db053fa9f8594b1"
   },
   "components/input.html": {
-    "elements": 306,
-    "hash": "68c6e00379877d8d"
+    "elements": 307,
+    "hash": "61472bfd811e8ca7"
   },
   "components/label.html": {
-    "elements": 309,
-    "hash": "9a2ae76914814b50"
+    "elements": 310,
+    "hash": "639b1c8c35e68983"
   },
   "components/link-preview.html": {
-    "elements": 504,
-    "hash": "a49699023fc81ad3"
+    "elements": 505,
+    "hash": "64a7c98fdbf02814"
   },
   "components/menubar.html": {
-    "elements": 708,
-    "hash": "1a85027c2be69d7a"
+    "elements": 709,
+    "hash": "ee9cd7ca549c04ee"
   },
   "components/meter.html": {
-    "elements": 341,
-    "hash": "b3d71fde84d68e35"
+    "elements": 342,
+    "hash": "6849becac49d3703"
   },
   "components/navigation-menu.html": {
-    "elements": 476,
-    "hash": "f425689fa24cbd5b"
+    "elements": 477,
+    "hash": "cb186960ef1220b0"
   },
   "components/pagination.html": {
-    "elements": 409,
-    "hash": "8529ccb55336ed9f"
+    "elements": 410,
+    "hash": "c5a0c61f956a9ccd"
   },
   "components/pin-input.html": {
-    "elements": 448,
-    "hash": "18b30b66c56189c0"
+    "elements": 449,
+    "hash": "f618a9caff981ea1"
   },
   "components/popover.html": {
-    "elements": 300,
-    "hash": "d9b6d6b0f32ec5ff"
+    "elements": 301,
+    "hash": "7b79fbcc5425f9f3"
   },
   "components/progress.html": {
-    "elements": 369,
-    "hash": "9bb5b21cbd9c1364"
+    "elements": 370,
+    "hash": "da038cedd6f21c56"
   },
   "components/radio-group.html": {
-    "elements": 305,
-    "hash": "b22a88ed745be502"
+    "elements": 306,
+    "hash": "5a255411ca3fe2d2"
   },
   "components/range-calendar.html": {
-    "elements": 470,
-    "hash": "02742bf84ce5df6e"
+    "elements": 471,
+    "hash": "337cdc31522c501a"
   },
   "components/rating-group.html": {
-    "elements": 491,
-    "hash": "f58659b47167a558"
+    "elements": 492,
+    "hash": "f9f2c4c08d320e0e"
   },
   "components/scroll-area.html": {
-    "elements": 403,
-    "hash": "22f830b1054991f9"
+    "elements": 404,
+    "hash": "308cf76e29fec026"
   },
   "components/select.html": {
-    "elements": 284,
-    "hash": "3f54825225830083"
+    "elements": 285,
+    "hash": "4266ca7f79c56912"
   },
   "components/separator.html": {
-    "elements": 321,
-    "hash": "5bc6bd2761acde94"
+    "elements": 322,
+    "hash": "aac675e1ebd409c8"
   },
   "components/sheet.html": {
-    "elements": 439,
-    "hash": "e701a1257d9ffc09"
+    "elements": 440,
+    "hash": "7c1a2ee542c83c74"
   },
   "components/sidebar.html": {
-    "elements": 492,
-    "hash": "c57a6e0c76bfbaff"
+    "elements": 493,
+    "hash": "46fa9b8a0eff3792"
   },
   "components/skeleton.html": {
-    "elements": 326,
-    "hash": "1ac20d74e68aeade"
+    "elements": 327,
+    "hash": "72ceb8cb509b5964"
   },
   "components/slider.html": {
-    "elements": 331,
-    "hash": "e072c75bb03e2b06"
+    "elements": 332,
+    "hash": "6199894358b807b2"
   },
   "components/spinner.html": {
-    "elements": 297,
-    "hash": "4c253432149201a3"
+    "elements": 298,
+    "hash": "e8414f6a21ea3a6d"
   },
   "components/stack.html": {
-    "elements": 306,
-    "hash": "7dc467a794747c1d"
+    "elements": 307,
+    "hash": "9d7140b480862091"
   },
   "components/switch.html": {
-    "elements": 278,
-    "hash": "d5cc5d5f6361af21"
+    "elements": 279,
+    "hash": "076667a2df5ce51a"
   },
   "components/table.html": {
-    "elements": 539,
-    "hash": "1fed3ae8ee27885a"
+    "elements": 540,
+    "hash": "e9775d00d4bbf228"
   },
   "components/tabs.html": {
-    "elements": 282,
-    "hash": "313cb6ef753d1e9a"
+    "elements": 283,
+    "hash": "531ad2ff2b21b654"
   },
   "components/text.html": {
-    "elements": 336,
-    "hash": "1a6817f3389378ef"
+    "elements": 337,
+    "hash": "416ee35779fb4354"
   },
   "components/textarea.html": {
-    "elements": 375,
-    "hash": "76905804a3bad49d"
+    "elements": 376,
+    "hash": "9f0a7a865dbae669"
   },
   "components/time-field.html": {
-    "elements": 377,
-    "hash": "aae3c06c51198a3b"
+    "elements": 378,
+    "hash": "da16970843354ef0"
   },
   "components/time-range-field.html": {
-    "elements": 384,
-    "hash": "eadd7ccd180f2c04"
+    "elements": 385,
+    "hash": "8be415815aebf063"
   },
   "components/toast.html": {
-    "elements": 354,
-    "hash": "cf7776cf632e8dfc"
+    "elements": 355,
+    "hash": "eacf31980d0bba39"
   },
   "components/toggle-group.html": {
-    "elements": 436,
-    "hash": "41f8fb257a3892ed"
+    "elements": 437,
+    "hash": "6786420e304d2eab"
   },
   "components/toggle.html": {
-    "elements": 357,
-    "hash": "ced1876f35def32f"
+    "elements": 358,
+    "hash": "f74a60d7f8e25e49"
   },
   "components/toolbar.html": {
-    "elements": 392,
-    "hash": "4411a7606951f1f0"
+    "elements": 393,
+    "hash": "d961b8388bdd97fc"
   },
   "components/tooltip.html": {
-    "elements": 301,
-    "hash": "5f42e5547f95b52b"
+    "elements": 302,
+    "hash": "0dc8fab0c51e1fa2"
   },
   "docs.html": {
-    "elements": 95,
-    "hash": "9a159e0202df8f98"
+    "elements": 96,
+    "hash": "ee730659a52d1e31"
   },
   "docs/ai-agents.html": {
-    "elements": 140,
-    "hash": "5aa09a0380c0de19"
+    "elements": 141,
+    "hash": "56e25fb0342fac8a"
   },
   "docs/installation.html": {
-    "elements": 130,
-    "hash": "291a66de3b2629eb"
+    "elements": 131,
+    "hash": "3237b8801d5f012a"
   },
   "docs/theming.html": {
-    "elements": 168,
-    "hash": "99c74bff08d1e31c"
+    "elements": 169,
+    "hash": "51796cd4397da8be"
   },
   "index.html": {
-    "elements": 498,
-    "hash": "17c16730e4ff5373"
+    "elements": 499,
+    "hash": "ba995eee9ead4e53"
+  },
+  "playground.html": {
+    "elements": 69,
+    "hash": "07bc6b8da388053a"
   }
 }

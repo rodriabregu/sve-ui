@@ -31,11 +31,36 @@ It also exercises the paths that only exist in a real form:
 ## On `workspace:*`
 
 This depends on the workspace copy, so it type-checks against the code as it is
-and demonstrates current best practice. That means it does **not** verify what a
-consumer downloads.
+and demonstrates current practice. It does **not** verify what a consumer
+downloads.
 
-Nothing here is trying to: that job belongs to the guards in the package —
-`check-package-files` inspects the real tarball, `check-treeshake` bundles a
-consumer entry, and `check-css-coverage` catches rules that do not travel. Those
-were each written after a packaging bug shipped, and none of them would have been
-caught by an example app.
+That was a deliberate second choice. Depending on the published package —
+`"sve-ui": "npm:sve-ui@^0.11.0"`, where the `npm:` prefix forces pnpm to resolve
+from the registry instead of linking the workspace — is the more honest shape, and
+it is what would let StackBlitz open this directory on its own.
+
+It does not work here, for a reason worth writing down: pnpm enforces a
+`minimumReleaseAge` supply-chain policy, and rejects a version published within
+the cutoff.
+
+```
+sve-ui@0.11.0 was published at 2026-08-28T00:43:06Z,
+within the minimumReleaseAge cutoff
+```
+
+So every release would break this app's install for about a day. Relaxing the
+policy to suit our own package would trade a real supply-chain guard for
+convenience, which is not a trade worth making for an example.
+
+Verifying the published artifact stays with the guards that actually inspect it:
+`check-package-files` reads the real tarball, `check-treeshake` bundles a consumer
+entry, and `check-css-coverage` catches rules that do not travel. Each was written
+after a packaging bug shipped, and none of them would have been caught by an
+example app.
+
+## Running it
+
+```bash
+pnpm install
+pnpm --filter example dev
+```

@@ -340,12 +340,61 @@ nothing on its own.
 This is the first component in the library found by _use_ rather than by auditing
 or by planning, which is the argument for item 8 in one sentence.
 
-### 9. A playground people can reach
+### 9. A playground people can reach — DONE, with its limits stated
 
-- [ ] StackBlitz / a live editor on the docs site, so "does this work" does not
-      require an install
+`/playground` on the docs site. A whole **flow**, which is the thing the
+component pages cannot show: each of those demonstrates one component in
+isolation, and none of them shows what happens when a submit fails, where focus
+lands, or what a screen reader is told while a request is in flight.
 
-### 10. Registry and skill generated from types
+Deliberately a different artifact from `apps/example`. That one is a consumer
+smoke test whose job is to break the build; this one exists to be clicked by
+someone deciding whether to install anything.
+
+**What I could not deliver, and why** — these are worth writing down rather than
+leaving as an unexplained gap:
+
+- **An in-page editor.** Needs the Svelte compiler client-side. Buildable, but I
+  cannot visually verify the result from here, and the component pages already
+  show live previews next to their source.
+- **StackBlitz opening `apps/example` directly.** Requires the example to resolve
+  standalone, i.e. to depend on the published package. Blocked by pnpm's
+  `minimumReleaseAge` policy: `sve-ui@0.11.0 was published ... within the
+minimumReleaseAge cutoff`. Every release would break the example's install for
+  about a day. Relaxing the policy for our own package trades a real
+  supply-chain guard for convenience.
+- **A second Vercel deployment.** Needs dashboard configuration, which is not in
+  the repo and not verifiable from here.
+
+### 10. Registry and skill generated from types — DONE, reframed by measuring
+
+The item asked for generation. Measuring first said generation is the wrong tool:
+the slugs and groups could be generated, and the blurbs and the reasoning cannot.
+The reasoning is the valuable half — no generator produces "a link that goes
+nowhere takes a tab stop and lies".
+
+So the prose stays hand-written and `check-docs-coverage` asserts none of it is
+missing:
+
+- every export from `lib/index.ts` has a registry entry
+- every `ready` entry has a docs page
+- every `ready` entry appears in the agent skill's catalog
+
+- [x] **It found a real gap on its first run**: `Busy` was in `SKILL.md` and
+      absent from the catalog. Fixed.
+- [x] Proven to fail in both directions — removing a page, and adding an export
+      with no entry.
+- [x] Non-component exports are allowlisted **with a reason** each, so the list
+      cannot quietly absorb a component someone forgot.
+
+The drift is not hypothetical: `Collapsible` was missing from the skill for a
+whole pull request, and `Busy` for a release. Both were caught by a person
+noticing, which is not a system.
+
+**My first version of the check reported 19 false positives out of 19**, because
+it compared the display name ("Alert Dialog") and the skill uses the code
+identifier ("AlertDialog"). Worth recording, because a guard that cries wolf
+nineteen times gets switched off.
 
 The registry and the skill are hand-maintained prose. They drift, and their
 drifting is invisible.
