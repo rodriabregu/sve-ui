@@ -20,7 +20,7 @@ custom properties.
 pnpm add sve-ui
 ```
 
-➡️ **Usage, components and theming:** see the [package README](./packages/sve-ui/README.md).
+➡️ **Usage, all 60 components and theming:** see the [package README](./packages/sve-ui/README.md).
 
 ## Upgrading from 0.1.x
 
@@ -39,6 +39,7 @@ packages/
   typescript-config/ # shared @repo/typescript-config
 apps/
   docs/              # documentation site (SvelteKit 2 + Tailwind 4) → sveui.org
+  example/           # a real app built with the library — dogfooding with latency
 ```
 
 Shared dependency versions live in the pnpm **catalog** in `pnpm-workspace.yaml`

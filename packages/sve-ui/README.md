@@ -68,14 +68,26 @@ without it):
 
 ## Components
 
-**Display & form** — `Button`, `Input`, `Card`, `Badge`, `Avatar`, `Spinner`,
-`Text`, `Heading`, `Alert`.
+**60 components**, every one styled and accessible out of the box. Names ending
+in `.*` are namespace compositions — import the namespace and compose its parts
+(`Dialog.Root`, `Dialog.Trigger`, `Dialog.Content`). The rest are default
+imports.
 
-**Form controls** (on Bits UI) — `Switch`, `Checkbox`, `RadioGroup`.
+| Group          | Components                                                                                                                                                                                                                                                                                                                          |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Display**    | `Avatar.*`, `Badge`, `Card.*`, `Heading`, `Text`, `Skeleton`                                                                                                                                                                                                                                                                        |
+| **Forms**      | `Button`, `Input`, `Field`, `Checkbox.*`, `RadioGroup.*`, `Switch.*`, `Select.*`, `Combobox.*`, `Slider`, `Textarea`, `Label`, `Toggle`, `ToggleGroup.*`, `Calendar.*`, `DateField.*`, `DatePicker.*`, `RangeCalendar.*`, `DateRangeField.*`, `DateRangePicker.*`, `TimeField.*`, `TimeRangeField.*`, `PinInput.*`, `RatingGroup.*` |
+| **Feedback**   | `Alert.*`, `Busy`, `Spinner`, `Toast.*`, `Progress`, `Meter`                                                                                                                                                                                                                                                                        |
+| **Navigation** | `Tabs.*`, `Accordion.*`, `Sidebar.*`, `Breadcrumb.*`, `NavigationMenu.*`, `Menubar.*`, `Collapsible.*`, `Toolbar.*`                                                                                                                                                                                                                 |
+| **Overlays**   | `Dialog.*`, `DropdownMenu.*`, `Popover.*`, `Tooltip.*`, `AlertDialog.*`, `Command.*`, `Sheet.*`, `ContextMenu.*`, `LinkPreview.*`                                                                                                                                                                                                   |
+| **Data**       | `Table.*`, `Pagination.*`                                                                                                                                                                                                                                                                                                           |
+| **Layout**     | `Stack`, `Flex`, `Separator`, `ScrollArea.*`, `AspectRatio`                                                                                                                                                                                                                                                                         |
+| **Utilities**  | `Code`                                                                                                                                                                                                                                                                                                                              |
 
-**Overlays** (on Bits UI) — `Dialog`, `DropdownMenu`, `Tooltip`, `Popover`.
+Every component has a live page with props and examples at
+[sveui.org/components](https://sveui.org/components).
 
-Most components take `variant`, `color` and `size` props, e.g.:
+Most take `variant`, `color` and `size`:
 
 ```svelte
 <Button variant="solid" color="primary">Primary</Button>
@@ -84,9 +96,14 @@ Most components take `variant`, `color` and `size` props, e.g.:
 <Input variant="outline" size="md" placeholder="you@example.com" bind:value />
 ```
 
-`Avatar`, `Card`, `Alert`, the overlays, and the form controls are **namespaced**
-compositions — import the namespace and compose its parts (`Dialog.Root`,
-`Dialog.Trigger`, `Dialog.Content`; `RadioGroup.Root`, `RadioGroup.Item`; …).
+Three that are easy to miss:
+
+- **`Field`** is the only thing here that wires `aria-describedby` — use it to
+  attach help text or a validation message to any control.
+- **`Busy`** covers the gap between "nothing yet" and "loaded": a region that
+  announces itself while its content is in flight.
+- **`Command.*`** is the command palette, and its `Command.Status` announces
+  result counts to a screen reader as you filter.
 
 ## Theming
 
