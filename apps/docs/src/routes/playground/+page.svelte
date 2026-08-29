@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Seo from '$lib/seo/Seo.svelte';
 	import {
 		Busy,
 		Button,
@@ -100,7 +101,10 @@
 	}
 </script>
 
-<svelte:head><title>Playground — Sve·UI</title></svelte:head>
+<Seo
+	title="Svelte Theme Playground — Sve·UI"
+	description="Try the Sve·UI Svelte component library live: tune the --sve-* CSS variables, switch light and dark, and copy the theme straight into your project."
+/>
 
 <Toast.Viewport position="bottom-right" />
 

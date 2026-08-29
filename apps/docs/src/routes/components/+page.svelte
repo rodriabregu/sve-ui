@@ -1,21 +1,35 @@
 <script lang="ts">
 	import { componentGroups, readyComponents, totalComponents } from '$lib/docs/registry';
+	import Seo from '$lib/seo/Seo.svelte';
+	import { breadcrumbSchema, itemListSchema } from '$lib/seo/schema';
 
 	const comingSoon = totalComponents - readyComponents;
+
+	// The index is the hub every component page links back to, so it gets the
+	// broad category term while the leaf pages take the specific ones.
+	const listed = componentGroups.flatMap((g) =>
+		g.items
+			.filter((it) => it.ready)
+			.map((it) => ({ name: it.name, path: `/components/${it.slug}` }))
+	);
 </script>
 
-<svelte:head>
-	<title>Components — Sve·UI</title>
-	<meta
-		name="description"
-		content="Every Sve·UI component — display, forms, feedback, navigation and overlays. Styled, accessible, zero config."
-	/>
-</svelte:head>
+<Seo
+	title="Svelte UI Components — {readyComponents} Accessible Components — Sve·UI"
+	description="Browse every component in the Sve·UI Svelte component library — display, forms, feedback, navigation and overlays. {readyComponents} fully styled, accessible Svelte 5 components with zero config."
+	jsonLd={[
+		breadcrumbSchema([
+			{ name: 'Home', path: '/' },
+			{ name: 'Components', path: '/components' }
+		]),
+		itemListSchema(listed)
+	]}
+/>
 
 <div class="index">
 	<header class="index__head">
 		<span class="doc-eyebrow">{readyComponents} components · {comingSoon} on the way</span>
-		<h1 class="index__title">Components</h1>
+		<h1 class="index__title">Svelte UI Components</h1>
 		<p class="index__lede">
 			Every component is fully styled and accessible out of the box — built on Bits UI, themed with
 			CSS variables, and ready to drop in. Pick one to see live previews, code and props. Items

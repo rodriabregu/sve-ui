@@ -12,6 +12,7 @@
 		"lint": "eslint .",
 		"format": "prettier --write .",
 		"gen:props": "node scripts/gen-props.mjs",
+		"gen:og": "node scripts/gen-og.mjs",
 		"gen:props:check": "node scripts/gen-props.mjs && git diff --exit-code -- src/lib/docs/generated/props.json",
 		"check:render": "node scripts/check-render.mjs",
 		"check:render:update": "node scripts/check-render.mjs --update",

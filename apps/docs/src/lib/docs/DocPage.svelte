@@ -1,5 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { page } from '$app/state';
+	import Seo from '$lib/seo/Seo.svelte';
+	import { breadcrumbSchema, techArticleSchema } from '$lib/seo/schema';
 
 	export interface TocEntry {
 		id: string;
@@ -13,6 +16,17 @@
 		toc?: TocEntry[];
 		/** Top-level breadcrumb link. Defaults to the Components section. */
 		crumb?: { href: string; label: string };
+		/**
+		 * What this page documents. Component pages get a keyword-bearing title
+		 * ("Svelte Button Component") because each one competes for its own
+		 * long-tail query; guides keep the plain brand title.
+		 */
+		kind?: 'component' | 'guide';
+		/**
+		 * Overrides the derived <title>. Guides use it because their page name
+		 * alone ("Introduction") competes for nothing on its own.
+		 */
+		seoTitle?: string;
 		children: Snippet;
 	}
 
@@ -22,14 +36,41 @@
 		description,
 		toc = [],
 		crumb = { href: '/components', label: 'Components' },
+		kind = 'component',
+		seoTitle,
 		children
 	}: Props = $props();
+
+	let isComponent = $derived(kind === 'component');
+
+	let title = $derived(
+		seoTitle ?? (isComponent ? `Svelte ${name} Component — Sve·UI` : `${name} — Sve·UI`)
+	);
+
+	// The registry blurb is a UI lede, not a search snippet — too short to earn a
+	// click on its own. Component pages extend it with the terms people actually
+	// type; guides already write full sentences and are left alone.
+	let seoDescription = $derived(
+		isComponent
+			? `${description} A styled, accessible Svelte 5 ${name} component from Sve·UI — no Tailwind, no config, themeable with CSS variables.`
+			: description
+	);
+
+	let jsonLd = $derived([
+		breadcrumbSchema([
+			{ name: 'Home', path: '/' },
+			{ name: crumb.label, path: crumb.href },
+			{ name, path: page.url.pathname }
+		]),
+		techArticleSchema({
+			name: title,
+			description: seoDescription,
+			path: page.url.pathname
+		})
+	]);
 </script>
 
-<svelte:head>
-	<title>{name} — Sve·UI</title>
-	<meta name="description" content={description} />
-</svelte:head>
+<Seo {title} description={seoDescription} type="article" {jsonLd} />
 
 <div class="docpage">
 	<article class="docpage__main">

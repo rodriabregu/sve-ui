@@ -32,6 +32,8 @@ cp -r node_modules/sve-ui/skills/sve-ui-usage .claude/skills/
 	description="A packaged skill so AI agents (Claude Code, Cursor, …) generate correct sve-ui code instead of hallucinating props."
 	{toc}
 	{crumb}
+	kind="guide"
+	seoTitle="Sve·UI for AI Agents — Svelte Skill for Claude Code & Cursor"
 >
 	<section id="why" class="sec">
 		<h2 class="sec__h">Why a skill</h2>
