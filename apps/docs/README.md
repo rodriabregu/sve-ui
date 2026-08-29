@@ -1,41 +1,47 @@
-# create-svelte
+# docs
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+The documentation site for `sve-ui` — [sveui.org](https://sveui.org). SvelteKit 2
+with Tailwind 4, fully prerendered, deployed on Vercel.
 
-## Creating a project
+Tailwind is used **here only**, for page chrome. It is deliberately absent from
+the library and from consumer projects; that is the whole pitch.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+```sh
+pnpm dev              # localhost:5173
+pnpm build            # prerenders every route into .vercel/output/static
+pnpm preview
 ```
 
-## Developing
+## What is generated, and from what
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Nothing on this site states a fact twice. Anything that could drift is derived
+from a single source, because it already drifted once: a hardcoded "13
+components" shipped against a registry of 58.
 
-```bash
-npm run dev
+| Output                         | Source                                                                                              | Command                            |
+| ------------------------------ | --------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| Prop tables                    | the library's TypeScript types, via the compiler's checker (so inherited Bits UI props resolve too) | `pnpm gen:props` — runs on `build` |
+| `/sitemap.xml`                 | `src/lib/docs/registry.ts` + `src/lib/docs/guides.ts`                                               | prerendered on `build`             |
+| `/llms.txt`                    | the same registry and guide nav                                                                     | prerendered on `build`             |
+| Component counts on every page | `readyComponents` from the registry                                                                 | —                                  |
+| `static/og.png` (social card)  | `scripts/gen-og.mjs`, rendered with Playwright's Chromium                                           | `pnpm gen:og`                      |
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+`gen:og` is **not** part of `build` — the Vercel builder has no browser — so the
+PNG is committed. Re-run it after changing the tagline, the count or the
+branding.
+
+## Guards
+
+```sh
+pnpm check:render     # structural: element skeleton of all prerendered pages
+pnpm test:visual      # appearance: screenshots of every live preview
+pnpm gen:props:check   # fails if the committed prop data is stale
 ```
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+`check:render` compares an ordered element skeleton (attribute values and text
+dropped) against `render-baseline.json`, so copy edits are free while a changed
+tag, a lost attribute or a reordered element fails. Accept an intended
+structural change with `pnpm check:render:update`.
 
 ## Visual regression
 

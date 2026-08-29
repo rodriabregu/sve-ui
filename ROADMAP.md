@@ -87,7 +87,7 @@ exported symbol, which handles both the bare and the explicitly-annotated form.
 ### 3. No visual regression coverage — PARTLY DONE
 
 - [x] `apps/docs/scripts/check-render.mjs` — a structural render guard over all
-      **65** prerendered pages, wired into CI after `build`. It compares a digest
+      **67** prerendered pages, wired into CI after `build`. It compares a digest
       (ordered element skeleton plus attribute names, values and text dropped)
       against a committed baseline, so copy edits are free while a changed tag,
       lost attribute or reordered element fails. Normalises the things that churn
