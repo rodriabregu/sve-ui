@@ -44,6 +44,8 @@ import 'sve-ui/theme.css';`;
 	description="Add the package, import the stylesheet once, and start using components. No Tailwind, no config."
 	{toc}
 	{crumb}
+	kind="guide"
+	seoTitle="Install Sve·UI — Svelte UI Component Library Setup"
 >
 	<section id="install" class="sec">
 		<h2 class="sec__h">Install</h2>

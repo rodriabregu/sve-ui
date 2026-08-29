@@ -44,6 +44,8 @@ $effect(() => {
 	description="Every color, radius and space is a --sve-* CSS variable. Override them anywhere — no rebuild, no config."
 	{toc}
 	{crumb}
+	kind="guide"
+	seoTitle="Theming Svelte Components with CSS Variables — Sve·UI"
 >
 	<section id="model" class="sec">
 		<h2 class="sec__h">The token model</h2>

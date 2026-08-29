@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { readyComponents } from '$lib/docs/registry';
+	import Seo from '$lib/seo/Seo.svelte';
+	import { websiteSchema, softwareSchema } from '$lib/seo/schema';
 	import {
 		Button,
 		Badge,
@@ -85,13 +87,11 @@
 	let dialogOpen = $state(false);
 </script>
 
-<svelte:head>
-	<title>Sve·UI — Styled, accessible Svelte 5 components. Zero config.</title>
-	<meta
-		name="description"
-		content="Fully styled, fully accessible Svelte 5 components built on Bits UI. No Tailwind, no config in your project — install, import, ship. Theme everything with CSS variables."
-	/>
-</svelte:head>
+<Seo
+	title="Sve·UI — Svelte UI Component Library for Svelte 5"
+	description="A Svelte UI component library with {readyComponents} fully styled, fully accessible components built on Bits UI. No Tailwind, no config in your project — install, import, ship. Theme everything with CSS variables."
+	jsonLd={[websiteSchema(), softwareSchema()]}
+/>
 
 <!-- ===================== HERO ===================== -->
 <section
@@ -122,7 +122,7 @@
 				class="mt-6"
 				style="font-size: clamp(38px, 6vw, 54px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 800; color: var(--doc-fg);"
 			>
-				Styled, accessible<br />Svelte&nbsp;5 components —<br /><span
+				Styled, accessible<br />Svelte&nbsp;5 UI components —<br /><span
 					style="color: var(--doc-primary-text);">zero config.</span
 				>
 			</h1>
@@ -131,7 +131,8 @@
 				class="mt-6 max-w-[480px]"
 				style="font-size: 17.5px; line-height: 1.55; color: var(--doc-fg-muted);"
 			>
-				Fully styled, fully accessible components built on Bits&nbsp;UI.
+				The Svelte UI component library with fully styled, fully accessible components built on
+				Bits&nbsp;UI.
 				<strong style="color: var(--doc-fg); font-weight: 600;">No Tailwind. No config</strong>
 				in your project —
 				<code class="doc-mono" style="font-size: 14.5px; color: var(--doc-primary-text);"

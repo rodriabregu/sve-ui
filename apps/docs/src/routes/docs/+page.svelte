@@ -17,6 +17,8 @@
 	description="A library of ready-made, fully styled and accessible Svelte 5 components — no Tailwind and no config in your project."
 	{toc}
 	{crumb}
+	kind="guide"
+	seoTitle="Introduction to Sve·UI — Svelte 5 UI Component Library"
 >
 	<section id="what" class="sec">
 		<h2 class="sec__h">What is sve-ui</h2>
