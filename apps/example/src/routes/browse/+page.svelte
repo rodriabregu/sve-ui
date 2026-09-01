@@ -9,8 +9,12 @@
 		Combobox,
 		Command,
 		ContextMenu,
+		Empty,
 		Flex,
 		Heading,
+		Input,
+		InputGroup,
+		Kbd,
 		LinkPreview,
 		Menubar,
 		NavigationMenu,
@@ -35,6 +39,17 @@
 	let rows = $state<Asset[]>([]);
 	let total = $state(0);
 	let loading = $state(true);
+
+	let search = $state('');
+
+	// Filtering in the browser on purpose: this is what turns a populated list
+	// into an empty one WITHOUT a page load, which is the exact case
+	// `Empty.Root announce` exists for.
+	let visible = $derived(
+		search.trim()
+			? rows.filter((r) => r.title.toLowerCase().includes(search.trim().toLowerCase()))
+			: rows
+	);
 
 	let paletteOpen = $state(false);
 	let paletteQuery = $state('');
@@ -121,9 +136,26 @@
 		<Toolbar.GroupItem value="compact" aria-label="Compact rows">Compact</Toolbar.GroupItem>
 		<Toolbar.GroupItem value="grid" aria-label="Grid preview">Grid</Toolbar.GroupItem>
 	</Toolbar.Group>
-	<Toolbar.Button onclick={() => (paletteOpen = true)}>Command palette</Toolbar.Button>
+	<Toolbar.Button onclick={() => (paletteOpen = true)} aria-keyshortcuts="Meta+K">
+		Command palette
+		<Kbd size="sm" label="Command">&#8984;</Kbd><Kbd size="sm">K</Kbd>
+	</Toolbar.Button>
 	<Toolbar.Link href="/security">Security</Toolbar.Link>
 </Toolbar.Root>
+
+<div class="search">
+	<InputGroup.Root>
+		<InputGroup.Addon>
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+			</svg>
+		</InputGroup.Addon>
+		<Input bind:value={search} placeholder="Filter by title" aria-label="Filter assets by title" />
+		{#if search}
+			<Button variant="ghost" onclick={() => (search = '')}>Clear</Button>
+		{/if}
+	</InputGroup.Root>
+</div>
 
 <Flex gap={4} wrap>
 	<div class="filter">
@@ -198,9 +230,17 @@
 								<Skeleton height="2.5rem" />
 							{/each}
 						</Stack>
+					{:else if visible.length === 0}
+						<Empty.Root announce>
+							<Empty.Title>No assets match "{search}"</Empty.Title>
+							<Empty.Description>Try a shorter search term, or clear the filter.</Empty.Description>
+							<Empty.Actions>
+								<Button variant="outline" onclick={() => (search = '')}>Clear filter</Button>
+							</Empty.Actions>
+						</Empty.Root>
 					{:else}
 						<ul>
-							{#each rows as row (row.id)}
+							{#each visible as row (row.id)}
 								<li>
 									<ContextMenu.Root>
 										<ContextMenu.Trigger>
@@ -316,6 +356,11 @@
 </Sheet.Root>
 
 <style>
+	.search {
+		max-width: 26rem;
+		margin-bottom: 12px;
+	}
+
 	.filter {
 		min-width: 14rem;
 	}

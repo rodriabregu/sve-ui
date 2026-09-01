@@ -112,6 +112,29 @@ import {(Button, Input, Badge, Slider)} from 'sve-ui'; import {(Dialog, Select, 
 ## Forms
 
 ```svelte
+
+<!-- ButtonGroup: several INDEPENDENT buttons attached visually. Each keeps its
+     own tab stop. `label` (or `labelledby`) is REQUIRED: it renders
+     role="group", and a role with no name tells a screen reader there is a
+     boundary and then cannot say what for.
+     Do NOT use it for a selected value (that is ToggleGroup) or when the whole
+     bar should be one tab stop with arrow-key movement (that is Toolbar). -->
+<ButtonGroup label="Text alignment">
+	<Button variant="outline">Left</Button>
+	<Button variant="outline">Center</Button>
+</ButtonGroup>
+
+<!-- InputGroup: the GROUP draws the border and focus ring, the Input draws
+     neither. Addon side comes from DOM order — there is no `side` prop.
+     Addon is aria-hidden by DEFAULT and cannot be the label: put the meaning in
+     the input's accessible name ("Amount in dollars", not "Amount" beside a $).
+     For invalid, pass it to BOTH: the group turns the border, the input sets
+     aria-invalid. Pass the same `size` to both so the heights match. -->
+<InputGroup.Root>
+	<InputGroup.Addon>$</InputGroup.Addon>
+	<Input type="number" aria-label="Amount in dollars" />
+	<InputGroup.Addon>USD</InputGroup.Addon>
+</InputGroup.Root>
 <!-- Button: variant solid|outline|ghost|flat; color primary|secondary|success|warning|danger|default; size sm|md|lg -->
 <Button variant="solid" color="primary" size="md">Save</Button>
 
@@ -533,6 +556,36 @@ no history.
 </nav>
 ```
 
+### Empty
+
+```svelte
+<script>
+	import { Empty, Button } from 'sve-ui';
+</script>
+
+<!-- Three defaults that are usually got wrong, and are already right here:
+
+     1. Media is aria-hidden. The icon restates the title; in the tree it
+        announces nothing or says the same thing twice.
+     2. Title is a <p>, NOT a heading. An empty state in a card or table cell has
+        no section of its own, and an <h3> there puts "No results" in the
+        document outline. Pass level={3} only when the structure warrants it.
+     3. `announce` is OFF by default. Turn it ON when emptiness REPLACES results
+        after a search or filter — that is a change the user caused and cannot
+        see. Leave it off for a first-paint placeholder, where it would interrupt
+        the heading above it.
+
+     Everything but Root is optional. -->
+<Empty.Root announce>
+	<Empty.Media><svg viewBox="0 0 24 24" aria-hidden="true">…</svg></Empty.Media>
+	<Empty.Title>No matches for "{query}"</Empty.Title>
+	<Empty.Description>Try a shorter search term.</Empty.Description>
+	<Empty.Actions>
+		<Button color="primary">Clear filters</Button>
+	</Empty.Actions>
+</Empty.Root>
+```
+
 ### Busy
 
 ```svelte
@@ -749,6 +802,15 @@ A vertical separator is 1px wide and stretches to its parent, so the parent need
 
 ```svelte
 <Code code={`const answer = 42;`} label="App.svelte" copyable />
+
+<!-- Kbd: ONE per key. Nesting <kbd> is legal HTML but draws a box around boxes.
+     `label` is the part that matters: the glyphs are punctuation to a screen
+     reader, so some voices skip them entirely. With a label the glyph is hidden
+     from the a11y tree and the word is announced instead. Plain letters and
+     words ("K", "Esc", "Enter") need NO label.
+     Drawing the key does NOT tell AT that pressing it does anything — put
+     aria-keyshortcuts on the control the shortcut triggers. -->
+<Kbd label="Command">&#8984;</Kbd><Kbd>K</Kbd>
 
 <!-- Command (command palette). Command.Viewport is REQUIRED and goes inside List:
      Bits takes the Input's aria-controls from it, so omitting it is invalid ARIA.

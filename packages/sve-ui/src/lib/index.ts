@@ -13,13 +13,16 @@
  * DateRangeField and TimeRangeField namespaces, DatePicker and
  * DateRangePicker namespaces, Sidebar namespace, Table namespace,
  * Toast namespace + the imperative `toast`,
- * RatingGroup namespace,
+ * RatingGroup namespace, Kbd, ButtonGroup,
+ * Empty and InputGroup namespaces,
  * variant helper + types, theme types.
  */
 
 // Components
 export { default as ThemeProvider } from './ThemeProvider.svelte';
 export { default as Button } from './components/Button/Button.svelte';
+// Attaches several independent buttons into one visual control.
+export { default as ButtonGroup } from './components/ButtonGroup/ButtonGroup.svelte';
 export { default as Text } from './components/Text/Text.svelte';
 export { default as Heading } from './components/Heading/Heading.svelte';
 export { default as Badge } from './components/Badge/Badge.svelte';
@@ -28,6 +31,8 @@ export { default as Spinner } from './components/Spinner/Spinner.svelte';
 export { default as Busy } from './components/Busy/Busy.svelte';
 export { default as Input } from './components/Input/Input.svelte';
 export { default as Code } from './components/Code/Code.svelte';
+// A keycap. `label` gives `\u2318` a spoken alternative.
+export { default as Kbd } from './components/Kbd/Kbd.svelte';
 export { default as Slider } from './components/Slider/Slider.svelte';
 export { default as Textarea } from './components/Textarea/Textarea.svelte';
 export { default as Label } from './components/Label/Label.svelte';
@@ -159,6 +164,12 @@ export * as Sidebar from './components/Sidebar/index.js';
 
 // Table namespace (custom — a styled data table; it does not sort your data)
 export * as Table from './components/Table/index.js';
+
+// Empty namespace (custom — the state a list is in with nothing to show)
+export * as Empty from './components/Empty/index.js';
+
+// InputGroup namespace (custom — an Input with addons, drawn as one control)
+export * as InputGroup from './components/InputGroup/index.js';
 
 // Toast namespace (custom — imperative trigger, declarative Viewport)
 export * as Toast from './components/Toast/index.js';

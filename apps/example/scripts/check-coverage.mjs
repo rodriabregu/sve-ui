@@ -43,7 +43,21 @@ function walk(dir) {
 }
 
 const source = walk(SRC);
-const missing = [...exports].filter((name) => !new RegExp(`\\b${name}\\b`).test(source)).sort();
+
+/*
+	A member of one namespace is not proof that another export is used.
+
+	`\bEmpty\b` matched `Command.Empty` on the browse screen, so this guard
+	reported the top-level `Empty` namespace as covered while nothing rendered it.
+	The lookbehind requires the name to appear as itself — `Empty.Root` counts,
+	`Command.Empty` does not.
+
+	Same shape as the `sve-nav-menu` false positive in the CSS audit: a
+	word-boundary match cannot tell a qualified name from a bare one.
+*/
+const missing = [...exports]
+	.filter((name) => !new RegExp(`(?<!\\.)\\b${name}\\b`).test(source))
+	.sort();
 
 if (missing.length > 0) {
 	console.error(

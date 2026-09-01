@@ -68,21 +68,21 @@ without it):
 
 ## Components
 
-**60 components**, every one styled and accessible out of the box. Names ending
+**64 components**, every one styled and accessible out of the box. Names ending
 in `.*` are namespace compositions — import the namespace and compose its parts
 (`Dialog.Root`, `Dialog.Trigger`, `Dialog.Content`). The rest are default
 imports.
 
-| Group          | Components                                                                                                                                                                                                                                                                                                                          |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Display**    | `Avatar.*`, `Badge`, `Card.*`, `Heading`, `Text`, `Skeleton`                                                                                                                                                                                                                                                                        |
-| **Forms**      | `Button`, `Input`, `Field`, `Checkbox.*`, `RadioGroup.*`, `Switch.*`, `Select.*`, `Combobox.*`, `Slider`, `Textarea`, `Label`, `Toggle`, `ToggleGroup.*`, `Calendar.*`, `DateField.*`, `DatePicker.*`, `RangeCalendar.*`, `DateRangeField.*`, `DateRangePicker.*`, `TimeField.*`, `TimeRangeField.*`, `PinInput.*`, `RatingGroup.*` |
-| **Feedback**   | `Alert.*`, `Busy`, `Spinner`, `Toast.*`, `Progress`, `Meter`                                                                                                                                                                                                                                                                        |
-| **Navigation** | `Tabs.*`, `Accordion.*`, `Sidebar.*`, `Breadcrumb.*`, `NavigationMenu.*`, `Menubar.*`, `Collapsible.*`, `Toolbar.*`                                                                                                                                                                                                                 |
-| **Overlays**   | `Dialog.*`, `DropdownMenu.*`, `Popover.*`, `Tooltip.*`, `AlertDialog.*`, `Command.*`, `Sheet.*`, `ContextMenu.*`, `LinkPreview.*`                                                                                                                                                                                                   |
-| **Data**       | `Table.*`, `Pagination.*`                                                                                                                                                                                                                                                                                                           |
-| **Layout**     | `Stack`, `Flex`, `Separator`, `ScrollArea.*`, `AspectRatio`                                                                                                                                                                                                                                                                         |
-| **Utilities**  | `Code`                                                                                                                                                                                                                                                                                                                              |
+| Group          | Components                                                                                                                                                                                                                                                                                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Display**    | `Avatar.*`, `Badge`, `Card.*`, `Heading`, `Text`, `Skeleton`                                                                                                                                                                                                                                                                                                       |
+| **Forms**      | `Button`, `ButtonGroup`, `Input`, `InputGroup.*`, `Field`, `Checkbox.*`, `RadioGroup.*`, `Switch.*`, `Select.*`, `Combobox.*`, `Slider`, `Textarea`, `Label`, `Toggle`, `ToggleGroup.*`, `Calendar.*`, `DateField.*`, `DatePicker.*`, `RangeCalendar.*`, `DateRangeField.*`, `DateRangePicker.*`, `TimeField.*`, `TimeRangeField.*`, `PinInput.*`, `RatingGroup.*` |
+| **Feedback**   | `Alert.*`, `Busy`, `Empty.*`, `Spinner`, `Toast.*`, `Progress`, `Meter`                                                                                                                                                                                                                                                                                            |
+| **Navigation** | `Tabs.*`, `Accordion.*`, `Sidebar.*`, `Breadcrumb.*`, `NavigationMenu.*`, `Menubar.*`, `Collapsible.*`, `Toolbar.*`                                                                                                                                                                                                                                                |
+| **Overlays**   | `Dialog.*`, `DropdownMenu.*`, `Popover.*`, `Tooltip.*`, `AlertDialog.*`, `Command.*`, `Sheet.*`, `ContextMenu.*`, `LinkPreview.*`                                                                                                                                                                                                                                  |
+| **Data**       | `Table.*`, `Pagination.*`                                                                                                                                                                                                                                                                                                                                          |
+| **Layout**     | `Stack`, `Flex`, `Separator`, `ScrollArea.*`, `AspectRatio`                                                                                                                                                                                                                                                                                                        |
+| **Utilities**  | `Code`, `Kbd`                                                                                                                                                                                                                                                                                                                                                      |
 
 Every component has a live page with props and examples at
 [sveui.org/components](https://sveui.org/components).
@@ -104,6 +104,10 @@ Three that are easy to miss:
   announces itself while its content is in flight.
 - **`Command.*`** is the command palette, and its `Command.Status` announces
   result counts to a screen reader as you filter.
+- **`Kbd`** takes a `label`, so `⌘` is announced as "Command" instead of being
+  skipped as punctuation.
+- **`Empty.Root announce`** puts the empty state in a live region — for the case
+  that matters, results replaced by nothing after a search.
 
 ## Theming
 

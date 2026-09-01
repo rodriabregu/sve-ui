@@ -4,6 +4,7 @@
 	import {
 		Busy,
 		Button,
+		Calendar,
 		Card,
 		DateField,
 		DateRangeField,
@@ -31,6 +32,7 @@
 		So it is deliberately the date-heavy screen.
 	*/
 
+	let visitDay = $state<DateValue | undefined>(undefined);
 	let stay = $state<{ start: DateValue | undefined; end: DateValue | undefined }>({
 		start: new CalendarDate(2026, 3, 12),
 		end: undefined
@@ -340,6 +342,51 @@
 				{/snippet}
 			</TimeRangeField.Input>
 		</TimeRangeField.Root>
+	</Card.Content>
+</Card.Root>
+
+<!--
+  The standalone Calendar, which this app had never rendered.
+
+  It was reported as covered for months because the coverage guard's word-boundary
+  match accepted `DatePicker.Calendar` as proof of the top-level `Calendar`. A
+  calendar inside a picker is a different mount: it opens in a portal, on demand.
+  This one is on the page from the first paint.
+-->
+<Card.Root>
+	<Card.Header><Heading level={2} size="md">Single visit day</Heading></Card.Header>
+	<Card.Content>
+		<Calendar.Root type="single" bind:value={visitDay} calendarLabel="Visit day">
+			{#snippet children({ months, weekdays })}
+				<Calendar.Header>
+					<Calendar.PrevButton>&lsaquo;</Calendar.PrevButton>
+					<Calendar.Heading />
+					<Calendar.NextButton>&rsaquo;</Calendar.NextButton>
+				</Calendar.Header>
+				{#each months as month (month.value)}
+					<Calendar.Grid>
+						<Calendar.GridHead>
+							<Calendar.GridRow>
+								{#each weekdays as day, i (i)}
+									<Calendar.HeadCell>{day}</Calendar.HeadCell>
+								{/each}
+							</Calendar.GridRow>
+						</Calendar.GridHead>
+						<Calendar.GridBody>
+							{#each month.weeks as week, i (i)}
+								<Calendar.GridRow>
+									{#each week as date (date)}
+										<Calendar.Cell {date} month={month.value}>
+											<Calendar.Day />
+										</Calendar.Cell>
+									{/each}
+								</Calendar.GridRow>
+							{/each}
+						</Calendar.GridBody>
+					</Calendar.Grid>
+				{/each}
+			{/snippet}
+		</Calendar.Root>
 	</Card.Content>
 </Card.Root>
 

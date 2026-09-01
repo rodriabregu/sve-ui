@@ -15,6 +15,8 @@
 	import Spinner from '$lib/components/Spinner/Spinner.svelte';
 	import Slider from '$lib/components/Slider/Slider.svelte';
 	import Code from '$lib/components/Code/Code.svelte';
+	import Kbd from '$lib/components/Kbd/Kbd.svelte';
+	import ButtonGroup from '$lib/components/ButtonGroup/ButtonGroup.svelte';
 	import Textarea from '$lib/components/Textarea/Textarea.svelte';
 	import Label from '$lib/components/Label/Label.svelte';
 	import Skeleton from '$lib/components/Skeleton/Skeleton.svelte';
@@ -30,6 +32,8 @@
 	import * as LinkPreview from '$lib/components/LinkPreview/index.js';
 	import * as ContextMenu from '$lib/components/ContextMenu/index.js';
 	import * as ScrollArea from '$lib/components/ScrollArea/index.js';
+	import * as Empty from '$lib/components/Empty/index.js';
+	import * as InputGroup from '$lib/components/InputGroup/index.js';
 	import * as Toolbar from '$lib/components/Toolbar/index.js';
 	import * as Menubar from '$lib/components/Menubar/index.js';
 	import * as Pagination from '$lib/components/Pagination/index.js';
@@ -462,6 +466,55 @@
 
 <!-- Utilities -->
 <section aria-label="Code"><Code code="const answer = 42;" /></section>
+
+<!--
+  Kbd twice: bare, and with a `label`. The labelled form hides the glyph and
+  exposes the word, so axe sees both branches of that template.
+-->
+<section aria-label="Kbd">
+	<Kbd>Esc</Kbd>
+	<Kbd label="Command">&#8984;</Kbd>
+</section>
+
+<!--
+  `role="group"` with a name, which is the only configuration this component is
+  allowed to render — the accessible name is a required prop for that reason.
+-->
+<section aria-label="Button group">
+	<ButtonGroup label="Text alignment">
+		<Button variant="outline">Left</Button>
+		<Button variant="outline">Center</Button>
+		<Button variant="outline">Right</Button>
+	</ButtonGroup>
+</section>
+
+<!--
+  `announce` on, so the live region and its role are what axe inspects. The title
+  renders as a <p> by default; `level` is exercised on the second one, where a
+  heading is legitimate because the section around it is real.
+-->
+<section aria-label="Empty state">
+	<Empty.Root announce>
+		<Empty.Media>
+			<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /></svg>
+		</Empty.Media>
+		<Empty.Title level={2}>No projects yet</Empty.Title>
+		<Empty.Description>Projects you create will show up here.</Empty.Description>
+		<Empty.Actions><Button color="primary">New project</Button></Empty.Actions>
+	</Empty.Root>
+</section>
+
+<!--
+  The input keeps its own accessible name, and it has to include the unit the
+  addon shows: the addon is aria-hidden and cannot supply it.
+-->
+<section aria-label="Input group">
+	<InputGroup.Root>
+		<InputGroup.Addon>$</InputGroup.Addon>
+		<Input type="number" aria-label="Amount in dollars" />
+		<InputGroup.Addon>USD</InputGroup.Addon>
+	</InputGroup.Root>
+</section>
 
 <!--
   Every control that can be invalid, IN its invalid state, so axe adjudicates

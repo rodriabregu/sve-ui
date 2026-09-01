@@ -1046,6 +1046,40 @@
 		],
 		"spreads": "Omit<HTMLButtonAttributes, 'class'>"
 	},
+	"ButtonGroup": {
+		"props": [
+			{
+				"prop": "orientation",
+				"type": "'horizontal' | 'vertical'",
+				"required": false,
+				"default": "'horizontal'"
+			},
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"description": "The group's accessible name, e.g. \"Text alignment\". Required, because `role=\"group\"` without one is worse than no role at all: it tells a screen reader there is a boundary here and then cannot say what the boundary is for. Use `labelledby` instead when a visible heading already names it."
+			},
+			{
+				"prop": "labelledby",
+				"type": "string",
+				"required": false,
+				"description": "Id of an existing visible label, as an alternative to `label`."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'aria-label'>"
+	},
 	"CalendarCell": {
 		"props": [
 			{
@@ -4637,6 +4671,99 @@
 		],
 		"spreads": "Omit<BitsContentProps, 'class'>"
 	},
+	"EmptyActions": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"EmptyDescription": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLParagraphElement>, 'class'>"
+	},
+	"EmptyMedia": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"EmptyRoot": {
+		"props": [
+			{
+				"prop": "announce",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Announce this empty state when it appears. Default `false`, and that default is the interesting part. An empty state present on first paint is just the page — announcing it interrupts a screen reader reading the heading above it. An empty state that REPLACES results after a search or a filter is a change the user caused and cannot see, and silence there reads as \"nothing happened\". So: `announce` on anything that swaps in after an interaction, off for a first-render placeholder."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"EmptyTitle": {
+		"props": [
+			{
+				"prop": "level",
+				"type": "2 | 3 | 4 | 5 | 6",
+				"required": false,
+				"description": "Heading level, when this empty state sits under a heading that gives it context. Omit it and the title renders as a `<p>`. A heading is not the safe default: an empty state inside a card or a table cell would inject an `<h3>` into the document outline where no section exists, and a screen reader user navigating by heading would land on \"No results\" as if it were a part of the page."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
+	},
 	"Field": {
 		"props": [
 			{
@@ -4811,6 +4938,87 @@
 			}
 		],
 		"spreads": "Omit<HTMLInputAttributes, 'class' | 'size'>"
+	},
+	"InputGroupAddon": {
+		"props": [
+			{
+				"prop": "decorative",
+				"type": "boolean",
+				"required": false,
+				"default": "true",
+				"description": "Whether this addon is decoration. Default `true`, which hides it from the accessibility tree. That default is right far more often than it looks. A magnifier icon, a `$`, a `https://` — these are hints for the eye, and the input's own label is what has to carry the meaning (\"Amount in dollars\", not \"Amount\" beside a `$` nobody hears). Set `decorative={false}` only when the text is the ONLY place the information exists, and then make sure the input's accessible name still makes sense on its own — an addon is not a label and cannot become one."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLSpanElement>, 'class'>"
+	},
+	"InputGroupRoot": {
+		"props": [
+			{
+				"prop": "size",
+				"type": "'sm' | 'md' | 'lg'",
+				"required": false,
+				"default": "'md'",
+				"description": "Match the size of the `Input` inside."
+			},
+			{
+				"prop": "invalid",
+				"type": "boolean",
+				"required": false,
+				"default": "false",
+				"description": "Mark the whole group invalid, alongside the input's own `invalid`."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"Kbd": {
+		"props": [
+			{
+				"prop": "size",
+				"type": "'sm' | 'md'",
+				"required": false,
+				"default": "'md'"
+			},
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"description": "A spoken alternative for the glyph, e.g. `label=\"Command\"` for `⌘`. This exists because `⌘`, `⇧` and `⌥` are punctuation to a screen reader: some voices skip them entirely, others read a name nobody recognises. When a label is given the glyph is hidden from the accessibility tree and this text is announced instead, so the shortcut is legible both ways. Plain letters and words need no label — `K` and `Esc` already read correctly."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLElement>, 'class'>"
 	},
 	"Label": {
 		"props": [

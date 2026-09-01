@@ -3,6 +3,8 @@
 	import {
 		Busy,
 		Button,
+		ButtonGroup,
+		Empty,
 		Field,
 		Input,
 		Select,
@@ -28,6 +30,14 @@
 	// Table has no `columns` prop.
 	type Dir = 'none' | 'asc' | 'desc';
 	let sort = $state<Dir>('none');
+
+	/*
+		Sorting still belongs to the app — Table.Head only renders the button and
+		sets aria-sort. These reset controls sit beside it as three INDEPENDENT
+		actions, which is the ButtonGroup case: each keeps its own tab stop, and
+		none of them represents a selected value.
+	*/
+	let onlyMine = $state(false);
 	const collator = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
 	const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
@@ -121,7 +131,23 @@
 				<Spinner />
 				<span>Loading projects…</span>
 			</div>
+		{:else if sorted.length === 0}
+			<!-- Not announced: this is the first paint of an empty account, not a
+			     change the user just caused. `announce` would interrupt the heading
+			     above it. -->
+			<Empty.Root>
+				<Empty.Title level={3}>No projects yet</Empty.Title>
+				<Empty.Description>Create your first project with the form above.</Empty.Description>
+			</Empty.Root>
 		{:else}
+			<ButtonGroup label="Project list controls">
+				<Button variant="outline" onclick={() => (sort = 'none')}>Reset sort</Button>
+				<Button variant="outline" onclick={() => (onlyMine = !onlyMine)}>
+					{onlyMine ? 'Show all' : 'Only mine'}
+				</Button>
+				<Button variant="outline" onclick={() => toast.success('Export queued')}>Export</Button>
+			</ButtonGroup>
+
 			<Table.Root scrollLabel="Projects, scrollable" zebra>
 				<Table.Caption>All projects</Table.Caption>
 				<Table.Header>
