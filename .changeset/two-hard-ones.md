@@ -11,7 +11,7 @@ and a real accessibility contract rather than just a styling problem.
 
 **`Carousel`** is built on CSS scroll-snap rather than transforms, which is what
 buys touch swiping, trackpad flicks, momentum and the browser's own arrow-key
-scrolling for free. Position is *read* from the scroll container on every scroll
+scrolling for free. Position is _read_ from the scroll container on every scroll
 and never remembered: a swipe, a flick and the arrow keys are all drivers a
 component cannot intercept, and a stored index would disagree with the screen
 after any of them — which would make the "3 of 5" slide label a lie.
@@ -36,7 +36,7 @@ handle is a focusable `separator` with `aria-orientation` and live
 `aria-valuenow`; arrow keys move it, Home and End collapse and expand. `label` is
 required, because "splitter, 40" names a number and not the thing it sizes.
 
-A drag moves one boundary and touches exactly two panes, clamped against *both*
+A drag moves one boundary and touches exactly two panes, clamped against _both_
 of their limits before anything is applied. Clamping only the pane being grown is
 what lets its neighbour shrink past its own minimum, and distributing a drag
 across the whole group is what makes resizing a sidebar quietly reflow the far
