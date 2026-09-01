@@ -48,7 +48,21 @@ export const componentGroups: ComponentGroup[] = [
 				blurb: 'Primary action. Variants, tones and sizes.',
 				ready: true
 			},
+			{
+				slug: 'button-group',
+				name: 'Button Group',
+				blurb: 'Attaches related buttons into one control.',
+				status: 'new',
+				ready: true
+			},
 			{ slug: 'input', name: 'Input', blurb: 'Single-line text field with states.', ready: true },
+			{
+				slug: 'input-group',
+				name: 'Input Group',
+				blurb: 'An input with prefix and suffix addons.',
+				status: 'new',
+				ready: true
+			},
 			{
 				slug: 'field',
 				name: 'Field',
@@ -200,6 +214,13 @@ export const componentGroups: ComponentGroup[] = [
 				slug: 'busy',
 				name: 'Busy',
 				blurb: 'Marks a region as loading, and says so.',
+				status: 'new',
+				ready: true
+			},
+			{
+				slug: 'empty',
+				name: 'Empty',
+				blurb: 'The state a list is in with nothing to show.',
 				status: 'new',
 				ready: true
 			},
@@ -398,7 +419,14 @@ export const componentGroups: ComponentGroup[] = [
 	{
 		label: 'Utilities',
 		items: [
-			{ slug: 'code', name: 'Code', blurb: 'Copyable code block.', status: 'new', ready: true }
+			{ slug: 'code', name: 'Code', blurb: 'Copyable code block.', status: 'new', ready: true },
+			{
+				slug: 'kbd',
+				name: 'Kbd',
+				blurb: 'A keycap for a keyboard shortcut.',
+				status: 'new',
+				ready: true
+			}
 		]
 	}
 ];
