@@ -33,6 +33,8 @@
 	import * as ContextMenu from '$lib/components/ContextMenu/index.js';
 	import * as ScrollArea from '$lib/components/ScrollArea/index.js';
 	import * as Empty from '$lib/components/Empty/index.js';
+	import * as Carousel from '$lib/components/Carousel/index.js';
+	import * as Resizable from '$lib/components/Resizable/index.js';
 	import * as InputGroup from '$lib/components/InputGroup/index.js';
 	import * as Toolbar from '$lib/components/Toolbar/index.js';
 	import * as Menubar from '$lib/components/Menubar/index.js';
@@ -583,6 +585,39 @@
 			</Table.Row>
 		</Table.Footer>
 	</Table.Root>
+</section>
+
+<!--
+  Every control present at once: a labelled region, three named slides, both
+  arrows (Previous disabled at rest) and the indicator group.
+-->
+<section aria-label="Carousel">
+	<Carousel.Root label="Mountains">
+		<Carousel.Viewport>
+			<Carousel.Slide>Kilimanjaro</Carousel.Slide>
+			<Carousel.Slide>Aconcagua</Carousel.Slide>
+			<Carousel.Slide>Denali</Carousel.Slide>
+		</Carousel.Viewport>
+		<Carousel.Previous />
+		<Carousel.Next />
+		<Carousel.Indicators>
+			<Carousel.Indicator index={0} />
+			<Carousel.Indicator index={1} />
+			<Carousel.Indicator index={2} />
+		</Carousel.Indicators>
+	</Carousel.Root>
+</section>
+
+<!--
+  A focusable `separator` with a name and a live value — the one configuration
+  this component is allowed to render, which is why `label` is required.
+-->
+<section aria-label="Resizable panes">
+	<Resizable.Group>
+		<Resizable.Pane min={20}>Sidebar</Resizable.Pane>
+		<Resizable.Handle index={0} label="Resize sidebar" />
+		<Resizable.Pane>Content</Resizable.Pane>
+	</Resizable.Group>
 </section>
 
 <!--

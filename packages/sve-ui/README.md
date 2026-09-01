@@ -68,20 +68,20 @@ without it):
 
 ## Components
 
-**64 components**, every one styled and accessible out of the box. Names ending
+**66 components**, every one styled and accessible out of the box. Names ending
 in `.*` are namespace compositions — import the namespace and compose its parts
 (`Dialog.Root`, `Dialog.Trigger`, `Dialog.Content`). The rest are default
 imports.
 
 | Group          | Components                                                                                                                                                                                                                                                                                                                                                         |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Display**    | `Avatar.*`, `Badge`, `Card.*`, `Heading`, `Text`, `Skeleton`                                                                                                                                                                                                                                                                                                       |
+| **Display**    | `Avatar.*`, `Badge`, `Card.*`, `Carousel.*`, `Heading`, `Text`, `Skeleton`                                                                                                                                                                                                                                                                                         |
 | **Forms**      | `Button`, `ButtonGroup`, `Input`, `InputGroup.*`, `Field`, `Checkbox.*`, `RadioGroup.*`, `Switch.*`, `Select.*`, `Combobox.*`, `Slider`, `Textarea`, `Label`, `Toggle`, `ToggleGroup.*`, `Calendar.*`, `DateField.*`, `DatePicker.*`, `RangeCalendar.*`, `DateRangeField.*`, `DateRangePicker.*`, `TimeField.*`, `TimeRangeField.*`, `PinInput.*`, `RatingGroup.*` |
 | **Feedback**   | `Alert.*`, `Busy`, `Empty.*`, `Spinner`, `Toast.*`, `Progress`, `Meter`                                                                                                                                                                                                                                                                                            |
 | **Navigation** | `Tabs.*`, `Accordion.*`, `Sidebar.*`, `Breadcrumb.*`, `NavigationMenu.*`, `Menubar.*`, `Collapsible.*`, `Toolbar.*`                                                                                                                                                                                                                                                |
 | **Overlays**   | `Dialog.*`, `DropdownMenu.*`, `Popover.*`, `Tooltip.*`, `AlertDialog.*`, `Command.*`, `Sheet.*`, `ContextMenu.*`, `LinkPreview.*`                                                                                                                                                                                                                                  |
 | **Data**       | `Table.*`, `Pagination.*`                                                                                                                                                                                                                                                                                                                                          |
-| **Layout**     | `Stack`, `Flex`, `Separator`, `ScrollArea.*`, `AspectRatio`                                                                                                                                                                                                                                                                                                        |
+| **Layout**     | `Resizable.*`, `Stack`, `Flex`, `Separator`, `ScrollArea.*`, `AspectRatio`                                                                                                                                                                                                                                                                                         |
 | **Utilities**  | `Code`, `Kbd`                                                                                                                                                                                                                                                                                                                                                      |
 
 Every component has a live page with props and examples at
@@ -108,6 +108,12 @@ Three that are easy to miss:
   skipped as punctuation.
 - **`Empty.Root announce`** puts the empty state in a live region — for the case
   that matters, results replaced by nothing after a search.
+- **`Carousel.*`** is built on CSS scroll-snap, so touch swiping and momentum
+  come from the platform. It does not loop and does not auto-rotate, both on
+  purpose — see its docs page.
+- **`Resizable.Handle`** implements the APG window-splitter keyboard contract:
+  arrow keys move it, Home and End collapse and expand. That is the half every
+  hand-rolled divider skips.
 
 ## Theming
 

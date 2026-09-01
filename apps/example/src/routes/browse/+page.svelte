@@ -5,6 +5,7 @@
 		Badge,
 		Button,
 		Card,
+		Carousel,
 		Collapsible,
 		Combobox,
 		Command,
@@ -20,6 +21,7 @@
 		NavigationMenu,
 		Pagination,
 		Popover,
+		Resizable,
 		ScrollArea,
 		Sheet,
 		Skeleton,
@@ -143,6 +145,30 @@
 	<Toolbar.Link href="/security">Security</Toolbar.Link>
 </Toolbar.Root>
 
+<!--
+  Several slides visible at once, which is the case that catches a carousel
+  disabling its controls from the slide index: the last index is reachable while
+  there is still track to scroll.
+-->
+<Carousel.Root label="Recent files" style="--sve-carousel-slide-size: 45%;">
+	<Carousel.Viewport>
+		{#each rows.slice(0, 6) as row (row.id)}
+			<Carousel.Slide label={row.title}>
+				<Card.Root>
+					<Card.Content>
+						<Text size="sm">{row.title}</Text>
+						<Badge color="secondary">{row.kind}</Badge>
+					</Card.Content>
+				</Card.Root>
+			</Carousel.Slide>
+		{/each}
+	</Carousel.Viewport>
+	<div class="shelf-controls">
+		<Carousel.Previous />
+		<Carousel.Next />
+	</div>
+</Carousel.Root>
+
 <div class="search">
 	<InputGroup.Root>
 		<InputGroup.Addon>
@@ -221,75 +247,93 @@
 			role="status" + aria-busy on the region that owns the rows: the Skeleton is
 			aria-hidden by design, so without this the swap is silent.
 		-->
-		<div role="status" aria-busy={loading} aria-label="File list">
-			<ScrollArea.Root type="auto" style="height: 20rem;">
-				<ScrollArea.Viewport>
-					{#if loading}
-						<Stack gap={3}>
-							{#each Array.from({ length: PER_PAGE }, (_, i) => i) as i (i)}
-								<Skeleton height="2.5rem" />
-							{/each}
-						</Stack>
-					{:else if visible.length === 0}
-						<Empty.Root announce>
-							<Empty.Title>No assets match "{search}"</Empty.Title>
-							<Empty.Description>Try a shorter search term, or clear the filter.</Empty.Description>
-							<Empty.Actions>
-								<Button variant="outline" onclick={() => (search = '')}>Clear filter</Button>
-							</Empty.Actions>
-						</Empty.Root>
+		<Resizable.Group style="height: 20rem;">
+			<Resizable.Pane min={35}>
+				<div role="status" aria-busy={loading} aria-label="File list">
+					<ScrollArea.Root type="auto" style="height: 20rem;">
+						<ScrollArea.Viewport>
+							{#if loading}
+								<Stack gap={3}>
+									{#each Array.from({ length: PER_PAGE }, (_, i) => i) as i (i)}
+										<Skeleton height="2.5rem" />
+									{/each}
+								</Stack>
+							{:else if visible.length === 0}
+								<Empty.Root announce>
+									<Empty.Title>No assets match "{search}"</Empty.Title>
+									<Empty.Description
+										>Try a shorter search term, or clear the filter.</Empty.Description
+									>
+									<Empty.Actions>
+										<Button variant="outline" onclick={() => (search = '')}>Clear filter</Button>
+									</Empty.Actions>
+								</Empty.Root>
+							{:else}
+								<ul>
+									{#each visible as row (row.id)}
+										<li>
+											<ContextMenu.Root>
+												<ContextMenu.Trigger>
+													{#snippet child({ props })}
+														<div {...props} class="row">
+															<div class="thumb">
+																<AspectRatio ratio={4 / 3}>
+																	<div class="thumb-fill">{row.kind.slice(0, 1).toUpperCase()}</div>
+																</AspectRatio>
+															</div>
+															<div class="row-main">
+																<Text>{row.title}</Text>
+																{#if columns.owner}
+																	<LinkPreview.Root>
+																		<LinkPreview.Trigger href="/">{row.owner}</LinkPreview.Trigger>
+																		<LinkPreview.Content>
+																			<Text size="sm">{row.owner} owns {row.kind} files.</Text>
+																		</LinkPreview.Content>
+																	</LinkPreview.Root>
+																{/if}
+															</div>
+															{#if columns.updated}
+																<Badge color="secondary">{row.updated}</Badge>
+															{/if}
+														</div>
+													{/snippet}
+												</ContextMenu.Trigger>
+												<ContextMenu.Content>
+													<ContextMenu.Item onSelect={() => (selected = row)}
+														>Select</ContextMenu.Item
+													>
+													<ContextMenu.Separator />
+													<ContextMenu.Item onSelect={() => run(`Delete ${row.title}`)}>
+														Delete
+													</ContextMenu.Item>
+												</ContextMenu.Content>
+											</ContextMenu.Root>
+										</li>
+									{/each}
+								</ul>
+							{/if}
+						</ScrollArea.Viewport>
+						<ScrollArea.Scrollbar orientation="vertical">
+							<ScrollArea.Thumb />
+						</ScrollArea.Scrollbar>
+					</ScrollArea.Root>
+				</div>
+			</Resizable.Pane>
+			<Resizable.Handle index={0} label="Resize the file list" />
+			<Resizable.Pane min={20}>
+				<div class="detail">
+					{#if selected}
+						<Text size="sm">Selected: {selected.title}</Text>
+						<Text size="sm">Owner: {selected.owner}</Text>
 					{:else}
-						<ul>
-							{#each visible as row (row.id)}
-								<li>
-									<ContextMenu.Root>
-										<ContextMenu.Trigger>
-											{#snippet child({ props })}
-												<div {...props} class="row">
-													<div class="thumb">
-														<AspectRatio ratio={4 / 3}>
-															<div class="thumb-fill">{row.kind.slice(0, 1).toUpperCase()}</div>
-														</AspectRatio>
-													</div>
-													<div class="row-main">
-														<Text>{row.title}</Text>
-														{#if columns.owner}
-															<LinkPreview.Root>
-																<LinkPreview.Trigger href="/">{row.owner}</LinkPreview.Trigger>
-																<LinkPreview.Content>
-																	<Text size="sm">{row.owner} owns {row.kind} files.</Text>
-																</LinkPreview.Content>
-															</LinkPreview.Root>
-														{/if}
-													</div>
-													{#if columns.updated}
-														<Badge color="secondary">{row.updated}</Badge>
-													{/if}
-												</div>
-											{/snippet}
-										</ContextMenu.Trigger>
-										<ContextMenu.Content>
-											<ContextMenu.Item onSelect={() => (selected = row)}>Select</ContextMenu.Item>
-											<ContextMenu.Separator />
-											<ContextMenu.Item onSelect={() => run(`Delete ${row.title}`)}>
-												Delete
-											</ContextMenu.Item>
-										</ContextMenu.Content>
-									</ContextMenu.Root>
-								</li>
-							{/each}
-						</ul>
+						<Empty.Root>
+							<Empty.Title>Nothing selected</Empty.Title>
+							<Empty.Description>Right-click a file and choose Select.</Empty.Description>
+						</Empty.Root>
 					{/if}
-				</ScrollArea.Viewport>
-				<ScrollArea.Scrollbar orientation="vertical">
-					<ScrollArea.Thumb />
-				</ScrollArea.Scrollbar>
-			</ScrollArea.Root>
-		</div>
-
-		{#if selected}
-			<Text size="sm">Selected: {selected.title}</Text>
-		{/if}
+				</div>
+			</Resizable.Pane>
+		</Resizable.Group>
 	</Card.Content>
 	<Card.Footer>
 		<Pagination.Root count={total} perPage={PER_PAGE} bind:page>
@@ -356,6 +400,18 @@
 </Sheet.Root>
 
 <style>
+	.shelf-controls {
+		display: flex;
+		justify-content: flex-end;
+		gap: 8px;
+	}
+
+	.detail {
+		height: 100%;
+		padding: 12px;
+		overflow: auto;
+	}
+
 	.search {
 		max-width: 26rem;
 		margin-bottom: 12px;

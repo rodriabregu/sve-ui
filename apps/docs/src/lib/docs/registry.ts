@@ -28,6 +28,13 @@ export const componentGroups: ComponentGroup[] = [
 			{ slug: 'avatar', name: 'Avatar', blurb: 'Image with graceful fallback.', ready: true },
 			{ slug: 'badge', name: 'Badge', blurb: 'Compact status and count labels.', ready: true },
 			{ slug: 'card', name: 'Card', blurb: 'Surface container for grouped content.', ready: true },
+			{
+				slug: 'carousel',
+				name: 'Carousel',
+				blurb: 'A scrolling track of slides with controls.',
+				status: 'new',
+				ready: true
+			},
 			{ slug: 'heading', name: 'Heading', blurb: 'Semantic, sized display titles.', ready: true },
 			{ slug: 'text', name: 'Text', blurb: 'Body copy with size and tone.', ready: true },
 			{
@@ -379,6 +386,13 @@ export const componentGroups: ComponentGroup[] = [
 	{
 		label: 'Layout',
 		items: [
+			{
+				slug: 'resizable',
+				name: 'Resizable',
+				blurb: 'Panes with a draggable, keyboard-operable divider.',
+				status: 'new',
+				ready: true
+			},
 			{
 				slug: 'stack',
 				name: 'Stack',
