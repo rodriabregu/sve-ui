@@ -1759,6 +1759,170 @@
 		],
 		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
 	},
+	"CarouselIndicator": {
+		"props": [
+			{
+				"prop": "index",
+				"type": "number",
+				"required": true,
+				"description": "Zero-based index of the slide this dot scrolls to."
+			},
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"description": "Accessible name. Defaults to \"Go to slide N\"."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			}
+		],
+		"spreads": "Omit<HTMLButtonAttributes, 'class' | 'aria-label'>"
+	},
+	"CarouselIndicators": {
+		"props": [
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"default": "'Choose slide'",
+				"description": "Accessible name for the set of dots. Defaults to \"Choose slide\"."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the container."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'aria-label'>"
+	},
+	"CarouselNext": {
+		"props": [
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"default": "'Next slide'",
+				"description": "Accessible name. Defaults to \"Previous slide\"."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLButtonAttributes, 'class' | 'aria-label'>"
+	},
+	"CarouselPrevious": {
+		"props": [
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"default": "'Previous slide'",
+				"description": "Accessible name. Defaults to \"Previous slide\"."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the button."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": false
+			}
+		],
+		"spreads": "Omit<HTMLButtonAttributes, 'class' | 'aria-label'>"
+	},
+	"CarouselRoot": {
+		"props": [
+			{
+				"prop": "orientation",
+				"type": "Orientation",
+				"required": false,
+				"default": "'horizontal'"
+			},
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"description": "The carousel's accessible name, e.g. \"Product photos\". Required, and it is not decoration. The root is a labelled region so a screen reader user can find and skip the whole thing in one move; an unnamed region is an obstacle they have to read through to identify."
+			},
+			{
+				"prop": "labelledby",
+				"type": "string",
+				"required": false,
+				"description": "Id of an existing visible heading, as an alternative to `label`."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the root element."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'aria-label'>"
+	},
+	"CarouselSlide": {
+		"props": [
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"description": "Overrides the generated \"N of M\" name. Pass something meaningful when the slide has an identity of its own — a product name beats a position. The default exists because a slide with no name at all is announced as \"group\", which tells the user nothing about where they are."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the slide."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'aria-label'>"
+	},
+	"CarouselViewport": {
+		"props": [
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the scroll container."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
 	"CheckboxRoot": {
 		"props": [
 			{
@@ -7289,6 +7453,88 @@
 			}
 		],
 		"spreads": "Omit<BitsRootProps, 'class' | 'value'>"
+	},
+	"ResizableGroup": {
+		"props": [
+			{
+				"prop": "direction",
+				"type": "Direction",
+				"required": false,
+				"default": "'horizontal'"
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the group."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
+	},
+	"ResizableHandle": {
+		"props": [
+			{
+				"prop": "index",
+				"type": "number",
+				"required": true,
+				"description": "Index of the pane on the leading side of this handle — the one whose size `aria-valuenow` reports."
+			},
+			{
+				"prop": "label",
+				"type": "string",
+				"required": false,
+				"description": "The handle's accessible name, e.g. \"Resize sidebar\". Required. A `separator` with a tabindex is a control, and a control that announces only \"splitter, 40\" tells a keyboard user a number without saying what it sizes."
+			},
+			{
+				"prop": "step",
+				"type": "number",
+				"required": false,
+				"default": "5",
+				"description": "Percent moved per arrow-key press."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the handle."
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class' | 'aria-label'>"
+	},
+	"ResizablePane": {
+		"props": [
+			{
+				"prop": "min",
+				"type": "number",
+				"required": false,
+				"default": "10",
+				"description": "Smallest share of the group this pane accepts, in percent."
+			},
+			{
+				"prop": "max",
+				"type": "number",
+				"required": false,
+				"default": "90",
+				"description": "Largest share, in percent."
+			},
+			{
+				"prop": "class",
+				"type": "string",
+				"required": false,
+				"description": "Extra classes merged onto the pane."
+			},
+			{
+				"prop": "children",
+				"type": "Snippet",
+				"required": true
+			}
+		],
+		"spreads": "Omit<HTMLAttributes<HTMLDivElement>, 'class'>"
 	},
 	"ScrollAreaRoot": {
 		"props": [

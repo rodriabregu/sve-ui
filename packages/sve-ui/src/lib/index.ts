@@ -15,6 +15,7 @@
  * Toast namespace + the imperative `toast`,
  * RatingGroup namespace, Kbd, ButtonGroup,
  * Empty and InputGroup namespaces,
+ * Carousel and Resizable namespaces,
  * variant helper + types, theme types.
  */
 
@@ -170,6 +171,12 @@ export * as Empty from './components/Empty/index.js';
 
 // InputGroup namespace (custom — an Input with addons, drawn as one control)
 export * as InputGroup from './components/InputGroup/index.js';
+
+// Carousel namespace (custom — CSS scroll-snap; no loop, no autoplay, on purpose)
+export * as Carousel from './components/Carousel/index.js';
+
+// Resizable namespace (custom — the APG window-splitter, keyboard contract included)
+export * as Resizable from './components/Resizable/index.js';
 
 // Toast namespace (custom — imperative trigger, declarative Viewport)
 export * as Toast from './components/Toast/index.js';

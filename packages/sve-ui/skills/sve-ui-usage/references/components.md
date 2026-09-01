@@ -46,6 +46,43 @@ import {(Button, Input, Badge, Slider)} from 'sve-ui'; import {(Dialog, Select, 
 </div>
 ```
 
+### Carousel
+
+```svelte
+<script>
+	import { Carousel } from 'sve-ui';
+	const slides = ['a', 'b', 'c'];
+</script>
+
+<!-- CSS scroll-snap, NOT transforms: touch swipe, momentum and arrow-key
+     scrolling come from the platform. `label` on Root is REQUIRED (it is a
+     labelled region so the whole carousel can be skipped). Slides announce as
+     "slide, 2 of 3" automatically — pass `label` only for a better name.
+
+     It does NOT loop and does NOT auto-rotate, both deliberate. A ring makes
+     "3 of 5" meaningless and kills the disabled-at-the-boundary affordance;
+     autoplay needs a pause button + stop-on-hover + stop-on-focus +
+     prefers-reduced-motion, and half of that is worse than none. `useCarousel()`
+     exposes next/prev/goTo if the consumer takes on that obligation.
+
+     Show several at once with --sve-carousel-slide-size (33.333% for three).
+     Do NOT add tabindex to Viewport: a scroll box is already arrow-scrollable. -->
+<Carousel.Root label="Product photos" style="--sve-carousel-slide-size: 100%;">
+	<Carousel.Viewport>
+		{#each slides as slide (slide)}
+			<Carousel.Slide>{slide}</Carousel.Slide>
+		{/each}
+	</Carousel.Viewport>
+	<Carousel.Previous />
+	<Carousel.Next />
+	<Carousel.Indicators>
+		{#each slides as _, i (i)}
+			<Carousel.Indicator index={i} />
+		{/each}
+	</Carousel.Indicators>
+</Carousel.Root>
+```
+
 ### Table
 
 ```svelte
@@ -763,6 +800,23 @@ All overlays portal to `<body>`; mirror the theme class onto `<body>`. Wrap cust
 ## Layout
 
 ```svelte
+<!-- Resizable: the APG window-splitter. `Handle index` is the pane on its
+     LEADING side — the one aria-valuenow reports and aria-controls points at.
+     `label` is REQUIRED: a separator with a tabindex IS a control, and
+     "splitter, 40" names a number and not the thing it sizes.
+
+     Keyboard is the contract, not a bonus: arrows move by `step` (5%), Home/End
+     collapse and expand. A drag moves ONE boundary and touches TWO panes,
+     clamped against BOTH panes' limits — clamping only the growing one lets the
+     neighbour shrink past its own min.
+
+     It does NOT persist sizes (that is an app decision) and `Pane min` defaults
+     to 10 — pass min={0} for a pane that can disappear. -->
+<Resizable.Group direction="horizontal">
+	<Resizable.Pane min={20}>Sidebar</Resizable.Pane>
+	<Resizable.Handle index={0} label="Resize sidebar" />
+	<Resizable.Pane>Content</Resizable.Pane>
+</Resizable.Group>
 <!-- ScrollArea: size constraint goes on Root; Viewport fills it and scrolls.
      type=hover (default) does NOT mount the scrollbar until pointer enter, which
      removes the only cue that more content exists — use type="always" unless the
